@@ -1,0 +1,19 @@
+/* Import Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+/* Import Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.sortable-drag {
+    background-color: #f0f8ff; /* Warna latar saat di-drag */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    padding: 12px;
+}
+.sortable-handle:hover {
+    cursor: grab;
+}
+
