@@ -4,7 +4,6 @@ namespace App\Livewire\Administrator\Products\Category;
 
 use App\Models\ProductCategory;
 use Livewire\Component;
-use Illuminate\Support\Str;
 
 class Create extends Component
 {
@@ -14,7 +13,7 @@ class Create extends Component
 
     public function updatedName($value)
     {
-        $this->slug = Str::slug($value);
+        $this->slug = slug($value);
     }
 
     public function store()

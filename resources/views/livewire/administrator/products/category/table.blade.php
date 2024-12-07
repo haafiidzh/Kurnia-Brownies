@@ -31,7 +31,7 @@
                                 <td class="px-1 py-2 text-center">{{ $category->firstItem() + $index }}</td>
                                 <td class="px-4 py-2 text-left">{{ $data->name }}</td>
 
-                                <td class="px-4 py-2 text-left">{{ $data->created_at->format('H.i , d M Y') }}</td>
+                                <td class="px-4 py-2 text-left">{{ dateTimeTranslated($data->created_at) }}</td>
                                 <td class="px-4 py-2">
                                     <div class="flex gap-2 justify-center">
                                         @can('edit-product-category')

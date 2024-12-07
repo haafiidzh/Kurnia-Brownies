@@ -4,7 +4,6 @@ namespace App\Livewire\Administrator\Cms\Slider;
 
 use App\Models\Slider;
 use Livewire\Component;
-use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 
 class Create extends Component
@@ -19,7 +18,7 @@ class Create extends Component
 
     public function updatedTitle($value)
     {
-        $this->slug = Str::slug($value);
+        $this->slug = slug($value);
     }
 
     public function store()
@@ -35,8 +34,10 @@ class Create extends Component
         $this->validate($rules);
 
         // Image File Upload
-        $imageName = $this->slug . '.' . $this->image->extension();
-        $imagePath = $this->image->storeAs('images/slider', $imageName, 'public');
+        $image_name = $this->slug . '.' . $this->image->extension();
+        $this->image->storeAs('images/slider', $image_name, 'public');
+
+        $image = 'storage/images/slider/' . $image_name;
 
         // Generate Position
         $lastPosition = Slider::orderBy('position', 'desc')->first();
@@ -49,12 +50,11 @@ class Create extends Component
 
         $this->position = $newPosition;
 
-        // dd($this->position);
         Slider::create([
             'title' => $this->title,
             'slug' => $this->slug,
             'description' => $this->description,
-            'image' => $imagePath,
+            'image' => $image,
             'position' => $this->position,
         ]);
 

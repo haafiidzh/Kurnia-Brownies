@@ -32,7 +32,7 @@
                             {{-- <td>{{ $i++ }}</td>  --}}
 
                             {{-- pakai pagination --}}
-                            <tr wire:sortable.item="{{ $data->id }}" wire:key="slider-{{ $data->id }}" class="sortable-drag hover:bg-gray-200 {{ $loop->last ? '' : 'border-b border-gray-200' }}">
+                            <tr wire:sortable.item="{{ $data->id }}" wire:key="slider-{{ $data->id }}" class="sortable-drag hover:bg-gray-200 last:border-b">
                                 
                                 <td class="px-1 py-2 text-center" >
                                     <i class="fas fa-bars sortable-handle" wire:sortable.handle title="Tekan & tahan untuk memindah posisi"></i>
@@ -53,7 +53,7 @@
                                                 <img title="{{ $data->title }}"
                                                     class="hover:blur-[2px] rounded transition-all duration-300" 
                                                     style="width: 200px; height: 100px; object-fit: cover" 
-                                                    src="{{ Str::startsWith($data->image, 'https://') ? $data->image : Storage::url($data->image) }}">
+                                                    src="{{ url($data->image) }}">
                                         </div>
 
                                         {{-- Preview Image --}}
@@ -75,7 +75,7 @@
                                                 </div>
                                                 <div class="p-5">
                                                     <img 
-                                                        class="rounded-md" src="{{ Str::startsWith($data->image, 'https://') ? $data->image : Storage::url($data->image) }}" 
+                                                        class="rounded-md" src="{{ url($data->image) }}" 
                                                         style="max-height: 480px;" 
                                                         alt="{{ $data->name }}">
                                                 </div>

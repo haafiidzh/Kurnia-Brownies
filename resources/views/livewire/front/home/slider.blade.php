@@ -6,7 +6,7 @@
         <div class="swiper-wrapper">
             @foreach ($datas as $data)
             <article class="hero__slide swiper-slide">
-                <div class="hero__entry-image" style="background-image: url({{ Str::startsWith($data->image, 'https://') ? $data->image : Storage::url($data->image) }});"></div>
+                <div class="hero__entry-image" style="background-image: url({{ url($data->image) }});"></div>
 
                 <div class="hero__entry-text">
                     <div class="hero__entry-text-inner">

@@ -49,6 +49,16 @@ class PermissionSeeder extends Seeder
             'edit-product-category',
             'create-product-category',
             'delete-product-category',
+
+            'view-news',
+            'edit-news',
+            'create-news',
+            'delete-news',
+
+            'view-news-category',
+            'edit-news-category',
+            'create-news-category',
+            'delete-news-category',
             
             'view-cms',
             'create-cms',

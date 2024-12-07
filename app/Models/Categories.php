@@ -4,20 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
-class ProductDetail extends Model
+class Categories extends Model
 {
     use HasFactory;
 
-    // Kalau pakai uuid berikan syntax seperti ini
+    protected $table = 'categories';
+
     public $incrementing = false;
     protected $keyType = 'string';
-    // End
 
-    protected $fillable = ['value', 'product_id'];
+    protected $fillable = [
+        'name',
+        'group',
+        'slug',
+    ];
 
-    // BUAT UUID
-    // Kalau mau custom format uuid berikan code ini
     protected static function boot()
     {
         parent::boot();
@@ -29,13 +32,16 @@ class ProductDetail extends Model
             }
         });
     }
-    // End
 
-    /**
-     * Get the product that owns the detail.
-     */
+    // Relation Product Table
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_id', 'id');
+        return $this->hasMany(Product::class, 'category');
+    }
+    
+    // Relation News Table
+    public function news()
+    {
+        return $this->hasMany(News::class, 'category');
     }
 }

@@ -54,7 +54,35 @@
                     </div>
                     <div
                         class="flex items-center font-bold text-4xl group-hover:scale-150 transition-all duration-300 group-hover:font-thin group-hover:text-5xl">
-                        {{ $category }}</div>
+                        {{ $product_category }}</div>
+                </a>
+            @endcan
+        </div>
+        <div class="flex justify-around gap-4">
+            @can('view-news')
+                <a wire:navigate href="{{ route('administrator.products') }}"
+                    class="group cursor-pointer w-1/2 h-20 p-4 flex flex-row justify-between rounded-xl bg-gray-100 hover:bg-green-200 hover:shadow-md transition-all duration-300">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-green-200 p-4 rounded-lg group-hover:bg-white transition-all duration-300"><i
+                                class="fa-solid fa-newspaper fa-lg text-indigo-950"></i></div>
+                        <div class="font-bold">News</div>
+                    </div>
+                    <div
+                        class="flex items-center font-bold text-4xl group-hover:scale-150 transition-all duration-300 group-hover:font-thin group-hover:text-5xl">
+                        {{ $news }}</div>
+                </a>
+            @endcan
+            @can('view-news-category')
+                <a wire:navigate href="{{ route('administrator.products.category') }}"
+                    class="group cursor-pointer w-1/2 h-20 p-4 flex flex-row justify-between rounded-xl bg-gray-100 hover:bg-blue-200 hover:shadow-md transition-all duration-300">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-blue-200 p-4 rounded-lg group-hover:bg-white transition-all duration-300"><i
+                                class="fa-solid fa-layer-group fa-lg text-indigo-950"></i></div>
+                        <div class="font-bold">News Category</div>
+                    </div>
+                    <div
+                        class="flex items-center font-bold text-4xl group-hover:scale-150 transition-all duration-300 group-hover:font-thin group-hover:text-5xl">
+                        {{ $news_category }}</div>
                 </a>
             @endcan
         </div>

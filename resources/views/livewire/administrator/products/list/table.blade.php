@@ -57,8 +57,8 @@
                                                 </div>
                                                 <img 
                                                     class="hover:blur-[2px] rounded transition-all duration-300" 
-                                                    style="width: 200px; height: 200px; object-fit: cover" 
-                                                    src="{{ Str::startsWith($product->image, 'https://') ? $product->image : Storage::url($product->image) }}">
+                                                    style="width: 200px; height: 200px; object-fit: cover"
+                                                    src="{{ url($product->image) }}">
                                         </div>
 
                                         {{-- Preview Image --}}
@@ -80,7 +80,7 @@
                                                 </div>
                                                 <div class="p-5">
                                                     <img 
-                                                        class="rounded-md" src="{{ Str::startsWith($product->image, 'https://') ? $product->image : Storage::url($product->image) }}" 
+                                                        class="rounded-md" src="{{ url($product->image) }}" 
                                                         style="max-height: 480px;" 
                                                         alt="{{ $product->name }}">
                                                 </div>

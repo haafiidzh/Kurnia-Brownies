@@ -41,10 +41,10 @@ class Product extends Model
     }
     // End
 
-    // Relation Product Category Table
+    // Relation Category Table
     public function category()
     {
-        return $this->belongsTo(ProductCategory::class, 'category_id');
+        return $this->belongsTo(Categories::class, 'category_id');
     }
 
     // Relation Product Detail Table

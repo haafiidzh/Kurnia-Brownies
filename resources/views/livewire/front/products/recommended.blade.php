@@ -21,7 +21,7 @@
                     <div class="entry__thumb">
                         <a href="{{ route('product.detail', $data->slug) }}" class="thumb-link">
                             <img 
-                            src="{{ Str::startsWith($data->image, 'https://') ? $data->image : Storage::url($data->image) }}" 
+                            src="{{ url($data->image) }}" 
                             style="width: 400px; height auto; object-fit: cover;">
                         </a>
                     </div> <!-- end entry__thumb -->

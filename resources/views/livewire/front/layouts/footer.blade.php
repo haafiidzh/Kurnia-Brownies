@@ -11,18 +11,23 @@
             </p>
         </div> <!-- end s-footer__about -->
 
-        <div class="column lg-5 md-6 tab-12">
+        <div class="column col-6 tab-12">
             <div class="row">
-                <div class="column lg-6">
+                <div class="column lg-4">
                     <h4>Contact Us</h4>
                     <ul class="link-list">
                         <li><a href="">Whatsapp</a></li>
-                        <li><a href="">Instagram</a></li>
-                        <li><a href="">Tiktok</a></li>
                         <li><a href="">Email</a></li>
                     </ul>
                 </div>
-                <div class="column lg-6">
+                <div class="column lg-4">
+                    <h4>Social Media</h4>
+                    <ul class="link-list">
+                        <li><a href="">Instagram</a></li>
+                        <li><a href="">Tiktok</a></li>
+                    </ul>
+                </div>
+                <div class="column lg-4">
                     <h4>Our Merchant</h4>
                     <ul class="link-list">
                         <li><a href="">Go Food</a></li>

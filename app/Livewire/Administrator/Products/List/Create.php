@@ -5,6 +5,7 @@ namespace App\Livewire\Administrator\Products\List;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductDetail;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
@@ -27,7 +28,7 @@ class Create extends Component
 
     public function updatedName($value)
     {
-        $this->slug = Str::slug($value);
+        $this->slug = slug($value);
     }
 
     public function deleteItem($index)
@@ -52,24 +53,28 @@ class Create extends Component
         $this->validate($rules);
 
         // Image File Upload
-        $imageName = $this->slug . '.' . $this->image->extension();
-        $imagePath = $this->image->storeAs('images/product', $imageName, 'public');
+        $image_name = $this->slug . '.' . $this->image->extension();
+        $this->image->storeAs('/images/product', $image_name, 'public');
+        
+        $image = 'storage/images/product/' . $image_name;
 
         $product = Product::create([
             'name' => $this->name,
             'slug' => $this->slug,
             'category_id' => $this->category_id,
-            'image' => $imagePath,
+            'image' => $image,
             'description' => $this->description,
             'recommended' => $this->recommended,
         ]);
 
         foreach ($this->gallery as $item) {
-            $galleryName = $this->slug . '.' . rand(1,700) . '.' . $item->extension();
-            $galleryPath = $item->storeAs('images/product/gallery', $galleryName, 'public');
+            $gallery_name = $this->slug . '.' . rand(1,700) . '.' . $item->extension();
+            $item->storeAs('images/product/gallery', $gallery_name, 'public');
+
+            $gallery = 'storage/images/product/gallery/' . $gallery_name;
             ProductDetail::create([
                 'product_id' => $product->id,
-                'value' => $galleryPath
+                'value' => $gallery
             ]);
         }
 

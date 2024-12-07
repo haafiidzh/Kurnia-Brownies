@@ -31,6 +31,11 @@ class Edit extends Component
         $this->image = $slider->image;
     }
 
+    public function updatedTitle($value)
+    {
+        $this->slug = slug($value);
+    }
+
     public function update()
     {
         $data = $this->slider;

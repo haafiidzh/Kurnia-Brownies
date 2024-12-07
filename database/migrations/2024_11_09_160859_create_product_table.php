@@ -10,14 +10,16 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->uuid('id')->primary(); 
+            $table->uuid('category_id');
             $table->string('name'); 
             $table->string('slug')->unique(); 
             $table->string('image')->nullable(); 
             $table->text('description')->nullable(); 
             $table->boolean('recommended')->default(false); 
-            $table->foreignId('category_id')->nullable()->constrained('product_categories')->onDelete('set null');
             $table->softDeletes();
-            $table->timestamps(); 
+            $table->timestamps();
+            
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

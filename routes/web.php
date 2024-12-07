@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Administrator\CMSController;
 use App\Http\Controllers\Administrator\DashboardController;
+use App\Http\Controllers\Administrator\NewsCategoryController;
+use App\Http\Controllers\Administrator\NewsController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\ContactController;
@@ -53,6 +55,8 @@ Route::prefix('administrator')->as('administrator.')->group(function () {
         Route::get('/cms/slider/{id}/edit', [SliderController::class, 'edit'])->name('sliders.edit')->middleware('permission:edit-slider');
         Route::get('/cms/slider/{id}/detail', [SliderController::class, 'show'])->name('sliders.detail')->middleware('permission:edit-slider');
 
+        /// Product
+
         // Product
         Route::get('/product/list', [AdministratorProductController::class, 'index'])->name('products')->middleware('permission:view-product');
         Route::get('/product/list/create', [AdministratorProductController::class, 'create'])->name('products.create')->middleware('permission:create-product');
@@ -65,6 +69,20 @@ Route::prefix('administrator')->as('administrator.')->group(function () {
         Route::get('/product/category', [ProductCategoryController::class, 'index'])->name('products.category')->middleware('permission:view-product-category');
         Route::get('/product/category/create', [ProductCategoryController::class, 'create'])->name('products.category.create')->middleware('permission:create-product-category');
         Route::get('/product/category/{id}/edit', [ProductCategoryController::class, 'edit'])->name('products.category.edit')->middleware('permission:edit-product-category');
+
+        /// News
+
+        // Product
+        Route::get('/news/list', [NewsController::class, 'index'])->name('news')->middleware('permission:view-news');
+        Route::get('/news/list/create', [NewsController::class, 'create'])->name('news.create')->middleware('permission:create-news');
+        Route::get('/news/list/{id}/edit', [NewsController::class, 'edit'])->name('news.edit')->middleware('permission:edit-news');
+        Route::get('/news/list/{id}/detail', [NewsController::class, 'show'])->name('news.detail')->middleware('permission:detail-news');
+        
+
+        // Product Category
+        Route::get('/news/category', [NewsCategoryController::class, 'index'])->name('news.category')->middleware('permission:view-news-category');
+        Route::get('/news/category/create', [NewsCategoryController::class, 'create'])->name('news.category.create')->middleware('permission:create-news-category');
+        Route::get('/news/category/{id}/edit', [NewsCategoryController::class, 'edit'])->name('news.category.edit')->middleware('permission:edit-news-category');
 
         //====Account Management====//
 

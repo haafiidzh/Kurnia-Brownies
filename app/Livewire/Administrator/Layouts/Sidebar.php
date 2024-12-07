@@ -93,6 +93,36 @@ class Sidebar extends Component
                 ],
             ],
             [
+                'name' => 'News',
+                'route' => '',
+                'icon' => 'fa-solid fa-newspaper',
+                'active' => request()->is('administrator/news', 'administrator/news/*'),
+                'permission' => ['view-news'],
+                'is_separator' => false,
+                'childs' => [
+                    [
+                        'name' => 'List',
+                        'route' => route('administrator.news'),
+                        'icon' => 'fa-solid fa-list',
+                        'active' => request()->is('administrator/news/list', 'administrator/news/list/*'),
+                        'permission' =>
+                        [
+                            'view-news'
+                        ],
+                    ],
+                    [
+                        'name' => 'Category',
+                        'route' => route('administrator.news.category'),
+                        'icon' => 'fa-solid fa-layer-group',
+                        'active' => request()->is('administrator/news/category', 'administrator/news/category/*'),
+                        'permission' =>
+                        [
+                            'view-news-category',
+                        ],
+                    ]
+                ],
+            ],
+            [
                 'name' => 'Account Management',
                 'route' => null,
                 'icon' => '',

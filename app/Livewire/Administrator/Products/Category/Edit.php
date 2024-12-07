@@ -24,7 +24,7 @@ class Edit extends Component
 
     public function updatedName($value)
     {
-        $this->slug = Str::slug($value);
+        $this->slug = slug($value);
     }
 
     public function update()

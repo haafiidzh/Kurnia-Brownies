@@ -20,7 +20,7 @@
         <div class="px-6 py-5 shadow-md rounded-3xl bg-white">
             <div class="flex flex-col gap-5">
                 <img class="rounded-md"
-                    src="{{ Str::startsWith($data->image, 'https://') ? $data->image : Storage::url($data->image) }}"
+                    src="{{ url($data->image) }}"
                     alt="">
 
                 <p>{!! $data->description !!}</p>
@@ -45,7 +45,7 @@
                             </div>
                             <img class="hover:blur-[2px] rounded transition-all duration-300"
                                 style="width: 200px; height: 200px; object-fit: cover"
-                                src="{{ Str::startsWith($item->value, 'https://') ? $item->value : Storage::url($item->value) }}">
+                                src="{{ url($item->value) }}">
                         </div>
 
                         {{-- Preview Image --}}
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="p-5">
                                     <img class="rounded-md"
-                                        src="{{ Str::startsWith($item->value, 'https://') ? $item->value : Storage::url($item->value) }}"
+                                        src="{{ url($item->value) }}"
                                         style="max-height: 480px;" alt="">
                                 </div>
                             </div>

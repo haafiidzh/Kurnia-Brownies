@@ -8,7 +8,6 @@ use App\Models\ProductDetail;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Str;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class Edit extends Component
@@ -46,7 +45,7 @@ class Edit extends Component
 
     public function updatedName($value)
     {
-        $this->slug = Str::slug($value);
+        $this->slug = slug($value);
     }
 
     public function deleteCurrentItem($id)
@@ -83,27 +82,31 @@ class Edit extends Component
 
         // Image File Upload (Jika sudah ada data sebelumnya maka upload kembali gambar tersebut)
         if ($this->image instanceof TemporaryUploadedFile) {
-            $imageName = $this->slug . '.' . $this->image->extension();
-            $imagePath = $this->image->storeAs('images', $imageName, 'public');
+            $image_name = $this->slug . '.' . $this->image->extension();
+            $this->image->storeAs('/images/product', $image_name, 'public');
+        
+            $image = 'storage/images/product/' . $image_name;
         } else {
-            $imagePath = $data->image; // Menggunakan gambar yang sudah ada
+            $image = $data->image; // Menggunakan gambar yang sudah ada
         }
 
         $data->update([
             'name' => $this->name,
             'slug' => $this->slug,
             'category_id' => $this->category_id,
-            'image' => $imagePath,
+            'image' => $image,
             'description' => $this->description,
             'recommended' => $this->recommended,
         ]);
 
         foreach ($this->newGallery as $item) {
-            $galleryName = $this->slug . '.' . rand(1,700) . '.' . $item->extension();
-            $galleryPath = $item->storeAs('images/product/gallery', $galleryName, 'public');
+            $gallery_name = $this->slug . '.' . rand(1,700) . '.' . $item->extension();
+            $item->storeAs('images/product/gallery', $gallery_name, 'public');
+
+            $gallery = 'storage/images/product/gallery/' . $gallery_name;
             ProductDetail::updateOrCreate([
                 'product_id' => $data->id,
-                'value' => $galleryPath
+                'value' => $gallery
             ]);
         }
 
