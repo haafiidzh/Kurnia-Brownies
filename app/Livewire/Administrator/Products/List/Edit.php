@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Administrator\Products\List;
 
+use App\Models\Categories;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductDetail;
@@ -51,8 +52,10 @@ class Edit extends Component
     public function deleteCurrentItem($id)
     {
         $item = ProductDetail::find($id);
+        $image = substr($item->value, strlen('storage/'));
+
         if($item){
-            Storage::disk('public')->delete($item->value);
+            Storage::disk('public')->delete($image);
             $item->delete();
         }
 
@@ -120,7 +123,7 @@ class Edit extends Component
 
     public function render()
     {
-        $categories = ProductCategory::all();
+        $categories = Categories::where('group','product')->get();
         $data = $this->id;
         return view('livewire.administrator.products.list.edit', ['categories' => $categories, 'data' => $data]);
     }

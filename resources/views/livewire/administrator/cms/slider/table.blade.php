@@ -9,7 +9,7 @@
                     <div class="flex gap-2 items-center justify-end">
                         <i class="fas fa-search text-sm"></i>
                         <input placeholder="Cari Slider..." id="search" type="text" class="text-sm p-1 rounded"
-                            wire:model.lazy="search">
+                            wire:model.live="search">
                     </div>
             </div>
             <table class="w-full">

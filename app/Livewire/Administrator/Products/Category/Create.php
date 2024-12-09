@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Administrator\Products\Category;
 
-use App\Models\ProductCategory;
+use App\Models\Categories;
 use Livewire\Component;
 
 class Create extends Component
@@ -25,9 +25,10 @@ class Create extends Component
 
         $this->validate($rules);
 
-        ProductCategory::create([
+        Categories::create([
             'name' => $this->name,
             'slug' => $this->slug,
+            'group' => 'product',
         ]);
 
         session()->flash('flash_message', [

@@ -65,7 +65,8 @@ class Table extends Component
     public function render()
     {
         $datas = Slider::when($this->search, function ($query) {
-            $query->where('name', 'like', '%' . $this->search . '%');
+            $query->where('title', 'like', '%' . $this->search . '%')
+            ->orWhere('description', 'like', '%' . $this->search . '%');
         })
         ->orderBy('position','asc')
         ->paginate(15);

@@ -17,7 +17,6 @@ class Detail extends Component
     {
         // Ambil data produk yang sedang dibuka
         $this->data = Product::where('slug', $slug)->first();
-        // dd($this->data);
         if (!$this->data) {
             abort(404, "Product not found");
         }
@@ -37,12 +36,10 @@ class Detail extends Component
             ->first();
 
         $this->gallery = $this->data->detail;
-        // dd($this->gallery);
     }
 
     public function render()
     {   
-        
         return view('livewire.front.products.detail');
     }
 }

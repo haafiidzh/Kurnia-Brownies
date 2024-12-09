@@ -40,7 +40,7 @@ class Table extends Component
         }
     }
     
-    public function delete($id) // Hapus permanen
+    public function delete($id)
     {
         $product = Product::withTrashed()->find($id);
         if ($product) {
@@ -60,11 +60,6 @@ class Table extends Component
 
     public function render()
     {
-        // $products = Product::when($this->search, function ($query) {
-        //     $query->where('name', 'like', '%' . $this->search . '%');
-        // })
-        // ->orderBy('name','asc')
-        // ->paginate(8);
         $products = Product::onlyTrashed()->when($this->search, function ($query) {
             $query->where('deleted_at', '!=', null)
             ->where(function($q) {

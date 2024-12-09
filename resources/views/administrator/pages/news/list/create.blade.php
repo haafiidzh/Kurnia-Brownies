@@ -19,5 +19,5 @@
         @endcan
     </div>
 
-    <livewire:administrator.products.list.create>
+    <livewire:administrator.news.list.create>
 @endsection

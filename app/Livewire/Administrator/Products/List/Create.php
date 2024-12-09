@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Administrator\Products\List;
 
+use App\Models\Categories;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductDetail;
@@ -88,7 +89,7 @@ class Create extends Component
 
     public function render()
     {
-        $categories = ProductCategory::all();
+        $categories = Categories::where('group','product')->get();
         $product = Product::all();
         return view('livewire.administrator.products.list.create', ['categories' => $categories, 'product' => $product]);
     }

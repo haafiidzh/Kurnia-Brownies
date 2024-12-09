@@ -16,6 +16,7 @@ use App\Http\Controllers\Administrator\ProductCategoryController;
 use App\Http\Controllers\Administrator\ProductController as AdministratorProductController;
 use App\Http\Controllers\Administrator\ProfileController;
 use App\Http\Controllers\administrator\SliderController;
+use App\Http\Controllers\Front\NewsController as FrontNewsController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -104,10 +105,23 @@ Route::prefix('administrator')->as('administrator.')->group(function () {
     });
 });
 
-// Front
+/// Front
+
+// Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// About
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+
+// Contact
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
+// News
+Route::get('/news', [FrontNewsController::class, 'index'])->name('news');
+Route::get('/news/category/{slug}', [FrontNewsController::class, 'custom'])->name('news.category');
+Route::get('/news/{slug}', [FrontNewsController::class, 'show'])->name('news.detail');
+
+// Product
 Route::get('/product', [ProductController::class, 'index'])->name('product');
 Route::get('/product/category/{slug}', [ProductController::class, 'custom'])->name('product.category');
 Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.detail');

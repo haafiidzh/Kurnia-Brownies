@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Administrator\Products\Category;
 
-use App\Models\ProductCategory;
+use App\Models\Categories;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -24,7 +24,7 @@ class Table extends Component
 
     public function delete($id)
     {
-        $category = ProductCategory::find($id);
+        $category = Categories::find($id);
         if ($category) {
             $category->delete();
             session()->flash('flash_message', [
@@ -43,7 +43,7 @@ class Table extends Component
 
     public function render()
     {
-        $category = ProductCategory::when($this->search, function ($query) {
+        $category = Categories::where('group','product')->when($this->search, function ($query) {
             $query->where('name', 'like', '%' . $this->search . '%');
         })
         ->orderBy('name','asc')

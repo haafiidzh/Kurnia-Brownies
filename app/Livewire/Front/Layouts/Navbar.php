@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Front\Layouts;
 
-use App\Models\ProductCategory;
+use App\Models\Categories;
 use Livewire\Component;
 
 class Navbar extends Component
@@ -11,12 +11,20 @@ class Navbar extends Component
 
     public function menu()
     {
-        $datas = ProductCategory::all();
+        $products = Categories::where('group', 'product')->get();
+        $news = Categories::where('group', 'news')->get();
 
-        foreach ($datas as $data) {
-            $category[] = [
+        foreach ($products as $data) {
+            $product_category[] = [
                 'name' => $data->name,
                 'route' => route('product.category', $data->slug), 
+        ];
+        }
+
+        foreach ($news as $data) {
+            $news_category[] = [
+                'name' => $data->name,
+                'route' => route('news.category', $data->slug), 
         ];
         }
 
@@ -30,17 +38,17 @@ class Navbar extends Component
             ],
             [
                 'name' => 'News',
-                'route' => route('home'),
-                'active' => request()->is('product'),
-                'has-child' => false,
-                'childs' => [],
+                'route' => route('news'),
+                'active' => request()->is('news','news/*'),
+                'has-child' => true,
+                'childs' => $news_category
             ],
             [
                 'name' => 'Product',
                 'route' => route('product'),
                 'active' => request()->is('product','product/*'),
                 'has-child' => true,
-                'childs' => $category
+                'childs' => $product_category
             ],
             [
                 'name' => 'Pricelist',

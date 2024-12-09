@@ -8,7 +8,7 @@
                 <div class="p-1 flex justify-end items-center gap-2">
                     <i class="fas fa-search text-sm"></i>
                     <input placeholder="Cari Permission..." id="search" type="text" class="text-sm p-1 rounded-md"
-                        wire:model.lazy="search">
+                        wire:model.live="search">
                 </div>
             </div>
             <table class="w-full">

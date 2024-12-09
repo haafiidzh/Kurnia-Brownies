@@ -8,11 +8,10 @@
             @foreach ($datas as $data)
             <article class="brick entry" data-animate-el>
         
-                <div class="entry__thumb">
+                <div class="entry__thumb rounded-xl">
                     <a href="{{ route('product.detail', $data->slug) }}" class="thumb-link">
-                        <img 
-                        src="{{ url($data->image) }}" 
-                        style="width: 400px; height auto; object-fit: cover;">
+                        <img class="object-cover aspect-[1/1]"
+                        src="{{ url($data->image) }}">
                     </a>
                 </div> <!-- end entry__thumb -->
         

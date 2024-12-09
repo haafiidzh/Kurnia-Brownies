@@ -2,9 +2,7 @@
 
 namespace App\Livewire\Administrator\Products\Category;
 
-use App\Models\Product;
-use App\Models\ProductCategory;
-use Illuminate\Support\Str;
+use App\Models\Categories;
 use Livewire\Component;
 
 class Edit extends Component
@@ -16,7 +14,7 @@ class Edit extends Component
 
     public function mount($id)
     {
-        $data = ProductCategory::find($id);
+        $data = Categories::find($id);
 
         $this->name = $data->name;
         $this->slug = $data->slug;
@@ -29,9 +27,8 @@ class Edit extends Component
 
     public function update()
     {
-        $category = ProductCategory::find($this->id);
+        $category = Categories::find($this->id);
 
-        // dd($category);
         $rules = [
             'name' => 'required',
         ];

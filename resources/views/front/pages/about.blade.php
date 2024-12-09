@@ -9,6 +9,5 @@
 
         <livewire:front.about.about />
 
-
     </section>
 @endsection

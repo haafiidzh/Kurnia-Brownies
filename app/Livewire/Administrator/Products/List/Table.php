@@ -47,10 +47,10 @@ class Table extends Component
         $product = Product::find($id);
         if ($product) {
 
+            $image = substr($product->image, strlen('storage/'));
+
             // Hapus image galeri
-            if ($product->image && Storage::disk('public')->exists($product->image)) {
-                Storage::disk('public')->delete($product->image);
-            }
+            Storage::disk('public')->delete($image);
     
             // Mapping gallery
             $galleryPath = 'images/product/gallery/';

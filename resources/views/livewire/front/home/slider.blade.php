@@ -9,13 +9,13 @@
                 <div class="hero__entry-image" style="background-image: url({{ url($data->image) }});"></div>
 
                 <div class="hero__entry-text">
-                    <div class="hero__entry-text-inner">
+                    <div class="hero__entry-text-inner shadow-lg lg:shadow-none">
                         {{-- <div class="hero__entry-meta">
                             <span class="cat-links">
                                 <a href="category.html">Inspiration</a>
                             </span>
                         </div> --}}
-                        <h2 class="hero__entry-title">
+                        <h2 class="hero__entry-title text-orange-950 drop-shadow-md">
                             {{-- <a href="single-standard.html"> --}}
                                 {{ $data->title }}
                             {{-- </a> --}}

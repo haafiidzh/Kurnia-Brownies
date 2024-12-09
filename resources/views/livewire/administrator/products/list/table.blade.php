@@ -16,35 +16,35 @@
                     <div class="flex gap-2 items-center">
                         <i class="fas fa-search text-sm"></i>
                         <input placeholder="Cari Produk..." id="search" type="text" class="text-sm p-1 rounded"
-                            wire:model.lazy="search">
+                            wire:model.live="search">
                     </div>
                 </div>
             </div>
             <table class="w-full">
-                <thead class="bg-gray-300 text-sm">
-                    <th class="px-1 py-2 text-center w-7">No.</th>
-                    <th class="px-4 py-2 text-center w-40">Nama Produk</th>
-                    <th class="px-4 py-2 text-center w-24">Kategori</th>
-                    <th class="px-4 py-2 text-center w-48">Gambar</th>
-                    <th class="px-4 py-2 text-center w-20">Recommended</th>
-                    <th class="px-4 py-2 text-center">Dibuat Pada</th>
-                    <th class="px-4 py-2 text-center w-14">Action</th>
+                <thead class="bg-gray-300 text-sm text-left">
+                    <th class="px-1 py-2 w-7">No.</th>
+                    <th class="px-4 py-2 w-40">Nama Produk</th>
+                    <th class="px-4 py-2 w-24">Kategori</th>
+                    <th class="px-4 py-2 w-48">Gambar</th>
+                    <th class="px-4 py-2 w-20">Recommended</th>
+                    <th class="px-4 py-2">Dibuat Pada</th>
+                    <th class="px-4 py-2 w-14">Action</th>
                 </thead>
                 <tbody class="text-sm">
                     @php
                         $i = 1;
                     @endphp
                     @if ($products->count() > 0)
-                        @foreach ($products as $index => $product)
+                        @foreach ($products as $index => $data)
                             {{-- tanpa pagination --}}
                             {{-- <td>{{ $i++ }}</td>  --}}
 
                             {{-- pakai pagination --}}
                             <tr class="hover:bg-gray-200 {{ $loop->last ? '' : 'border-b border-gray-200' }}">
                                 <td class="px-1 py-2 text-center">{{ $products->firstItem() + $index }}</td>
-                                <td class="px-4 py-2 text-left">{{ $product->name }}</td>
+                                <td class="px-4 py-2 text-left">{{ $data->name }}</td>
                                 <td class="px-4 py-2 text-left">
-                                    {{ $product->category->name ?? 'Belum ada kategori' }}</td>
+                                    {{ $data->category->name ?? 'Belum ada kategori' }}</td>
                                 <td class="px-4 py-2 text-left">
                                     <div x-data="{ preview: false, scrollPosition: 0 }">
                                         <div class=" relative group">
@@ -58,7 +58,7 @@
                                                 <img 
                                                     class="hover:blur-[2px] rounded transition-all duration-300" 
                                                     style="width: 200px; height: 200px; object-fit: cover"
-                                                    src="{{ url($product->image) }}">
+                                                    src="{{ url($data->image) }}">
                                         </div>
 
                                         {{-- Preview Image --}}
@@ -80,39 +80,39 @@
                                                 </div>
                                                 <div class="p-5">
                                                     <img 
-                                                        class="rounded-md" src="{{ url($product->image) }}" 
+                                                        class="rounded-md" src="{{ url($data->image) }}" 
                                                         style="max-height: 480px;" 
-                                                        alt="{{ $product->name }}">
+                                                        alt="{{ $data->name }}">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="px-4 py-2 text-left">
-                                    @if ($product->recommended == true)
-                                        <span onclick="confirmRecommended('{{ $product->id }}')"
+                                    @if ($data->recommended == true)
+                                        <span onclick="confirmRecommended('{{ $data->id }}')"
                                             class="text-green-600 cursor-pointer text-sm">
                                             <i class="fa-solid fa-circle-check"></i> Recommended
                                         </span>
-                                    @elseif ($product->recommended == false)
-                                        <span onclick="confirmRecommended('{{ $product->id }}')"
+                                    @elseif ($data->recommended == false)
+                                        <span onclick="confirmRecommended('{{ $data->id }}')"
                                             class="text-gray-500 cursor-pointer text-sm">
                                             <i class="fa-solid fa-circle-info"></i> Common
                                         </span>
                                     @endif
                                 </td>
 
-                                <td class="w-28 px-4 py-2 text-left">{{ $product->created_at->format('H.i , d M Y') }}
+                                <td class="w-28 px-4 py-2 text-left">{{ dateTimeTranslated($data->created_at) }}
                                 </td>
                                 <td class="px-4 py-2">
                                     <div class="flex gap-2 justify-center">
                                         @can('detail-product')
-                                            <a href="{{ route('administrator.products.detail', ['id' => $product->id]) }}"
+                                            <a href="{{ route('administrator.products.detail', ['id' => $data->id]) }}"
                                                 class="py-[0.15rem] px-[0.37rem] rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400"><i
                                                     class="fa-solid fa-eye text-xs "></i></a>
                                         @endcan
                                         @can('edit-product')
-                                            <a href="{{ route('administrator.products.edit', ['id' => $product->id]) }}"
+                                            <a href="{{ route('administrator.products.edit', ['id' => $data->id]) }}"
                                                 class="py-[0.15rem] px-[0.40rem] rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400"><i
                                                     class="fa-solid fa-eye-dropper text-xs"></i></a>
                                         @endcan
@@ -125,15 +125,15 @@
                                                 <div x-show="open" @click.away="open = false"
                                                     class="absolute mt-2 bg-white shadow-xl text-sm rounded-md">
                                                     @can('archive-product')
-                                                        <div onclick="confirmArchive('{{ $product->id }}')"
-                                                            {{-- INI PENTING --}} {{-- Jika pakai uuid pastikan untuk berikan '' sebelum  {{ $data->id }} --}} {{-- seperti ini '{{ $product->id }}' --}}
+                                                        <div onclick="confirmArchive('{{ $data->id }}')"
+                                                            {{-- INI PENTING --}} {{-- Jika pakai uuid pastikan untuk berikan '' sebelum  {{ $data->id }} --}} {{-- seperti ini '{{ $data->id }}' --}}
                                                             class="block px-4 py-2 text-gray-800 rounded-t-md hover:bg-gray-200 cursor-pointer">
                                                             Arsipkan</div>
                                                     @endcan
 
                                                     @can('delete-product')
-                                                        <div onclick="confirmDelete('{{ $product->id }}')"
-                                                            {{-- INI PENTING --}} {{-- Jika pakai uuid pastikan untuk berikan '' sebelum  {{ $data->id }} --}} {{-- seperti ini '{{ $product->id }}' --}}
+                                                        <div onclick="confirmDelete('{{ $data->id }}')"
+                                                            {{-- INI PENTING --}} {{-- Jika pakai uuid pastikan untuk berikan '' sebelum  {{ $data->id }} --}} {{-- seperti ini '{{ $data->id }}' --}}
                                                             class="block px-4 py-2 text-gray-800 rounded-b-md hover:bg-gray-200 cursor-pointer">
                                                             Hapus</div>
                                                     @endcan

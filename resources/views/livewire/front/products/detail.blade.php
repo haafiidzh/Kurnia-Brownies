@@ -19,7 +19,7 @@
 
         <div class="entry__media">
             <figure class="featured-image" style="display: flex; justify-content: center;">
-                <img src="{{ Str::startsWith($data->image, 'https://') ? $data->image : Storage::url($data->image) }}"
+                <img src="{{ url($data->image) }}"
                     style="width: 80%" alt="">
             </figure>
         </div>
@@ -39,7 +39,7 @@
                     currentIndex: 0,
                     slides: [
                         @foreach ($gallery as $item)
-                        '{{ Str::startsWith($item->value, 'https://') ? $item->value : Storage::url($item->value) }}',
+                        '{{ url($item->value) }}',
                         @endforeach
                     ]
                 }" class="relative w-full expand-container mx-auto overflow-hidden">

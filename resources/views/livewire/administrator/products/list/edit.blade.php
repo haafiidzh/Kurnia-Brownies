@@ -162,7 +162,7 @@
                             {{-- Image Preview --}}
                             <div wire:ignore id="image-preview-container" class="">
                                 @if ($data->image && is_string($data->image))
-                                    <img src="{{ asset('storage/' . $data->image) }}" alt="Current Image"
+                                    <img src="{{ url($data->image) }}" alt="Current Image"
                                         class="rounded-3xl object-contain">
                                 @else
                                     <div class="w-full pt-5 pb-6 flex flex-col items-center justify-center ">
@@ -214,11 +214,11 @@
                         <div class="flex flex-wrap justify-center gap-4">
                             @foreach ($currentGallery as $item)
                                 <div class="w-48 flex flex-col gap-2">
-                                    <img class="rounded-md" src="{{ Storage::url($item->value) }}">
+                                    <img class="rounded-md" src="{{ url($item->value) }}">
                                     <div class="flex justify-center">
                                         <span
                                             class="text-xs p-2 bg-red-500 rounded-md hover:bg-red-600 transition-all duration-300 text-white cursor-pointer"
-                                            wire:click="deleteCurrentItem({{ $item->id }})">
+                                            wire:click="deleteCurrentItem('{{ $item->id }}')">
                                             Hapus
                                         </span>
                                     </div>

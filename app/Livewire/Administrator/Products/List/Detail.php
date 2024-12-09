@@ -17,10 +17,7 @@ class Detail extends Component
 
     public function render()
     {
-        // dd($this->id);
         $data = Product::find($this->id);
-        // $detail = ProductDetail::where('product_id', $this->id)->get();
-        // dd($detail);
         return view('livewire.administrator.products.list.detail', ['data' => $data]);
     }
 }

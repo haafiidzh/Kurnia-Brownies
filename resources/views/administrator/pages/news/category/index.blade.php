@@ -19,5 +19,5 @@
         @endcan
     </div>
 
-    {{-- <livewire:administrator.products.category.table> --}}
+    <livewire:administrator.news.category.table>
 @endsection

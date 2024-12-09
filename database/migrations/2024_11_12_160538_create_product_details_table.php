@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('product_details', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('product_id'); 
+            $table->uuid('product_id')->nullable(); 
             $table->string('value'); 
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('set null');
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categories;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class ProductController extends Controller
      */
     public function custom($slug)
     {
-        $category = ProductCategory::where('slug', $slug)->first();
+        $category = Categories::where('slug', $slug)->first();
 
         return view('front.pages.product.custom', ['slug' => $slug, 'category' => $category]);
     }

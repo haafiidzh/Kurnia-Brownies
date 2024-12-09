@@ -19,5 +19,5 @@
         @endcan
     </div>
 
-    <livewire:administrator.products.category.edit :id="$id">
+    <livewire:administrator.news.category.edit :id="$id">
 @endsection

@@ -42,4 +42,10 @@ class News extends Model
     {
         return $this->belongsTo(Categories::class, 'category_id');
     }
+
+    // Relation News Detail Table
+    public function detail()
+    {
+        return $this->hasMany(NewsDetail::class, 'news_id', 'id');
+    }
 }

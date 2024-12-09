@@ -9,7 +9,7 @@ class Recommended extends Component
 {
     public function render()
     {
-        $datas = Product::where('recommended', true)->limit(9)->get();
+        $datas = Product::where('recommended', true)->latest()->limit(6)->get();
         return view('livewire.front.products.recommended',['datas' => $datas]);
     }
 }
