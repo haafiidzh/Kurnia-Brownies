@@ -22,7 +22,6 @@ class News extends Model
         'tags',
         'is_active',
         'published_at',
-        'category_id',
     ];
 
     protected static function boot()

@@ -1,5 +1,9 @@
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+@endpush
+
 <div>
-    <div class="p-20 md:p-56 ">
+    <div id="about" class="p-20 md:p-56">
         <div class="flex w-full gap-10 flex-col lg:flex-row">
             <!-- Column untuk teks di kiri -->
             <div class="w-full lg:w-1/2  flex justify-center flex-col">
@@ -13,23 +17,64 @@
                     Brownies expanding its business into Coffee and Eatery to provide the customer needs.
                 </p>
                 <div class="flex my-6 sm:gap-10 gap-5 flex-col sm:flex-row items-center sm:items-normal">
-                    <a href="{{ route('contact') }}" class="btn" 
-                    data-aos="fade-up" data-aos-duration="2000" data-aos-once="true">
+                    <div data-aos="fade-up" data-aos-duration="2000"
+                    data-aos-once="true">
+                    <a href="{{ route('contact') }}" class="btn" >
                         Contact Us
                     </a>
-                    <a href="{{ route('about') }}" class="btn btn--primary" data-aos="fade-up" data-aos-duration="2000"
-                        data-aos-once="true">
-                        About Us</a>
+                    </div>
+                    <div data-aos="fade-up" data-aos-duration="2000"
+                    data-aos-once="true">
+                            
+                    <a href="{{ route('about') }}" class="btn btn--primary">
+                        About Us</a>  
+                    </div>
                 </div>
 
             </div>
 
             <!-- Column untuk gambar di kanan -->
-            <div class="lg:order-last order-first w-full lg:w-1/2" data-aos="fade-left" data-aos-duration="2000"
-                data-aos-once="true">
-                <img class="rounded-2xl shadow-lg mb-0 object-cover w-full" src="https://picsum.photos/id/157/900"
-                    alt="Article Image">
+            <div class="aboutus-swiper lg:order-last order-first w-full lg:w-1/2" data-aos="fade-left"
+                data-aos-duration="2000" data-aos-once="true">
+                <div class="swiper-wrapper overflow-hidden">
+                    @php
+                        $datas = App\Models\Product::all();
+                    @endphp
+                    @foreach ($datas as $data)
+                    <div class="swiper-slide rounded-2xl overflow-hidden">
+                        <img class="rounded-2xl shadow-lg mb-0 object-cover w-full"
+                            src="{{ url($data->image) }}" alt="">
+                    </div>
+                    @endforeach
+                </div>
+
             </div>
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Swiper for About Us Home
+        var swiper = new Swiper(".aboutus-swiper", {
+            grabCursor: true,
+            effect: "creative",
+
+            creativeEffect: {
+                slideShadows: false,
+                prev: {
+                    shadow: true,
+                    translate: [0, 0, -400],
+                },
+                next: {
+                    translate: ["100%", 0, 0],
+                },
+            },
+            loop: true,
+            autoplay: {
+                true: 3000
+            }
+        });
+    </script>
+@endpush

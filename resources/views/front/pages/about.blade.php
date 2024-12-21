@@ -7,6 +7,12 @@
 @section('content')
     <section id="content" class="s-content s-content--page">
 
+        <div class="absolute -z-40 top-0 w-full h-[100px] bg-primary shadow-lg"></div>
+
+        <div class="absolute -z-50 top-[100px] w-full">
+            <img class="my-0 w-full h-[350px] object-cover" src="https://picsum.photos/id/11/800" alt="">
+        </div>
+        
         <livewire:front.about.about />
 
     </section>

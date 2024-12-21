@@ -14,11 +14,12 @@
 
             <h3 class="s-header__nav-heading">Navigate to</h3>
 
-            <ul class="s-header__nav">
+            <ul class="s-header__nav home-color">
+            {{-- <ul class="s-header__nav {{ request()->routeIs(['home','news','contact']) ? 'home-color' : 'all-color' }}"> --}}
                 @foreach ($menu as $item)
                     @if ($item['has-child'] == true)
-                    <li class="has-children {{ $item['active'] ? 'current-menu-item' : '' }}">
-                        <a href="#" title="" class="">{{ $item['name'] }}</a>
+                    <li class="has-children {{ $item['active'] ? 'current-menu-item' : '' }} drop-shadow-md tracking-widest">
+                        <a href="#" title="">{{ $item['name'] }}</a>
                         <ul class="sub-menu">
                             <li><a href="{{ $item['route'] }}">All</a></li>
                             @foreach ($item['childs'] as $child)
@@ -27,7 +28,9 @@
                         </ul>
                     </li>
                     @else
-                    <li class="{{ $item['active'] ? 'current-menu-item' : '' }}"><a href="{{ $item['route'] }}" title="">{{ $item['name'] }}</a></li>    
+                    <li class="{{ $item['active'] ? 'current-menu-item' : '' }} drop-shadow-md tracking-widest">
+                        <a href="{{ $item['route'] }}" title="">{{ $item['name'] }}</a>
+                    </li>
                     @endif
                 @endforeach
             </ul> <!-- end s-header__nav -->

@@ -15,12 +15,12 @@
                                 <a href="category.html">Inspiration</a>
                             </span>
                         </div> --}}
-                        <h2 class="hero__entry-title text-orange-950 drop-shadow-md">
+                        <h2 class="hero__entry-title lg:text-secondary text-orange-950 drop-shadow-md">
                             {{-- <a href="single-standard.html"> --}}
                                 {{ $data->title }}
                             {{-- </a> --}}
                         </h2>
-                        <p class="hero__entry-desc">
+                        <p class="hero__entry-desc lg:text-gray-200">
                         {{ $data->description }}
                         </p>
                         {{-- <a class="hero__more-link" href="single-standard.html">Read More</a> --}}
@@ -35,7 +35,7 @@
 
     </div> <!-- end hero slider -->
 
-    <a href="#bricks" class="hero__scroll-down smoothscroll">
+    <a href="#about" class="hero__scroll-down smoothscroll">
         <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.25 6.75L4.75 12L10.25 17.25"></path>
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.25 12H5"></path>

@@ -5,29 +5,11 @@
 @endsection
 
 @section('content')
-<section id="content" class="s-content">
+    <section id="content" class="s-content">
 
+        <div class="absolute -z-40 top-0 w-full h-[100px] bg-primary shadow-lg"></div>
 
-    <!-- pageheader -->
-    <div class="s-pageheader">
-        <div class="row">
-            <div class="column large-12">
-                <h1 class="page-title">
-                    {{-- <span class="page-title__small-type"></span> --}}
-                    Our News
-                </h1>
-            </div>
-        </div>
-    </div> <!-- end s-pageheader-->
+        <livewire:front.news.all />
 
-
-    <!--  masonry -->
-    <div id="bricks" class="bricks">
-
-        <livewire:front.news.all/>
-
-    </div> <!-- end bricks -->
-
-</section> <!-- end s-content -->
-
+    </section> <!-- end s-content -->
 @endsection

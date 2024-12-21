@@ -12,19 +12,11 @@ class Navbar extends Component
     public function menu()
     {
         $products = Categories::where('group', 'product')->get();
-        $news = Categories::where('group', 'news')->get();
 
         foreach ($products as $data) {
             $product_category[] = [
                 'name' => $data->name,
                 'route' => route('product.category', $data->slug), 
-        ];
-        }
-
-        foreach ($news as $data) {
-            $news_category[] = [
-                'name' => $data->name,
-                'route' => route('news.category', $data->slug), 
         ];
         }
 
@@ -40,8 +32,8 @@ class Navbar extends Component
                 'name' => 'News',
                 'route' => route('news'),
                 'active' => request()->is('news','news/*'),
-                'has-child' => true,
-                'childs' => $news_category
+                'has-child' => false,
+                'childs' => []
             ],
             [
                 'name' => 'Product',
@@ -50,13 +42,13 @@ class Navbar extends Component
                 'has-child' => true,
                 'childs' => $product_category
             ],
-            [
-                'name' => 'Pricelist',
-                'route' => route('product'),
-                'active' => request()->is('product','product/*'),
-                'has-child' => false,
-                'childs' => []
-            ],
+            // [
+            //     'name' => 'Pricelist',
+            //     'route' => route('product'),
+            //     'active' => request()->is('product','product/*'),
+            //     'has-child' => false,
+            //     'childs' => [],
+            // ],
             [
                 'name' => 'About',
                 'route' => route('about'),

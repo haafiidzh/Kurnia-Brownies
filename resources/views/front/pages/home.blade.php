@@ -15,6 +15,8 @@
         
         <livewire:front.products.recommended/>
 
+        <livewire:front.cta-product/>
+
         <livewire:front.home.latest-news/>
 
     </section> 

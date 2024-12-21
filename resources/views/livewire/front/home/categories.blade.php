@@ -1,33 +1,43 @@
 <div>
-    <div class="bg-orange-900 p-20 lg:p-56">
+    <div class="bg-primary p-20 lg:p-56 shadow-inner">
 
         <!-- Title -->
-        <div class="w-full flex justify-center mb-40">
+        <div class="w-full flex justify-center mb-20">
             <h1 class="text-yellow-400 my-0 drop-shadow-md">
                 Categories
             </h1>
         </div>
 
-        <!-- Foreach -->
-        <div class="w-full flex justify-center">
-            <div class="grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 gap-20">
-                @foreach ($datas as $data)
-                    <div class="col-span-1" data-aos="fade-up" data-aos-duration="2000" data-aos-once="true">
-                        <div class="overflow-hidden">
-                            <a href="{{ route('product.category', $data->slug) }}">
-                                <img class="hover:translate-y-7 transition-all rounded-xl object-cover aspect-[3/4]"
-                                    src="{{ url($data->image) }}" alt="">
-                            </a>
+        <div class="flex justify-center">
+            <div class="home-categories-swiper w-3/4 sm:w-1/2">
+                <div class="swiper-wrapper ">
+                    @foreach ($datas as $data)
+                        <div class="swiper-slide flex justify-center">
+                            <img class="mb-0 rounded-xl" src="{{ url($data->image) }}" />
                         </div>
-
-                        <div class="text-center text-gray-200">
-                            <h2 class="my-3 text-yellow-400 drop-shadow-md">{{ $data->name }}</h2>
-                            <p>{{ $data->description }}</p>
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
-        
+
+        <div class="text-center mt-20">
+            <h3 id="category-name" class="my-0 text-yellow-400 drop-shadow-md"></h3>
+            <p id="category-description" class="text-gray-50 font-thin"></p>
+        </div>
+
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        const categories = @json($datas);
+        console.log(categories);
+
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstCategory = categories[0];
+            document.getElementById('category-name').textContent = firstCategory.name;
+            document.getElementById('category-description').textContent = firstCategory.description;
+        });
+    </script>
+@endpush

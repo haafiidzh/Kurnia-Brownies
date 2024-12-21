@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('category_id')->nullable();
             $table->string('title');
             $table->string('slug')->unique(); 
             $table->string('subject'); 
@@ -23,8 +22,6 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->dateTime('published_at')->nullable();
             $table->timestamps();
-
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
         });
     }
 

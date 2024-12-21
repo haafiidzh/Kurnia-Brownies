@@ -5,7 +5,7 @@
 
             <header class="entry__header entry__header--narrow">
 
-                <h1 class="entry__title">
+                <h1 class="entry__title text-secondary drop-shadow-md">
                     Contact Us
                 </h1>
 
@@ -14,7 +14,7 @@
             <div class="flex flex-col">
                 <div class="flex flex-col-reverse gap-10 md:gap-20 md:flex-row mb-20">
                     <div class="w-full md:w-1/2 flex flex-col justify-center py-0 md:py-20">
-                        <h2 class="my-2">Get In Touch</h2>
+                        <h2 class="my-2 text-secondary drop-shadow-md">Get In Touch</h2>
                         <div class="flex flex-col">
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil tempore tenetur delectus
                                 nesciunt natus provident vel fugit pariatur totam illum!</p>
@@ -84,7 +84,7 @@
 
             <div class="entry about-parallax mb-20" style="background-image: url('https://picsum.photos/id/88/1500');">
                 <div class="py-20 flex flex-col gap-10">
-                    <h2 class="text-center text-white my-0">Our Merchant</h2>
+                    <h2 class="text-center text-white drop-shadow-md my-0">Our Merchant</h2>
                     <div class="w-full flex flex-col md:flex-row px-20" data-aos="fade-up" data-aos-duration="2000">
                         <div
                             class="p-4 w-full md:w-1/3 flex flex-col justify-center items-center md:border-x md:border-x-white">
@@ -122,7 +122,7 @@
             </div>
 
             <div class="w-full mb-20 flex flex-col gap-5">
-                <h2 class="text-center my-0">Our Location</h2>
+                <h2 class="text-center my-0 text-secondary drop-shadow-md">Our Location</h2>
                 <iframe data-aos="fade" data-aos-duration="2000"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.324798475003!2d110.76000737404553!3d-7.539511774422359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a15fdbcf0e459%3A0x1312f15edb264ce1!2sKurnia%20Brownies%20Bake%20and%20Brew!5e0!3m2!1sid!2sid!4v1732502572642!5m2!1sid!2sid"
                     height="450" class="w-full rounded-xl border border-black" allowfullscreen="" loading="lazy"

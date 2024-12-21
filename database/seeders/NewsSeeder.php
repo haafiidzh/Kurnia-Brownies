@@ -13,8 +13,6 @@ class NewsSeeder extends Seeder
      */
     public function run(): void
     {
-        $categoryIds = Categories::where('group', 'news')->pluck('id')->toArray();
-
         $news = [
             [
                 'title' => 'Exploring the Future of AI',
@@ -25,7 +23,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'AI, technology, future',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'The Rise of Renewable Energy',
@@ -36,7 +33,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'energy, climate change, renewables',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'Healthy Eating Habits',
@@ -47,7 +43,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'health, food, wellness',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'Global Travel Destinations',
@@ -58,7 +53,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'travel, destinations, adventure',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'The Evolution of E-Commerce',
@@ -69,7 +63,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'ecommerce, technology, trends',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'Fitness Tips for Beginners',
@@ -80,7 +73,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'fitness, health, beginners',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'Top 10 Coding Languages in 2024',
@@ -91,7 +83,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'coding, technology, programming',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'Eco-Friendly Lifestyle Hacks',
@@ -102,7 +93,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'sustainability, environment, lifestyle',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'Advances in Healthcare Technology',
@@ -113,7 +103,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'healthcare, technology, innovation',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'Mastering the Art of Baking',
@@ -124,7 +113,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'baking, food, cooking',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'The Importance of Mental Health',
@@ -135,7 +123,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'mental health, wellness, care',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'Digital Marketing Strategies',
@@ -146,7 +133,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'marketing, business, digital',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'Exploring Space: The Final Frontier',
@@ -157,7 +143,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'space, science, exploration',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'The Art of Minimalist Living',
@@ -168,7 +153,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'minimalism, lifestyle, peace',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'Understanding Cryptocurrency',
@@ -179,7 +163,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'cryptocurrency, finance, blockchain',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'The Power of Meditation',
@@ -190,7 +173,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'meditation, wellness, mindfulness',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'Tech Innovations in Education',
@@ -201,7 +183,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'education, technology, learning',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'Exploring Ancient History',
@@ -212,7 +193,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'history, archaeology, culture',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'The Benefits of Yoga',
@@ -223,7 +203,6 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'yoga, health, fitness',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
             [
                 'title' => 'Building Resilience in Tough Times',
@@ -234,17 +213,11 @@ class NewsSeeder extends Seeder
                 'is_active' => true,
                 'tags' => 'resilience, motivation, life',
                 'published_at' => now(),
-                'category_id' => $this->getRandomCategoryId($categoryIds)
             ],
         ];
 
         foreach ($news as $data) {
             News::updateOrCreate($data);
         }
-    }
-
-    private function getRandomCategoryId(array $categoryIds): ?string
-    {
-        return count($categoryIds) > 0 ? $categoryIds[array_rand($categoryIds)] : null;
     }
 }

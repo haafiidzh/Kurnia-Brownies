@@ -19,6 +19,7 @@
         'resources/css/styles.css',
         'resources/js/plugins.js',
         'resources/js/main.js',
+        'resources/js/app.js',
     ])
 
     <!-- favicons
@@ -27,6 +28,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
+
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     
     <script src="https://kit.fontawesome.com/d89a21a1ce.js" crossorigin="anonymous"></script>
     @stack('styles')

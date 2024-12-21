@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Administrator\Products\List;
+namespace App\Livewire\Administrator\News\List;
 
 use App\Models\Product;
 use App\Models\ProductCategory;

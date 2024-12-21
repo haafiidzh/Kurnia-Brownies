@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
-use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +13,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('front.pages.product.product');
+        $datas = Categories::where('group', 'product')->get();
+        return view('front.pages.product.product',['datas' => $datas]);
     }
     /**
      * Display a listing of the resource.

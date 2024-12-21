@@ -7,7 +7,7 @@
                 <ul>
                     <li>
                         @if ($paginator->onFirstPage())
-                        <div class="pgn__prev " href="#0">
+                        <div class="hidden">
                             <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="1.5" d="M10.25 6.75L4.75 12L10.25 17.25"></path>
@@ -55,7 +55,7 @@
                             </a>
                         @else
                         <div
-                            class="pgn__next" href="#0">
+                            class="hidden">
                             <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="1.5" d="M13.75 6.75L19.25 12L13.75 17.25"></path>

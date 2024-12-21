@@ -12,7 +12,7 @@ class All extends Component
 
     public function render()
     {
-        $datas = News::orderBy('created_at','desc')->paginate(10);
+        $datas = News::orderBy('created_at','desc')->paginate(6);
         return view('livewire.front.news.all', ['datas' => $datas]);
     }
 }
