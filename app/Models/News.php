@@ -19,7 +19,6 @@ class News extends Model
         'description',
         'subject',
         'image',
-        'tags',
         'is_active',
         'published_at',
     ];
@@ -34,12 +33,6 @@ class News extends Model
                 $model->{$model->getKeyName()} = (string) Str::random(6);
             }
         });
-    }
-
-    // Relation Category Table
-    public function category()
-    {
-        return $this->belongsTo(Categories::class, 'category_id');
     }
 
     // Relation News Detail Table

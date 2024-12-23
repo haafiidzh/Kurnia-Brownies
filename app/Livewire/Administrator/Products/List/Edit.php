@@ -23,11 +23,13 @@ class Edit extends Component
     public $slug;
     public $category_id;
     public $image;
+    public $newImage;
     public $description;
     public $recommended = false;
 
     // Product Detail
     public $currentGallery = [];
+    public $deletedGallery = [];
     public $newGallery = [];
 
     public function mount($id)
@@ -49,20 +51,17 @@ class Edit extends Component
         $this->slug = slug($value);
     }
 
-    public function deleteCurrentItem($id)
+    public function deleteOldItem($id)
     {
-        $item = ProductDetail::find($id);
-        $image = substr($item->value, strlen('storage/'));
-
-        if($item){
-            Storage::disk('public')->delete($image);
-            $item->delete();
-        }
-
-        $this->currentGallery = ProductDetail::where('product_id', $this->id->id)->get();
+        $this->deletedGallery[] = $id;
     }
 
-    public function deleteItem($index)
+    public function restoreOldItem($id)
+    {
+        //
+    }
+
+    public function deleteNewItem($index)
     {
         unset($this->newGallery[$index]);
 
@@ -83,14 +82,29 @@ class Edit extends Component
 
         $this->validate($rules);
 
+        if ($this->deletedGallery) {
+            foreach ($this->deletedGallery as $deleted) {
+                $item = ProductDetail::find($deleted);
+
+                $path = str_replace('/storage','',$item->value);
+
+                Storage::disk('public')->delete($path);
+                $item->delete();
+            }
+        }
+
         // Image File Upload (Jika sudah ada data sebelumnya maka upload kembali gambar tersebut)
-        if ($this->image instanceof TemporaryUploadedFile) {
-            $image_name = $this->slug . '.' . $this->image->extension();
-            $this->image->storeAs('/images/product', $image_name, 'public');
+        if ($this->newImage) {
+            $path = str_replace('/storage','',$this->image);
+
+            Storage::disk('public')->delete($path);
+
+            $image_name = $this->slug . '.' . $this->newImage->extension();
+            $this->newImage->storeAs('/images/product', $image_name, 'public');
         
-            $image = 'storage/images/product/' . $image_name;
+            $image = '/storage/images/product/' . $image_name;
         } else {
-            $image = $data->image; // Menggunakan gambar yang sudah ada
+            $image = $this->image; 
         }
 
         $data->update([
@@ -103,10 +117,10 @@ class Edit extends Component
         ]);
 
         foreach ($this->newGallery as $item) {
-            $gallery_name = $this->slug . '.' . rand(1,700) . '.' . $item->extension();
+            $gallery_name = $this->slug . '.' . rand(1,999999) . '.' . $item->extension();
             $item->storeAs('images/product/gallery', $gallery_name, 'public');
 
-            $gallery = 'storage/images/product/gallery/' . $gallery_name;
+            $gallery = '/storage/images/product/gallery/' . $gallery_name;
             ProductDetail::updateOrCreate([
                 'product_id' => $data->id,
                 'value' => $gallery

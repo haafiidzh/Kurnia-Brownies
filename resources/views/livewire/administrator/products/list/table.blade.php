@@ -8,7 +8,7 @@
                 <div class="p-1 flex justify-between ">
                     <a href="{{ route('administrator.products.archive') }}">
                         <div
-                            class="px-3 py-1 bg-white flex gap-2 items-center text-sm rounded-md shadow-sm hover:bg-slate-200 transition-all active:bg-slate-400">
+                            class="px-3 py-1 bg-white flex gap-2 items-center text-sm rounded-md shadow-sm hover:bg-slate-200 transition-all active:bg-slate-300">
                             <i class="fas fa-archive fa-sm"></i>
                             <span class="font-semibold tracking-wider"> Archive</span>
                         </div>
@@ -102,7 +102,7 @@
                                     @endif
                                 </td>
 
-                                <td class="w-28 px-4 py-2 text-left">{{ dateTimeTranslated($data->created_at) }}
+                                <td class="w-28 px-4 py-2 text-left">{{ dateHour($data->created_at) }}
                                 </td>
                                 <td class="px-4 py-2">
                                     <div class="flex gap-2 justify-center">

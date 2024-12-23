@@ -13,7 +13,7 @@
                 <div class="swiper-wrapper ">
                     @foreach ($datas as $data)
                         <div class="swiper-slide flex justify-center">
-                            <img class="mb-0 rounded-xl" src="{{ url($data->image) }}" />
+                            <img class="mb-0 rounded-xl aspect-[1/1] object-cover" src="{{ url($data->image) }}" />
                         </div>
                     @endforeach
                 </div>

@@ -1,16 +1,16 @@
 @extends('administrator.layouts.master')
 
 @section('title')
-    Buat Product
+    Kategori
 @endsection
 
 @section('content')
     <x-breadcrumb :items="[
-        ['title' => 'Product Category','route' => 'administrator.products'],
-        ['title' => 'Create'],
+        ['title' => 'Kategori','route' => 'administrator.products'],
+        ['title' => 'Tambah'],
         ]" />
     <div class="mb-7 py-3 flex justify-between">
-        <h1 class="font-bold text-3xl">Create</h1>
+        <h1 class="font-bold text-3xl">Tambah</h1>
         @can('view-product')
             <a wire:navigate href="{{ route('administrator.products.category') }}"
                 class="px-2 py-2 rounded-md flex items-center text-slate-700 font-medium border-2 border-black hover:bg-white hover:text-black hover:border-transparent hover:shadow-md active:bg-slate-300 transition-all">

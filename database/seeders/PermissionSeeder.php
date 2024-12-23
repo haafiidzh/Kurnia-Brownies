@@ -55,17 +55,6 @@ class PermissionSeeder extends Seeder
             'create-news',
             'delete-news',
 
-            'view-news-category',
-            'edit-news-category',
-            'create-news-category',
-            'delete-news-category',
-            
-            'view-cms',
-            'create-cms',
-            'edit-cms',
-            'delete-cms',
-            'detail-cms',
-
             'view-slider',
             'create-slider',
             'edit-slider',
@@ -77,6 +66,12 @@ class PermissionSeeder extends Seeder
             'edit-app-setting',
             'delete-app-setting',
             'detail-app-setting',
+
+            'view-content',
+            'create-content',
+            'edit-content',
+            'delete-content',
+            'detail-content',
         ];
 
         foreach($permissions as $permission) {

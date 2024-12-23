@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('subject'); 
             $table->text('description');
             $table->string('image')->nullable(); 
-            $table->text('tags')->nullable(); 
             $table->boolean('is_active')->default(true);
             $table->dateTime('published_at')->nullable();
             $table->timestamps();

@@ -19,7 +19,7 @@ class Sidebar extends Component
                 'childs' => [],
             ],
             [
-                'name' => 'App Management',
+                'name' => 'Website Management',
                 'route' => null,
                 'icon' => '',
                 'active' => '',
@@ -32,38 +32,49 @@ class Sidebar extends Component
                 'childs' => [],
             ],
             [
-                'name' => 'CMS',
-                'route' => '',
-                'icon' => 'fa-solid fa-table-cells',
-                'active' => request()->is('administrator/cms', 'administrator/cms/*'),
-                'permission' => ['view-cms'],
-                'is_separator' => false,
-                'childs' => [
-                    [
-                        'name' => 'Content',
-                        'route' => route('administrator.cms'),
-                        'icon' => 'fa-solid fa-bars-staggered',
-                        'active' => request()->is('administrator/cms/content', 'administrator/cms/content/*'),
-                        'permission' =>
-                        [
-                            'view-cms'
-                        ],
-                    ],
-                    [
-                        'name' => 'Slider',
-                        'route' => route('administrator.sliders'),
-                        'icon' => 'fa-regular fa-images',
-                        'active' => request()->is('administrator/cms/slider', 'administrator/cms/slider/*'),
-                        'permission' =>
-                        [
-                            'view-cms'
-                        ],
-                    ],
-                    
+                'name' => 'Slider',
+                'route' => route('administrator.sliders'),
+                'icon' => 'fa-regular fa-images',
+                'active' => request()->is('administrator/slider', 'administrator/slider/*'),
+                'permission' => [
+                    'view-slider',
                 ],
+                'is_separator' => false,
+                'childs' => [],
             ],
+            // [
+            //     'name' => 'CMS',
+            //     'route' => '',
+            //     'icon' => 'fa-solid fa-table-cells',
+            //     'active' => request()->is('administrator/cms', 'administrator/cms/*'),
+            //     'permission' => ['view-cms'],
+            //     'is_separator' => false,
+            //     'childs' => [
+            //         [
+            //             'name' => 'Content',
+            //             'route' => route('administrator.cms'),
+            //             'icon' => 'fa-solid fa-bars-staggered',
+            //             'active' => request()->is('administrator/cms/content', 'administrator/cms/content/*'),
+            //             'permission' =>
+            //             [
+            //                 'view-cms'
+            //             ],
+            //         ],
+            //         [
+            //             'name' => 'Slider',
+            //             'route' => route('administrator.sliders'),
+            //             'icon' => 'fa-regular fa-images',
+            //             'active' => request()->is('administrator/cms/slider', 'administrator/cms/slider/*'),
+            //             'permission' =>
+            //             [
+            //                 'view-cms'
+            //             ],
+            //         ],
+                    
+            //     ],
+            // ],
             [
-                'name' => 'Products',
+                'name' => 'Produk',
                 'route' => '',
                 'icon' => 'fa-solid fa-cart-shopping',
                 'active' => request()->is('administrator/product', 'administrator/product/*'),
@@ -71,7 +82,7 @@ class Sidebar extends Component
                 'is_separator' => false,
                 'childs' => [
                     [
-                        'name' => 'List',
+                        'name' => 'Daftar',
                         'route' => route('administrator.products'),
                         'icon' => 'fa-solid fa-list',
                         'active' => request()->is('administrator/product/list', 'administrator/product/list/*'),
@@ -81,7 +92,7 @@ class Sidebar extends Component
                         ],
                     ],
                     [
-                        'name' => 'Category',
+                        'name' => 'Kategori',
                         'route' => route('administrator.products.category'),
                         'icon' => 'fa-solid fa-layer-group',
                         'active' => request()->is('administrator/product/category', 'administrator/product/category/*'),
@@ -93,33 +104,66 @@ class Sidebar extends Component
                 ],
             ],
             [
-                'name' => 'News',
-                'route' => '',
+                'name' => 'Berita',
+                'route' => route('administrator.news'),
                 'icon' => 'fa-solid fa-newspaper',
                 'active' => request()->is('administrator/news', 'administrator/news/*'),
                 'permission' => ['view-news'],
                 'is_separator' => false,
                 'childs' => [
+                    // [
+                    //     'name' => 'Daftar',
+                    //     'route' => route('administrator.news'),
+                    //     'icon' => 'fa-solid fa-list',
+                    //     'active' => request()->is('administrator/news/list', 'administrator/news/list/*'),
+                    //     'permission' =>
+                    //     [
+                    //         'view-news'
+                    //     ],
+                    // ],
+                    // [
+                    //     'name' => 'Kategori',
+                    //     'route' => route('administrator.news.category'),
+                    //     'icon' => 'fa-solid fa-layer-group',
+                    //     'active' => request()->is('administrator/news/category', 'administrator/news/category/*'),
+                    //     'permission' =>
+                    //     [
+                    //         'view-news-category',
+                    //     ],
+                    // ]
+                ],
+            ],
+            [
+                'name' => 'Pengaturan',
+                'route' => null,
+                'icon' => 'fa-solid fa-gear',
+                'active' => request()->is('administrator/setting', 'administrator/setting/*'),
+                'permission' => [
+                    'view-content',
+                    'view-app-setting',
+                ],
+                'is_separator' => false,
+                'childs' => [
                     [
-                        'name' => 'List',
-                        'route' => route('administrator.news'),
-                        'icon' => 'fa-solid fa-list',
-                        'active' => request()->is('administrator/news/list', 'administrator/news/list/*'),
+                        'name' => 'Utama',
+                        'route' => route('administrator.app-setting'),
+                        'icon' => 'fa-solid fa-bars-staggered',
+                        'active' => request()->is('administrator/setting/main', 'administrator/setting/main/*'),
                         'permission' =>
                         [
-                            'view-news'
+                            'view-app-setting'
                         ],
                     ],
                     [
-                        'name' => 'Category',
-                        'route' => route('administrator.news.category'),
-                        'icon' => 'fa-solid fa-layer-group',
-                        'active' => request()->is('administrator/news/category', 'administrator/news/category/*'),
+                        'name' => 'Konten',
+                        'route' => route('administrator.content'),
+                        'icon' => 'fa-solid fa-table-cells',
+                        'active' => request()->is('administrator/setting/content', 'administrator/setting/content/*'),
                         'permission' =>
                         [
-                            'view-news-category',
+                            'view-content'
                         ],
-                    ]
+                    ],
                 ],
             ],
             [

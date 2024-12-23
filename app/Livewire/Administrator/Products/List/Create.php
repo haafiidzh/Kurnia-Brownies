@@ -57,7 +57,7 @@ class Create extends Component
         $image_name = $this->slug . '.' . $this->image->extension();
         $this->image->storeAs('/images/product', $image_name, 'public');
         
-        $image = 'storage/images/product/' . $image_name;
+        $image = '/storage/images/product/' . $image_name;
 
         $product = Product::create([
             'name' => $this->name,
@@ -72,7 +72,7 @@ class Create extends Component
             $gallery_name = $this->slug . '.' . rand(1,700) . '.' . $item->extension();
             $item->storeAs('images/product/gallery', $gallery_name, 'public');
 
-            $gallery = 'storage/images/product/gallery/' . $gallery_name;
+            $gallery = '/storage/images/product/gallery/' . $gallery_name;
             ProductDetail::create([
                 'product_id' => $product->id,
                 'value' => $gallery

@@ -4,12 +4,17 @@ namespace App\Livewire\Administrator\Products\Category;
 
 use App\Models\Categories;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Create extends Component
 {
+    use WithFileUploads;
+
     // Variable
     public $name;
     public $slug;
+    public $description;
+    public $image;
 
     public function updatedName($value)
     {
@@ -25,9 +30,16 @@ class Create extends Component
 
         $this->validate($rules);
 
+        $image_name = $this->slug . '.' . $this->image->extension();
+        $this->image->storeAs('images/categories/product', $image_name, 'public');
+
+        $image = '/storage/images/categories/product/' . $image_name;
+
         Categories::create([
             'name' => $this->name,
             'slug' => $this->slug,
+            'description' => $this->description,
+            'image' => $image,
             'group' => 'product',
         ]);
 

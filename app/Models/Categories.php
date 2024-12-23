@@ -19,6 +19,8 @@ class Categories extends Model
         'name',
         'group',
         'slug',
+        'description',
+        'image',
     ];
 
     protected static function boot()

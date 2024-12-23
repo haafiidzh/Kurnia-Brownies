@@ -151,27 +151,44 @@
 
                 {{-- Form Image --}}
                 <div class="w-1/2 px-6 py-4 shadow-md rounded-3xl bg-white flex flex-col">
-                    <div class="my-2 flex items-center justify-center w-full">
-                        <label for="dropzone-primary-image"
-                            class="dropzones flex flex-col items-center justify-center w-full h-25 border-2 border-gray-300 border-dashed rounded-3xl cursor-pointer bg-gray-50 hover:bg-gray-100">
-                            {{-- Input Image --}}
-                            <input id="dropzone-primary-image" type="file" class="sr-only" wire:model="image"
-                                accept="image/*" onchange="previewImage(event)" />
-
-                            {{-- Image Preview --}}
-                            <div wire:ignore id="image-preview-container">
-                                <div class="w-full pt-5 pb-6 flex flex-col items-center justify-center ">
-                                    <i class="fa-solid fa-cloud-arrow-up py-2 text-gray-500 text-xl"></i>
-                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                            class="font-semibold">Click to upload</span> or drag and drop</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF
-                                        (MAX. 800x400px)</p>
-                                </div>
-                                <img id="preview-image-primary" alt="Image Preview"
-                                    class="hidden rounded-3xl blur-md h-24 object-contain" />
-                            </div>
-                        </label>
-
+                    <div class="my-2 flex flex-col gap-3 items-center justify-center w-full">
+                        @if ($image)
+                                <label for="image" class="cursor-pointer flex gap-2 items-center w-full">
+                                    <div
+                                        class="text-white rounded-md bg-slate-700 px-4 py-1 text-sm tracking-widest hover:bg-green-500 transition-all uppercase">
+                                        Ganti</div>
+                                    <i wire:loading wire:target="image"
+                                        class="fa-brands fa-cloudsmith animate-spin text-gray-500 text-xl"></i>
+                                    <p wire:loading wire:target="image"
+                                        class="text-sm text-gray-500 animate-pulse dark:text-gray-400">Uploading...
+                                    </p>
+                                    <input class="sr-only" type="file" accept="image/*" id="image"
+                                        wire:model="image">
+                                </label>
+                        @endif
+                        <div class="border-2 border-gray-400 border-dashed rounded-2xl w-full relative">
+                            @if ($image)
+                                <img class="rounded-2xl" src="{{ $image->temporaryUrl() }}" alt="">
+                            @else
+                                <input class="sr-only" type="file" accept="image/*" id="image"
+                                    wire:model="image">
+                                <label for="image"
+                                    class="flex flex-col items-center rounded-2xl bg-gray-200 hover:bg-gray-300 transition-all py-5 cursor-pointer">
+                                    {{-- Upload --}}
+                                    <i wire:loading.remove wire:target="image"
+                                        class="fa-solid fa-cloud-arrow-up py-2 text-gray-500 text-xl"></i>
+                                    <p wire:loading.remove wire:target="image"
+                                        class="text-sm text-gray-500 dark:text-gray-400">Klik untuk upload gambar
+                                    </p>
+                                    {{-- Loading --}}
+                                    <i wire:loading wire:target="image"
+                                        class="fa-brands fa-cloudsmith animate-spin py-2 text-gray-500 text-xl"></i>
+                                    <p wire:loading wire:target="image"
+                                        class="text-sm text-gray-500 animate-pulse dark:text-gray-400">Uploading...
+                                    </p>
+                                </label>
+                            @endif
+                        </div>
                     </div>
                     @error('image')
                         <div class="mx-1 mt-2 font-semibold text-sm text-red-700">{{ $message }}</div>
@@ -205,7 +222,7 @@
                 {{-- Form Galeri --}}
                 <div class="w-1/2 px-6 py-4 shadow-md rounded-3xl bg-white flex flex-col">
                     <div
-                        class="{{ $gallery ? 'gap-4' : '' }} my-2 p-4 flex flex-col items-center justify-center w-full bg-gray-300 rounded-3xl border-2 border-dashed border-gray-400 ">
+                        class="{{ $gallery ? 'gap-4' : '' }} my-2 p-4 flex flex-col items-center justify-center w-full bg-gray-300 rounded-2xl border-2 border-dashed border-gray-400 ">
                         <label for="gallery" class="cursor-pointer">
                             <p
                                 class="p-3 tracking-wider bg-slate-800 text-white uppercase text-sm rounded-md hover:bg-green-500 transition-all duration-300">
@@ -214,16 +231,11 @@
                         <input class="hidden" id="gallery" type="file" wire:model="gallery" multiple>
                         <div class="flex flex-wrap justify-center gap-4">
                             @foreach ($gallery as $item)
-                                <div class="w-48 flex flex-col gap-2">
+                                <div class="w-48 flex flex-col gap-2 relative">
                                     <img class="rounded-md" src="{{ $item->temporaryUrl() }}">
-                                    <div class="flex justify-center">
-                                        <span
-                                            class="text-xs p-2 bg-red-500 rounded-md hover:bg-red-600 transition-all duration-300 text-white cursor-pointer"
-                                            wire:click="deleteItem({{ $loop->index }})">
-                                            Hapus
-                                        </span>
+                                    <div title="Hapus" wire:click="deleteItem({{ $loop->index }})" class="absolute top-2 right-2 h-6 w-6 bg-red-500 hover:bg-red-600 transition-all duration-300 flex justify-center items-center rounded-full text-gray-200 text-xs shadow-sm active:text-gray-400 cursor-pointer">
+                                        <i class="fa-solid fa-x"></i>
                                     </div>
-
                                 </div>
                             @endforeach
                         </div>
@@ -246,11 +258,10 @@
                 <span wire:loading wire:target="store">
                     Loading <i class="fa-solid fa-circle-notch fa-spin"></i>
                 </span>
+            </button>
         </div>
         {{-- End Button Submit --}}
     </form>
-
-
 </div>
 
 
@@ -278,82 +289,5 @@
             }
 
         });
-    </script>
-
-    {{-- Drag N Drop image --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropzone = document.querySelector('.dropzones'); // Menggunakan class .dropzone-
-            const fileInput = document.getElementById('dropzone-primary-image');
-            const imagePreview = document.getElementById('image-preview');
-
-            dropzone.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                dropzone.classList.add('border-indigo-600'); // Tambah efek border saat drag
-            });
-
-            dropzone.addEventListener('dragleave', function(e) {
-                e.preventDefault();
-                dropzone.classList.remove('border-indigo-600'); // Hilangkan efek border saat drag leave
-            });
-
-            dropzone.addEventListener('drop', function(e) {
-                e.preventDefault();
-                dropzone.classList.remove('border-indigo-600'); // Hilangkan efek border saat drop
-                const files = e.dataTransfer.files;
-                fileInput.files = files; // Set file input dengan file yang di-drop
-                fileInput.dispatchEvent(new Event('change', {
-                    'bubbles': true
-                })); // Trigger event change
-                previewImage(files[0]); // Preview gambar setelah file di-drop
-            });
-
-            dropzone.addEventListener('click', function() {
-                fileInput.click(); // Buka file explorer saat klik dropzone
-            });
-
-            fileInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    previewImage(file); // Preview gambar saat file di-upload
-                }
-            });
-
-            function previewImage(file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imagePreview.src = e.target.result; // Set src dari image preview
-                    imagePreview.classList.remove('hidden'); // Tampilkan image preview
-                };
-                reader.readAsDataURL(file); // Baca file gambar
-            }
-        });
-
-        function previewImage(event) {
-            const input = event.target;
-            const container = document.getElementById('image-preview-container');
-            const preview = document.getElementById('preview-image-primary');
-            const file = input.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    // Ganti konten div dengan gambar baru
-                    container.innerHTML =
-                        `<img src="${e.target.result}" alt="Image Preview" class="rounded-3xl" />`;
-                }
-                reader.readAsDataURL(file);
-            } else {
-                // Jika tidak ada file, kembalikan konten div awal
-                container.innerHTML = `
-                <div class="w-full pt-5 pb-6 flex flex-col items-center justify-center ">
-                    <i class="fa-solid fa-cloud-arrow-up py-2 text-gray-500 text-xl"></i>
-                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                            class="font-semibold">Click to upload</span> or drag and drop</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX.
-                        800x400px)</p>
-                </div>`;
-            }
-        }
     </script>
 @endpush

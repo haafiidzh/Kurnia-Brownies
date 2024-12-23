@@ -12,7 +12,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('administrator.pages.news.list.index');
+        return view('administrator.pages.news.index');
     }
 
     /**
@@ -28,7 +28,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('administrator.pages.news.list.create');
+        return view('administrator.pages.news.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        return view('administrator.pages.news.list.edit', compact('id'));
+        return view('administrator.pages.news.edit', compact('id'));
     }
 
     /**
@@ -44,7 +44,7 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        return view('administrator.pages.news.list.detail', compact('id'));
+        return view('administrator.pages.news.detail', compact('id'));
     }
 
     /**

@@ -2,7 +2,7 @@
     {{-- Session Flash Message --}}
     <x-flash-message></x-flash-message>
 
-        <div class="w-3/5 bg-slate-100 rounded-xl shadow-md">
+        <div class="w-full bg-slate-100 rounded-xl shadow-md">
             <div class="p-2">
                 <div class="p-1 flex justify-end items-center gap-2">
                     <i class="fas fa-search text-sm"></i>
@@ -14,6 +14,8 @@
                 <thead class="bg-gray-300 text-sm">
                     <th class="px-1 py-2 text-center">No.</th>
                     <th class="px-4 py-2 text-left">Nama Kategori</th>
+                    <th class="px-4 py-2 text-left">Deskripsi</th>
+                    <th class="px-4 py-2 text-left">Gambar</th>
                     <th class="px-4 py-2 text-left">Dibuat Pada</th>
                     <th class="px-4 py-2 text-center">Action</th>
                 </thead>
@@ -30,6 +32,50 @@
                             <tr class="hover:bg-white">
                                 <td class="px-1 py-2 text-center">{{ $category->firstItem() + $index }}</td>
                                 <td class="px-4 py-2 text-left">{{ $data->name }}</td>
+                                <td class="px-4 py-2 text-left">{{ $data->description }}</td>
+                                <td class="px-4 py-2 text-left">
+                                    <div x-data="{ preview: false, scrollPosition: 100 }">
+                                        <div class="relative group">
+                                                <div
+                                                    class="absolute z-30 top-9 left-21 invisible group-hover:visible transition-all">
+                                                    <div class="text-white">
+                                                        <a href="#" @click="preview = !preview;  if (preview) { scrollPosition = window.scrollY }"
+                                                        class="py-[0.15rem] px-[0.37rem] rounded-full border-2 bg-slate-200 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent active:bg-slate-400"><i
+                                                            class="fa-solid fa-eye text-xs"></i></a></div>
+                                                </div>
+                                                <img title="{{ $data->title }}"
+                                                    class="hover:blur-[2px] rounded transition-all duration-300" 
+                                                    style="width: 200px; height: 100px; object-fit: cover" 
+                                                    src="{{ url($data->image) }}">
+                                        </div>
+
+                                        {{-- Preview Image --}}
+                                        <div x-show="preview"
+                                            x-transition:enter="transition translate-y-0 ease-out duration-200"
+                                            x-transition:enter-start="opacity-0 bottom-10"
+                                            x-transition:enter-end="opacity-100 bottom-0 "
+                                            x-transition:leave="transition translate-y-0 ease-in duration-200"
+                                            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                                            class="fixed w-full h-screen left-0 top-0 z-50 flex justify-center items-center bg-black bg-opacity-20">
+                                            <div class="flex flex-col bg-white shadow-md rounded-md">
+                                                <div
+                                                    class="p-4 border-b border-gray-300 flex items-center justify-between ">
+                                                    <span class="font-bold text-slate-800 text-lg">Preview Image</span>
+                                                    <span @click="preview = false; window.scrollTo(0, scrollPosition)"
+                                                        class="p-2 cursor-pointer hover:bg-gray-200 hover:rounded-md">
+                                                        <i class="fa-solid fa-x"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="p-5">
+                                                    <img 
+                                                        class="rounded-md" src="{{ url($data->image) }}" 
+                                                        style="max-height: 480px;" 
+                                                        alt="{{ $data->name }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
 
                                 <td class="px-4 py-2 text-left">{{ dateTimeTranslated($data->created_at) }}</td>
                                 <td class="px-4 py-2">

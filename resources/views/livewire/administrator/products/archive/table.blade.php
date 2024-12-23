@@ -36,9 +36,8 @@
                                 <td class="w-36 px-4 py-2 text-left">{{ $product->name }}</td>
                                 <td class="w-24 px-4 py-2 text-left">
                                     {{ $product->category->name ?? 'Belum ada kategori' }}</td>
-                                {{-- <td class="px-4 py-2 text-left">{{ $product->id }}</td> --}}
                                 <td class="px-4 py-2 text-left">
-                                    <img src="{{ Storage::url($product->image) }}" alt="{{ $product->image }}"
+                                    <img class="rounded" src="{{ url($product->image) }}" alt="{{ $product->image }}"
                                         style="width: 120px; object-fit: contain">
                                 </td>
 
@@ -56,7 +55,7 @@
                                     @endif
                                 </td>
 
-                                <td class="w-24 px-4 py-2 text-left">{{ $product->deleted_at->format('H.i , d M Y') }}
+                                <td class=" px-4 py-2 text-left">{{ dateHour($product->deleted_at) }}
                                 </td>
                                 <td class="px-4 py-2">
                                     <div class="flex gap-2 justify-center">

@@ -12,7 +12,7 @@ class SliderController extends Controller
      */
     public function index()
     {
-        return view('administrator.pages.cms.slider.index');
+        return view('administrator.pages.slider.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        return view('administrator.pages.cms.slider.edit', compact('id'));
+        return view('administrator.pages.slider.edit', compact('id'));
     }
 
     /**
@@ -28,7 +28,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        return view('administrator.pages.cms.slider.create');
+        return view('administrator.pages.slider.create');
     }
 
     /**

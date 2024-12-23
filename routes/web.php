@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Administrator\CMSController;
+use App\Http\Controllers\Administrator\AppSettingController;
+use App\Http\Controllers\Administrator\ContentController;
 use App\Http\Controllers\Administrator\DashboardController;
 use App\Http\Controllers\Administrator\NewsCategoryController;
 use App\Http\Controllers\Administrator\NewsController;
@@ -44,17 +45,25 @@ Route::prefix('administrator')->as('administrator.')->group(function () {
         // Profile
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('permission:view-profile');
 
+        //====App Settings ====//
+
+        // App Setting
+        Route::get('/setting/main', [AppSettingController::class, 'index'])->name('app-setting')->middleware('permission:view-app-setting');
+        Route::get('/setting/main/{id}/edit', [AppSettingController::class, 'edit'])->name('app-setting.edit')->middleware('permission:edit-app-setting');
+
+        // Content
+        Route::get('/setting/content', [ContentController::class, 'index'])->name('content')->middleware('permission:view-content');
+        Route::get('/setting/content/{id}/edit', [ContentController::class, 'edit'])->name('content.edit')->middleware('permission:edit-content');
+
         //====App Management====//
 
-        // CMS
-        Route::get('/cms/content', [CMSController::class, 'index'])->name('cms')->middleware('permission:view-cms');
-        Route::get('/cms/content/{id}/edit', [CMSController::class, 'edit'])->name('cms.edit')->middleware('permission:edit-cms');
+        
 
         // Slider
-        Route::get('/cms/slider', [SliderController::class, 'index'])->name('sliders')->middleware('permission:view-slider');
-        Route::get('/cms/slider/create', [SliderController::class, 'create'])->name('sliders.create')->middleware('permission:create-slider');
-        Route::get('/cms/slider/{id}/edit', [SliderController::class, 'edit'])->name('sliders.edit')->middleware('permission:edit-slider');
-        Route::get('/cms/slider/{id}/detail', [SliderController::class, 'show'])->name('sliders.detail')->middleware('permission:edit-slider');
+        Route::get('/slider', [SliderController::class, 'index'])->name('sliders')->middleware('permission:view-slider');
+        Route::get('/slider/create', [SliderController::class, 'create'])->name('sliders.create')->middleware('permission:create-slider');
+        Route::get('/slider/{id}/edit', [SliderController::class, 'edit'])->name('sliders.edit')->middleware('permission:edit-slider');
+        Route::get('/slider/{id}/detail', [SliderController::class, 'show'])->name('sliders.detail')->middleware('permission:edit-slider');
 
         /// Product
 
@@ -74,16 +83,16 @@ Route::prefix('administrator')->as('administrator.')->group(function () {
         /// News
 
         // Product
-        Route::get('/news/list', [NewsController::class, 'index'])->name('news')->middleware('permission:view-news');
-        Route::get('/news/list/create', [NewsController::class, 'create'])->name('news.create')->middleware('permission:create-news');
-        Route::get('/news/list/{id}/edit', [NewsController::class, 'edit'])->name('news.edit')->middleware('permission:edit-news');
-        Route::get('/news/list/{id}/detail', [NewsController::class, 'show'])->name('news.detail')->middleware('permission:detail-news');
+        Route::get('/news', [NewsController::class, 'index'])->name('news')->middleware('permission:view-news');
+        Route::get('/news/create', [NewsController::class, 'create'])->name('news.create')->middleware('permission:create-news');
+        Route::get('/news/{id}/edit', [NewsController::class, 'edit'])->name('news.edit')->middleware('permission:edit-news');
+        Route::get('/news/{id}/detail', [NewsController::class, 'show'])->name('news.detail')->middleware('permission:detail-news');
         
 
         // Product Category
-        Route::get('/news/category', [NewsCategoryController::class, 'index'])->name('news.category')->middleware('permission:view-news-category');
-        Route::get('/news/category/create', [NewsCategoryController::class, 'create'])->name('news.category.create')->middleware('permission:create-news-category');
-        Route::get('/news/category/{id}/edit', [NewsCategoryController::class, 'edit'])->name('news.category.edit')->middleware('permission:edit-news-category');
+        // Route::get('/news/category', [NewsCategoryController::class, 'index'])->name('news.category')->middleware('permission:view-news-category');
+        // Route::get('/news/category/create', [NewsCategoryController::class, 'create'])->name('news.category.create')->middleware('permission:create-news-category');
+        // Route::get('/news/category/{id}/edit', [NewsCategoryController::class, 'edit'])->name('news.category.edit')->middleware('permission:edit-news-category');
 
         //====Account Management====//
 

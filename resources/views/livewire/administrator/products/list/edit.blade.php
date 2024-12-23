@@ -135,7 +135,7 @@
             <div class="mb-5 flex">
                 {{-- Deskripsi Image --}}
                 <div class="w-1/4 flex flex-row gap-2">
-                    <i class="fa-solid fa-shield p-2"></i>
+                    <i class="fa-regular fa-image p-2"></i>
                     <div class="w-48 flex flex-col gap-2">
 
                         <div class="flex flex-row">
@@ -151,36 +151,30 @@
                 {{-- End Deskripsi Image --}}
 
                 {{-- Form Image --}}
-                <div class="w-1/2 px-6 py-4 shadow-md rounded-3xl bg-white">
-                    <div class="my-2 flex items-center justify-center w-full">
-                        <label for="dropzone-file"
-                            class="dropzone flex flex-col items-center justify-center w-full h-25 border-2 border-gray-300 border-dashed rounded-3xl cursor-pointer bg-gray-50 hover:bg-gray-100">
-                            {{-- Input Image --}}
-                            <input id="dropzone-file" type="file" class="sr-only" wire:model="image" accept="image/*"
-                                onchange="previewImage(event)" />
-
-                            {{-- Image Preview --}}
-                            <div wire:ignore id="image-preview-container" class="">
-                                @if ($data->image && is_string($data->image))
-                                    <img src="{{ url($data->image) }}" alt="Current Image"
-                                        class="rounded-3xl object-contain">
-                                @else
-                                    <div class="w-full pt-5 pb-6 flex flex-col items-center justify-center ">
-                                        <i class="fa-solid fa-cloud-arrow-up py-2 text-gray-500 text-xl"></i>
-                                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                                class="font-semibold">Click to upload</span> or drag and drop</p>
-                                        <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF
-                                            (MAX. 800x400px)</p>
-                                    </div>
-                                @endif
-                                <img id="preview-image" alt="Image Preview"
-                                    class="hidden rounded-3xl blur-md h-24 object-contain" />
-                            </div>
+                <div class="w-1/2 px-6 py-4 shadow-md rounded-3xl bg-white flex flex-col">
+                    <div class="my-2 flex flex-col gap-3 items-center justify-center w-full">
+                        <label for="image" class="cursor-pointer flex gap-2 items-center w-full">
+                            <div
+                                class="text-white rounded-md bg-slate-700 px-4 py-1 text-sm tracking-widest hover:bg-green-500 transition-all uppercase">
+                                Ganti</div>
+                            <i wire:loading wire:target="newImage"
+                                class="fa-brands fa-cloudsmith animate-spin text-gray-500 text-xl"></i>
+                            <p wire:loading wire:target="newImage"
+                                class="text-sm text-gray-500 animate-pulse dark:text-gray-400">Uploading...
+                            </p>
+                            <input class="sr-only" type="file" accept="image/*" id="image" wire:model="newImage">
                         </label>
-                        @error('image')
-                            <div class="mx-1 mt-2 font-semibold text-sm text-red-700">{{ $message }}</div>
-                        @enderror
+                        <div class="border-2 border-gray-400 border-dashed rounded-2xl w-full relative">
+                            @if ($newImage)
+                                <img class="rounded-2xl" src="{{ $newImage->temporaryUrl() }}" alt="">
+                            @else
+                                <img class="rounded-2xl" src="{{ url($image) }}" alt="">
+                            @endif
+                        </div>
                     </div>
+                    @error('image')
+                        <div class="mx-1 mt-2 font-semibold text-sm text-red-700">{{ $message }}</div>
+                    @enderror
                 </div>
                 {{-- End Form Image --}}
             </div>
@@ -208,52 +202,59 @@
                 {{-- End Deskripsi Image --}}
 
                 {{-- Form Galeri --}}
-                <div class="w-1/2 px-6 py-4 shadow-md rounded-3xl bg-white flex flex-col">
+                <div class="w-1/2 px-6 py-4 shadow-md rounded-2xl bg-white flex flex-col">
                     <div
                         class="{{ $newGallery ? 'gap-4' : '' }} my-2 p-4 flex flex-col items-center justify-center w-full bg-gray-300 rounded-3xl border-2 border-dashed border-gray-400 ">
                         <div class="flex flex-wrap justify-center gap-4">
                             @foreach ($currentGallery as $item)
-                                <div class="w-48 flex flex-col gap-2">
-                                    <img class="rounded-md" src="{{ url($item->value) }}">
-                                    <div class="flex justify-center">
-                                        <span
-                                            class="text-xs p-2 bg-red-500 rounded-md hover:bg-red-600 transition-all duration-300 text-white cursor-pointer"
-                                            wire:click="deleteCurrentItem('{{ $item->id }}')">
-                                            Hapus
-                                        </span>
-                                    </div>
+                                @php
+                                    $isDeleted = in_array($item->id, $deletedGallery);
+                                @endphp
+                                <div class="w-48 flex flex-col gap-2 relative" wire:loading.class="cursor-wait">
+                                    <img class="rounded-md {{ $isDeleted ? 'opacity-50' : '' }}"
+                                        src="{{ url($item->value) }}">
+
+                                    @if ($isDeleted)
+                                        <div title="Batal Hapus" wire:click="restoreOldItem('{{ $item->id }}')"
+                                            class="absolute top-2 right-2 h-6 w-6 bg-green-500 hover:bg-green-600 transition-all duration-300 flex justify-center items-center rounded-full text-gray-200 text-xs shadow-sm active:text-gray-400 cursor-pointer">
+                                            <i class="fa-solid fa-angles-up"></i>
+                                        </div>
+                                    @else
+                                        <div title="Hapus" wire:click="deleteOldItem('{{ $item->id }}')"
+                                            class="absolute top-2 right-2 h-6 w-6 bg-red-500 hover:bg-red-600 transition-all duration-300 flex justify-center items-center rounded-full text-gray-200 text-xs shadow-sm active:text-gray-400 cursor-pointer">
+                                            <i class="fa-solid fa-x"></i>
+                                        </div>
+                                    @endif
 
                                 </div>
                             @endforeach
                         </div>
 
-                        <div class="w-full flex flex-wrap justify-center gap-4 {{ $currentGallery->count() == 0 ? '' : 'mt-4 pt-4 border-dashed border-t-2 border-gray-400' }}">
+                        <div
+                            class="w-full flex flex-wrap justify-center gap-4 {{ $currentGallery->count() == 0 ? '' : 'mt-4 pt-4 border-dashed border-t-2 border-gray-400' }}">
                             <div class="w-full flex justify-center">
                                 <label for="gallery" class="cursor-pointer">
                                     <p
                                         class="p-3 tracking-wider bg-slate-800 text-white uppercase text-sm rounded-md hover:bg-green-500 transition-all duration-300">
                                         Click to Upload {{ $currentGallery->count() == 0 ? '' : 'New' }} Files</p>
                                 </label>
-                                <input class="hidden" id="gallery" type="file" wire:model="newGallery" multiple>
+                                <input class="hidden" id="gallery" type="file" wire:model="newGallery"
+                                    multiple>
                             </div>
                             @foreach ($newGallery as $item)
-                                <div class="w-48 flex flex-col gap-2">
+                                <div class="w-48 flex flex-col gap-2 relative">
                                     <img class="rounded-md" src="{{ $item->temporaryUrl() }}">
-                                    <div class="flex justify-center">
-                                        <span
-                                            class="text-xs p-2 bg-red-500 rounded-md hover:bg-red-600 transition-all duration-300 text-white cursor-pointer"
-                                            wire:click="deleteItem({{ $loop->index }})">
-                                            Hapus
-                                        </span>
+                                    <div title="Hapus" wire:click="deleteNewItem({{ $loop->index }})"
+                                        class="absolute top-2 right-2 h-6 w-6 bg-red-500 hover:bg-red-600 transition-all duration-300 flex justify-center items-center rounded-full text-gray-200 text-xs shadow-sm active:text-gray-400 cursor-pointer">
+                                        <i class="fa-solid fa-x"></i>
                                     </div>
-
                                 </div>
                             @endforeach
                         </div>
 
                     </div>
-                    {{-- End Form Galeri --}}
                 </div>
+                {{-- End Form Galeri --}}
             </div>
         </div>
         {{-- End Galeri --}}
@@ -299,82 +300,5 @@
             }
 
         });
-    </script>
-
-    {{-- Script untuk drag n drop image --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropzone = document.querySelector('.dropzone'); // Menggunakan class .dropzone
-            const fileInput = document.getElementById('dropzone-file');
-            const imagePreview = document.getElementById('image-preview');
-
-            dropzone.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                dropzone.classList.add('border-indigo-600'); // Tambah efek border saat drag
-            });
-
-            dropzone.addEventListener('dragleave', function(e) {
-                e.preventDefault();
-                dropzone.classList.remove('border-indigo-600'); // Hilangkan efek border saat drag leave
-            });
-
-            dropzone.addEventListener('drop', function(e) {
-                e.preventDefault();
-                dropzone.classList.remove('border-indigo-600'); // Hilangkan efek border saat drop
-                const files = e.dataTransfer.files;
-                fileInput.files = files; // Set file input dengan file yang di-drop
-                fileInput.dispatchEvent(new Event('change', {
-                    'bubbles': true
-                })); // Trigger event change
-                previewImage(files[0]); // Preview gambar setelah file di-drop
-            });
-
-            dropzone.addEventListener('click', function() {
-                fileInput.click(); // Buka file explorer saat klik dropzone
-            });
-
-            fileInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    previewImage(file); // Preview gambar saat file di-upload
-                }
-            });
-
-            function previewImage(file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imagePreview.src = e.target.result; // Set src dari image preview
-                    imagePreview.classList.remove('hidden'); // Tampilkan image preview
-                };
-                reader.readAsDataURL(file); // Baca file gambar
-            }
-        });
-
-        function previewImage(event) {
-            const input = event.target;
-            const container = document.getElementById('image-preview-container');
-            const preview = document.getElementById('preview-image');
-            const file = input.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    // Ganti konten div dengan gambar baru
-                    container.innerHTML =
-                        `<img src="${e.target.result}" alt="Image Preview" class="rounded-3xl" />`;
-                }
-                reader.readAsDataURL(file);
-            } else {
-                // Jika tidak ada file, kembalikan konten div awal
-                container.innerHTML = `
-                <div class="w-full pt-5 pb-6 flex flex-col items-center justify-center ">
-                    <i class="fa-solid fa-cloud-arrow-up py-2 text-gray-500 text-xl"></i>
-                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                            class="font-semibold">Click to upload</span> or drag and drop</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX.
-                        800x400px)</p>
-                </div>`;
-            }
-        }
     </script>
 @endpush

@@ -54,17 +54,12 @@ class RolePermissionSeeder extends Seeder
             'edit-news',
             'create-news',
             'delete-news',
-
-            'view-news-category',
-            'edit-news-category',
-            'create-news-category',
-            'delete-news-category',
             
-            'view-cms',
-            'create-cms',
-            'edit-cms',
-            'delete-cms',
-            'detail-cms',
+            'view-content',
+            'create-content',
+            'edit-content',
+            'delete-content',
+            'detail-content',
 
             'view-slider',
             'create-slider',
@@ -111,14 +106,9 @@ class RolePermissionSeeder extends Seeder
             'create-news',
             'delete-news',
 
-            'view-news-category',
-            'edit-news-category',
-            'create-news-category',
-            'delete-news-category',
-            
-            'view-cms',
-            'edit-cms',
-            'detail-cms',
+            'view-content',
+            'edit-content',
+            'detail-content',
 
             'view-slider',
             'create-slider',

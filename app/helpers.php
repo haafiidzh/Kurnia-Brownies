@@ -364,6 +364,24 @@ if (!function_exists('number')) {
     }
 }
 
+if (!function_exists('dateHour')) {
+    /**
+     * Get translated date time by given date
+     *
+     * @param  string $date
+     * @param  string $format
+     * @param  string $locale
+     * @return string
+     */
+    function dateHour($date, $format = 'H.i | D, d M Y', $locale = 'id')
+    {
+        try {
+            return Carbon::parse($date)->locale($locale)->translatedFormat($format);
+        } catch (Exception $exeception) {
+            return null;
+        }
+    }
+}
 if (!function_exists('dateTimeTranslated')) {
     /**
      * Get translated date time by given date
