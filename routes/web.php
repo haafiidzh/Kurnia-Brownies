@@ -3,6 +3,8 @@
 use App\Http\Controllers\Administrator\AppSettingController;
 use App\Http\Controllers\Administrator\ContentController;
 use App\Http\Controllers\Administrator\DashboardController;
+use App\Http\Controllers\Administrator\FaqController as AdministratorFaqController;
+use App\Http\Controllers\Administrator\FeedbackController;
 use App\Http\Controllers\Administrator\NewsCategoryController;
 use App\Http\Controllers\Administrator\NewsController;
 use App\Http\Controllers\Auth\AuthController;
@@ -17,7 +19,9 @@ use App\Http\Controllers\Administrator\ProductCategoryController;
 use App\Http\Controllers\Administrator\ProductController as AdministratorProductController;
 use App\Http\Controllers\Administrator\ProfileController;
 use App\Http\Controllers\administrator\SliderController;
+use App\Http\Controllers\Front\FaqController;
 use App\Http\Controllers\Front\NewsController as FrontNewsController;
+use App\Http\Controllers\Front\PricelistController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -57,13 +61,23 @@ Route::prefix('administrator')->as('administrator.')->group(function () {
 
         //====App Management====//
 
-        
+        // Feedback
+        Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback')->middleware('permission:view-feedback');
+        // Route::get('/feedback/create', [FeedbackController::class, 'create'])->name('feedback.create')->middleware('permission:create-slider');
+        // Route::get('/feedback/{id}/edit', [FeedbackController::class, 'edit'])->name('feedback.edit')->middleware('permission:edit-slider');
+        Route::get('/feedback/{id}/detail', [FeedbackController::class, 'show'])->name('feedback.detail')->middleware('permission:detail-feedback');
+
+        // FAQ
+        Route::get('/faq', [AdministratorFaqController::class, 'index'])->name('faq')->middleware('permission:view-faq');
+        Route::get('/faq/create', [AdministratorFaqController::class, 'create'])->name('faq.create')->middleware('permission:create-faq');
+        Route::get('/faq/{id}/edit', [AdministratorFaqController::class, 'edit'])->name('faq.edit')->middleware('permission:edit-faq');
+        // Route::get('/faq/{id}/detail', [AdministratorFaqController::class, 'show'])->name('faq.detail')->middleware('permission:edit-faq');
 
         // Slider
         Route::get('/slider', [SliderController::class, 'index'])->name('sliders')->middleware('permission:view-slider');
         Route::get('/slider/create', [SliderController::class, 'create'])->name('sliders.create')->middleware('permission:create-slider');
         Route::get('/slider/{id}/edit', [SliderController::class, 'edit'])->name('sliders.edit')->middleware('permission:edit-slider');
-        Route::get('/slider/{id}/detail', [SliderController::class, 'show'])->name('sliders.detail')->middleware('permission:edit-slider');
+        Route::get('/slider/{id}/detail', [SliderController::class, 'show'])->name('sliders.detail')->middleware('permission:detail-slider');
 
         /// Product
 
@@ -81,19 +95,11 @@ Route::prefix('administrator')->as('administrator.')->group(function () {
         Route::get('/product/category/{id}/edit', [ProductCategoryController::class, 'edit'])->name('products.category.edit')->middleware('permission:edit-product-category');
 
         /// News
-
-        // Product
         Route::get('/news', [NewsController::class, 'index'])->name('news')->middleware('permission:view-news');
         Route::get('/news/create', [NewsController::class, 'create'])->name('news.create')->middleware('permission:create-news');
         Route::get('/news/{id}/edit', [NewsController::class, 'edit'])->name('news.edit')->middleware('permission:edit-news');
         Route::get('/news/{id}/detail', [NewsController::class, 'show'])->name('news.detail')->middleware('permission:detail-news');
         
-
-        // Product Category
-        // Route::get('/news/category', [NewsCategoryController::class, 'index'])->name('news.category')->middleware('permission:view-news-category');
-        // Route::get('/news/category/create', [NewsCategoryController::class, 'create'])->name('news.category.create')->middleware('permission:create-news-category');
-        // Route::get('/news/category/{id}/edit', [NewsCategoryController::class, 'edit'])->name('news.category.edit')->middleware('permission:edit-news-category');
-
         //====Account Management====//
 
         // User
@@ -124,6 +130,15 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 // Contact
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
+// Pricelist
+Route::get('/pricelist', [PricelistController::class, 'index'])->name('pricelist');
+
+// FAQ
+Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+
+// Feedback
+Route::get('/contact#feedback')->name('feedback');
 
 // News
 Route::get('/news', [FrontNewsController::class, 'index'])->name('news');

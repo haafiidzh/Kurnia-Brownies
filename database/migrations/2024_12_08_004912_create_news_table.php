@@ -19,8 +19,11 @@ return new class extends Migration
             $table->text('description');
             $table->string('image')->nullable(); 
             $table->boolean('is_active')->default(true);
+            $table->uuid('created_by')->nullable(); 
             $table->dateTime('published_at')->nullable();
             $table->timestamps();
+
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
         });
     }
 

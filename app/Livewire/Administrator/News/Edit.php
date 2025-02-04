@@ -26,11 +26,6 @@ class Edit extends Component
     public $published_at;
     public $is_active;
 
-    // Product Detail
-    public $currentGallery = [];
-    public $deletedGallery = [];
-    public $newGallery = [];
-
     public function mount($id)
     {
         $this->id = News::find($id);
@@ -41,30 +36,11 @@ class Edit extends Component
         $this->subject = $data->subject;
         $this->image = $data->image;
         $this->description = $data->description;
-        $this->currentGallery = $data->detail;
     }
 
     public function updatedTitle($value)
     {
         $this->slug = slug($value);
-    }
-
-    public function deleteOldItem($id)
-    {
-        $this->deletedGallery[] = $id;
-    }
-
-    public function restoreOldItem($id)
-    {
-        //
-    }
-
-    public function deleteNewItem($index)
-    {
-        unset($this->newGallery[$index]);
-
-        // Re-indexing array setelah item dihapus agar tidak ada celah
-        $this->newGallery = array_values($this->newGallery);
     }
 
     public function update()
@@ -79,17 +55,6 @@ class Edit extends Component
         ];
 
         $this->validate($rules);
-
-        if ($this->deletedGallery) {
-            foreach ($this->deletedGallery as $deleted) {
-                $item = NewsDetail::find($deleted);
-
-                $path = str_replace('/storage', '', $item->value);
-
-                Storage::disk('public')->delete($path);
-                $item->delete();
-            }
-        }
 
         // Image File Upload (Jika sudah ada data sebelumnya maka upload kembali gambar tersebut)
         if ($this->newImage) {
@@ -111,23 +76,11 @@ class Edit extends Component
             'subject' => $this->subject,
             'image' => $image,
             'description' => $this->description,
-            // 'is_active' => $this->is_active,
         ]);
-
-        foreach ($this->newGallery as $item) {
-            $gallery_name = $this->slug . '.' . rand(1, 9999999) . '.' . $item->extension();
-            $item->storeAs('images/news/gallery', $gallery_name, 'public');
-
-            $gallery = '/storage/images/news/gallery/' . $gallery_name;
-            NewsDetail::updateOrCreate([
-                'news_id' => $data->id,
-                'value' => $gallery
-            ]);
-        }
 
         session()->flash('flash_message', [
             'type' => 'updated',
-            'message' => 'Product berhasil diperbarui.',
+            'message' => 'Berita berhasil diperbarui.',
         ]);
 
         return redirect()->route('administrator.news');

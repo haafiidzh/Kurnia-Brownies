@@ -1,25 +1,29 @@
 <div>
     <div>
         <form wire:submit="update">
+
             <div class="w-full">
-                {{-- Role --}}
+                {{-- Nama Kategori --}}
                 <div class="mb-5 flex">
-                    {{-- Deskripsi Role --}}
+                    {{-- Deskripsi Nama Kategori --}}
                     <div class="w-1/4 flex flex-row gap-2">
-                        <i class="fa-solid fa-shield p-2"></i>
+                        <div class="h-6 w-6 flex justify-center items-center">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
                         <div class="w-48 flex flex-col gap-2">
 
                             <div class="flex flex-row">
-                                {{-- <h2 class="text-lg font-semibold">{{ ucfirst($data->group) }}</h2> --}}
-                                <p class="text-lg"> &nbsp;| Peran</p>
+                                <h2 class="text-lg font-semibold">Nama</h2>
+                                <p class="text-lg"> &nbsp;| Name</p>
                             </div>
 
-                            <p class="text-sm text-slate-500 tracking-wider">Nama peran dalam sebuah sistem sesuai dengan
-                                kewenangannya</p>
+                            <p class="text-sm text-slate-500 tracking-wider">
+                                Nama kategori untuk mengelompokkan suatu produk.
+                            </p>
                         </div>
                     </div>
 
-                    {{-- Form Role --}}
+                    {{-- Form Nama Kategori --}}
                     <div class="w-1/2 px-6 py-4 shadow-md rounded-3xl bg-white">
                         <div class="mb-5">
                             <label for="name" class="block ml-1 font-semibold text-sm text-slate-700 ">Nama
@@ -52,7 +56,9 @@
                 <div class="mb-5 flex">
                     {{-- Deskripsi Description --}}
                     <div class="w-1/4 flex flex-row gap-2">
-                        <i class="fa-solid fa-shield p-2"></i>
+                        <div class="h-6 w-6 flex justify-center items-center">
+                            <i class="fa-solid fa-comment"></i>
+                        </div>
                         <div class="w-48 flex flex-col gap-2">
 
                             <div class="flex flex-row">
@@ -60,9 +66,9 @@
                                 <p class="text-sm"> &nbsp;| Deskripsi</p>
                             </div>
 
-                            <p class="text-sm text-slate-500 tracking-wider">Nama peran dalam sebuah sistem sesuai
-                                dengan
-                                kewenangannya</p>
+                            <p class="text-sm text-slate-500 tracking-wider">
+                                Deskripsi suatu kategori produk.
+                            </p>
                         </div>
                     </div>
 
@@ -95,9 +101,11 @@
                                 <p class="text-lg"> &nbsp;| Gambar</p>
                             </div>
 
-                            <p class="text-sm text-slate-500 tracking-wider">Nama Produk dalam sebuah sistem sesuai
-                                dengan
-                                kewenangannya</p>
+                            <p class="text-sm text-slate-500 tracking-wider">
+                                Gambar untuk media dalam mengenali kategori produk.
+                                <br>
+                                (Disarankan untuk mengupload media dalam bentuk .png)
+                            </p>
                         </div>
                     </div>
                     {{-- End Deskripsi Image --}}
@@ -105,8 +113,8 @@
                     {{-- Form Image --}}
                     <div class="w-1/2 px-6 py-4 shadow-md rounded-3xl bg-white flex flex-col">
                         <div class="my-2 flex flex-col gap-3 items-center justify-center w-full">
-                            {{-- @if ($image) --}}
-                                <label for="image" class="cursor-pointer flex gap-2 items-center w-full">
+                            <div class="w-full flex">
+                                <label for="image" class="cursor-pointer flex gap-2 items-center">
                                     <div
                                         class="text-white rounded-md bg-slate-700 px-4 py-1 text-sm tracking-widest hover:bg-green-500 transition-all uppercase">
                                         Ganti</div>
@@ -118,7 +126,7 @@
                                     <input class="sr-only" type="file" accept="image/*" id="image"
                                         wire:model="newImage">
                                 </label>
-                            {{-- @endif --}}
+                            </div>
                             <div class="border-2 border-gray-400 border-dashed rounded-2xl w-full relative">
                                 @if ($newImage)
                                     <img class="rounded-2xl" src="{{ $newImage->temporaryUrl() }}" alt="">

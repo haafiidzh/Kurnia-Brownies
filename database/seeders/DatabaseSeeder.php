@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
 
         // Setting
+        $this->call(AppSettingSeeder::class);
         $this->call(ContentSeeder::class);
 
         // Web
@@ -27,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductSeeder::class);
         $this->call(SliderSeeder::class);
         $this->call(NewsSeeder::class);
+        $this->call(FaqSeeder::class);
     }
 }

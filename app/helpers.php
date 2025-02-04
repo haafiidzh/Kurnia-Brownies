@@ -420,6 +420,25 @@ if (!function_exists('getFullDate')) {
     }
 }
 
+if (!function_exists('getFullDateTime')) {
+    /**
+     * Get translated date time by given date
+     *
+     * @param  string $date
+     * @param  string $format
+     * @param  string $locale
+     * @return string
+     */
+    function getFullDateTime($date, $format = 'l, d F Y - H.i', $locale = 'id')
+    {
+        try {
+            return Carbon::parse($date)->locale($locale)->translatedFormat($format);
+        } catch (Exception $exeception) {
+            return null;
+        }
+    }
+}
+
 if (!function_exists('title')) {
     /**
      * Transform formated string into capitalized format
@@ -836,6 +855,61 @@ if (!function_exists('chartMetrics')) {
             return $metrics;
         } catch (Exception $exception) {
             throw $exception;
+        }
+    }    
+}
+
+if (!function_exists('convertScaleEmbedMaps')) {
+    /**
+     * Convert any width and height in the input to width="400" height="300"
+     *
+     * @param  ?string $value
+     * @return ?string
+     */
+    function convertScaleEmbedMaps($value)
+    {
+        try {
+            return preg_replace(
+                '/width="\d+" height="\d+"/i',
+                'width="400" height="300"',
+                $value
+            );
+        } catch (Exception $exception) {
+            return null;
+        }
+    }
+}
+
+if (!function_exists('updateIframeAttributes')) {
+    /**
+     * Remove width and set height to 500 in iframe
+     *
+     * @param  ?string $value
+     * @return ?string
+     */
+    function updateIframeAttributes($value)
+    {
+        try {
+            // Hapus atribut width
+            $value = preg_replace('/\s*width="\d+"/i', '', $value);
+
+            // Ubah atau tambahkan atribut height="500"
+            if (preg_match('/\s*height="\d+"/i', $value)) {
+                // Jika sudah ada height, ubah jadi 500
+                $value = preg_replace('/\s*height="\d+"/i', ' height="500"', $value);
+                $value = preg_replace(
+                    '/<iframe(.*?)>/i', // Pola untuk elemen iframe
+                    '<iframe$1 class="w-full">',
+                    $value
+                );
+            } else {
+                // Jika tidak ada height, tambahkan height="500" di dalam tag iframe
+                $value = preg_replace('/<iframe(.*?)>/i', '<iframe$1 height="500">', $value);
+            }
+
+            return $value;
+        } catch (Exception $exception) {
+            return null;
         }
     }
 }

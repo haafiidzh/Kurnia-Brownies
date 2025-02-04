@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Categories;
 use App\Models\News;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class NewsSeeder extends Seeder
@@ -13,6 +14,8 @@ class NewsSeeder extends Seeder
      */
     public function run(): void
     {
+        $user = User::first();
+
         $news = [
             [
                 'title' => 'Exploring the Future of AI',
@@ -21,6 +24,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>AI technology is advancing rapidly, offering innovative solutions across industries.</p>',
                 'image' => 'https://picsum.photos/id/81/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -30,6 +34,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Discover the power of renewable energy sources in combating climate change.</p>',
                 'image' => 'https://picsum.photos/id/82/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -39,6 +44,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Learn how to incorporate healthy eating habits into your routine.</p>',
                 'image' => 'https://picsum.photos/id/83/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -48,6 +54,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Plan your next adventure with our list of top travel destinations.</p>',
                 'image' => 'https://picsum.photos/id/84/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -57,6 +64,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Stay ahead with insights into the evolution of e-commerce platforms.</p>',
                 'image' => 'https://picsum.photos/id/85/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -66,6 +74,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Find simple and effective tips to kickstart your fitness goals.</p>',
                 'image' => 'https://picsum.photos/id/99/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -75,6 +84,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Explore the top 10 coding languages every developer should know in 2024.</p>',
                 'image' => 'https://picsum.photos/id/87/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -84,6 +94,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Learn small steps to make a big impact on the environment.</p>',
                 'image' => 'https://picsum.photos/id/88/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -93,6 +104,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>See how innovations are improving healthcare globally.</p>',
                 'image' => 'https://picsum.photos/id/89/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -102,6 +114,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Unlock the secrets to baking delicious cakes, cookies, and more.</p>',
                 'image' => 'https://picsum.photos/id/10/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -111,6 +124,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Understand why mental health is just as important as physical health.</p>',
                 'image' => 'https://picsum.photos/id/11/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -120,6 +134,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Discover key strategies to enhance your digital marketing efforts.</p>',
                 'image' => 'https://picsum.photos/id/12/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -129,6 +144,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>From Mars missions to new galaxies, space exploration is thriving.</p>',
                 'image' => 'https://picsum.photos/id/13/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -138,6 +154,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Embrace the minimalist lifestyle to simplify and enrich your life.</p>',
                 'image' => 'https://picsum.photos/id/14/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -147,6 +164,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Learn the basics of cryptocurrency and how it works.</p>',
                 'image' => 'https://picsum.photos/id/15/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -156,6 +174,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Meditation can transform your mental and physical well-being.</p>',
                 'image' => 'https://picsum.photos/id/16/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -165,6 +184,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>From virtual classrooms to AI tutors, education is going digital.</p>',
                 'image' => 'https://picsum.photos/id/17/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -174,6 +194,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Delve into the fascinating world of ancient civilizations.</p>',
                 'image' => 'https://picsum.photos/id/18/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -183,6 +204,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Discover how yoga can improve flexibility, strength, and peace of mind.</p>',
                 'image' => 'https://picsum.photos/id/19/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
             [
@@ -192,6 +214,7 @@ class NewsSeeder extends Seeder
                 'description' => '<p>Learn strategies to develop resilience and overcome challenges.</p>',
                 'image' => 'https://picsum.photos/id/20/800',
                 'is_active' => true,
+                'created_by' => $user->id,
                 'published_at' => now(),
             ],
         ];

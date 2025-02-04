@@ -4,9 +4,9 @@
 
             <a href="{{ route('home') }}" target="_blank" class="-mx-2 p-2 flex justify-center"
                 :class="!isOpen ? 'w-16 transition-all duration-300' : 'w-48 transition-all duration-300'">
-                <img :src="!isOpen ? '{{ asset('assets/images/default/brand_logo_square.png') }}' :
-                    '{{ asset('assets/images/default/brand_logo_long.png') }}'"
-                    class="h-10 object-contain" alt="">
+                <img :src="!isOpen ? '{{ $logo->value }}' :
+                    '{{ $logo->value }}'"
+                    class="h-10 drop-shadow-md object-contain" alt="">
             </a>
 
             <ul class="mt-5 space-y-1">
@@ -53,7 +53,8 @@
                                             
                                         </div>
                                     </li>
-                                    <li x-show="child" x-transition:enter="transition translate-y-0 ease-out duration-300"
+                                    <li x-cloak
+                                        x-show="child" x-transition:enter="transition translate-y-0 ease-out duration-300"
                                         x-transition:enter-start="opacity-0 bottom-10"
                                         x-transition:enter-end="opacity-100 bottom-0 "
                                         x-transition:leave="transition translate-y-0 ease-in duration-200"

@@ -38,7 +38,7 @@
             </table>
         </div>
         <div class="my-5">
-            {{ $roles->links() }}
+            {{ $roles->links('vendor.livewire.tailwind') }}
         </div>
     </div>
 </div>

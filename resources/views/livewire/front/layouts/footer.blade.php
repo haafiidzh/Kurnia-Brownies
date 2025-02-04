@@ -1,63 +1,495 @@
-<footer id="colophon" class="s-footer">
+<footer class="bg-primary">
 
-    <div class="row s-footer__main">
-
-        <div class="column lg-5 md-6 tab-12 s-footer__about">
-            <img src="{{ asset('assets/images/default/brand_logo_long.png') }}" alt="">
-            <h4>Our Location</h4>
-
-            <p>
-                Jl. Adi Sucipto, Gatak, Blulukan, Kec. Colomadu, Kabupaten Karanganyar, Jawa Tengah 57174
-            </p>
-        </div> <!-- end s-footer__about -->
-
-        <div class="column col-6 tab-12">
-            <div class="row">
-                <div class="column lg-4">
-                    <h4>Contact Us</h4>
-                    <ul class="link-list">
-                        <li><a href="">Whatsapp</a></li>
-                        <li><a href="">Email</a></li>
-                    </ul>
+    <div class="w-full px-10 md:px-16 lg:px-[120px] py-16 flex flex-col gap-5">
+        <div class="w-full flex flex-col md:flex-row gap-5 mb-4">
+            <div class="w-full md:w-1/3 flex flex-col gap-10 items-center">
+                <img class="w-32" src="{{ url($logo->value ?: "assets/images/default/brand_logo_long.png") }}" alt="">
+                <div class="flex flex-col gap-3 items-center relative w-full">
+                    <svg class="absolute bottom-0 left-0 w-10 h-auto rotate-90 translate-y-3"
+                        xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 2000 2000">
+                        <g>
+                            <g fill="#facc15" stroke-width="29" stroke="#ffe89c" id="star"
+                                transform="matrix(1,0,0,1,0,-25)">
+                                <path
+                                    d="M 500 500 C 1000 1000 1000 1000 2000 0 C 1000 1000 1000 1000 1500 1500 C 1000 1000 1000 1000 0 2000 C 1000 1000 1000 1000 500 500"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    <svg class="absolute top-0 right-0 w-10 h-auto rotate-90 -translate-y-3"
+                        xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 2000 2000">
+                        <g>
+                            <g fill="#facc15" stroke-width="29" stroke="#ffe89c" id="star"
+                                transform="matrix(1,0,0,1,0,-25)">
+                                <path
+                                    d="M 500 500 C 1000 1000 1000 1000 2000 0 C 1000 1000 1000 1000 1500 1500 C 1000 1000 1000 1000 0 2000 C 1000 1000 1000 1000 500 500"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    <p class="w-[80%] italic font-poppins text-sm text-center text-gray-200">
+                        Freshly baked brownies, just for you! Indulge in our warm and delightful treats.
+                    </p>
                 </div>
-                <div class="column lg-4">
-                    <h4>Social Media</h4>
-                    <ul class="link-list">
-                        <li><a href="">Instagram</a></li>
-                        <li><a href="">Tiktok</a></li>
-                    </ul>
+            </div>
+            <div class="border-t sm:border-r border-secondary md:mr-5"></div>
+            <div class="flex gap-8 flex-col w-full md:w-3/4 text-sm">
+                <div class="flex flex-col w-full">
+                    <h3 class="text-xl font-nunito font-semibold text-secondary mb-3 md:mb-2">Find Us</h3>
+                    <p class="text-gray-200 font-poppins">
+                        Jl. Adi Sucipto, Gatak, Blulukan, Kec. Colomadu, Kabupaten Karanganyar, Jawa Tengah 57174
+                    </p>
                 </div>
-                <div class="column lg-4">
-                    <h4>Our Merchant</h4>
-                    <ul class="link-list">
-                        <li><a href="">Go Food</a></li>
-                        <li><a href="">Grab Food</a></li>
-                        <li><a href="">Shopee Food</a></li>
-                    </ul>
+                <div class="flex space-y-5 md:flex-nowrap flex-wrap ">
+                    <div class="w-1/2 md:w-1/4 self-end md:self-end">
+                        <h3 class="text-xl font-nunito font-semibold text-secondary mb-5">Quick Menu</h3>
+                        <a href="{{ route('home') }}"
+                            class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins">Home</a>
+                        <a href="{{ route('product') }}"
+                            class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins">Product</a>
+                        <a href="{{ route('about') }}"
+                            class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins">About</a>
+                    </div>
+                    <div class="w-1/2 md:w-1/4 text-end md:text-left">
+                        <h3 class="text-xl font-nunito font-semibold text-secondary mb-5">Resources</h3>
+                        <a href="javascript:void(0)"
+                            class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins">Privacy
+                            Policy</a>
+                        <a href="{{ route('faq') }}"
+                            class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins">FAQ</a>
+                        <a href="{{ route('feedback') }}"
+                            class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins">Send
+                            Feedback</a>
+                    </div>
+                    <div class="w-1/2 md:w-1/4">
+                        <h3 class="text-xl font-nunito font-semibold text-secondary mb-5">Follow Us</h3>
+                        <a href="javascript:void(0)"
+                            class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins">
+                            <svg class="w-4 h-4 inline mr-[2px]" fill="currentColor" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"><path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z"/></svg>
+                            Tiktok</a>
+                        <a href="javascript:void(0)"
+                            class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins">
+                            <svg class="w-4 h-4 inline mr-[2px]" fill="currentColor" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.999 7.377a4.623 4.623 0 1 0 0 9.248 4.623 4.623 0 0 0 0-9.248zm0 7.627a3.004 3.004 0 1 1 0-6.008 3.004 3.004 0 0 1 0 6.008z"/><circle cx="16.806" cy="7.207" r="1.078"/><path d="M20.533 6.111A4.605 4.605 0 0 0 17.9 3.479a6.606 6.606 0 0 0-2.186-.42c-.963-.042-1.268-.054-3.71-.054s-2.755 0-3.71.054a6.554 6.554 0 0 0-2.184.42 4.6 4.6 0 0 0-2.633 2.632 6.585 6.585 0 0 0-.419 2.186c-.043.962-.056 1.267-.056 3.71 0 2.442 0 2.753.056 3.71.015.748.156 1.486.419 2.187a4.61 4.61 0 0 0 2.634 2.632 6.584 6.584 0 0 0 2.185.45c.963.042 1.268.055 3.71.055s2.755 0 3.71-.055a6.615 6.615 0 0 0 2.186-.419 4.613 4.613 0 0 0 2.633-2.633c.263-.7.404-1.438.419-2.186.043-.962.056-1.267.056-3.71s0-2.753-.056-3.71a6.581 6.581 0 0 0-.421-2.217zm-1.218 9.532a5.043 5.043 0 0 1-.311 1.688 2.987 2.987 0 0 1-1.712 1.711 4.985 4.985 0 0 1-1.67.311c-.95.044-1.218.055-3.654.055-2.438 0-2.687 0-3.655-.055a4.96 4.96 0 0 1-1.669-.311 2.985 2.985 0 0 1-1.719-1.711 5.08 5.08 0 0 1-.311-1.669c-.043-.95-.053-1.218-.053-3.654 0-2.437 0-2.686.053-3.655a5.038 5.038 0 0 1 .311-1.687c.305-.789.93-1.41 1.719-1.712a5.01 5.01 0 0 1 1.669-.311c.951-.043 1.218-.055 3.655-.055s2.687 0 3.654.055a4.96 4.96 0 0 1 1.67.311 2.991 2.991 0 0 1 1.712 1.712 5.08 5.08 0 0 1 .311 1.669c.043.951.054 1.218.054 3.655 0 2.436 0 2.698-.043 3.654h-.011z"/></svg>
+                            Instagram</a>
+                    </div>
+                    <div class="w-1/2 md:w-1/4 text-end md:text-left">
+                        <h3 class="text-xl font-nunito font-semibold text-secondary mb-5">Contact Us</h3>
+                        <a href="javascript:void(0)"
+                            class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins">
+                            <svg class="w-4 h-4 inline mr-[2px]" fill="currentColor" width="800px" height="800px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                              <title>whatsapp</title>
+                              <path d="M26.576 5.363c-2.69-2.69-6.406-4.354-10.511-4.354-8.209 0-14.865 6.655-14.865 14.865 0 2.732 0.737 5.291 2.022 7.491l-0.038-0.070-2.109 7.702 7.879-2.067c2.051 1.139 4.498 1.809 7.102 1.809h0.006c8.209-0.003 14.862-6.659 14.862-14.868 0-4.103-1.662-7.817-4.349-10.507l0 0zM16.062 28.228h-0.005c-0 0-0.001 0-0.001 0-2.319 0-4.489-0.64-6.342-1.753l0.056 0.031-0.451-0.267-4.675 1.227 1.247-4.559-0.294-0.467c-1.185-1.862-1.889-4.131-1.889-6.565 0-6.822 5.531-12.353 12.353-12.353s12.353 5.531 12.353 12.353c0 6.822-5.53 12.353-12.353 12.353h-0zM22.838 18.977c-0.371-0.186-2.197-1.083-2.537-1.208-0.341-0.124-0.589-0.185-0.837 0.187-0.246 0.371-0.958 1.207-1.175 1.455-0.216 0.249-0.434 0.279-0.805 0.094-1.15-0.466-2.138-1.087-2.997-1.852l0.010 0.009c-0.799-0.74-1.484-1.587-2.037-2.521l-0.028-0.052c-0.216-0.371-0.023-0.572 0.162-0.757 0.167-0.166 0.372-0.434 0.557-0.65 0.146-0.179 0.271-0.384 0.366-0.604l0.006-0.017c0.043-0.087 0.068-0.188 0.068-0.296 0-0.131-0.037-0.253-0.101-0.357l0.002 0.003c-0.094-0.186-0.836-2.014-1.145-2.758-0.302-0.724-0.609-0.625-0.836-0.637-0.216-0.010-0.464-0.012-0.712-0.012-0.395 0.010-0.746 0.188-0.988 0.463l-0.001 0.002c-0.802 0.761-1.3 1.834-1.3 3.023 0 0.026 0 0.053 0.001 0.079l-0-0.004c0.131 1.467 0.681 2.784 1.527 3.857l-0.012-0.015c1.604 2.379 3.742 4.282 6.251 5.564l0.094 0.043c0.548 0.248 1.25 0.513 1.968 0.74l0.149 0.041c0.442 0.14 0.951 0.221 1.479 0.221 0.303 0 0.601-0.027 0.889-0.078l-0.031 0.004c1.069-0.223 1.956-0.868 2.497-1.749l0.009-0.017c0.165-0.366 0.261-0.793 0.261-1.242 0-0.185-0.016-0.366-0.047-0.542l0.003 0.019c-0.092-0.155-0.34-0.247-0.712-0.434z"></path>
+                              </svg>
+                            Whatsapp</a>
+                        <a href="javascript:void(0)"
+                            class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins">
+                            <svg class="w-4 h-4 inline mr-[2px]" fill="currentColor" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M20 4C21.6569 4 23 5.34315 23 7V17C23 18.6569 21.6569 20 20 20H4C2.34315 20 1 18.6569 1 17V7C1 5.34315 2.34315 4 4 4H20ZM19.2529 6H4.74718L11.3804 11.2367C11.7437 11.5236 12.2563 11.5236 12.6197 11.2367L19.2529 6ZM3 7.1688V17C3 17.5523 3.44772 18 4 18H20C20.5523 18 21 17.5523 21 17V7.16882L13.8589 12.8065C12.769 13.667 11.231 13.667 10.1411 12.8065L3 7.1688Z"/>
+                            </svg>
+                            Email</a>
+                    </div>
                 </div>
+
             </div>
         </div>
 
-    </div> <!-- end s-footer__main -->
-
-    <div class="row row-x-center s-footer__bottom">
-
-        <div class="row-x-center column lg-12 md-6 tab-12 ">
-            <div class="ss-copyright">
-                <span>© Copyright Kurnia Brownies 2024</span> 
-                <span>Design by <a href="https://www.styleshout.com/">StyleShout</a> Distribution <a href="https://themewagon.com">ThemeWagon</a></span>
-            </div>
-        </div>
-
-    </div> <!-- end s-footer__bottom -->
-   
-    <div class="ss-go-top">
-        <a class="smoothscroll" title="Back to Top" href="#top">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.25 10.25L12 4.75L6.75 10.25"/>
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19.25V5.75"/>
+        <div class="relative w-full z-0 shadow-lg bg-secondary rounded-md py-5 px-10 overflow-hidden">
+            <svg class="-z-10 absolute overflow-hidden w-auto h-72 -translate-x-48 sm:-translate-x-32 md:-translate-x-16 lg:translate-x-0 -translate-y-19  left-0 top-0"
+                xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 800 800">
+                <g transform="matrix(1,0,0,1,0,0)">
+                    <circle r="62" cx="684" cy="684" stroke-width="0.84" stroke="#a63603" fill="none"
+                        opacity="0.1"
+                        transform="matrix(-0.1736481776669303,0.984807753012208,-0.984807753012208,-0.1736481776669303,863.3823722716553,75.53616986188888)">
+                    </circle>
+                    <circle r="64.28888888888889" cx="676.3777777777777" cy="674.6666666666666"
+                        stroke-width="0.6222222222222222" stroke="#a63603" fill="none" opacity="0.12000000000000001"
+                        transform="matrix(-0.14685523603440814,0.9879298449076749,-0.9891915292237607,-0.15490197397288838,852.5413094038823,66.78885162608537)">
+                    </circle>
+                    <circle r="66.57777777777778" cx="668.7555555555556" cy="665.3333333333334"
+                        stroke-width="0.7444444444444445" stroke="#a63703" fill="none" opacity="0.14"
+                        transform="matrix(-0.11996023134907488,0.9906951285414755,-0.9929123553784358,-0.13609982470300763,841.3997332644768,58.16187846461287)">
+                    </circle>
+                    <circle r="68.86666666666666" cx="661.1333333333333" cy="656"
+                        stroke-width="0.8666666666666667" stroke="#a63703" fill="none" opacity="0.16"
+                        transform="matrix(-0.09297761569779904,0.9931026051827267,-0.9959680973044653,-0.11724852058461603,829.9739103312698,49.658366160755804)">
+                    </circle>
+                    <circle r="71.15555555555555" cx="653.5111111111111" cy="646.6666666666666"
+                        stroke-width="0.9888888888888889" stroke="#a63803" fill="none" opacity="0.18"
+                        transform="matrix(-0.06592187957057662,0.9951514053288423,-0.9983568899949511,-0.09835487009818225,818.2800712050549,41.28138590773597)">
+                    </circle>
+                    <circle r="73.44444444444444" cx="645.8888888888889" cy="637.3333333333334"
+                        stroke-width="1.1111111111111112" stroke="#a63803" fill="none" opacity="0.2"
+                        transform="matrix(-0.038807547436919256,0.9968407890195684,-1.0000771381714415,-0.07942569701831002,806.3344181854836,33.03396319949661)">
+                    </circle>
+                    <circle r="75.73333333333333" cx="638.2666666666667" cy="628"
+                        stroke-width="1.2333333333333334" stroke="#a63903" fill="none" opacity="0.22"
+                        transform="matrix(-0.011649173314420364,0.9981701461042338,-1.0011275167624878,-0.06046783794921438,794.1530962458386,24.919076737992214)">
+                    </circle>
+                    <circle r="78.02222222222223" cx="630.6444444444444" cy="618.6666666666666"
+                        stroke-width="1.3555555555555556" stroke="#a63903" fill="none"
+                        opacity="0.24000000000000002"
+                        transform="matrix(0.015538663668164546,0.9991389964621167,-1.001506971296935,-0.04148813985555942,781.7522029597759,16.9396573573772)">
+                    </circle>
+                    <circle r="80.3111111111111" cx="623.0222222222222" cy="609.3333333333334"
+                        stroke-width="1.4777777777777779" stroke="#a53a03" fill="none" opacity="0.26"
+                        transform="matrix(0.042741363710956604,0.9997469901758478,-1.0012147182117457,-0.022493457589559136,769.1477707408383,9.098586965484515)">
+                    </circle>
+                    <circle r="82.6" cx="615.4" cy="600" stroke-width="1.5999999999999999"
+                        stroke="#a53a03" fill="none" opacity="0.28"
+                        transform="matrix(0.06994431078375471,0.9999939076577904,-1.0002502450742123,-0.0034906514152236758,756.355746874036,1.3986975029733912)">
+                    </circle>
+                    <circle r="84.88888888888889" cx="607.7777777777778" cy="590.6666666666666"
+                        stroke-width="1.722222222222222" stroke="#a53b03" fill="none"
+                        opacity="0.30000000000000004"
+                        transform="matrix(0.09713287706520961,0.9998796597293474,-0.998613310718444,0.015513415469343355,743.3920105996656,-6.157230079476335)">
+                    </circle>
+                    <circle r="87.17777777777778" cx="600.1555555555556" cy="581.3333333333334"
+                        stroke-width="1.8444444444444443" stroke="#a53b03" fill="none" opacity="0.32"
+                        transform="matrix(0.12429242737798935,0.9994042876531702,-0.9963039452960745,0.03451187941071065,730.2723363208756,-13.566466825552425)">
+                    </circle>
+                    <circle r="89.46666666666667" cx="592.5333333333333" cy="572"
+                        stroke-width="1.9666666666666666" stroke="#a53c03" fill="none"
+                        opacity="0.33999999999999997"
+                        transform="matrix(0.15140832361753104,0.9985679631182558,-0.9933224502411803,0.05349787877904917,717.012399705515,-20.826336758922025)">
+                    </circle>
+                    <circle r="91.75555555555556" cx="584.9111111111112" cy="562.6666666666666"
+                        stroke-width="2.0888888888888886" stroke="#a53c03" fill="none" opacity="0.36"
+                        transform="matrix(0.1784659291719619,0.9973709881779381,-0.9896693981494395,0.07246455644632907,703.6277620160236,-27.934217849706783)">
+                    </circle>
+                    <circle r="94.04444444444445" cx="577.2888888888889" cy="553.3333333333333"
+                        stroke-width="2.2111111111111112" stroke="#a53d02" fill="none" opacity="0.38"
+                        transform="matrix(0.20545061333076742,0.9958137951407966,-0.9853456325716176,0.09140506226289419,690.1338807499885,-34.887542961476356)">
+                    </circle>
+                    <circle r="96.33333333333333" cx="569.6666666666666" cy="544"
+                        stroke-width="2.333333333333333" stroke="#a53d02" fill="none" opacity="0.4"
+                        transform="matrix(0.23234775567975618,0.99389694641452,-0.9803522677215061,0.11031255553151163,676.5460609081565,-41.68380077841266)">
+                    </circle>
+                    <circle r="98.62222222222222" cx="562.0444444444445" cy="534.6666666666666"
+                        stroke-width="2.4555555555555557" stroke="#a53d02" fill="none"
+                        opacity="0.42000000000000004"
+                        transform="matrix(0.25914275047987534,0.9916211343027828,-0.9746906880984922,0.1291802074780131,662.8795001576402,-48.32053671231836)">
+                    </circle>
+                    <circle r="100.91111111111111" cx="554.4222222222222" cy="525.3333333333333"
+                        stroke-width="2.5777777777777775" stroke="#a53e02" fill="none"
+                        opacity="0.44000000000000006"
+                        transform="matrix(0.28582101102739316,0.9889871807552079,-0.9683625480249829,0.14800120371762435,649.1492201394265,-54.79535378913283)">
+                    </circle>
+                    <circle r="103.19999999999999" cx="546.8" cy="516" stroke-width="2.6999999999999997"
+                        stroke="#a53e02" fill="none" opacity="0.45999999999999996"
+                        transform="matrix(0.31236797399297,0.9859960370705049,-0.9613697710989512,0.16676874671610234,635.3701085014998,-61.10591351464291)">
+                    </circle>
+                    <circle r="105.48888888888888" cx="539.1777777777778" cy="506.66666666666663"
+                        stroke-width="2.822222222222222" stroke="#a53f02" fill="none" opacity="0.48"
+                        transform="matrix(0.33876910373710345,0.9826487835528919,-0.9537145495619296,0.1854760582447822,621.5568713255625,-67.24993671906964)">
+                    </circle>
+                    <circle r="107.77777777777777" cx="531.5555555555555" cy="497.3333333333333"
+                        stroke-width="2.944444444444444" stroke="#a53f02" fill="none" opacity="0.5"
+                        transform="matrix(0.3650098965994327,0.9789466291219243,-0.9453993435828103,0.20411638182865566,607.7240743041201,-73.22520438023196)">
+                    </circle>
+                    <circle r="110.06666666666666" cx="523.9333333333334" cy="488"
+                        stroke-width="3.0666666666666664" stroke="#a54002" fill="none" opacity="0.52"
+                        transform="matrix(0.3910758851593523,0.9748909108758727,-0.9364268804578724,0.22268298518659072,593.886064142177,-79.02955842498534)">
+                    </circle>
+                    <circle r="112.35555555555555" cx="516.3111111111111" cy="478.66666666666663"
+                        stroke-width="3.1888888888888887" stroke="#a54002" fill="none" opacity="0.54"
+                        transform="matrix(0.4169526424653749,0.9704830936088055,-0.9268001537274974,0.2411691626628132,580.0570444503761,-84.6609025086475)">
+                    </circle>
+                    <circle r="114.64444444444445" cx="508.68888888888887" cy="469.3333333333333"
+                        stroke-width="3.311111111111111" stroke="#a44002" fill="none" opacity="0.56"
+                        transform="matrix(0.44262578623065874,0.9657247692815539,-0.9165224222100855,0.25956823764877207,566.2509666012504,-90.11720277213044)">
+                    </circle>
+                    <circle r="116.93333333333334" cx="501.06666666666666" cy="460"
+                        stroke-width="3.433333333333333" stroke="#a44102" fill="none" opacity="0.58"
+                        transform="matrix(0.46808098299209366,0.9606176564467463,-0.9055972089537336,0.2778735649945147,552.4816256929696,-95.39648857650445)">
+                    </circle>
+                    <circle r="119.22222222222223" cx="493.44444444444446" cy="450.66666666666663"
+                        stroke-width="3.5555555555555554" stroke="#a44102" fill="none" opacity="0.6"
+                        transform="matrix(0.493303952230313,0.955163599628123,-0.8940283001062876,0.2960785334087001,538.7625956681358,-100.49685321472924)">
+                    </circle>
+                    <circle r="121.5111111111111" cx="485.8222222222222" cy="441.3333333333333"
+                        stroke-width="3.6777777777777776" stroke="#a44202" fill="none" opacity="0.62"
+                        transform="matrix(0.5182804704479742,0.9493645686543541,-0.881819743704428,0.31417656784638154,525.1072027354669,-105.41645460029429)">
+                    </circle>
+                    <circle r="123.8" cx="478.20000000000005" cy="432" stroke-width="3.8" stroke="#a44202"
+                        fill="none" opacity="0.64"
+                        transform="matrix(0.5429963752036313,0.943222657947601,-0.8689758483825006,0.3321611318837034,511.5285705891704,-110.15351593252171)">
+                    </circle>
+                    <circle r="126.08888888888889" cx="470.5777777777778" cy="422.66666666666663"
+                        stroke-width="3.922222222222222" stroke="#a44202" fill="none" opacity="0.66"
+                        transform="matrix(0.567437569098474,0.9367400857670789,-0.8555011820018574,0.3500257300786409,498.03958386863553,-114.70632633828791)">
+                    </circle>
+                    <circle r="128.3777777777778" cx="462.9555555555556" cy="413.3333333333333"
+                        stroke-width="4.044444444444444" stroke="#a44302" fill="none"
+                        opacity="0.6799999999999999"
+                        transform="matrix(0.5915900237132076,0.9299191934078939,-0.841400570201515,0.367763910316948,484.6528696400755,-119.07324148993666)">
+                    </circle>
+                    <circle r="130.66666666666666" cx="455.33333333333337" cy="404"
+                        stroke-width="4.166666666666666" stroke="#a44302" fill="none" opacity="0.7"
+                        transform="matrix(0.6154397834922822,0.9227624443554424,-0.8266790948710037,0.3853692661424481,471.3808181419798,-123.25268419915619)">
+                    </circle>
+                    <circle r="132.95555555555555" cx="447.7111111111111" cy="394.66666666666663"
+                        stroke-width="4.288888888888889" stroke="#a44402" fill="none" opacity="0.72"
+                        transform="matrix(0.6389729695726774,0.9152724233956802,-0.8113420925463174,0.40283543907084285,458.2355611646245,-127.2431449866092)">
+                    </circle>
+                    <circle r="135.24444444444444" cx="440.0888888888889" cy="385.3333333333333"
+                        stroke-width="4.411111111111111" stroke="#a44402" fill="none" opacity="0.74"
+                        transform="matrix(0.6621757835543777,0.9074518356815822,-0.7953951527299465,0.42015612088618526,445.2289464673279,-131.04318262710694)">
+                    </circle>
+                    <circle r="137.53333333333333" cx="432.4666666666667" cy="376"
+                        stroke-width="4.533333333333333" stroke="#a44402" fill="none" opacity="0.76"
+                        transform="matrix(0.6850345112096751,0.8993035057561273,-0.7788441161360042,0.4373250559192089,432.3725649904527,-134.65142467013447)">
+                    </circle>
+                    <circle r="139.82222222222222" cx="424.84444444444443" cy="366.66666666666663"
+                        stroke-width="4.655555555555555" stroke="#a44501" fill="none" opacity="0.78"
+                        transform="matrix(0.7075355261283482,0.8908303765321662,-0.7616950728615433,0.4543360433066685,419.67772767872907,-138.06656793553384)">
+                    </circle>
+                    <circle r="142.1111111111111" cx="417.22222222222223" cy="357.3333333333333"
+                        stroke-width="4.777777777777778" stroke="#a44501" fill="none" opacity="0.8"
+                        transform="matrix(0.7296652932957644,0.8820355082295365,-0.7439543604851854,0.4711829392308929,407.15544547971933,-141.2873789841717)">
+                    </circle>
+                    <circle r="144.39999999999998" cx="409.6" cy="348" stroke-width="4.8999999999999995"
+                        stroke="#a44601" fill="none" opacity="0.82"
+                        transform="matrix(0.7514103726008731,0.8729220772698096,-0.725628562094264,0.48785965913873275,394.81645012866227,-144.31269456341693)">
+                    </circle>
+                    <circle r="146.68888888888887" cx="401.9777777777778" cy="338.66666666666663"
+                        stroke-width="5.022222222222222" stroke="#a44601" fill="none" opacity="0.84"
+                        transform="matrix(0.7727574222710254,0.8634933751290712,-0.7067245042417261,0.5043601799391038,382.6711602397904,-147.14142202726998)">
+                    </circle>
+                    <circle r="148.97777777777776" cx="394.35555555555555" cy="329.3333333333333"
+                        stroke-width="5.144444444444444" stroke="#a34601" fill="none" opacity="0.86"
+                        transform="matrix(0.7936932022304926,0.8537528071491455,-0.6872492548341036,0.5206785421783329,370.72969024436475,-149.7725397309914)">
+                    </circle>
+                    <circle r="151.26666666666665" cx="386.73333333333335" cy="320"
+                        stroke-width="5.266666666666667" stroke="#a34701" fill="none" opacity="0.88"
+                        transform="matrix(0.8142045773794975,0.8437038913076974,-0.6672101209519237,0.5368088521925184,359.00183454952025,-152.2050974000863)">
+                    </circle>
+                    <circle r="153.55555555555554" cx="379.11111111111114" cy="310.66666666666663"
+                        stroke-width="5.388888888888888" stroke="#a34701" fill="none" opacity="0.9"
+                        transform="matrix(0.8342785207905195,0.8333502569476516,-0.6466146466039828,0.5527452842361326,347.4970822912718,-154.43821647351365)">
+                    </circle>
+                    <circle r="155.84444444444443" cx="371.4888888888889" cy="301.3333333333333"
+                        stroke-width="5.511111111111111" stroke="#a34801" fill="none" opacity="0.92"
+                        transform="matrix(0.853902116818553,0.8226956434663927,-0.6254706104169843,0.56848208258609,336.2245735623916,-156.47109042099305)">
+                    </circle>
+                    <circle r="158.13333333333333" cx="363.8666666666667" cy="292"
+                        stroke-width="5.633333333333333" stroke="#a34801" fill="none" opacity="0.94"
+                        transform="matrix(0.8730625641219416,0.8117438989652149,-0.6037860232620856,0.58401356362053,325.19313752870823,-158.302985034298)">
+                    </circle>
+                    <circle r="160.42222222222222" cx="356.24444444444447" cy="282.66666666666663"
+                        stroke-width="5.7555555555555555" stroke="#a34801" fill="none" opacity="0.96"
+                        transform="matrix(0.8917471785903255,0.8004989788595133,-0.5815691258199853,0.5993341178715562,314.4112460690777,-159.93323869242772)">
+                    </circle>
+                    <circle r="162.7111111111111" cx="348.62222222222226" cy="273.3333333333333"
+                        stroke-width="5.877777777777777" stroke="#a34900" fill="none" opacity="0.98"
+                        transform="matrix(0.9099433961761619,0.7889649444502154,-0.5588283860862319,0.6144382120511945,303.887023830814,-161.36126260056392)">
+                    </circle>
+                    <circle r="165" cx="341" cy="264" stroke-width="6" stroke="#a34900" fill="none"
+                        opacity="1"
+                        transform="matrix(0.9276387756261879,0.7771459614569709,-0.5355724968185146,0.6293203910498374,293.6282643577654,-162.58654100272327)">
+                    </circle>
+                </g>
             </svg>
-        </a>
-    </div> <!-- end ss-go-top -->
-
+            <svg class="-z-10 absolute overflow-hidden w-auto h-72 translate-x-48 sm:translate-x-32 md:translate-x-16 lg:translate-x-0 -translate-y-19  right-0 top-0 transform scale-x-[-1] "
+                xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 800 800">
+                <g transform="matrix(1,0,0,1,0,0)">
+                    <circle r="62" cx="684" cy="684" stroke-width="0.84" stroke="#a63603"
+                        fill="none" opacity="0.1"
+                        transform="matrix(-0.1736481776669303,0.984807753012208,-0.984807753012208,-0.1736481776669303,863.3823722716553,75.53616986188888)">
+                    </circle>
+                    <circle r="64.28888888888889" cx="676.3777777777777" cy="674.6666666666666"
+                        stroke-width="0.6222222222222222" stroke="#a63603" fill="none"
+                        opacity="0.12000000000000001"
+                        transform="matrix(-0.14685523603440814,0.9879298449076749,-0.9891915292237607,-0.15490197397288838,852.5413094038823,66.78885162608537)">
+                    </circle>
+                    <circle r="66.57777777777778" cx="668.7555555555556" cy="665.3333333333334"
+                        stroke-width="0.7444444444444445" stroke="#a63703" fill="none" opacity="0.14"
+                        transform="matrix(-0.11996023134907488,0.9906951285414755,-0.9929123553784358,-0.13609982470300763,841.3997332644768,58.16187846461287)">
+                    </circle>
+                    <circle r="68.86666666666666" cx="661.1333333333333" cy="656"
+                        stroke-width="0.8666666666666667" stroke="#a63703" fill="none" opacity="0.16"
+                        transform="matrix(-0.09297761569779904,0.9931026051827267,-0.9959680973044653,-0.11724852058461603,829.9739103312698,49.658366160755804)">
+                    </circle>
+                    <circle r="71.15555555555555" cx="653.5111111111111" cy="646.6666666666666"
+                        stroke-width="0.9888888888888889" stroke="#a63803" fill="none" opacity="0.18"
+                        transform="matrix(-0.06592187957057662,0.9951514053288423,-0.9983568899949511,-0.09835487009818225,818.2800712050549,41.28138590773597)">
+                    </circle>
+                    <circle r="73.44444444444444" cx="645.8888888888889" cy="637.3333333333334"
+                        stroke-width="1.1111111111111112" stroke="#a63803" fill="none" opacity="0.2"
+                        transform="matrix(-0.038807547436919256,0.9968407890195684,-1.0000771381714415,-0.07942569701831002,806.3344181854836,33.03396319949661)">
+                    </circle>
+                    <circle r="75.73333333333333" cx="638.2666666666667" cy="628"
+                        stroke-width="1.2333333333333334" stroke="#a63903" fill="none" opacity="0.22"
+                        transform="matrix(-0.011649173314420364,0.9981701461042338,-1.0011275167624878,-0.06046783794921438,794.1530962458386,24.919076737992214)">
+                    </circle>
+                    <circle r="78.02222222222223" cx="630.6444444444444" cy="618.6666666666666"
+                        stroke-width="1.3555555555555556" stroke="#a63903" fill="none"
+                        opacity="0.24000000000000002"
+                        transform="matrix(0.015538663668164546,0.9991389964621167,-1.001506971296935,-0.04148813985555942,781.7522029597759,16.9396573573772)">
+                    </circle>
+                    <circle r="80.3111111111111" cx="623.0222222222222" cy="609.3333333333334"
+                        stroke-width="1.4777777777777779" stroke="#a53a03" fill="none" opacity="0.26"
+                        transform="matrix(0.042741363710956604,0.9997469901758478,-1.0012147182117457,-0.022493457589559136,769.1477707408383,9.098586965484515)">
+                    </circle>
+                    <circle r="82.6" cx="615.4" cy="600" stroke-width="1.5999999999999999"
+                        stroke="#a53a03" fill="none" opacity="0.28"
+                        transform="matrix(0.06994431078375471,0.9999939076577904,-1.0002502450742123,-0.0034906514152236758,756.355746874036,1.3986975029733912)">
+                    </circle>
+                    <circle r="84.88888888888889" cx="607.7777777777778" cy="590.6666666666666"
+                        stroke-width="1.722222222222222" stroke="#a53b03" fill="none"
+                        opacity="0.30000000000000004"
+                        transform="matrix(0.09713287706520961,0.9998796597293474,-0.998613310718444,0.015513415469343355,743.3920105996656,-6.157230079476335)">
+                    </circle>
+                    <circle r="87.17777777777778" cx="600.1555555555556" cy="581.3333333333334"
+                        stroke-width="1.8444444444444443" stroke="#a53b03" fill="none" opacity="0.32"
+                        transform="matrix(0.12429242737798935,0.9994042876531702,-0.9963039452960745,0.03451187941071065,730.2723363208756,-13.566466825552425)">
+                    </circle>
+                    <circle r="89.46666666666667" cx="592.5333333333333" cy="572"
+                        stroke-width="1.9666666666666666" stroke="#a53c03" fill="none"
+                        opacity="0.33999999999999997"
+                        transform="matrix(0.15140832361753104,0.9985679631182558,-0.9933224502411803,0.05349787877904917,717.012399705515,-20.826336758922025)">
+                    </circle>
+                    <circle r="91.75555555555556" cx="584.9111111111112" cy="562.6666666666666"
+                        stroke-width="2.0888888888888886" stroke="#a53c03" fill="none" opacity="0.36"
+                        transform="matrix(0.1784659291719619,0.9973709881779381,-0.9896693981494395,0.07246455644632907,703.6277620160236,-27.934217849706783)">
+                    </circle>
+                    <circle r="94.04444444444445" cx="577.2888888888889" cy="553.3333333333333"
+                        stroke-width="2.2111111111111112" stroke="#a53d02" fill="none" opacity="0.38"
+                        transform="matrix(0.20545061333076742,0.9958137951407966,-0.9853456325716176,0.09140506226289419,690.1338807499885,-34.887542961476356)">
+                    </circle>
+                    <circle r="96.33333333333333" cx="569.6666666666666" cy="544"
+                        stroke-width="2.333333333333333" stroke="#a53d02" fill="none" opacity="0.4"
+                        transform="matrix(0.23234775567975618,0.99389694641452,-0.9803522677215061,0.11031255553151163,676.5460609081565,-41.68380077841266)">
+                    </circle>
+                    <circle r="98.62222222222222" cx="562.0444444444445" cy="534.6666666666666"
+                        stroke-width="2.4555555555555557" stroke="#a53d02" fill="none"
+                        opacity="0.42000000000000004"
+                        transform="matrix(0.25914275047987534,0.9916211343027828,-0.9746906880984922,0.1291802074780131,662.8795001576402,-48.32053671231836)">
+                    </circle>
+                    <circle r="100.91111111111111" cx="554.4222222222222" cy="525.3333333333333"
+                        stroke-width="2.5777777777777775" stroke="#a53e02" fill="none"
+                        opacity="0.44000000000000006"
+                        transform="matrix(0.28582101102739316,0.9889871807552079,-0.9683625480249829,0.14800120371762435,649.1492201394265,-54.79535378913283)">
+                    </circle>
+                    <circle r="103.19999999999999" cx="546.8" cy="516" stroke-width="2.6999999999999997"
+                        stroke="#a53e02" fill="none" opacity="0.45999999999999996"
+                        transform="matrix(0.31236797399297,0.9859960370705049,-0.9613697710989512,0.16676874671610234,635.3701085014998,-61.10591351464291)">
+                    </circle>
+                    <circle r="105.48888888888888" cx="539.1777777777778" cy="506.66666666666663"
+                        stroke-width="2.822222222222222" stroke="#a53f02" fill="none" opacity="0.48"
+                        transform="matrix(0.33876910373710345,0.9826487835528919,-0.9537145495619296,0.1854760582447822,621.5568713255625,-67.24993671906964)">
+                    </circle>
+                    <circle r="107.77777777777777" cx="531.5555555555555" cy="497.3333333333333"
+                        stroke-width="2.944444444444444" stroke="#a53f02" fill="none" opacity="0.5"
+                        transform="matrix(0.3650098965994327,0.9789466291219243,-0.9453993435828103,0.20411638182865566,607.7240743041201,-73.22520438023196)">
+                    </circle>
+                    <circle r="110.06666666666666" cx="523.9333333333334" cy="488"
+                        stroke-width="3.0666666666666664" stroke="#a54002" fill="none" opacity="0.52"
+                        transform="matrix(0.3910758851593523,0.9748909108758727,-0.9364268804578724,0.22268298518659072,593.886064142177,-79.02955842498534)">
+                    </circle>
+                    <circle r="112.35555555555555" cx="516.3111111111111" cy="478.66666666666663"
+                        stroke-width="3.1888888888888887" stroke="#a54002" fill="none" opacity="0.54"
+                        transform="matrix(0.4169526424653749,0.9704830936088055,-0.9268001537274974,0.2411691626628132,580.0570444503761,-84.6609025086475)">
+                    </circle>
+                    <circle r="114.64444444444445" cx="508.68888888888887" cy="469.3333333333333"
+                        stroke-width="3.311111111111111" stroke="#a44002" fill="none" opacity="0.56"
+                        transform="matrix(0.44262578623065874,0.9657247692815539,-0.9165224222100855,0.25956823764877207,566.2509666012504,-90.11720277213044)">
+                    </circle>
+                    <circle r="116.93333333333334" cx="501.06666666666666" cy="460"
+                        stroke-width="3.433333333333333" stroke="#a44102" fill="none" opacity="0.58"
+                        transform="matrix(0.46808098299209366,0.9606176564467463,-0.9055972089537336,0.2778735649945147,552.4816256929696,-95.39648857650445)">
+                    </circle>
+                    <circle r="119.22222222222223" cx="493.44444444444446" cy="450.66666666666663"
+                        stroke-width="3.5555555555555554" stroke="#a44102" fill="none" opacity="0.6"
+                        transform="matrix(0.493303952230313,0.955163599628123,-0.8940283001062876,0.2960785334087001,538.7625956681358,-100.49685321472924)">
+                    </circle>
+                    <circle r="121.5111111111111" cx="485.8222222222222" cy="441.3333333333333"
+                        stroke-width="3.6777777777777776" stroke="#a44202" fill="none" opacity="0.62"
+                        transform="matrix(0.5182804704479742,0.9493645686543541,-0.881819743704428,0.31417656784638154,525.1072027354669,-105.41645460029429)">
+                    </circle>
+                    <circle r="123.8" cx="478.20000000000005" cy="432" stroke-width="3.8" stroke="#a44202"
+                        fill="none" opacity="0.64"
+                        transform="matrix(0.5429963752036313,0.943222657947601,-0.8689758483825006,0.3321611318837034,511.5285705891704,-110.15351593252171)">
+                    </circle>
+                    <circle r="126.08888888888889" cx="470.5777777777778" cy="422.66666666666663"
+                        stroke-width="3.922222222222222" stroke="#a44202" fill="none" opacity="0.66"
+                        transform="matrix(0.567437569098474,0.9367400857670789,-0.8555011820018574,0.3500257300786409,498.03958386863553,-114.70632633828791)">
+                    </circle>
+                    <circle r="128.3777777777778" cx="462.9555555555556" cy="413.3333333333333"
+                        stroke-width="4.044444444444444" stroke="#a44302" fill="none"
+                        opacity="0.6799999999999999"
+                        transform="matrix(0.5915900237132076,0.9299191934078939,-0.841400570201515,0.367763910316948,484.6528696400755,-119.07324148993666)">
+                    </circle>
+                    <circle r="130.66666666666666" cx="455.33333333333337" cy="404"
+                        stroke-width="4.166666666666666" stroke="#a44302" fill="none" opacity="0.7"
+                        transform="matrix(0.6154397834922822,0.9227624443554424,-0.8266790948710037,0.3853692661424481,471.3808181419798,-123.25268419915619)">
+                    </circle>
+                    <circle r="132.95555555555555" cx="447.7111111111111" cy="394.66666666666663"
+                        stroke-width="4.288888888888889" stroke="#a44402" fill="none" opacity="0.72"
+                        transform="matrix(0.6389729695726774,0.9152724233956802,-0.8113420925463174,0.40283543907084285,458.2355611646245,-127.2431449866092)">
+                    </circle>
+                    <circle r="135.24444444444444" cx="440.0888888888889" cy="385.3333333333333"
+                        stroke-width="4.411111111111111" stroke="#a44402" fill="none" opacity="0.74"
+                        transform="matrix(0.6621757835543777,0.9074518356815822,-0.7953951527299465,0.42015612088618526,445.2289464673279,-131.04318262710694)">
+                    </circle>
+                    <circle r="137.53333333333333" cx="432.4666666666667" cy="376"
+                        stroke-width="4.533333333333333" stroke="#a44402" fill="none" opacity="0.76"
+                        transform="matrix(0.6850345112096751,0.8993035057561273,-0.7788441161360042,0.4373250559192089,432.3725649904527,-134.65142467013447)">
+                    </circle>
+                    <circle r="139.82222222222222" cx="424.84444444444443" cy="366.66666666666663"
+                        stroke-width="4.655555555555555" stroke="#a44501" fill="none" opacity="0.78"
+                        transform="matrix(0.7075355261283482,0.8908303765321662,-0.7616950728615433,0.4543360433066685,419.67772767872907,-138.06656793553384)">
+                    </circle>
+                    <circle r="142.1111111111111" cx="417.22222222222223" cy="357.3333333333333"
+                        stroke-width="4.777777777777778" stroke="#a44501" fill="none" opacity="0.8"
+                        transform="matrix(0.7296652932957644,0.8820355082295365,-0.7439543604851854,0.4711829392308929,407.15544547971933,-141.2873789841717)">
+                    </circle>
+                    <circle r="144.39999999999998" cx="409.6" cy="348" stroke-width="4.8999999999999995"
+                        stroke="#a44601" fill="none" opacity="0.82"
+                        transform="matrix(0.7514103726008731,0.8729220772698096,-0.725628562094264,0.48785965913873275,394.81645012866227,-144.31269456341693)">
+                    </circle>
+                    <circle r="146.68888888888887" cx="401.9777777777778" cy="338.66666666666663"
+                        stroke-width="5.022222222222222" stroke="#a44601" fill="none" opacity="0.84"
+                        transform="matrix(0.7727574222710254,0.8634933751290712,-0.7067245042417261,0.5043601799391038,382.6711602397904,-147.14142202726998)">
+                    </circle>
+                    <circle r="148.97777777777776" cx="394.35555555555555" cy="329.3333333333333"
+                        stroke-width="5.144444444444444" stroke="#a34601" fill="none" opacity="0.86"
+                        transform="matrix(0.7936932022304926,0.8537528071491455,-0.6872492548341036,0.5206785421783329,370.72969024436475,-149.7725397309914)">
+                    </circle>
+                    <circle r="151.26666666666665" cx="386.73333333333335" cy="320"
+                        stroke-width="5.266666666666667" stroke="#a34701" fill="none" opacity="0.88"
+                        transform="matrix(0.8142045773794975,0.8437038913076974,-0.6672101209519237,0.5368088521925184,359.00183454952025,-152.2050974000863)">
+                    </circle>
+                    <circle r="153.55555555555554" cx="379.11111111111114" cy="310.66666666666663"
+                        stroke-width="5.388888888888888" stroke="#a34701" fill="none" opacity="0.9"
+                        transform="matrix(0.8342785207905195,0.8333502569476516,-0.6466146466039828,0.5527452842361326,347.4970822912718,-154.43821647351365)">
+                    </circle>
+                    <circle r="155.84444444444443" cx="371.4888888888889" cy="301.3333333333333"
+                        stroke-width="5.511111111111111" stroke="#a34801" fill="none" opacity="0.92"
+                        transform="matrix(0.853902116818553,0.8226956434663927,-0.6254706104169843,0.56848208258609,336.2245735623916,-156.47109042099305)">
+                    </circle>
+                    <circle r="158.13333333333333" cx="363.8666666666667" cy="292"
+                        stroke-width="5.633333333333333" stroke="#a34801" fill="none" opacity="0.94"
+                        transform="matrix(0.8730625641219416,0.8117438989652149,-0.6037860232620856,0.58401356362053,325.19313752870823,-158.302985034298)">
+                    </circle>
+                    <circle r="160.42222222222222" cx="356.24444444444447" cy="282.66666666666663"
+                        stroke-width="5.7555555555555555" stroke="#a34801" fill="none" opacity="0.96"
+                        transform="matrix(0.8917471785903255,0.8004989788595133,-0.5815691258199853,0.5993341178715562,314.4112460690777,-159.93323869242772)">
+                    </circle>
+                    <circle r="162.7111111111111" cx="348.62222222222226" cy="273.3333333333333"
+                        stroke-width="5.877777777777777" stroke="#a34900" fill="none" opacity="0.98"
+                        transform="matrix(0.9099433961761619,0.7889649444502154,-0.5588283860862319,0.6144382120511945,303.887023830814,-161.36126260056392)">
+                    </circle>
+                    <circle r="165" cx="341" cy="264" stroke-width="6" stroke="#a34900" fill="none"
+                        opacity="1"
+                        transform="matrix(0.9276387756261879,0.7771459614569709,-0.5355724968185146,0.6293203910498374,293.6282643577654,-162.58654100272327)">
+                    </circle>
+                </g>
+            </svg>
+            <p class=" text-sm font-poppins text-center">&copy; Kurnia Brownies 2025. All Rights Reserved.</p>
+        </div>
+    </div>
 </footer>

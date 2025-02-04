@@ -1,72 +1,65 @@
-<header id="masthead" class="s-header">
+<header x-cloak x-data="{ open: false, scrolled: false,}" 
+@if (request()->routeIs(['home','product','news','pricelist', 'about','contact']))
+@scroll.window="scrolled = window.scrollY > 50"
 
-    <div class="s-header__branding">
-        <p class="site-title">
+:class="{
+    'h-screen bg-primary text-secondary': open,
+    'bg-primary text-secondary shadow-lg': scrolled && !open,
+    'bg-transparent text-secondary': !scrolled && !open 
+}"
+@endif
+@click="open ? document.body.classList.add('overflow-hidden') : document.body.classList.remove('overflow-hidden')"
+    :class="open ? 'h-screen' : ''"
+    class="{{ request()->routeIs(['home','product','news', 'about','pricelist','contact']) ? 'fixed' : 'sticky bg-primary text-secondary' }} z-40 top-0 w-full transition-colors duration-300">
+    <div class="flex items-center justify-between px-10 lg:px-[120px] py-5">
+        <div class="flex items-center">
             <a href="{{ route('home') }}" rel="home">
-                <img src="{{ asset('assets/images/default/brand_logo_long.png') }}" style="height: 50px" alt="">
+                <img class="h-[50px] m-0" src="{{ url($logo->value ?: "assets/images/default/brand_logo_long.png") }}"alt="">
             </a>
-        </p>
+        </div>
+
+        <nav>
+            <button
+                class="md:hidden relative flex justify-center items-center text-gray-300 hover:text-white focus:outline-none transition-colors duration-300"
+                @click="open = !open">
+                <!-- Hamburger Icon -->
+                <svg x-cloak x-show="!open" x-transition:enter="opacity-0" x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100" x-transition:leave="opacity-100"
+                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="#FACC15" class="h-8 w-8 transition-opacity duration-200 absolute ease-in-out">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 7.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                </svg>
+
+                <!-- Close Icon -->
+                <svg x-cloak x-show="open" x-transition:enter="opacity-0" x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100" x-transition:leave="opacity-100"
+                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="#FACC15" class="h-8 w-8 transition-opacity duration-200 absolute ease-in-out">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <ul class="hidden md:flex space-x-8 tracking-widest font-semibold drop-shadow-md">
+                @foreach ($menu as $item)
+                        <li class="{{ $item['active'] ? 'border-b border-secondary' : '' }}  drop-shadow-md tracking-widest font-semibold">
+                            <a href="{{ $item['route'] }}" title="">{{ $item['name'] }}</a>
+                        </li>
+                @endforeach
+            </ul>
+        </nav>
     </div>
 
-    <div class="row s-header__navigation">
-
-        <nav class="s-header__nav-wrap">
-
-            <h3 class="s-header__nav-heading">Navigate to</h3>
-
-            <ul class="s-header__nav home-color">
-            {{-- <ul class="s-header__nav {{ request()->routeIs(['home','news','contact']) ? 'home-color' : 'all-color' }}"> --}}
-                @foreach ($menu as $item)
-                    @if ($item['has-child'] == true)
-                    <li class="has-children {{ $item['active'] ? 'current-menu-item' : '' }} drop-shadow-md tracking-widest">
-                        <a href="#" title="">{{ $item['name'] }}</a>
-                        <ul class="sub-menu">
-                            <li><a href="{{ $item['route'] }}">All</a></li>
-                            @foreach ($item['childs'] as $child)
-                                <li><a href="{{ $child['route'] }}">{{ $child['name'] }}</a></li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    @else
-                    <li class="{{ $item['active'] ? 'current-menu-item' : '' }} drop-shadow-md tracking-widest">
-                        <a href="{{ $item['route'] }}" title="">{{ $item['name'] }}</a>
-                    </li>
-                    @endif
-                @endforeach
-            </ul> <!-- end s-header__nav -->
-
-        </nav> <!-- end s-header__nav-wrap -->
-
-    </div> <!-- end s-header__navigation -->
-
-    {{-- <div class="s-header__search">
-
-        <div class="s-header__search-inner">
-            <div class="row">
-
-                <form role="search" method="get" class="s-header__search-form" action="#">
-                    <label>
-                        <span class="u-screen-reader-text">Search for:</span>
-                        <input type="search" class="s-header__search-field" placeholder="Search for..." value=""
-                            name="s" title="Search for:" autocomplete="off">
-                    </label>
-                    <input type="submit" class="s-header__search-submit" value="Search">
-                </form>
-
-                <a href="#0" title="Close Search" class="s-header__search-close">Close</a>
-
-            </div> <!-- end row -->
-        </div> <!-- s-header__search-inner -->
-
-    </div> <!-- end s-header__search --> --}}
-
-    <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
-    {{-- <a class="s-header__search-trigger" href="#">
-        <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                d="M19.25 19.25L15.5 15.5M4.75 11C4.75 7.54822 7.54822 4.75 11 4.75C14.4518 4.75 17.25 7.54822 17.25 11C17.25 14.4518 14.4518 17.25 11 17.25C7.54822 17.25 4.75 14.4518 4.75 11Z">
-            </path>
-        </svg>
-    </a> --}}
-
+    <ul x-cloak :class="open ? 'block' : 'hidden'" class="md:hidden flex flex-col space-y-4 px-10 tracking-widest drop-shadow-md font-semibold">
+        @foreach ($menu as $item)
+                <li class="pb-2">
+                <a href="{{ $item['route'] }}" 
+                :class="{
+                    'border-b border-secondary': {{ $item['active'] ? 'true' : 'false' }},
+                    'drop-shadow-md tracking-widest font-semibold': true
+                }"
+                class="hover:text-gray-100 text-4xl">{{ $item['name'] }}</a></li>
+        @endforeach
+    </ul>
 </header>

@@ -2,10 +2,18 @@
 
 namespace App\Livewire\Administrator\Layouts;
 
+use App\Models\AppSetting;
 use Livewire\Component;
 
 class Sidebar extends Component
 {
+    public $logo;
+
+    public function mount()
+    {
+        $this->logo = AppSetting::where('key', 'logo')->get()->first();
+    }
+
     public function menu()
     {
         return [
@@ -29,6 +37,28 @@ class Sidebar extends Component
                     'view-product-category',
                 ],
                 'is_separator' => true,
+                'childs' => [],
+            ],
+            [
+                'name' => 'Umpan Balik',
+                'route' => route('administrator.feedback'),
+                'icon' => 'fa-solid fa-comment-dots',
+                'active' => request()->is('administrator/feedback', 'administrator/feedback/*'),
+                'permission' => [
+                    'view-feedback',
+                ],
+                'is_separator' => false,
+                'childs' => [],
+            ],
+            [
+                'name' => 'FAQ',
+                'route' => route('administrator.faq'),
+                'icon' => 'fa-solid fa-question',
+                'active' => request()->is('administrator/faq', 'administrator/faq/*'),
+                'permission' => [
+                    'view-faq',
+                ],
+                'is_separator' => false,
                 'childs' => [],
             ],
             [

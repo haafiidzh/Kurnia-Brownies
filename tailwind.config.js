@@ -9,15 +9,19 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-              'primary': '#782d07',
+              'primary': '#6B2E1F',
               'secondary': '#FACC15',
+              'accent': '#FFE89C',
+              'primary-dark': '#5E2205',
             },
             fontFamily: {
                 poppins: ["Poppins"],
+                nunito: ["Nunito"],
+                latin: ["Charm"],
             },
             spacing: {
                 21: "89px",
-                19: "77.5px",
+                19: "85px",
             },
         },
     },

@@ -8,16 +8,15 @@ use Livewire\Component;
 
 class Detail extends Component
 {
-    public $id;
+    public $data;
 
     public function mount($id)
     {
-
+        $this->data = Product::find($id);
     }
 
     public function render()
-    {
-        $data = Product::find($this->id);
-        return view('livewire.administrator.products.list.detail', ['data' => $data]);
+    {   
+        return view('livewire.administrator.products.list.detail');
     }
 }

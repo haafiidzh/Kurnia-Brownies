@@ -6,14 +6,14 @@
         <div class="w-full flex gap-5 mb-10">
             {{-- Group Title --}}
             <div class="w-1/4 relative">
-                <ul class="bg-slate-100 rounded-xl shadow-xl sticky top-28 z-10">
+                <ul class="bg-slate-100 rounded-xl shadow-xl sticky top-28 z-10 overflow-hidden">
                     @foreach ($groups as $item)
                         <li
-                            class="hover:bg-gray-200 active:bg-gray-500 transition-all duration-300 
-                        {{ $loop->first ? ' border-b-2' : ($loop->last ? 'rounded-b-xl' : 'border-b-2') }}
+                        class="hover:bg-gray-200 active:bg-gray-500 transition-all duration-300 
+                        {{ $loop->last ? 'border-b-0' : 'border-b-2' }}
                         {{ $selectedGroup === $item->group ? 'bg-gray-200 font-bold' : '' }}">
                             <a href="#" wire:click="selectGroup('{{ $item->group }}')">
-                                <div class="p-5 tracking-wider">{{ ucfirst($item->group) }}</div>
+                                <div class="p-5 tracking-wider">{{ ucwords(str_replace('_',' ',$item->group)) }}</div>
                             </a>
                         </li>
                     @endforeach
@@ -33,11 +33,6 @@
                         </thead>
                         <tbody>
                             @foreach ($datas as $data)
-                            @if ($selectedGroup)
-                                
-                            @else
-                                
-                            @endif
                                 <tr wire:loading.remove
                                     class="hover:bg-gray-200 {{ $loop->last ? '' : 'border-b border-gray-200' }}">
                                     <td class="px-4 py-4 text-left flex flex-col">
@@ -48,21 +43,26 @@
                                             {{ $data->key }}
                                         </div>
                                     </td>
-                                    <td class="px-4 py-4 text-left text-sm">
+                                    <td class="px-4 py-4 text-left text-sm text-wrap">
                                         @switch($data->type)
                                             @case('image')
-                                                <img src="{{ Storage::url($data->value) }}" alt="{{ $data->label }}">    
-                                                @break
-                                            @case('input')
-                                                {{ $data->value }}    
-                                                @break
-                                            @case('textarea')
-                                                {!! $data->value !!}
-                                                @break
-                                            @default
-                                                
-                                        @endswitch
+                                                @if ($data->value)
+                                                    <img src="{{ url($data->value) }}" alt="{{ $data->label }}">
+                                                @else
+                                                    -
+                                                @endif
+                                            @break
 
+                                            @case('input')
+                                                {{ $data->value ?: '-' }}
+                                            @break
+
+                                            @case('textarea')
+                                                {!! $data->value ?: '-' !!}
+                                            @break
+
+                                            @default
+                                        @endswitch
                                     </td>
                                     <td class="w-full px-4 py-4 text-center flex justify-center">
                                         <a href="{{ route('administrator.content.edit', ['id' => $data->id]) }}"

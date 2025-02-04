@@ -52,7 +52,7 @@
             </table>
         </div>
         <div class="my-3">
-            {{ $permissions->onEachSide(1)->links('vendor.pagination.custom') }}
+            {{ $permissions->onEachSide(1)->links('vendor.livewire.tailwind') }}
         </div>
     </div>
 </div>

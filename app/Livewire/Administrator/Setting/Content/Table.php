@@ -11,7 +11,7 @@ class Table extends Component
     public $label;
     public $value;
 
-    public $selectedGroup = 'general';
+    public $selectedGroup = 'cta_product';
 
     public function selectGroup($group)
     {

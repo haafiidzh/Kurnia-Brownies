@@ -6,16 +6,19 @@
                 <div class="mb-5 flex">
                     {{-- Deskripsi Title --}}
                     <div class="w-1/4 flex flex-row gap-2">
-                        <i class="fa-solid fa-shield p-2"></i>
+                        <div class="h-6 w-6 flex justify-center items-center">
+                            <i class="fa-solid fa-heading "></i>
+                        </div>
                         <div class="w-48 flex flex-col gap-2">
 
                             <div class="flex flex-row">
-                                <h2 class="text-lg font-semibold">Title</h2>
-                                <p class="text-lg"> &nbsp;| Judul</p>
+                                <h2 class="text-md font-semibold">Title</h2>
+                                <p class="text-md"> &nbsp;| Judul</p>
                             </div>
 
-                            <p class="text-sm text-slate-500 tracking-wider">Nama peran dalam sebuah sistem sesuai dengan
-                                kewenangannya</p>
+                            <p class="text-sm text-slate-500 tracking-wider">
+                                Judul slider unik yang menarik.
+                            </p>
                         </div>
                     </div>
 
@@ -54,17 +57,19 @@
                 <div class="mb-5 flex">
                     {{-- Deskripsi Description --}}
                     <div class="w-1/4 flex flex-row gap-2">
-                        <i class="fa-solid fa-shield p-2"></i>
+                        <div class="h-6 w-6 flex justify-center items-center">
+                            <i class="fa-solid fa-audio-description"></i>
+                        </div>
                         <div class="w-48 flex flex-col gap-2">
 
                             <div class="flex flex-row">
-                                <h2 class="text-sm font-semibold">Description</h2>
-                                <p class="text-sm"> &nbsp;| Deskripsi</p>
+                                <h2 class="text-md font-semibold">Description</h2>
+                                <p class="text-md"> &nbsp;| Deskripsi</p>
                             </div>
 
-                            <p class="text-sm text-slate-500 tracking-wider">Nama peran dalam sebuah sistem sesuai
-                                dengan
-                                kewenangannya</p>
+                            <p class="text-sm text-slate-500 tracking-wider">
+                                Deskripsi slider untuk keterangan singkat.
+                            </p>
                         </div>
                     </div>
 
@@ -89,17 +94,19 @@
                 <div class="mb-5 flex">
                     {{-- Deskripsi Image --}}
                     <div class="w-1/4 flex flex-row gap-2">
-                        <i class="fa-regular fa-image p-2"></i>
+                        <div class="h-6 w-6 flex justify-center items-center">
+                            <i class="fa-solid fa-image"></i>
+                        </div>
                         <div class="w-48 flex flex-col gap-2">
 
                             <div class="flex flex-row">
-                                <h2 class="text-lg font-semibold">Image</h2>
-                                <p class="text-lg"> &nbsp;| Gambar</p>
+                                <h2 class="text-md font-semibold">Image</h2>
+                                <p class="text-md"> &nbsp;| Gambar</p>
                             </div>
 
-                            <p class="text-sm text-slate-500 tracking-wider">Nama Produk dalam sebuah sistem sesuai
-                                dengan
-                                kewenangannya</p>
+                            <p class="text-sm text-slate-500 tracking-wider">
+                                Gambar menarik terkait slider.
+                            </p>
                         </div>
                     </div>
                     {{-- End Deskripsi Image --}}

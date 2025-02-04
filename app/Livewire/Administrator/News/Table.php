@@ -32,29 +32,18 @@ class Table extends Component
             if ($news->image && Storage::disk('public')->exists($news->image)) {
                 Storage::disk('public')->delete($news->image);
             }
-    
-            // Mapping gallery
-            $galleryPath = 'images/news/gallery/';
-            $galleryFiles = Storage::disk('public')->files($galleryPath);
-    
-            // Filter file berdasarkan slug product dan Hapus Item 
-            foreach ($galleryFiles as $file) {
-                if (str_contains($file, $news->slug)) {
-                    Storage::disk('public')->delete($file);
-                }
-            }
 
             $news->delete();
 
             session()->flash('flash_message', [
                 'type' => 'deleted',
-                'message' => 'Product berhasil dihapus.',
+                'message' => 'Berita berhasil dihapus.',
             ]);
             return redirect()->route('administrator.news');
         } else {
             session()->flash('flash_message', [
                 'type' => 'error',
-                'message' => 'Product tidak ditemukan.',
+                'message' => 'Berita tidak ditemukan.',
             ]);
             return redirect()->route('administrator.news');
         } 
@@ -82,7 +71,7 @@ class Table extends Component
         $news = News::when($this->search, function ($query) {
             $query->where('title', 'like', '%' . $this->search . '%');
         })
-        ->orderBy('title','asc')
+        ->orderBy('created_at','desc')
         ->paginate(8);
 
         return view('livewire.administrator.news.table', ['news' => $news]);

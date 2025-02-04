@@ -1,80 +1,23 @@
-@push('styles')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-@endpush
-
-<div>
-    <div id="about" class="p-20 md:p-56">
-        <div class="flex w-full gap-10 flex-col lg:flex-row">
-            <!-- Column untuk teks di kiri -->
-            <div class="w-full lg:w-1/2  flex justify-center flex-col">
-                <h2 class="text-orange-950 my-10 drop-shadow-md">
-                    Kurnia Brownies
-                </h2>
-                <p class="text-md" data-aos="fade-right" data-aos-duration="2000" data-aos-once="true">
-                    Kurnia Brownies is an FnB business that has been around since 1998, starting as a home business and
-                    growing into the iconic name it is today. From selling brownies in small pieces to selling them in
-                    their original size in 1999, Kurnia Brownies reached its peak in 2004 until 2016. Now, Kurnia
-                    Brownies expanding its business into Coffee and Eatery to provide the customer needs.
+<div class="relative w-full flex items-center overflow-hidden">
+    <div class="w-full z-10 flex items-center font-poppins pt-10 pb-[120px] px-10 lg:p-[120px] bg-white bg-opacity-50 md:bg-transparent">
+        <div class="flex flex-col gap-10">
+            <div class="max-w-[700px] flex flex-col space-y-5 md:space-y-5">
+                <h1 data-aos="fade-right" data-aos-duration="2000" data-aos-easing="ease-out" data-aos-once="true"
+                    class="w-full sm:max-w-[400px] md:max-w-[700px] drop-shadow-md italic font-bold text-3xl md:text-6xl font-nunito text-primary">
+                    Welcome to Kurnia Brownies
+                </h1>
+                <p data-aos="fade-up" data-aos-duration="2000" data-aos-easing="ease-out" data-aos-once="true" data-aos-delay="500" class="text-gray-700 start py-2 rounded text-md sm:text-lg">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste et corporis illo, neque vel sapiente dolorem nobis tenetur id officia doloremque, alias assumenda eos animi deleniti vero consectetur? Maiores mollitia reiciendis ad aperiam voluptatum a aliquid, voluptatibus at facilis! Repudiandae eos ullam, minima ad sint nobis pariatur magnam eum suscipit?
                 </p>
-                <div class="flex my-6 sm:gap-10 gap-5 flex-col sm:flex-row items-center sm:items-normal">
-                    <div data-aos="fade-up" data-aos-duration="2000"
-                    data-aos-once="true">
-                    <a href="{{ route('contact') }}" class="btn" >
-                        Contact Us
-                    </a>
-                    </div>
-                    <div data-aos="fade-up" data-aos-duration="2000"
-                    data-aos-once="true">
-                            
-                    <a href="{{ route('about') }}" class="btn btn--primary">
-                        About Us</a>  
-                    </div>
-                </div>
-
             </div>
-
-            <!-- Column untuk gambar di kanan -->
-            <div class="aboutus-swiper lg:order-last order-first w-full lg:w-1/2" data-aos="fade-left"
-                data-aos-duration="2000" data-aos-once="true">
-                <div class="swiper-wrapper overflow-hidden">
-                    @php
-                        $datas = App\Models\Product::all();
-                    @endphp
-                    @foreach ($datas as $data)
-                    <div class="swiper-slide rounded-2xl overflow-hidden">
-                        <img class="rounded-2xl shadow-lg mb-0 object-cover w-full"
-                            src="{{ url($data->image) }}" alt="">
-                    </div>
-                    @endforeach
-                </div>
-
-            </div>
+            <a href="{{ route('about') }}"
+                class="self-start px-8 py-2 bg-primary border-2 border-primary hover:bg-accent hover:text-primary text-gray-200 font-poppins tracking-wider shadow-md rounded font-semibold transition-colors duration-300">
+                Tentang Kami
+            </a>
         </div>
     </div>
+
+    <div class="absolute right-0 z-0 drop-shadow-2xl" data-aos="fade-left" data-aos-easing="ease-out" data-aos-duration="2000" data-aos-once="false">
+        <img src="{{ url('assets/images/default/bronies.png') }}" alt="">
+    </div>
 </div>
-
-@push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        // Swiper for About Us Home
-        var swiper = new Swiper(".aboutus-swiper", {
-            grabCursor: true,
-            effect: "creative",
-
-            creativeEffect: {
-                slideShadows: false,
-                prev: {
-                    shadow: true,
-                    translate: [0, 0, -400],
-                },
-                next: {
-                    translate: ["100%", 0, 0],
-                },
-            },
-            loop: true,
-            autoplay: {
-                true: 3000
-            }
-        });
-    </script>
-@endpush

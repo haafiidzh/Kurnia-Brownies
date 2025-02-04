@@ -12,9 +12,25 @@ class Categories extends Model
 
     protected $table = 'categories';
 
-    public $incrementing = false;
+    /**
+     * The primary key type for the model.
+     *
+     * @var string
+     */
     protected $keyType = 'string';
 
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
         'group',

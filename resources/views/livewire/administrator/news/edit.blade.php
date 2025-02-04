@@ -9,17 +9,19 @@
             <div class="mb-5 flex">
                 {{-- Deskripsi Nama Produk --}}
                 <div class="w-1/4 flex flex-row gap-2">
-                    <i class="fa-solid fa-shield p-2"></i>
+                    <div class="h-6 w-6 flex justify-center items-center">
+                        <i class="fa-solid fa-newspaper"></i>
+                    </div>
                     <div class="w-48 flex flex-col gap-2">
 
                         <div class="flex flex-row">
-                            <h2 class="text-lg font-semibold">About</h2>
-                            <p class="text-lg"> &nbsp;| Tentang</p>
+                            <h2 class=" font-semibold">About</h2>
+                            <p class=""> &nbsp;| Tentang</p>
                         </div>
 
-                        <p class="text-sm text-slate-500 tracking-wider">Nama Produk dalam sebuah sistem sesuai
-                            dengan
-                            kewenangannya</p>
+                        <p class="text-sm text-slate-500 tracking-wider">
+                            Penjelasan singkat tentang berita terkait.
+                        </p>
                     </div>
                 </div>
                 {{-- End Deskripsi Nama Produk --}}
@@ -67,17 +69,19 @@
             <div class="mb-5 flex">
                 {{-- Deskripsi Tentang Produk --}}
                 <div class="w-1/4 flex flex-row gap-2">
-                    <i class="fa-solid fa-shield p-2"></i>
+                    <div class="h-6 w-6 flex justify-center items-center">
+                        <i class="fa-solid fa-message"></i>
+                    </div>
                     <div class="w-48 flex flex-col gap-2">
 
                         <div class="flex flex-row">
-                            <h2 class="text-md font-semibold">Description</h2>
-                            <p class="text-md"> &nbsp;| Deskripsi</p>
+                            <h2 class=" font-semibold">Description</h2>
+                            <p class=""> &nbsp;| Deskripsi</p>
                         </div>
 
-                        <p class="text-sm text-slate-500 tracking-wider">Nama peran dalam sebuah sistem sesuai
-                            dengan
-                            kewenangannya</p>
+                        <p class="text-sm text-slate-500 tracking-wider">
+                            Isi dari berita.
+                        </p>
                     </div>
                 </div>
 
@@ -105,17 +109,19 @@
             <div class="mb-5 flex">
                 {{-- Deskripsi Image --}}
                 <div class="w-1/4 flex flex-row gap-2">
-                    <i class="fa-solid fa-shield p-2"></i>
+                    <div class="h-6 w-6 flex justify-center items-center">
+                        <i class="fa-solid fa-image "></i>
+                    </div>
                     <div class="w-48 flex flex-col gap-2">
 
                         <div class="flex flex-row">
-                            <h2 class="text-lg font-semibold">Image</h2>
-                            <p class="text-lg"> &nbsp;| Gambar</p>
+                            <h2 class=" font-semibold">Image</h2>
+                            <p class=""> &nbsp;| Gambar</p>
                         </div>
 
-                        <p class="text-sm text-slate-500 tracking-wider">Nama Produk dalam sebuah sistem sesuai
-                            dengan
-                            kewenangannya</p>
+                        <p class="text-sm text-slate-500 tracking-wider">
+                            Gambar untuk media dalam berita terkait.
+                        </p>
                     </div>
                 </div>
                 {{-- End Deskripsi Image --}}
@@ -123,17 +129,20 @@
                 {{-- Form Image --}}
                 <div class="w-1/2 px-6 py-4 shadow-md rounded-3xl bg-white flex flex-col">
                     <div class="my-2 flex flex-col gap-3 items-center justify-center w-full">
-                        <label for="image" class="cursor-pointer flex gap-2 items-center w-full">
-                            <div
-                                class="text-white rounded-md bg-slate-700 px-4 py-1 text-sm tracking-widest hover:bg-green-500 transition-all uppercase">
-                                Ganti</div>
-                            <i wire:loading wire:target="newImage"
-                                class="fa-brands fa-cloudsmith animate-spin text-gray-500 text-xl"></i>
-                            <p wire:loading wire:target="newImage"
-                                class="text-sm text-gray-500 animate-pulse dark:text-gray-400">Uploading...
-                            </p>
-                            <input class="sr-only" type="file" accept="image/*" id="image" wire:model="newImage">
-                        </label>
+                        <div class="w-full flex">
+                            <label for="image" class="cursor-pointer flex gap-2 items-center">
+                                <div
+                                    class="text-white rounded-md bg-slate-700 px-4 py-1 text-sm tracking-widest hover:bg-green-500 transition-all uppercase">
+                                    Ganti</div>
+                                <i wire:loading wire:target="newImage"
+                                    class="fa-brands fa-cloudsmith animate-spin text-gray-500 text-xl"></i>
+                                <p wire:loading wire:target="newImage"
+                                    class="text-sm text-gray-500 animate-pulse dark:text-gray-400">Uploading...
+                                </p>
+                                <input class="sr-only" type="file" accept="image/*" id="image"
+                                    wire:model="newImage">
+                            </label>
+                        </div>
                         <div class="border-2 border-gray-400 border-dashed rounded-2xl w-full relative">
                             @if ($newImage)
                                 <img class="rounded-2xl" src="{{ $newImage->temporaryUrl() }}" alt="">
@@ -150,84 +159,6 @@
             </div>
         </div>
         {{-- End Image --}}
-
-        {{-- Start Galeri --}}
-        <div class="w-full">
-            <div class="mb-5 flex">
-                {{-- Deskripsi Galeri --}}
-                <div class="w-1/4 flex flex-row gap-2">
-                    <i class="fa-solid fa-shield p-2"></i>
-                    <div class="w-48 flex flex-col gap-2">
-
-                        <div class="flex flex-row">
-                            <h2 class="text-lg font-semibold">Gallery</h2>
-                            <p class="text-lg"> &nbsp;| Galeri</p>
-                        </div>
-
-                        <p class="text-sm text-slate-500 tracking-wider">Nama Produk dalam sebuah sistem sesuai
-                            dengan
-                            kewenangannya</p>
-                    </div>
-                </div>
-                {{-- End Deskripsi Image --}}
-
-                {{-- Form Galeri --}}
-                <div class="w-1/2 px-6 py-4 shadow-md rounded-2xl bg-white flex flex-col">
-                    <div
-                        class="{{ $newGallery ? 'gap-4' : '' }} my-2 p-4 flex flex-col items-center justify-center w-full bg-gray-300 rounded-3xl border-2 border-dashed border-gray-400 ">
-                        <div class="flex flex-wrap justify-center gap-4">
-                            @foreach ($currentGallery as $item)
-                                @php
-                                    $isDeleted = in_array($item->id, $deletedGallery);
-                                @endphp
-                                <div class="w-48 flex flex-col gap-2 relative" wire:loading.class="cursor-wait">
-                                    <img class="rounded-md {{ $isDeleted ? 'opacity-50' : '' }}"
-                                        src="{{ url($item->value) }}">
-
-                                    @if ($isDeleted)
-                                        <div title="Batal Hapus" wire:click="restoreOldItem('{{ $item->id }}')"
-                                            class="absolute top-2 right-2 h-6 w-6 bg-green-500 hover:bg-green-600 transition-all duration-300 flex justify-center items-center rounded-full text-gray-200 text-xs shadow-sm active:text-gray-400 cursor-pointer">
-                                            <i class="fa-solid fa-angles-up"></i>
-                                        </div>
-                                    @else
-                                        <div title="Hapus" wire:click="deleteOldItem('{{ $item->id }}')"
-                                            class="absolute top-2 right-2 h-6 w-6 bg-red-500 hover:bg-red-600 transition-all duration-300 flex justify-center items-center rounded-full text-gray-200 text-xs shadow-sm active:text-gray-400 cursor-pointer">
-                                            <i class="fa-solid fa-x"></i>
-                                        </div>
-                                    @endif
-
-                                </div>
-                            @endforeach
-                        </div>
-
-                        <div
-                            class="w-full flex flex-wrap justify-center gap-4 {{ $currentGallery->count() == 0 ? '' : 'mt-4 pt-4 border-dashed border-t-2 border-gray-400' }}">
-                            <div class="w-full flex justify-center">
-                                <label for="gallery" class="cursor-pointer">
-                                    <p
-                                        class="p-3 tracking-wider bg-slate-800 text-white uppercase text-sm rounded-md hover:bg-green-500 transition-all duration-300">
-                                        Click to Upload {{ $currentGallery->count() == 0 ? '' : 'New' }} Files</p>
-                                </label>
-                                <input class="hidden" id="gallery" type="file" wire:model="newGallery"
-                                    multiple>
-                            </div>
-                            @foreach ($newGallery as $item)
-                                <div class="w-48 flex flex-col gap-2 relative">
-                                    <img class="rounded-md" src="{{ $item->temporaryUrl() }}">
-                                    <div title="Hapus" wire:click="deleteNewItem({{ $loop->index }})"
-                                        class="absolute top-2 right-2 h-6 w-6 bg-red-500 hover:bg-red-600 transition-all duration-300 flex justify-center items-center rounded-full text-gray-200 text-xs shadow-sm active:text-gray-400 cursor-pointer">
-                                        <i class="fa-solid fa-x"></i>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-
-                    </div>
-                </div>
-                {{-- End Form Galeri --}}
-            </div>
-        </div>
-        {{-- End Galeri --}}
 
         {{-- Start Button Submit --}}
         <div class="pb-14 w-1/2 flex justify-center mx-auto">

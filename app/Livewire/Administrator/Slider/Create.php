@@ -43,16 +43,7 @@ class Create extends Component
 
         $image = '/storage/images/slider/' . $image_name;
 
-        // Generate Position
-        $lastPosition = Slider::orderBy('position', 'desc')->first();
-
-        if ($lastPosition) {
-            $newPosition = $lastPosition->position + 1;
-        } else {
-            $newPosition = 1;
-        }
-
-        $this->position = $newPosition;
+        $this->position = (Slider::max('position') ?? 0) + 1;
 
         Slider::create([
             'title' => $this->title,

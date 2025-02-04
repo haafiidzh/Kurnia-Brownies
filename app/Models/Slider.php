@@ -10,19 +10,48 @@ class Slider extends Model
 {
     use HasFactory;
 
-    // Kalau pakai uuid berikan syntax seperti ini
-    public $incrementing = false;
+    protected $table = 'sliders';
+    
+    /**
+     * The primary key type for the model.
+     *
+     * @var string
+     */
     protected $keyType = 'string';
-    // End
 
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable =
     [
         'title',
         'slug',
         'description',
         'image',
+        'likes',
         'position'
     ];
+
+    public function like()
+    {
+        $this->increment('likes');
+    }
+
+    public function unlike()
+    {
+        if ($this->likes > 0) {
+            $this->decrement('likes');
+        }
+    }
 
     // BUAT UUID
     // Kalau mau custom format uuid berikan code ini

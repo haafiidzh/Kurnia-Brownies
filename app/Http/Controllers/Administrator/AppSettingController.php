@@ -9,11 +9,11 @@ class AppSettingController extends Controller
 {
     public function edit($cmsId)
     {
-        return view('administrator.pages.setting.content.edit', compact('cmsId'));
+        return view('administrator.pages.setting.main.edit', compact('cmsId'));
     }
 
     public function index()
     {
-        return view('administrator.pages.setting.content.index');
+        return view('administrator.pages.setting.main.index');
     }
 }

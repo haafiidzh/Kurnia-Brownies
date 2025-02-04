@@ -6,6 +6,8 @@
             </div>
 
             <form wire:submit="login">
+                @csrf
+                
                 <div class="mb-5">
                     <label for="email" class="block font-semibold text-sm text-slate-700">Email</label>
                     <input

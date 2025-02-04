@@ -153,17 +153,20 @@
                 {{-- Form Image --}}
                 <div class="w-1/2 px-6 py-4 shadow-md rounded-3xl bg-white flex flex-col">
                     <div class="my-2 flex flex-col gap-3 items-center justify-center w-full">
-                        <label for="image" class="cursor-pointer flex gap-2 items-center w-full">
-                            <div
-                                class="text-white rounded-md bg-slate-700 px-4 py-1 text-sm tracking-widest hover:bg-green-500 transition-all uppercase">
-                                Ganti</div>
-                            <i wire:loading wire:target="newImage"
-                                class="fa-brands fa-cloudsmith animate-spin text-gray-500 text-xl"></i>
-                            <p wire:loading wire:target="newImage"
-                                class="text-sm text-gray-500 animate-pulse dark:text-gray-400">Uploading...
-                            </p>
-                            <input class="sr-only" type="file" accept="image/*" id="image" wire:model="newImage">
-                        </label>
+                        <div class="w-full flex">
+                            <label for="image" class="cursor-pointer flex gap-2 items-center">
+                                <div
+                                    class="text-white rounded-md bg-slate-700 px-4 py-1 text-sm tracking-widest hover:bg-green-500 transition-all uppercase">
+                                    Ganti</div>
+                                <i wire:loading wire:target="newImage"
+                                    class="fa-brands fa-cloudsmith animate-spin text-gray-500 text-xl"></i>
+                                <p wire:loading wire:target="newImage"
+                                    class="text-sm text-gray-500 animate-pulse dark:text-gray-400">Uploading...
+                                </p>
+                                <input class="sr-only" type="file" accept="image/*" id="image"
+                                    wire:model="newImage">
+                            </label>
+                        </div>
                         <div class="border-2 border-gray-400 border-dashed rounded-2xl w-full relative">
                             @if ($newImage)
                                 <img class="rounded-2xl" src="{{ $newImage->temporaryUrl() }}" alt="">

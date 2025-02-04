@@ -2,66 +2,47 @@
 
 namespace App\Livewire\Front\Layouts;
 
-use App\Models\Categories;
+use App\Models\AppSetting;
 use Livewire\Component;
 
 class Navbar extends Component
 {
     public $datas;
+    public $logo;
+
+    public function mount()
+    {
+        $this->logo = AppSetting::where('key','logo')->get()->first();
+    }
 
     public function menu()
     {
-        $products = Categories::where('group', 'product')->get();
-
-        foreach ($products as $data) {
-            $product_category[] = [
-                'name' => $data->name,
-                'route' => route('product.category', $data->slug), 
-        ];
-        }
-
         return [
             [
                 'name' => 'Home',
                 'route' => route('home'),
                 'active' => request()->is('/'),
-                'has-child' => false,
-                'childs' => [],
             ],
             [
                 'name' => 'News',
                 'route' => route('news'),
                 'active' => request()->is('news','news/*'),
-                'has-child' => false,
-                'childs' => []
             ],
             [
                 'name' => 'Product',
                 'route' => route('product'),
                 'active' => request()->is('product','product/*'),
                 'has-child' => true,
-                'childs' => $product_category
             ],
-            // [
-            //     'name' => 'Pricelist',
-            //     'route' => route('product'),
-            //     'active' => request()->is('product','product/*'),
-            //     'has-child' => false,
-            //     'childs' => [],
-            // ],
             [
                 'name' => 'About',
                 'route' => route('about'),
                 'active' => request()->is('about','about/*'),
-                'has-child' => false,
-                'childs' => [],
             ],
             [
                 'name' => 'Contact',
                 'route' => route('contact'),
                 'active' => request()->is('contact','contact/*'),
-                'has-child' => false,
-                'childs' => [],
             ],
         ];
     }

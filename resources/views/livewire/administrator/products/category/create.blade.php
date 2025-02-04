@@ -7,7 +7,9 @@
                 <div class="mb-5 flex">
                     {{-- Deskripsi Nama Kategori --}}
                     <div class="w-1/4 flex flex-row gap-2">
-                        <i class="fa-solid fa-shield p-2"></i>
+                        <div class="h-6 w-6 flex justify-center items-center">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
                         <div class="w-48 flex flex-col gap-2">
 
                             <div class="flex flex-row">
@@ -15,8 +17,9 @@
                                 <p class="text-lg"> &nbsp;| Name</p>
                             </div>
 
-                            <p class="text-sm text-slate-500 tracking-wider">Nama peran dalam sebuah sistem sesuai dengan
-                                kewenangannya</p>
+                            <p class="text-sm text-slate-500 tracking-wider">
+                                Nama kategori untuk mengelompokkan suatu produk.
+                            </p>
                         </div>
                     </div>
 
@@ -53,7 +56,9 @@
                 <div class="mb-5 flex">
                     {{-- Deskripsi Description --}}
                     <div class="w-1/4 flex flex-row gap-2">
-                        <i class="fa-solid fa-shield p-2"></i>
+                        <div class="h-6 w-6 flex justify-center items-center">
+                            <i class="fa-solid fa-comment"></i>
+                        </div>
                         <div class="w-48 flex flex-col gap-2">
 
                             <div class="flex flex-row">
@@ -61,9 +66,9 @@
                                 <p class="text-sm"> &nbsp;| Deskripsi</p>
                             </div>
 
-                            <p class="text-sm text-slate-500 tracking-wider">Nama peran dalam sebuah sistem sesuai
-                                dengan
-                                kewenangannya</p>
+                            <p class="text-sm text-slate-500 tracking-wider">
+                                Deskripsi suatu kategori produk.
+                            </p>
                         </div>
                     </div>
 
@@ -74,7 +79,7 @@
                         </label>
                         <textarea
                             class="w-full mt-2 px-3 py-3 border border-black text-sm rounded-xl placeholder:text-slate-400 placeholder:tracking-[0.075rem]"
-                            name="description" placeholder="Deskripsi Slider" wire:model="description">
+                            name="description" placeholder="Deskripsi kategori" wire:model="description">
                         </textarea>
                         @error('description')
                             <div class="mx-1 mt-2 font-semibold text-sm text-red-700">{{ $message }}</div>
@@ -96,9 +101,11 @@
                                 <p class="text-lg"> &nbsp;| Gambar</p>
                             </div>
 
-                            <p class="text-sm text-slate-500 tracking-wider">Nama Produk dalam sebuah sistem sesuai
-                                dengan
-                                kewenangannya</p>
+                            <p class="text-sm text-slate-500 tracking-wider">
+                                Gambar untuk media dalam mengenali kategori produk.
+                                <br>
+                                (Disarankan untuk mengupload media dalam bentuk .png)
+                            </p>
                         </div>
                     </div>
                     {{-- End Deskripsi Image --}}

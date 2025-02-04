@@ -31,4 +31,18 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // 'recaptcha' => [
+    //     'site_key' => env('RECAPTCHA_SITE_KEY'),
+    //     'secret_key' => env('RECAPTCHA_SITE_SECRET'),
+    // ]
+
+    'google' => [
+        'recaptcha' => [
+            'site_key' => env('GOOGLE_RECAPTCHA_SITE_KEY'),
+            'secret_key' => env('GOOGLE_RECAPTCHA_SECRET_KEY'),
+            'version' => 'v2',
+            'size' => 'normal', // 'normal', 'compact' or 'invisible'.
+            'theme' => 'light', // 'light' or 'dark'.
+        ],
+    ],
 ];

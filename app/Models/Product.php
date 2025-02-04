@@ -12,11 +12,27 @@ class Product extends Model
     use HasFactory;
     use SoftDeletes;
 
-    // Kalau pakai uuid berikan syntax seperti ini
-    public $incrementing = false;
-    protected $keyType = 'string';
-    // End
+    protected $table = 'products';
 
+    /**
+     * The primary key type for the model.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
         'slug',

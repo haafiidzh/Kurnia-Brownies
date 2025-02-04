@@ -1,7 +1,7 @@
 @extends('administrator.layouts.master')
 
 @section('title')
-    Tambah Berita
+    Berita
 @endsection
 
 @section('content')

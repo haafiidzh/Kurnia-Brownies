@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description');
             $table->string('image');
+            $table->unsignedBigInteger('likes')->default(0);
             $table->unsignedInteger('position');
             $table->timestamps();
         });

@@ -54,12 +54,25 @@ class PermissionSeeder extends Seeder
             'edit-news',
             'create-news',
             'delete-news',
+            'detail-news',
 
             'view-slider',
             'create-slider',
             'edit-slider',
             'delete-slider',
             'detail-slider',
+
+            'view-feedback',
+            'create-feedback',
+            'edit-feedback',
+            'delete-feedback',
+            'detail-feedback',
+            
+            'view-faq',
+            'create-faq',
+            'edit-faq',
+            'delete-faq',
+            'detail-faq',
             
             'view-app-setting',
             'create-app-setting',

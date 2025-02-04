@@ -54,6 +54,7 @@ class RolePermissionSeeder extends Seeder
             'edit-news',
             'create-news',
             'delete-news',
+            'detail-news',
             
             'view-content',
             'create-content',
@@ -66,6 +67,18 @@ class RolePermissionSeeder extends Seeder
             'edit-slider',
             'delete-slider',
             'detail-slider',
+
+            'view-feedback',
+            'create-feedback',
+            'edit-feedback',
+            'delete-feedback',
+            'detail-feedback',
+            
+            'view-faq',
+            'create-faq',
+            'edit-faq',
+            'delete-faq',
+            'detail-faq',
 
             'view-app-setting',
             'create-app-setting',
@@ -105,6 +118,7 @@ class RolePermissionSeeder extends Seeder
             'edit-news',
             'create-news',
             'delete-news',
+            'detail-news',
 
             'view-content',
             'edit-content',
@@ -115,6 +129,18 @@ class RolePermissionSeeder extends Seeder
             'edit-slider',
             'delete-slider',
             'detail-slider',
+
+            'view-feedback',
+            'create-feedback',
+            'edit-feedback',
+            'delete-feedback',
+            'detail-feedback',
+            
+            'view-faq',
+            'create-faq',
+            'edit-faq',
+            'delete-faq',
+            'detail-faq',
             
             'view-app-setting',
             'edit-app-setting',

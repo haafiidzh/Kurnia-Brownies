@@ -1,4 +1,4 @@
-<div :class="isOpen ? 'ml-52' : 'ml-20'" class="flex-grow transition-all duration-300 sticky top-0 z-50 bg-white">
+<div x-cloak :class="isOpen ? 'ml-52' : 'ml-20'" class="flex-grow transition-all duration-300 sticky top-0 z-30 bg-white">
     <div class=" shadow-md flex justify-between ">
         <div class="pl-4 flex items-center">
             <div @click="isOpen = !isOpen"
@@ -16,10 +16,11 @@
                         <div class="text-md text-center border-b-[1px] font-semibold text-slate-800 border-gray-700">
                             <span>Hi, {{ Auth::user()->name }}</span>
                         </div>
-                        <span class="text-center text-sm  text-slate-600">
+                        <span class="text-center text-sm text-slate-600">
                             {{ Auth::user()->roles->first()->name }}
                         </span>
                         <div x-show="open" 
+                            x-cloak
                             x-transition:enter="transition translate-y-0 ease-out duration-100"
                             x-transition:enter-start="opacity-0 -bottom-10"
                             x-transition:enter-end="opacity-100 bottom-0 "

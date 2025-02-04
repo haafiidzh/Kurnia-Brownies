@@ -1,0 +1,95 @@
+<div>
+    <article class="entry format-standard">
+
+        <header class="entry__header">
+
+            <h1 class="entry__title">
+                {{ $data->title }}
+            </h1>
+            
+        </header>
+
+        <div class="entry__media">
+            <figure class="featured-image" style="display: flex; justify-content: center;">
+                <img src="{{ url($data->image) }}"
+                    style="width: 80%" alt="">
+            </figure>
+        </div>
+
+        <div class="content-primary">
+
+            <div class="entry__content">
+
+                <p>
+                    {!! $data->description !!}
+                </p>
+
+
+                @if ($gallery->count() > 0)
+                {{-- <h2>Product Gallery</h2> --}}
+
+                <div x-data="{
+                    currentIndex: 0,
+                    slides: [
+                        @foreach ($gallery as $item)
+                        '{{ url($item->value) }}',
+                        @endforeach
+                    ]
+                }" class="relative w-full expand-container mx-auto overflow-hidden">
+
+                    <!-- Slides -->
+                    <div class="flex transition-transform duration-500 ease-out w-full"
+                        :style="'transform: translateX(-' + currentIndex * 100 + '%)'">
+                        <template x-for="(slide, index) in slides" :key="index">
+                            <div class="w-full flex justify-center flex-shrink-0 ">
+                                <img :src="slide" alt="Slide" class="w-full md:h-[48rem] object-contain ">
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div @click="currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1"
+                        class="w-16 h-16 flex justify-center items-center cursor-pointer absolute left-10 md:left-80 top-1/2 transform -translate-y-1/2 bg-slate-900 text-white border border-transparent hover:border-slate-900 active:bg-slate-700 hover:bg-slate-500 transition-all duration-300 rounded-full">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </div>
+                    <div @click="currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1"
+                        class="w-16 h-16 flex justify-center items-center cursor-pointer absolute right-10 md:right-80 top-1/2 transform -translate-y-1/2 bg-slate-900 text-white border border-transparent hover:border-slate-900 active:bg-slate-700 hover:bg-slate-500 transition-all duration-300 rounded-full">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+
+                    <!-- Indicators -->
+                    <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                        <template x-for="(slide, index) in slides" :key="index">
+                            <button @click="currentIndex = index"
+                                :class="{ 'bg-gray-800': currentIndex === index, 'bg-gray-300': currentIndex !== index }"
+                                class="w-3 h-3 rounded-full"></button>
+                        </template>
+                    </div>    
+                @endif
+                
+                </div>
+
+            </div> <!-- end entry-content -->
+
+            <div class="post-nav flex">
+                <div class="post-nav__prev">
+                    <a href="{{ route('product.detail', $prevNews->slug) }}" rel="prev">
+                        <span>Prev</span>
+                        {{ $prevNews->title }}
+                    </a>
+                </div>
+                <div class="post-nav__next">
+                    <a href="{{ route('product.detail', $nextNews->slug) }}" rel="next">
+                        <span>Next</span>
+                        {{ $nextNews->title }}
+                    </a>
+                </div>
+            </div>
+
+        </div> <!-- end content-primary -->
+
+    </article> <!-- end entry -->
+</div>
+
+@push('scripts')
+@endpush

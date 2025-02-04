@@ -9,28 +9,21 @@ class Detail extends Component
 {
     public $data;
     public $gallery;
-    public $nextProduct;
-    public $prevProduct;
+    public $nextNews;
+    public $prevNews;
 
     public function mount($slug)
     {
         // Ambil data produk yang sedang dibuka
-        $this->data = News::where('slug', $slug)->first();
-        if (!$this->data) {
-            abort(404, "Product not found");
-        }
+        $this->data = News::where('slug', $slug)->first(); 
 
-        $category = $this->data->category_id; 
-
-        $this->prevProduct = News::where('category_id', $category)
-            ->where('id', '!=', $this->data->id)
+        $this->prevNews = News::where('id', '!=', $this->data->id)
             ->inRandomOrder()
             ->first();
 
         // Produk berikutnya (Next)
-        $this->nextProduct = News::where('category_id', $category)
-            ->where('id', '!=', $this->data->id)
-            ->orWhere('name','!=',$this->prevProduct->name) 
+        $this->nextNews = News::where('id', '!=', $this->data->id)
+            ->orWhere('title','!=',$this->prevNews->title) 
             ->inRandomOrder()
             ->first();
 

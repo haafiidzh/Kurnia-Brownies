@@ -10,30 +10,16 @@ class Detail extends Component
 {
     public $data;
     public $gallery;
-    public $nextProduct;
-    public $prevProduct;
+    public $relatedProducts;
 
     public function mount($slug)
     {
-        // Ambil data produk yang sedang dibuka
         $this->data = Product::where('slug', $slug)->first();
-        if (!$this->data) {
-            abort(404, "Product not found");
-        }
 
-        $category = $this->data->category_id; 
-
-        $this->prevProduct = Product::where('category_id', $category)
-            ->where('id', '!=', $this->data->id)
-            ->inRandomOrder()
-            ->first();
-
-        // Produk berikutnya (Next)
-        $this->nextProduct = Product::where('category_id', $category)
-            ->where('id', '!=', $this->data->id)
-            ->orWhere('name','!=',$this->prevProduct->name) 
-            ->inRandomOrder()
-            ->first();
+        $this->relatedProducts = Product::where('id', '!=', $this->data->id)
+        ->inRandomOrder()
+        ->limit(3)
+        ->get();
 
         $this->gallery = $this->data->detail;
     }

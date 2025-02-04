@@ -1,51 +1,28 @@
-<div class="relative">
-    <div class="bg-primary md:p-36 px-20 py-40 lg:p-56 shadow-inner">
-
-        <!-- Title -->
-        <div class="w-full flex justify-center mb-40">
-            <h1 class="text-yellow-400 my-0 drop-shadow-md hidden sm:block">
-                Berita Terbaru
-            </h1>
-            <h2 class="text-yellow-400 my-0 drop-shadow-md sm:hidden block">
-                Berita Terbaru
-            </h2>
+<div>
+    <div class="px-10 lg:px-[120px] py-20">
+        <h1 class="mb-4 text-4xl md:text-5xl text-center font-nunito text-primary italic font-bold">Latest News</h1>
+        <div class="flex justify-center">
+            <div class="border-b-2 border-primary/65 w-[40%] md:w-[20%] text-center"></div>
         </div>
-
-        <!-- Foreach -->
-        <div class="w-full flex justify-center mb-20">
-            <div class="grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 gap-20">
-                @foreach ($datas as $data)
-                    <div class="col-span-1" data-aos="fade-up" data-aos-duration="2000" data-aos-once="true">
-                        <div class="overflow-hidden rounded-2xl shadow-md">
-                            <a href="{{ route('product.category', $data->slug) }}" class="group block overflow-hidden relative">
-                                <img class="object-cover group-hover:scale-125 transition-all duration-300 aspect-[1/1] mb-0"
-                                    src="{{ url($data->image) }}" alt="">
-                                <div class="absolute bottom-0 left-0 flex flex-col">
-                                    <div
-                                        class="h-40 bg-white bg-opacity-65 flex flex-col justify-center items-center px-10">
-                                        <h3 class="my-0">{{ $data->created_at->format('d') }}</h3>
-                                        <h5 class="my-0 text-[15px]">{{ $data->created_at->format('M') }}</h5>
-                                        <h5 class="my-0 text-[15px]">{{ $data->created_at->format('Y') }}</h5>
-                                    </div>
-                                    <div
-                                        class="bg-secondary uppercase text-[12px] px-10 text-black text-center font-bold group-hover:py-5 transition-all">
-                                        Baca</div>
-                                </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-10">
+            @foreach ($datas as $data)
+                    <div class="flex flex-col gap-3">
+                        <a class="relative overflow-hidden group " href="{{ route('news.detail', $data->slug) }}">
+                            <div class="z-20 absolute inset-0 bg-white/20 hidden group-hover:block "></div>
+                            <img class="aspect-video object-cover group-hover:scale-125 transition-all duration-300"
+                             src="{{ url($data->image) }}" alt="">
+                        </a>
+                        <div>
+                            <p class="font-poppins text-sm"> Posted by <span class="font-poppins font-bold text-sm">{{ $data->author->name }}</span> </p>
+                            <a href="{{ route('news.detail', $data->slug) }}">
+                                <h2 class="font-poppins font-semibold text-gray-800 hover:text-primary inline">
+                                    {{ $data->title }}
+                                </h2>
                             </a>
-                            <div class="w-full p-6 bg-white">
-                                <h5 class="my-0">{{ $data->title }}</h5>
-                            </div>
                         </div>
                     </div>
-                @endforeach
-            </div>
-        </div>
-
-
-    </div>
-    <div class="w-full absolute lg:bottom-20 bottom-10">
-        <div class="column w-full lg-6 tab-12 u-flexitem-center">
-            <a class="btn btn--primary u-fullwidth" href="{{ route('news') }}">Lihat Berita Lainnya</a>
+                    @endforeach   
         </div>
     </div>
 </div>

@@ -22,24 +22,17 @@
             </div>
             <table class="w-full">
                 <thead class="bg-gray-300 text-sm text-left">
-                    <th class="px-1 py-2 w-7">No.</th>
+                    <th class="px-1 py-2 w-7"></th>
                     <th class="px-4 py-2 w-40">Nama Produk</th>
-                    <th class="px-4 py-2 w-24">Kategori</th>
-                    <th class="px-4 py-2 w-48">Gambar</th>
-                    <th class="px-4 py-2 w-20">Recommended</th>
-                    <th class="px-4 py-2">Dibuat Pada</th>
-                    <th class="px-4 py-2 w-14">Action</th>
+                    <th class="px-4 py-2 w-24 text-center">Kategori</th>
+                    <th class="px-4 py-2 w-48 text-center">Gambar</th>
+                    <th class="px-4 py-2 w-20 text-center">Recommended</th>
+                    <th class="px-4 py-2 text-center">Dibuat Pada</th>
+                    <th class="px-4 py-2 w-14 text-center">Action</th>
                 </thead>
                 <tbody class="text-sm">
-                    @php
-                        $i = 1;
-                    @endphp
                     @if ($products->count() > 0)
                         @foreach ($products as $index => $data)
-                            {{-- tanpa pagination --}}
-                            {{-- <td>{{ $i++ }}</td>  --}}
-
-                            {{-- pakai pagination --}}
                             <tr class="hover:bg-gray-200 {{ $loop->last ? '' : 'border-b border-gray-200' }}">
                                 <td class="px-1 py-2 text-center">{{ $products->firstItem() + $index }}</td>
                                 <td class="px-4 py-2 text-left">{{ $data->name }}</td>
@@ -47,42 +40,39 @@
                                     {{ $data->category->name ?? 'Belum ada kategori' }}</td>
                                 <td class="px-4 py-2 text-left">
                                     <div x-data="{ preview: false, scrollPosition: 0 }">
-                                        <div class=" relative group">
-                                                <div
-                                                    class="absolute z-30 top-20 left-19 invisible group-hover:visible transition-all">
-                                                    <div class="text-white">
-                                                        <a href="#" @click="preview = !preview;  if (preview) { scrollPosition = window.scrollY }"
-                                                        class="py-[0.15rem] px-[0.37rem] rounded-full border-2 bg-slate-200 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent active:bg-slate-400"><i
-                                                            class="fa-solid fa-eye text-xs"></i></a></div>
-                                                </div>
-                                                <img 
-                                                    class="hover:blur-[2px] rounded transition-all duration-300" 
-                                                    style="width: 200px; height: 200px; object-fit: cover"
-                                                    src="{{ url($data->image) }}">
-                                        </div>
-
-                                        {{-- Preview Image --}}
-                                        <div x-show="preview"
-                                            x-transition:enter="transition translate-y-0 ease-out duration-200"
-                                            x-transition:enter-start="opacity-0 bottom-10"
-                                            x-transition:enter-end="opacity-100 bottom-0 "
-                                            x-transition:leave="transition translate-y-0 ease-in duration-200"
-                                            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                                            class="fixed w-full h-screen left-0 top-0 z-50 flex justify-center items-center bg-black bg-opacity-20">
-                                            <div class="flex flex-col bg-white shadow-md rounded-md">
-                                                <div
-                                                    class="p-4 border-b border-gray-300 flex items-center justify-between ">
-                                                    <span class="font-bold text-slate-800 text-lg">Preview Image</span>
-                                                    <span @click="preview = false; window.scrollTo(0, scrollPosition)"
-                                                        class="p-2 cursor-pointer hover:bg-gray-200 hover:rounded-md">
-                                                        <i class="fa-solid fa-x"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="p-5">
-                                                    <img 
-                                                        class="rounded-md" src="{{ url($data->image) }}" 
-                                                        style="max-height: 480px;" 
-                                                        alt="{{ $data->name }}">
+                                        <div class="relative group rounded-lg overflow-hidden">
+                                            <img class="object-cover transition-all group-hover:blur-[2px] duration-300 w-full h-[100px]"
+                                                src="{{ url($data->image) }}">
+                        
+                                            <div class="absolute inset-0 flex justify-center items-center group-hover:visible invisible">
+                                                <a href="javascript:void(0)"
+                                                @click="preview = !preview;  if (preview) { scrollPosition = window.scrollY }">
+                                                    <div class="h-8 w-8 flex justify-center items-center rounded-full border-2 bg-slate-200 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent active:bg-slate-400">
+                                                        <i class="fa-solid fa-eye text-xs"></i>
+                                                    </div>
+                                                </a>
+                                            </div>
+    
+                                            {{-- Preview Image --}}
+                                            <div x-show="preview" 
+                                                x-cloak
+                                                x-transition:enter="transition translate-y-0 ease-out duration-200"
+                                                x-transition:enter-start="opacity-0 bottom-10" x-transition:enter-end="opacity-100 bottom-0 "
+                                                x-transition:leave="transition translate-y-0 ease-in duration-200" x-transition:leave-start="opacity-100"
+                                                x-transition:leave-end="opacity-0"
+                                                class="fixed w-full h-screen left-0 top-0 z-50 flex justify-center items-center bg-black/10">
+                                                <div class="flex flex-col bg-white shadow-md rounded-md">
+                                                    <div class="p-4 border-b border-gray-300 flex items-center justify-between ">
+                                                        <span class="font-bold text-slate-800 text-lg">Preview Image</span>
+                                                        <span @click="preview = false; window.scrollTo(0, scrollPosition)"
+                                                            class="p-2 cursor-pointer hover:bg-gray-200 hover:rounded-md">
+                                                            <i class="fa-solid fa-x"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="p-5">
+                                                        <img class="rounded-md" src="{{ url($data->image) }}" style="max-height: 480px;"
+                                                            alt="{{ $data->name }}">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -108,18 +98,20 @@
                                     <div class="flex gap-2 justify-center">
                                         @can('detail-product')
                                             <a href="{{ route('administrator.products.detail', ['id' => $data->id]) }}"
-                                                class="py-[0.15rem] px-[0.37rem] rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400"><i
-                                                    class="fa-solid fa-eye text-xs "></i></a>
+                                                class="w-7 h-7 flex justify-center items-center rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400">
+                                                <i class="fa-solid fa-eye text-xs "></i>
+                                            </a>
                                         @endcan
                                         @can('edit-product')
                                             <a href="{{ route('administrator.products.edit', ['id' => $data->id]) }}"
-                                                class="py-[0.15rem] px-[0.40rem] rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400"><i
-                                                    class="fa-solid fa-eye-dropper text-xs"></i></a>
+                                                class="w-7 h-7 flex justify-center items-center rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400">
+                                                <i class="fa-solid fa-eye-dropper text-xs"></i>
+                                            </a>
                                         @endcan
                                         @canany(['delete-product', 'archive-product'])
                                             <div x-data="{ open: false }">
                                                 <div @click="open = !open"
-                                                    class="py-1 cursor-pointer px-[0.40rem] rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400">
+                                                class="w-7 h-7 flex justify-center items-center rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400">
                                                     <i class="fa-solid fa-trash text-xs"></i>
                                                 </div>
                                                 <div x-show="open" @click.away="open = false"
@@ -154,11 +146,9 @@
             </table>
         </div>
         <div class="my-5">
-            {{ $products->onEachSide(1)->links('vendor.pagination.custom') }}
+            {{ $products->onEachSide(1)->links('vendor.livewire.tailwind') }}
         </div>
     </div>
-
-
 </div>
 
 

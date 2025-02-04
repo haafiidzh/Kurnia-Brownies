@@ -3,7 +3,7 @@
     <x-flash-message></x-flash-message>
 
     <div class="w-full">
-        <div class="w-full bg-slate-100 rounded-xl shadow-md">
+        <div class="w-full bg-slate-100 rounded-xl shadow-md overflow-hidden">
             <div class="p-2">
                 <div class="p-1 flex justify-end ">
                     <div class="flex gap-2 items-center">
@@ -15,53 +15,43 @@
             </div>
             <table class="w-full">
                 <thead class="bg-gray-300 text-sm text-left">
-                    <th class="px-1 py-2 w-7">No.</th>
-                    <th class="px-4 py-2 w-40">Judul</th>
-                    <th class="px-4 py-2 w-48">Gambar</th>
-                    <th class="px-4 py-2 w-20">Status</th>
-                    <th class="px-4 py-2">Dibuat Pada</th>
-                    <th class="px-4 py-2 w-14">Action</th>
+                    <th class="px-1 py-2 w-7 text-center"></th>
+                    <th class="px-4 py-2 w-40 text-center">Judul</th>
+                    <th class="px-4 py-2 w-48 text-center">Gambar</th>
+                    <th class="px-4 py-2 w-20 text-center">Status</th>
+                    <th class="px-4 py-2 text-center">Dibuat Pada</th>
+                    <th class="px-4 py-2 w-14 text-center">Action</th>
                 </thead>
                 <tbody class="text-sm">
-                    @php
-                        $i = 1;
-                    @endphp
-                    @if ($news->count() > 0)
-                        @foreach ($news as $index => $data)
-                            {{-- tanpa pagination --}}
-                            {{-- <td>{{ $i++ }}</td>  --}}
-
-                            {{-- pakai pagination --}}
-                            <tr class="hover:bg-gray-200 {{ $loop->last ? '' : 'border-b border-gray-200' }}">
-                                <td class="px-1 py-2 text-center">{{ $news->firstItem() + $index }}</td>
-                                <td class="px-4 py-2 text-left">{{ $data->title }}</td>
-                                <td class="px-4 py-2 text-left">
-                                    <div x-data="{ preview: false, scrollPosition: 0 }">
-                                        <div class=" relative group">
-                                                <div
-                                                    class="absolute z-30 top-20 left-19 invisible group-hover:visible transition-all">
-                                                    <div class="text-white">
-                                                        <a href="#" @click="preview = !preview;  if (preview) { scrollPosition = window.scrollY }"
-                                                        class="py-[0.15rem] px-[0.37rem] rounded-full border-2 bg-slate-200 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent active:bg-slate-400"><i
-                                                            class="fa-solid fa-eye text-xs"></i></a></div>
+                    @forelse ($news as $index => $data)
+                        <tr class="hover:bg-gray-200 {{ $loop->last ? '' : 'border-b border-gray-200' }}">
+                            <td class="px-1 py-2 text-center">{{ $news->firstItem() + $index }}</td>
+                            <td class="px-4 py-2 text-left">{{ $data->title }}</td>
+                            <td class="px-4 py-2 text-left">
+                                <div x-data="{ preview: false, scrollPosition: 0 }">
+                                    <div class="relative group rounded-lg overflow-hidden">
+                                        <img class="object-cover transition-all group-hover:blur-[2px] duration-300 w-full h-[100px]"
+                                            src="{{ url($data->image) }}">
+                    
+                                        <div class="absolute inset-0 flex justify-center items-center group-hover:visible invisible">
+                                            <a href="javascript:void(0)"
+                                            @click="preview = !preview;  if (preview) { scrollPosition = window.scrollY }">
+                                                <div class="h-8 w-8 flex justify-center items-center rounded-full border-2 bg-slate-200 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent active:bg-slate-400">
+                                                    <i class="fa-solid fa-eye text-xs"></i>
                                                 </div>
-                                                <img 
-                                                    class="hover:blur-[2px] rounded transition-all duration-300" 
-                                                    style="width: 200px; height: 200px; object-fit: cover"
-                                                    src="{{ url($data->image) }}">
+                                            </a>
                                         </div>
 
                                         {{-- Preview Image --}}
-                                        <div x-show="preview"
+                                        <div x-show="preview" 
+                                            x-cloak
                                             x-transition:enter="transition translate-y-0 ease-out duration-200"
-                                            x-transition:enter-start="opacity-0 bottom-10"
-                                            x-transition:enter-end="opacity-100 bottom-0 "
-                                            x-transition:leave="transition translate-y-0 ease-in duration-200"
-                                            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                                            class="fixed w-full h-screen left-0 top-0 z-50 flex justify-center items-center bg-black bg-opacity-20">
+                                            x-transition:enter-start="opacity-0 bottom-10" x-transition:enter-end="opacity-100 bottom-0 "
+                                            x-transition:leave="transition translate-y-0 ease-in duration-200" x-transition:leave-start="opacity-100"
+                                            x-transition:leave-end="opacity-0"
+                                            class="fixed w-full h-screen left-0 top-0 z-50 flex justify-center items-center bg-black/10">
                                             <div class="flex flex-col bg-white shadow-md rounded-md">
-                                                <div
-                                                    class="p-4 border-b border-gray-300 flex items-center justify-between ">
+                                                <div class="p-4 border-b border-gray-300 flex items-center justify-between ">
                                                     <span class="font-bold text-slate-800 text-lg">Preview Image</span>
                                                     <span @click="preview = false; window.scrollTo(0, scrollPosition)"
                                                         class="p-2 cursor-pointer hover:bg-gray-200 hover:rounded-md">
@@ -69,85 +59,68 @@
                                                     </span>
                                                 </div>
                                                 <div class="p-5">
-                                                    <img 
-                                                        class="rounded-md" src="{{ url($data->image) }}" 
-                                                        style="max-height: 480px;" 
+                                                    <img class="rounded-md" src="{{ url($data->image) }}" style="max-height: 480px;"
                                                         alt="{{ $data->name }}">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </td>
-                                <td class="px-4 py-2 text-left">
-                                    @if ($data->is_active == true)
-                                        <span onclick="confirmActive('{{ $data->id }}')"
-                                            class="text-green-600 cursor-pointer text-sm">
-                                            <i class="fa-solid fa-circle-check"></i> Aktif
-                                        </span>
-                                    @elseif ($data->is_active == false)
-                                        <span onclick="confirmActive('{{ $data->id }}')"
-                                            class="text-gray-500 cursor-pointer text-sm">
-                                            <i class="fa-solid fa-circle-info"></i> Tidak Aktif
-                                        </span>
-                                    @endif
-                                </td>
+                                </div>
+                            </td>
+                            <td class="px-4 py-2 text-left">
+                                @if ($data->is_active == true)
+                                    <span onclick="confirmActive('{{ $data->id }}')"
+                                        class="text-green-600 cursor-pointer text-sm">
+                                        <i class="fa-solid fa-circle-check"></i> Aktif
+                                    </span>
+                                @elseif ($data->is_active == false)
+                                    <span onclick="confirmActive('{{ $data->id }}')"
+                                        class="text-gray-500 cursor-pointer text-sm">
+                                        <i class="fa-solid fa-circle-info"></i> Tidak Aktif
+                                    </span>
+                                @endif
+                            </td>
 
-                                <td class="w-28 px-4 py-2 text-left">{{ dateTimeTranslated($data->created_at) }}
-                                </td>
-                                <td class="px-4 py-2">
-                                    <div class="flex gap-2 justify-center">
-                                        @can('detail-product')
-                                            <a href="{{ route('administrator.news.detail', ['id' => $data->id]) }}"
-                                                class="py-[0.15rem] px-[0.37rem] rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400"><i
-                                                    class="fa-solid fa-eye text-xs "></i></a>
-                                        @endcan
-                                        @can('edit-product')
-                                            <a href="{{ route('administrator.news.edit', ['id' => $data->id]) }}"
-                                                class="py-[0.15rem] px-[0.40rem] rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400"><i
-                                                    class="fa-solid fa-eye-dropper text-xs"></i></a>
-                                        @endcan
-                                        @canany(['delete-product', 'archive-product'])
-                                            <div x-data="{ open: false }">
-                                                <div @click="open = !open"
-                                                    class="py-1 cursor-pointer px-[0.40rem] rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400">
-                                                    <i class="fa-solid fa-trash text-xs"></i>
-                                                </div>
-                                                <div x-show="open" @click.away="open = false"
-                                                    class="absolute mt-2 bg-white shadow-xl text-sm rounded-md">
-                                                    @can('archive-product')
-                                                        <div onclick="confirmArchive('{{ $data->id }}')"
-                                                            {{-- INI PENTING --}} {{-- Jika pakai uuid pastikan untuk berikan '' sebelum  {{ $data->id }} --}} {{-- seperti ini '{{ $data->id }}' --}}
-                                                            class="block px-4 py-2 text-gray-800 rounded-t-md hover:bg-gray-200 cursor-pointer">
-                                                            Arsipkan</div>
-                                                    @endcan
-
-                                                    @can('delete-product')
-                                                        <div onclick="confirmDelete('{{ $data->id }}')"
-                                                            {{-- INI PENTING --}} {{-- Jika pakai uuid pastikan untuk berikan '' sebelum  {{ $data->id }} --}} {{-- seperti ini '{{ $data->id }}' --}}
-                                                            class="block px-4 py-2 text-gray-800 rounded-b-md hover:bg-gray-200 cursor-pointer">
-                                                            Hapus</div>
-                                                    @endcan
-                                                </div>
-                                            </div>
-                                        @endcanany
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    @else
+                            <td class="w-28 px-4 py-2 text-left">{{ dateTimeTranslated($data->created_at) }}
+                            </td>
+                            <td class="px-4 py-2">
+                                <div class="flex gap-1 justify-center">
+                                    @can('detail-news')
+                                        <a href="{{ route('administrator.news.detail', ['id' => $data->id]) }}"
+                                            class="w-7 h-7 flex justify-center items-center rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400">
+                                            <i class="fa-solid fa-eye text-xs "></i>
+                                        </a>
+                                    @endcan
+                                    @can('edit-news')
+                                        <a href="{{ route('administrator.news.edit', ['id' => $data->id]) }}"
+                                            class="w-7 h-7 flex justify-center items-center rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400">
+                                            <i class="fa-solid fa-eye-dropper text-xs"></i>
+                                        </a>
+                                    @endcan
+                                    @can('delete-news')
+                                        <div onclick="confirmDelete('{{ $data->id }}')"
+                                            {{-- INI PENTING --}} {{-- Jika pakai uuid pastikan untuk berikan '' sebelum  {{ $data->id }} --}} {{-- seperti ini '{{ $data->id }}' --}}
+                                            class="w-7 h-7 cursor-pointer flex justify-center items-center rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400">
+                                            <i class="fa-solid fa-trash text-xs"></i>    
+                                        </div>
+                                    @endcan
+                                </div>
+                            </td>
+                        </tr>
+                        @empty
                         <tr>
                             <td colspan="7" class="text-center py-3">Data yang kamu cari tidak kami temukan</td>
                         </tr>
-                    @endif
+                        @endforelse
+                    
 
                 </tbody>
             </table>
         </div>
         <div class="my-5">
-            {{ $news->onEachSide(1)->links('vendor.pagination.custom') }}
+            {{ $news->onEachSide(1)->links('vendor.livewire.tailwind') }}
         </div>
     </div>
-
 
 </div>
 
@@ -167,23 +140,6 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     @this.call('togglePublished', id);
-                }
-            })
-        };
-
-        function confirmArchive(id) {
-            Swal.fire({
-                title: 'Yakin Bos?',
-                text: "Anda yakin ingin mengarsipkan berita ini?",
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Arsipkan',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    @this.call('archive', id);
                 }
             })
         };

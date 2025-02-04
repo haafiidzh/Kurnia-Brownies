@@ -7,7 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     {{-- Icon --}}
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    {{-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> --}}
+    @php
+        $icon = App\Models\AppSetting::where('key','small_logo')->get()->first();
+    @endphp
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/ico" sizes="32x32" href="{{ $icon->value }}">
+    <link rel="icon" type="image/ico" sizes="16x16" href="{{ $icon->value }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 
     {{-- Tailwind CSS --}}
     @vite([
@@ -19,6 +26,10 @@
     <script src="https://kit.fontawesome.com/d89a21a1ce.js" crossorigin="anonymous"></script>
     
     <title>@yield('title') | Kurnia Brownies</title>
+
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+
 
     @stack('styles')
     @livewireStyles
@@ -35,7 +46,7 @@
             <livewire:administrator.layouts.header>
 
                 {{-- Main Content --}}
-                <main :class="isOpen ? 'ml-52' : 'ml-20'"
+                <main x-cloak :class="isOpen ? 'ml-52' : 'ml-20'"
                     class="px-20 pt-5 transition-all duration-300 bg-slate-200 flex-grow min-h-screen">
                     @yield('content')
                 </main>

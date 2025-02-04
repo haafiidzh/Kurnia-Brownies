@@ -10,11 +10,27 @@ class ProductDetail extends Model
 {
     use HasFactory;
 
-    // Kalau pakai uuid berikan syntax seperti ini
-    public $incrementing = false;
+    protected $table = 'product_details';
+    
+    /**
+     * The primary key type for the model.
+     *
+     * @var string
+     */
     protected $keyType = 'string';
-    // End
 
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['value', 'product_id'];
 
     // BUAT UUID

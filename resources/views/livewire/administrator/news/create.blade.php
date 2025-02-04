@@ -9,17 +9,19 @@
             <div class="mb-5 flex">
                 {{-- Deskripsi Nama Produk --}}
                 <div class="w-1/4 flex flex-row gap-2">
-                    <i class="fa-solid fa-shield p-2"></i>
+                    <div class="h-6 w-6 flex justify-center items-center">
+                        <i class="fa-solid fa-newspaper"></i>
+                    </div>
                     <div class="w-48 flex flex-col gap-2">
 
                         <div class="flex flex-row">
-                            <h2 class="text-lg font-semibold">About</h2>
-                            <p class="text-lg"> &nbsp;| Tentang</p>
+                            <h2 class=" font-semibold">About</h2>
+                            <p class=""> &nbsp;| Tentang</p>
                         </div>
 
-                        <p class="text-sm text-slate-500 tracking-wider">Nama Produk dalam sebuah sistem sesuai
-                            dengan
-                            kewenangannya</p>
+                        <p class="text-sm text-slate-500 tracking-wider">
+                            Penjelasan singkat tentang berita terkait.
+                        </p>
                     </div>
                 </div>
                 {{-- End Deskripsi Nama Produk --}}
@@ -67,7 +69,9 @@
             <div class="mb-5 flex">
                 {{-- Deskripsi Tentang Produk --}}
                 <div class="w-1/4 flex flex-row gap-2">
-                    <i class="fa-solid fa-shield p-2"></i>
+                    <div class="h-6 w-6 flex justify-center items-center">
+                        <i class="fa-solid fa-message"></i>
+                    </div>
                     <div class="w-48 flex flex-col gap-2">
 
                         <div class="flex flex-row">
@@ -75,9 +79,9 @@
                             <p class="text-md"> &nbsp;| Deskripsi</p>
                         </div>
 
-                        <p class="text-sm text-slate-500 tracking-wider">Nama peran dalam sebuah sistem sesuai
-                            dengan
-                            kewenangannya</p>
+                        <p class="text-sm text-slate-500 tracking-wider">
+                            Isi dari berita.
+                        </p>
                     </div>
                 </div>
 
@@ -105,17 +109,19 @@
             <div class="mb-5 flex">
                 {{-- Deskripsi Image --}}
                 <div class="w-1/4 flex flex-row gap-2">
-                    <i class="fa-solid fa-shield p-2"></i>
+                    <div class="h-6 w-6 flex justify-center items-center">
+                        <i class="fa-solid fa-image "></i>
+                    </div>
                     <div class="w-48 flex flex-col gap-2">
 
                         <div class="flex flex-row">
-                            <h2 class="text-lg font-semibold">Image</h2>
-                            <p class="text-lg"> &nbsp;| Gambar</p>
+                            <h2 class=" font-semibold">Image</h2>
+                            <p class=""> &nbsp;| Gambar</p>
                         </div>
 
-                        <p class="text-sm text-slate-500 tracking-wider">Nama Produk dalam sebuah sistem sesuai
-                            dengan
-                            kewenangannya</p>
+                        <p class="text-sm text-slate-500 tracking-wider">
+                            Gambar untuk media dalam berita terkait.
+                        </p>
                     </div>
                 </div>
                 {{-- End Deskripsi Image --}}
@@ -168,55 +174,7 @@
                 {{-- End Form Image --}}
             </div>
         </div>
-        {{-- End Image --}}
-
-        {{-- Start Galeri --}}
-        <div class="w-full">
-            <div class="mb-5 flex">
-                {{-- Deskripsi Galeri --}}
-                <div class="w-1/4 flex flex-row gap-2">
-                    <i class="fa-solid fa-shield p-2"></i>
-                    <div class="w-48 flex flex-col gap-2">
-
-                        <div class="flex flex-row">
-                            <h2 class="text-lg font-semibold">Gallery</h2>
-                            <p class="text-lg"> &nbsp;| Galeri</p>
-                        </div>
-
-                        <p class="text-sm text-slate-500 tracking-wider">Nama Produk dalam sebuah sistem sesuai
-                            dengan
-                            kewenangannya</p>
-                    </div>
-                </div>
-                {{-- End Deskripsi Image --}}
-
-                {{-- Form Galeri --}}
-                <div class="w-1/2 px-6 py-4 shadow-md rounded-2xl bg-white flex flex-col">
-                    <div
-                        class="{{ $gallery ? 'gap-4' : '' }} my-2 p-4 flex flex-col items-center justify-center w-full bg-gray-300 rounded-3xl border-2 border-dashed border-gray-400 ">
-                        <label for="gallery" class="cursor-pointer">
-                            <p
-                                class="p-3 tracking-wider bg-slate-800 text-white uppercase text-sm rounded-md hover:bg-green-500 transition-all duration-300">
-                                Click to Upload Files</p>
-                        </label>
-                        <input class="hidden" id="gallery" type="file" wire:model="gallery" multiple>
-                        <div class="flex flex-wrap justify-center gap-4">
-                            @foreach ($gallery as $item)
-                                <div class="w-48 flex flex-col gap-2 relative">
-                                    <img class="rounded-md" src="{{ $item->temporaryUrl() }}">
-                                    <div title="Hapus" wire:click="deleteItem({{ $loop->index }})" class="absolute top-2 right-2 h-6 w-6 bg-red-500 hover:bg-red-600 transition-all duration-300 flex justify-center items-center rounded-full text-gray-200 text-xs shadow-sm active:text-gray-400 cursor-pointer">
-                                        <i class="fa-solid fa-x"></i>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-
-                    </div>
-                    {{-- End Form Galeri --}}
-                </div>
-            </div>
-        </div>
-        {{-- End Galeri --}}
+        {{-- End Image --}} 
 
         {{-- Start Button Submit --}}
         <div class="pb-14 w-1/2 flex justify-center mx-auto">

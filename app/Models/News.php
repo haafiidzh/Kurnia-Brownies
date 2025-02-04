@@ -10,9 +10,27 @@ class News extends Model
 {
     use HasFactory;
 
-    public $incrementing = false;
+    protected $table = 'news';
+    
+    /**
+     * The primary key type for the model.
+     *
+     * @var string
+     */
     protected $keyType = 'string';
 
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'title',
         'slug',
@@ -20,6 +38,7 @@ class News extends Model
         'subject',
         'image',
         'is_active',
+        'created_by',
         'published_at',
     ];
 
@@ -35,9 +54,9 @@ class News extends Model
         });
     }
 
-    // Relation News Detail Table
-    public function detail()
+    // Relation User Table
+    public function author()
     {
-        return $this->hasMany(NewsDetail::class, 'news_id', 'id');
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 }

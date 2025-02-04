@@ -87,7 +87,7 @@
             </table>
         </div>
         <div class="my-5">
-            {{ $users->links('vendor.pagination.front') }}
+            {{ $users->links('vendor.livewire.tailwind') }}
         </div>
     </div>
 </div>

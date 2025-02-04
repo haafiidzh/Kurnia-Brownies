@@ -9,10 +9,13 @@ class Content extends Model
 {
     use HasFactory;
 
-    // Tentukan tabel yang digunakan oleh model ini
     protected $table = 'contents';
 
-    // Tentukan kolom yang bisa diisi mass-assignment
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'group',
         'label',
@@ -21,7 +24,6 @@ class Content extends Model
         'type',
     ];
 
-    // Tentukan kolom yang harus di-cast ke tipe data tertentu, jika diperlukan
     protected $casts = [
         'value' => 'string',
     ];

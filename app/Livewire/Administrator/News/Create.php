@@ -12,7 +12,6 @@ class Create extends Component
     use WithFileUploads;
 
     // Variable
-    // News
     public $title;
     public $slug;
     public $subject;
@@ -21,23 +20,12 @@ class Create extends Component
     public $published_at;
     public $is_active = true;
 
-    // News Detail
-    public $gallery = [];
 
     public function updatedTitle($value)
     {
         $this->slug = slug($value);
     }
 
-    public function deleteItem($index)
-    {
-        // array_splice($this->gallery, $index);
-        unset($this->gallery[$index]);
-
-        // Re-indexing array setelah item dihapus agar tidak ada celah
-        $this->gallery = array_values($this->gallery);
-    }
-    
     public function store()
     {
         $rules = [
@@ -56,7 +44,7 @@ class Create extends Component
         
         $image = '/storage/images/news/' . $image_name;
 
-        $news = News::create([
+        News::create([
             'title' => $this->title,
             'slug' => $this->slug,
             'subject' => $this->subject,
@@ -65,17 +53,6 @@ class Create extends Component
             'is_active' => $this->is_active,
             'published_at' => now(),
         ]);
-
-        foreach ($this->gallery as $item) {
-            $gallery_name = $this->slug . '.' . rand(1,999999) . '.' . $item->extension();
-            $item->storeAs('images/news/gallery', $gallery_name, 'public');
-
-            $gallery = '/storage/images/news/gallery/' . $gallery_name;
-            NewsDetail::create([
-                'product_id' => $news->id,
-                'value' => $gallery
-            ]);
-        }
 
         session()->flash('flash_message', [
             'type' => 'created',

@@ -1,37 +1,53 @@
-<div class="w-full px-36 mb-36">
-    <div class="mb-36 flex space-x-5 items-center">
-        <a href="{{ route('home') }}">
-            <h3 class="my-0"><i class='bx bxs-home text-secondary'></i></h3>
-        </a>
-        <i class="fa-solid fa-chevron-right"></i>
-        <h3 class="my-0 py-0">News</h3>
-    </div>
-    <div class="flex flex-grow flex-wrap md:flex-row flex-col gap-x-20 gap-y-20 justify-beetwen mb-20">
-        @foreach ($datas as $data)
-            <div class="w-full md:w-[45%]" data-aos="fade-up" data-aos-duration="2000" data-aos-once="true">
-                <div class="overflow-hidden rounded-2xl shadow-md ">
-                    <a href="{{ route('news.detail', $data->slug) }}" class="group block overflow-hidden relative">
-                        <img class="object-cover group-hover:scale-125 transition-all duration-300 aspect-[16/9] mb-0"
-                            src="{{ url($data->image) }}" alt="">
-                        <div class="absolute bottom-0 left-0 flex flex-col">
-                            <div class="h-40 bg-white bg-opacity-65 flex flex-col justify-center items-center px-10">
-                                <h3 class="my-0">{{ $data->created_at->format('d') }}</h3>
-                                <h5 class="my-0 text-[15px]">{{ $data->created_at->format('M') }}</h5>
-                                <h5 class="my-0 text-[15px]">{{ $data->created_at->format('Y') }}</h5>
-                            </div>
-                            <div class="bg-secondary uppercase text-[12px] px-10 text-black text-center font-bold group-hover:py-5 transition-all">Baca</div>
+<div class="w-full px-10 lg:px-[120px] py-10">
+    <div>
+        <div class="w-full flex flex-col sm:flex-row gap-10">
+            <div class="w-full sm:w-3/4"> 
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    @foreach ($datas as $data)
+                    <div class="flex flex-col gap-3">
+                        <a class="relative overflow-hidden group " href="{{ route('news.detail', $data->slug) }}">
+                            <div class="z-20 absolute inset-0 bg-white/20 hidden group-hover:block "></div>
+                            <img class="aspect-video object-cover group-hover:scale-125 transition-all duration-300"
+                             src="{{ url($data->image) }}" alt="">
+                        </a>
+                        <div>
+                            <p class="font-poppins text-sm"> Posted by <span class="font-poppins font-bold text-sm">{{ $data->author->name }}</span> </p>
+                            <a href="{{ route('news.detail', $data->slug) }}">
+                                <h2 class="font-poppins font-semibold text-gray-800 hover:text-primary inline">
+                                    {{ $data->title }}
+                                </h2>
+                            </a>
                         </div>
-                    </a>
-                    <div class="w-full p-6 bg-white">
-                        <h5 class="my-0">{{ $data->title }}</h5>
-                        <p class="my-0 font-thin text-gray-500">{{ $data->subject }}</p>
                     </div>
+                    @endforeach            
                 </div>
             </div>
-        @endforeach
+            <div class="w-full sm:w-1/4 drop-shadow-md">
+                <h2 class="text-xl font-nunito text-primary font-semibold uppercase tracking-wider border-b-2 border-primary inline">other news</h2>
+                <div class="mt-4 grid grid-cols-1 gap-4">
+                    @foreach ($otherNews as $item)
+                        <div class="flex flex-col gap-3">
+                            <a class="relative overflow-hidden group rounded-md" href="{{ route('news.detail', $item->slug) }}">
+                                <div class="z-20 absolute inset-0 bg-white/20 hidden group-hover:block "></div>
+                                <img class="aspect-video object-cover group-hover:scale-125 transition-all duration-300"
+                                src="{{ url($item->image) }}" alt="">
+                            </a>
+                            <div>
+                                <p class="font-poppins text-sm"> Posted by <span class="font-poppins font-bold text-sm">{{ $data->author->name }}</span> </p>
+                                <a href="{{ route('news.detail', $data->slug) }}">
+                                    <h2 class="font-poppins font-semibold text-gray-800 hover:text-primary inline">
+                                        {{ $data->title }}
+                                    </h2>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <div>
+            {{ $datas->links('vendor.livewire.front.news') }}    
+        </div>    
     </div>
-
-    <div>
-        {{ $datas->links('vendor.pagination.front') }}
-    </div>
+    
 </div>
