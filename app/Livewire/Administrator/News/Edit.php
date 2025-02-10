@@ -79,8 +79,8 @@ class Edit extends Component
         ]);
 
         session()->flash('flash_message', [
-            'type' => 'updated',
-            'message' => 'Berita berhasil diperbarui.',
+            'type' => 'created',
+            'message' => 'Berhasil memperbarui informasi berita.',
         ]);
 
         return redirect()->route('administrator.news');

@@ -1,12 +1,20 @@
 // HOME
 var swiper1 = new Swiper(".slider", {
     spaceBetween: 0,
-    effect: "fade",
+    // slidesPerView: 2,
     loop: true,
-    centeredSlides: true,
     autoplay: {
         delay: 5000,
         disableOnInteraction: false,
+    },
+    breakpoints: {
+        0: {
+            // slidesPerView: 1,
+            effect: "fade",
+        },
+        768: {
+            slidesPerView: 2,
+        },
     },
     pagination: {
         el: ".swiper-pagination",
@@ -19,33 +27,33 @@ var swiper1 = new Swiper(".slider", {
         nextEl: ".button-next",
         prevEl: ".button-prev",
     },
-    on: {
-        slideChange: function () {
-            // Ambil index slide aktif
-            const activeIndex = this.realIndex;
+    // on: {
+    //     slideChange: function () {
+    //         // Ambil index slide aktif
+    //         const activeIndex = this.realIndex;
 
-            // Update  nama dan deskripsi kategori
-            var like = sliders[activeIndex];
+    //         // Update  nama dan deskripsi kategori
+    //         var like = sliders[activeIndex];
 
-            let likeIcon = document.getElementById("like-icon");
+    //         let likeIcon = document.getElementById("like-icon");
 
-                // Cek apakah ID slide aktif ada di likedSliders
-                if (likedSliders.includes(like.id)) {
-                    likeIcon.classList.remove("fa-regular", "text-primary");
-                    likeIcon.classList.add("fa-solid", "text-red-500");
-                } else {
-                    likeIcon.classList.remove("fa-solid", "text-red-500");
-                    likeIcon.classList.add("fa-regular", "text-primary");
-                }
+    //             // Cek apakah ID slide aktif ada di likedSliders
+    //             if (likedSliders.includes(like.id)) {
+    //                 likeIcon.classList.remove("fa-regular", "text-primary");
+    //                 likeIcon.classList.add("fa-solid", "text-red-500");
+    //             } else {
+    //                 likeIcon.classList.remove("fa-solid", "text-red-500");
+    //                 likeIcon.classList.add("fa-regular", "text-primary");
+    //             }
 
-            let likeButton = document.getElementById("like-button");
-            likeButton.setAttribute("wire:click", `toggleLike('${like.id}')`);
+    //         let likeButton = document.getElementById("like-button");
+    //         likeButton.setAttribute("wire:click", `toggleLike('${like.id}')`);
 
-            document.getElementById("count-likes").textContent = like.likes;
+    //         document.getElementById("count-likes").textContent = like.likes;
 
             
-        },
-    },
+    //     },
+    // },
 });
 
 var swiperCategories = new Swiper(".categories", {
@@ -116,7 +124,7 @@ var swiperCategories = new Swiper(".categories", {
             document.getElementById("category-name").textContent =
                 category.name;
             document.getElementById("category-description").textContent =
-                category.description;
+                category.short_description;
         },
     },
   });

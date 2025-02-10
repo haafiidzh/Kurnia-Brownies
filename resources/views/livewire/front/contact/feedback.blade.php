@@ -16,7 +16,7 @@
             {{-- Decoration End --}}
 
             <h3 class="mb-2 font-nunito font-bold italic text-primary text-3xl md:text-5xl drop-shadow-md">
-                Reach To Us
+                {{ cache('contact.feedback-title') ?: 'Reach To Us' }}
             </h3>
             <div class="flex">
                 <div class="border-b-2 border-primary/65 w-[50%] md:w-[20%] text-center"></div>
@@ -25,7 +25,7 @@
             <div class="w-full flex flex-col gap-3 md:gap-6">
                 <div class="w-full md:w-3/4 mt-3 md:mt-6">
                     <p class="text-gray-800 md:text-base text-xs font-poppins leading-relaxed ">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid aut omnis corporis, perferendis laudantium dicta repellendus accusamus? Odit, unde neque.
+                        {{ cache('contact.feedback-description') ?: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid aut omnis corporis, perferendis laudantium dicta repellendus accusamus? Odit, unde neque.' }}
                     </p>
                 </div>
                 <form wire:submit="sendFeedback" class="space-y-6">
@@ -39,7 +39,7 @@
                             class="absolute pointer-events-none font-poppins left-4 -translate-y-[22px] text-gray-800 text-sm 
                             peer-placeholder-shown:translate-y-[13px]
                             peer-placeholder-shown:left-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 transition-all">
-                                First Name
+                                Nama Depan
                             </label>
                             @error('first_name')
                             <span class="backdrop-blur-sm px-2 rounded-full font-poppins text-xs absolute bottom-0 translate-y-[18px] left-2 text-red-600">{{ $message }}</span>    
@@ -54,7 +54,7 @@
                             class="absolute pointer-events-none font-poppins left-4 -translate-y-[22px] text-gray-800 text-sm 
                             peer-placeholder-shown:translate-y-[13px]
                             peer-placeholder-shown:left-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 transition-all">
-                                Last Name
+                                Nama Belakang
                             </label>
                             @error('last_name')
                             <span class="backdrop-blur-sm px-2 font-poppins text-xs absolute bottom-0 translate-y-[18px] left-2 text-red-600">{{ $message }}</span>    
@@ -84,7 +84,7 @@
                             class="absolute pointer-events-none font-poppins left-4 -translate-y-[22px] text-gray-800 text-sm 
                             peer-placeholder-shown:translate-y-[13px]
                             peer-placeholder-shown:left-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 transition-all">
-                                Phone
+                                No. Telepon
                             </label>
                             @error('phone')
                             <span class="backdrop-blur-sm px-2 rounded-full font-poppins text-xs absolute bottom-0 translate-y-[18px] left-2 text-red-600">{{ $message }}</span>    

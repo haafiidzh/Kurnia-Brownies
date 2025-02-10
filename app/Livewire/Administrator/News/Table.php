@@ -13,9 +13,13 @@ class Table extends Component
 
     public $search;
 
+    public array $queryString =[
+        'search',
+    ];
+
     public function mount()
     {
-        $this->search = '';
+        $this->search;
     }
 
     public function updatedSearch()
@@ -36,8 +40,8 @@ class Table extends Component
             $news->delete();
 
             session()->flash('flash_message', [
-                'type' => 'deleted',
-                'message' => 'Berita berhasil dihapus.',
+                'type' => 'created',
+                'message' => 'Berhasil menghapus berita.',
             ]);
             return redirect()->route('administrator.news');
         } else {
@@ -58,8 +62,8 @@ class Table extends Component
             $news->save();
 
             session()->flash('flash_message', [
-                'type' => 'updated',
-                'message' => 'Status berita berhasil diubah.',
+                'type' => 'created',
+                'message' => 'Berhasil mengubah status berita.',
             ]);
 
             return redirect()->route('administrator.news');

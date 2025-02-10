@@ -27,7 +27,7 @@ class FeedbackAdminNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Feedback Admin Notification',
+            subject: 'Umpan Balik',
         );
     }
 

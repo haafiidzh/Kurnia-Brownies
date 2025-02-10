@@ -14,8 +14,9 @@ return new class extends Migration
             $table->string('name'); 
             $table->string('slug')->unique(); 
             $table->string('image')->nullable(); 
+            $table->text('short_description')->nullable(); 
             $table->text('description')->nullable(); 
-            $table->boolean('recommended')->default(false); 
+            $table->boolean('best_seller')->default(false); 
             $table->softDeletes();
             $table->timestamps();
             

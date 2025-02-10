@@ -7,15 +7,25 @@ use Livewire\Component;
 
 class Table extends Component
 {
-    public $id;
     public $label;
     public $value;
 
-    public $selectedGroup = 'cta_product';
+    public $selectedGroup;
+
+    public $queryString = 
+    [
+        'selectedGroup'
+    ];
+
+    public function mount()
+    {
+        $this->selectedGroup = session('selected_content_group', 'cta_product');
+    }
 
     public function selectGroup($group)
     {
         $this->selectedGroup = $group;
+        session(['selected_content_group' => $group]);
     }
 
     public function render()

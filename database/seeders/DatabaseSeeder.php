@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
 
         // Setting
         $this->call(AppSettingSeeder::class);
+        $this->call(SeoSeeder::class);
         $this->call(ContentSeeder::class);
 
         // Web

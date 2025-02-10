@@ -36,6 +36,34 @@ class FaqSeeder extends Seeder
                 'sort_order' => 3,
                 'is_active' => true,
             ],
+            [
+                'question' => 'Apa itu Kurnia?',
+                'answer' => 'Laravel is a web application framework with expressive, elegant syntax.',
+                'slug' => 'apa-itu-kurnia',
+                'sort_order' => 4,
+                'is_active' => true,
+            ],
+            [
+                'question' => 'Apa itu Nova?',
+                'answer' => 'You can install Laravel using Composer by running "composer create-project laravel/laravel your-project-name".',
+                'slug' => 'apa-itu-nova',
+                'sort_order' => 5,
+                'is_active' => true,
+            ],
+            [
+                'question' => 'Bagaimana cara mesennya?',
+                'answer' => 'MVC stands for Model-View-Controller. It is a design pattern used by Laravel to organize code.',
+                'slug' => 'bagaimana-cara-mesennya-in-laravel',
+                'sort_order' => 6,
+                'is_active' => true,
+            ],
+            [
+                'question' => 'La Mboh?',
+                'answer' => 'MVC stands for Model-View-Controller. It is a design pattern used by Laravel to organize code.',
+                'slug' => 'La-mboh',
+                'sort_order' => 7,
+                'is_active' => true,
+            ],
         ];
 
         foreach ($faqs as $faq) {

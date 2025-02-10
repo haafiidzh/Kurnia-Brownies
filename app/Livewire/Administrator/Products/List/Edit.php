@@ -25,7 +25,8 @@ class Edit extends Component
     public $image;
     public $newImage;
     public $description;
-    public $recommended = false;
+    public $short_description;
+    public $best_seller = false;
 
     // Product Detail
     public $currentGallery = [];
@@ -42,7 +43,8 @@ class Edit extends Component
         $this->category_id = $data->category_id;
         $this->image = $data->image;
         $this->description = $data->description;
-        $this->recommended = $data->recommended;
+        $this->short_description = $data->short_description;
+        $this->best_seller = $data->best_seller;
         $this->currentGallery = $data->detail;
     }
 
@@ -112,8 +114,9 @@ class Edit extends Component
             'slug' => $this->slug,
             'category_id' => $this->category_id,
             'image' => $image,
+            'short_description' => $this->short_description,
             'description' => $this->description,
-            'recommended' => $this->recommended,
+            'best_seller' => $this->best_seller,
         ]);
 
         foreach ($this->newGallery as $item) {
@@ -128,8 +131,8 @@ class Edit extends Component
         }
 
         session()->flash('flash_message', [
-            'type' => 'updated',
-            'message' => 'Product berhasil diperbarui.',
+            'type' => 'created',
+            'message' => 'Berhasil memperbarui informasi produk.',
         ]);
         
         return redirect()->route('administrator.products');

@@ -12,9 +12,14 @@ class Create extends Component
 
     public $title;
     public $slug;
-    public $description;
     public $image;
     public $position;
+    public $is_active;
+
+    public function mount()
+    {
+        $this->is_active = false;
+    }
 
     public function updatedTitle($value)
     {
@@ -31,7 +36,6 @@ class Create extends Component
         $rules = [
             'title' => 'required',
             'slug' => 'required',
-            'description' => 'required',
             'image' => 'required',
         ];
 
@@ -46,11 +50,11 @@ class Create extends Component
         $this->position = (Slider::max('position') ?? 0) + 1;
 
         Slider::create([
-            'title' => $this->title,
-            'slug' => $this->slug,
-            'description' => $this->description,
-            'image' => $image,
-            'position' => $this->position,
+            'title'     => $this->title,
+            'slug'      => $this->slug,
+            'image'     => $image,
+            'position'  => $this->position,
+            'is_active' => $this->is_active,
         ]);
 
         

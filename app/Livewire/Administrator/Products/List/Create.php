@@ -4,11 +4,8 @@ namespace App\Livewire\Administrator\Products\List;
 
 use App\Models\Categories;
 use App\Models\Product;
-use App\Models\ProductCategory;
 use App\Models\ProductDetail;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
-use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 
 class Create extends Component
@@ -21,11 +18,17 @@ class Create extends Component
     public $slug;
     public $category_id;
     public $image;
+    public $short_description;
     public $description;
-    public $recommended = false;
+    public $best_seller;
 
     // Product Detail
     public $gallery = [];
+
+    public function mount()
+    {
+        $this->best_seller = false;
+    }
 
     public function updatedName($value)
     {
@@ -48,6 +51,7 @@ class Create extends Component
             'slug' => 'required|unique:products,slug',
             'category_id' => 'required',
             'image' => 'required|image|max:10024',
+            'short_description' => 'required',
             'description' => 'required',
         ];
 
@@ -64,8 +68,9 @@ class Create extends Component
             'slug' => $this->slug,
             'category_id' => $this->category_id,
             'image' => $image,
+            'short_description' => $this->short_description,
             'description' => $this->description,
-            'recommended' => $this->recommended,
+            'best_seller' => $this->best_seller,
         ]);
 
         foreach ($this->gallery as $item) {
@@ -81,7 +86,7 @@ class Create extends Component
 
         session()->flash('flash_message', [
             'type' => 'created',
-            'message' => 'Product berhasil ditambah.',
+            'message' => 'Berhasil menambah produk baru.',
         ]);
         
         return redirect()->route('administrator.products');
@@ -90,7 +95,6 @@ class Create extends Component
     public function render()
     {
         $categories = Categories::where('group','product')->get();
-        $product = Product::all();
-        return view('livewire.administrator.products.list.create', ['categories' => $categories, 'product' => $product]);
+        return view('livewire.administrator.products.list.create', ['categories' => $categories]);
     }
 }

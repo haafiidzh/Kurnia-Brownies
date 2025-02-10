@@ -63,10 +63,9 @@ class PermissionSeeder extends Seeder
             'detail-slider',
 
             'view-feedback',
-            'create-feedback',
-            'edit-feedback',
             'delete-feedback',
             'detail-feedback',
+            'reply-feedback',
             
             'view-faq',
             'create-faq',
@@ -85,6 +84,12 @@ class PermissionSeeder extends Seeder
             'edit-content',
             'delete-content',
             'detail-content',
+
+            'view-seo',
+            'create-seo',
+            'edit-seo',
+            'delete-seo',
+            'detail-seo',
         ];
 
         foreach($permissions as $permission) {

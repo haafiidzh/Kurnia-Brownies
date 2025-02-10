@@ -12,7 +12,7 @@
                             class="hover:bg-gray-200 active:bg-gray-500 transition-all duration-300 
                             {{ $loop->last ? 'border-b-0' : 'border-b-2' }}
                         {{ $selectedGroup === $item->group ? 'bg-gray-200 font-bold' : '' }}">
-                            <a href="#" wire:click="selectGroup('{{ $item->group }}')">
+                            <a href="javascript:void(0)" wire:click="selectGroup('{{ $item->group }}')">
                                 <div class="p-5 tracking-wider">{{ ucwords(str_replace('_',' ',$item->group)) }}</div>
                             </a>
                         </li>
@@ -24,7 +24,7 @@
 
             {{-- Setting Value --}}
             <div class="w-3/4">
-                <div class="w-full bg-slate-100 rounded-xl shadow-md">
+                <div class="w-full bg-slate-100 rounded-xl shadow-md overflow-hidden">
                     <table class="w-full">
                         <thead class="bg-gray-300 tracking-wider">
                             <th class="w-1/5 px-4 py-2 text-left rounded-tl-xl">Label</th>
@@ -43,11 +43,13 @@
                                             {{ $data->key }}
                                         </div>
                                     </td>
-                                    <td class="px-4 py-4 text-left text-sm text-wrap">
+                                    <td class="px-4 py-4 text-left text-sm max-w-[300px] break-words">
                                         @switch($data->type)
                                             @case('image')
                                                 @if ($data->value)
-                                                    <img src="{{ url($data->value) }}" alt="{{ $data->label }}">
+                                                <div class="w-full flex justify-center">
+                                                    <img class="bg-black/10 rounded-md border border-black/15 max-w-[300px]" src="{{ url($data->value) }}" title="{{ $data->label }}">
+                                                </div>
                                                 @else
                                                     -
                                                 @endif

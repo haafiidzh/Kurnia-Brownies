@@ -16,11 +16,8 @@ class All extends Component
     public $search;
 
     protected array $queryString = [
-        // 'search',
-        // 'selectedCategory'
-        'selectedCategory' => ['except' => ''], // Kosongkan query jika tidak ada kategori
-        'search' => ['except' => ''],   // Kosongkan query jika tidak ada pencarian
-        // 'page' => ['except' => 1],
+        'selectedCategory',
+        'search'
     ];
 
     protected $listeners = [
@@ -53,10 +50,9 @@ class All extends Component
     {
         $query = Product::query()->orderBy('name', 'asc');
 
-        // Filter kategori
         if ($this->selectedCategory) {
-            if ($this->selectedCategory === 'recommended') {
-                $query->where('recommended', true);
+            if ($this->selectedCategory === 'best_seller') {
+                $query->where('best_seller', true);
             } else {
                 $query->whereHas('category', function ($q) {
                     $q->where('slug', $this->selectedCategory);
@@ -64,7 +60,6 @@ class All extends Component
             }
         }
 
-        // Scope Search
         if ($this->search) {
             $query->where('name', 'like', '%' . $this->search . '%');
         }

@@ -15,7 +15,6 @@
                 <th class="px-1 py-2 text-center w-7"></th>
                 <th class="px-4 py-2 text-left">Nama Kategori</th>
                 <th class="px-4 py-2 text-center">Deskripsi</th>
-                <th class="px-4 py-2 text-center">Gambar</th>
                 <th class="px-4 py-2 text-center">Dibuat Pada</th>
                 <th class="px-4 py-2 text-center">Action</th>
             </thead>
@@ -25,47 +24,6 @@
                             <td class="px-1 py-2 text-center">{{ $category->firstItem() + $index }}</td>
                             <td class="px-4 py-2 text-left">{{ $data->name }}</td>
                             <td class="px-4 py-2 text-left">{{ $data->description }}</td>
-                            <td class="px-4 py-2 text-left">
-                                <div x-data="{ preview: false, scrollPosition: 0 }">
-                                    <div class="relative group rounded-lg overflow-hidden">
-                                        <img class="object-cover transition-all group-hover:blur-[2px] duration-300 w-full h-[100px]"
-                                            src="{{ url($data->image) }}">
-                    
-                                        <div class="absolute inset-0 flex justify-center items-center group-hover:visible invisible">
-                                            <a href="javascript:void(0)"
-                                            @click="preview = !preview;  if (preview) { scrollPosition = window.scrollY }">
-                                                <div class="h-8 w-8 flex justify-center items-center rounded-full border-2 bg-slate-200 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent active:bg-slate-400">
-                                                    <i class="fa-solid fa-eye text-xs"></i>
-                                                </div>
-                                            </a>
-                                        </div>
-
-                                        {{-- Preview Image --}}
-                                        <div x-show="preview" 
-                                            x-cloak
-                                            x-transition:enter="transition translate-y-0 ease-out duration-200"
-                                            x-transition:enter-start="opacity-0 bottom-10" x-transition:enter-end="opacity-100 bottom-0 "
-                                            x-transition:leave="transition translate-y-0 ease-in duration-200" x-transition:leave-start="opacity-100"
-                                            x-transition:leave-end="opacity-0"
-                                            class="fixed w-full h-screen left-0 top-0 z-50 flex justify-center items-center bg-black/10">
-                                            <div class="flex flex-col bg-white shadow-md rounded-md">
-                                                <div class="p-4 border-b border-gray-300 flex items-center justify-between ">
-                                                    <span class="font-bold text-slate-800 text-lg">Preview Image</span>
-                                                    <span @click="preview = false; window.scrollTo(0, scrollPosition)"
-                                                        class="p-2 cursor-pointer hover:bg-gray-200 hover:rounded-md">
-                                                        <i class="fa-solid fa-x"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="p-5">
-                                                    <img class="rounded-md" src="{{ url($data->image) }}" style="max-height: 480px;"
-                                                        alt="{{ $data->name }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-
                             <td class="px-4 py-2 text-left">{{ dateTimeTranslated($data->created_at) }}</td>
                             <td class="px-4 py-2">
                                 <div class="flex gap-2 justify-center">

@@ -3,7 +3,7 @@
         <div class="w-full flex gap-10 flex-col md:flex-row">
             <div class="w-full md:w-1/3 flex flex-col gap-6 md:gap-10 justify-center">
                 <h1 class="font-nunito text-4xl md:text-6xl text-primary font-bold italic drop-shadow-md">
-                    Kurnia Brownies
+                    {{ cache('contact.page-section-title') ?: 'Kurnia Brownies' }}
                 </h1>
                 <div class="flex flex-col gap-4">
     
@@ -14,7 +14,7 @@
                             </div>
     
                             <p class="font-poppins text-gray-500 font-semibold tracking-wide">
-                                08.00 - 21.00
+                                {{ cache('contact.open-hours') ?: '08.00 - 24.00'}}
                             </p>
                         </div>
                         <div class="flex gap-5 items-center">
@@ -23,10 +23,7 @@
                             </div>
     
                             <p class="font-poppins text-gray-500 font-semibold tracking-wide">
-                                Jl. Adi Sucipto, Gatak,
-                                Blulukan, Kec. Colomadu, Kabupaten Karanganyar,
-                                Jawa
-                                Tengah 57174
+                                {{ cache('contact-address') ?: 'Jl. Adi Sucipto, Gatak, Blulukan, Kec. Colomadu, Kabupaten Karanganyar, Jawa Tengah 57174' }}
                             </p>
                         </div>
                         <div class="flex gap-5 items-center">
@@ -34,10 +31,10 @@
                                 <i class="fa-solid fa-envelope text-xl"></i>
                             </div>
     
-                            <a href="mailto:kurnia@gmail.com" target="_blank">
+                            <a href="mailto:{{ cache('contact-email') ?: 'kurnia@gmail.com' }}" target="_blank">
                                 <p
                                     class="font-poppins text-gray-500 font-semibold tracking-wide hover:text-gray-700 transition-colors">
-                                    kurnia@gmail.com
+                                    {{ cache('contact-email') ?: 'kurnia@gmail.com' }}
                                 </p>
                             </a>
                         </div>
@@ -46,57 +43,82 @@
                                 <i class="fa-brands fa-whatsapp text-xl"></i>
                             </div>
     
-                            <a href="https://wa.me/083754832238" target="_blank">
+                            <a href="https://wa.me/{{ cache('contact-whatsapp') ?: '083754832238' }}" target="_blank">
                                 <p
                                     class="font-poppins text-gray-500 font-semibold tracking-wide hover:text-gray-700 transition-colors">
-                                    083754832238
+                                    {{ cache('contact-whatsapp') ?: '083754832238' }}
                                 </p>
                             </a>
                         </div>
                     </div>
                     <div class="border-t border-primary w-3/4"></div>
                     <div class="flex flex-col gap-3">
-                        <h3 class="font-nunito font-bold tracking-wide text-3xl text-primary">Follow Us</h3>
+                        <h3 class="font-nunito font-bold tracking-wide text-3xl text-primary">{{ cache('contact.socmed-title') ?: 'Ikuti Kami' }}</h3>
                         <div class="flex gap-6">
-                            <a href="javacript:void(0)"
+                            
+                            @if (cache('social-instagram_name'))
+                                <a href="{{ cache('social-instagram_link') ?: 'javascript:void(0)' }}"
                                 class="text-primary hover:text-gray-700 transition-colors w-6 h-6 flex justify-center items-center">
-                                <i class="fa-brands fa-instagram text-2xl"></i></a>
-                            <a href="javacript:void(0)"
+                                    <i class="fa-brands fa-instagram text-2xl"></i>
+                                </a>
+                            @endif
+                            @if (cache('social-tiktok_name'))
+                            <a href="{{ cache('social-tiktok_link') ?: 'javascript:void(0)' }}"
                                 class="text-primary hover:text-gray-700 transition-colors w-6 h-6 flex justify-center items-center">
-                                <i class="fa-brands fa-tiktok text-2xl"></i></a>
+                                <i class="fa-brands fa-tiktok text-2xl"></i>
+                            </a>
+                            @endif
+                            @if (cache('social-facebook_name'))
+                                <a href="{{ cache('social-facebook_link') ?: 'javascript:void(0)' }}"
+                                    class="text-primary hover:text-gray-700 transition-colors w-6 h-6 flex justify-center items-center">
+                                    <i class="fa-brands fa-facebook text-2xl"></i>
+                                </a>
+                            @endif
+                            @if (cache('social-youtube_name'))
+                                <a href="{{ cache('social-youtube_link') ?: 'javascript:void(0)' }}"
+                                    class="text-primary hover:text-gray-700 transition-colors w-6 h-6 flex justify-center items-center">
+                                    <i class="fa-brands fa-youtube text-2xl"></i>
+                                </a>
+                            @endif
+                            @if (cache('social-twitter_name'))
+                                <a href="{{ cache('social-twitter_link') ?: 'javascript:void(0)' }}"
+                                    class="text-primary hover:text-gray-700 transition-colors w-6 h-6 flex justify-center items-center">
+                                    <i class="fa-brands fa-twitter text-2xl"></i>
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
-            @php
-                $i =
-                    '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.3247498846904!2d110.76000737500253!3d-7.5395170924738535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a15fdbcf0e459%3A0x1312f15edb264ce1!2sKurnia%20Brownies%20Bake%20and%20Brew!5e0!3m2!1sid!2sid!4v1734979070958!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
-            @endphp
             <div class="flex-grow overflow-hidden border border-black/45 rounded-xl" data-aos="fade-up"
                 data-aos-duration="2000" data-aos-once="true" data-aos-easing="ease-out">
-                {!! updateIframeAttributes($i) !!}
+                {!! updateIframeAttributes(cache('contact-embed_maps') ?: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.3247498846904!2d110.76000737500253!3d-7.5395170924738535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a15fdbcf0e459%3A0x1312f15edb264ce1!2sKurnia%20Brownies%20Bake%20and%20Brew!5e0!3m2!1sid!2sid!4v1734979070958!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>') !!}
             </div>
         </div>
     </div>
 
     <div class="px-10 lg:px-[120px] mb-20 overflow-hidden">
-        <h1 class="mb-3 font-nunito drop-shadow-md text-primary text-4xl md:text-5xl font-bold italic text-center">Our Merchant</h1>
-        <div class="flex justify-center">
-            <div class="border-b-2 border-primary/65 w-[40%] md:w-[20%] text-center"></div>
+        <div class="flex justify-center mb-16">
+            <div class=" inline-block text-center">
+                <h1 class="text-center font-nunito italic text-3xl md:text-5xl text-primary font-bold drop-shadow-md pb-2 md:pb-4">
+                    {{ cache('contact.merchant-title') ?: 'Our Merchant' }}
+                </h1>
+                <div class="border-b-2 mx-auto border-primary/65 w-[50%] text-center"></div>
+            </div>
         </div>
         <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-6 place-items-center mt-16">
-            <div class="w-3/4 md:w-full flex flex-col justify-center items-center gap-1 md:gap-6 border-r-0 border-b md:border-r md:border-b-0 border-primary pb-10 md:pb-0" data-aos="fade-left" data-aos-easing="ease-out" data-aos-once="true" data-aos-duration="2000" >
-                <img class="object-contain h-20 md:h-36" src="{{ asset('assets/images/default/logo/shopee-food-removebg.png') }}" alt="">
+            <a href="{{ cache('merchant-shopeefood_link') ?: 'javascript:void(0)' }}" class="w-3/4 md:w-full flex flex-col justify-center items-center gap-1 md:gap-6 border-r-0 border-b md:border-r md:border-b-0 border-primary pb-10 md:pb-0" data-aos="fade-left" data-aos-easing="ease-out" data-aos-once="true" data-aos-duration="2000" >
+                <img class="object-contain h-20 md:h-36" src="{{ url('assets/images/default/logo/shopee-food-removebg.png') }}" alt="">
                 <p class="font-poppins text-gray-800 text-lg font-semibold">Shopee Food</p>
-            </div>
-            <div class="w-3/4 md:w-full flex flex-col justify-center items-center gap-1 md:gap-6 border-r-0 border-b md:border-r md:border-b-0 border-primary pb-10 md:pb-0" data-aos="fade-left" data-aos-easing="ease-out" data-aos-once="true" data-aos-duration="2000" data-aos-delay="500">
-                <img class="object-contain h-20 md:h-36" src="{{ asset('assets/images/default/logo/grab-food-removebg.png') }}" alt="">
+            </a>
+            <a href="{{ cache('merchant-grabfood_link') ?: 'javascript:void(0)' }}" class="w-3/4 md:w-full flex flex-col justify-center items-center gap-1 md:gap-6 border-r-0 border-b md:border-r md:border-b-0 border-primary pb-10 md:pb-0" data-aos="fade-left" data-aos-easing="ease-out" data-aos-once="true" data-aos-duration="2000" data-aos-delay="500">
+                <img class="object-contain h-20 md:h-36" src="{{ url('assets/images/default/logo/grab-food-removebg.png') }}" alt="">
                 <p class="font-poppins text-gray-800 text-lg font-semibold">Grab Food</p>
-            </div>
-            <div class="w-3/4 md:w-full flex flex-col justify-center items-center gap-1 md:gap-6" data-aos="fade-left" data-aos-easing="ease-out" data-aos-once="true" data-aos-duration="2000" data-aos-delay="1000">
-                <img class="object-contain h-20 md:h-36" src="{{ asset('assets/images/default/logo/go-food-removebg.png') }}" alt="">
+            </a>
+            <a href="{{ cache('merchant-gofood_link') ?: 'javascript:void(0)' }}" class="w-3/4 md:w-full flex flex-col justify-center items-center gap-1 md:gap-6" data-aos="fade-left" data-aos-easing="ease-out" data-aos-once="true" data-aos-duration="2000" data-aos-delay="1000">
+                <img class="object-contain h-20 md:h-36" src="{{ url('assets/images/default/logo/go-food-removebg.png') }}" alt="">
                 <p class="font-poppins text-gray-800 text-lg font-semibold">Go Food</p>
-            </div>
+            </a>
         </div>
     </div>
 </div>

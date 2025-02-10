@@ -18,6 +18,7 @@ use App\Http\Controllers\Administrator\PermissionController;
 use App\Http\Controllers\Administrator\ProductCategoryController;
 use App\Http\Controllers\Administrator\ProductController as AdministratorProductController;
 use App\Http\Controllers\Administrator\ProfileController;
+use App\Http\Controllers\Administrator\SeoController;
 use App\Http\Controllers\administrator\SliderController;
 use App\Http\Controllers\Front\FaqController;
 use App\Http\Controllers\Front\NewsController as FrontNewsController;
@@ -59,12 +60,15 @@ Route::prefix('administrator')->as('administrator.')->group(function () {
         Route::get('/setting/content', [ContentController::class, 'index'])->name('content')->middleware('permission:view-content');
         Route::get('/setting/content/{id}/edit', [ContentController::class, 'edit'])->name('content.edit')->middleware('permission:edit-content');
 
+        // SEO        
+        Route::get('/setting/seo', [SeoController::class, 'index'])->name('seo')->middleware('permission:view-seo');
+        Route::get('/setting/seo/{id}/edit', [SeoController::class, 'edit'])->name('seo.edit')->middleware('permission:edit-seo');
+
         //====App Management====//
 
         // Feedback
         Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback')->middleware('permission:view-feedback');
-        // Route::get('/feedback/create', [FeedbackController::class, 'create'])->name('feedback.create')->middleware('permission:create-slider');
-        // Route::get('/feedback/{id}/edit', [FeedbackController::class, 'edit'])->name('feedback.edit')->middleware('permission:edit-slider');
+        Route::get('/feedback/{id}/reply', [FeedbackController::class, 'reply'])->name('feedback.reply')->middleware('permission:reply-feedback');
         Route::get('/feedback/{id}/detail', [FeedbackController::class, 'show'])->name('feedback.detail')->middleware('permission:detail-feedback');
 
         // FAQ
@@ -126,10 +130,10 @@ Route::prefix('administrator')->as('administrator.')->group(function () {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // About
-Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/tentang-kami', [AboutController::class, 'index'])->name('about');
 
 // Contact
-Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/hubungi-kami', [ContactController::class, 'index'])->name('contact');
 
 // Pricelist
 Route::get('/pricelist', [PricelistController::class, 'index'])->name('pricelist');
@@ -138,14 +142,14 @@ Route::get('/pricelist', [PricelistController::class, 'index'])->name('pricelist
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 
 // Feedback
-Route::get('/contact#feedback')->name('feedback');
+Route::get('/hubungi-kami#feedback')->name('feedback');
 
 // News
-Route::get('/news', [FrontNewsController::class, 'index'])->name('news');
-Route::get('/news/category/{slug}', [FrontNewsController::class, 'custom'])->name('news.category');
-Route::get('/news/{slug}', [FrontNewsController::class, 'show'])->name('news.detail');
+Route::get('/berita', [FrontNewsController::class, 'index'])->name('news');
+Route::get('/berita/kategori/{slug}', [FrontNewsController::class, 'custom'])->name('news.category');
+Route::get('/berita/{slug}', [FrontNewsController::class, 'show'])->name('news.detail');
 
 // Product
-Route::get('/product', [ProductController::class, 'index'])->name('product');
-Route::get('/product/category/{slug}', [ProductController::class, 'custom'])->name('product.category');
-Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.detail');
+Route::get('/produk', [ProductController::class, 'index'])->name('product');
+Route::get('/produk/kategori/{slug}', [ProductController::class, 'custom'])->name('product.category');
+Route::get('/produk/{slug}', [ProductController::class, 'show'])->name('product.detail');

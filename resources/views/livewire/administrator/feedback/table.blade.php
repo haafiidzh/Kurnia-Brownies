@@ -57,8 +57,8 @@
                             <td class="px-4 py-2 text-left">{{ $data->first_name }} {{ $data->last_name }}</td>
                             <td class="px-4 py-2 text-left">{{ $data->email }}</td>
 
-                            <td class="w-28 px-4 py-2 text-left truncate">{{ $data->message }}
-                            <td class="w-28 px-4 py-2 text-left">{{ dateTimeTranslated($data->created_at) }}
+                            <td class="px-4 py-2 text-left truncate max-w-[300px]">{{ $data->message }}</td>
+                            <td class="w-28 px-4 py-2 text-left">{{ dateTimeTranslated($data->created_at) }}</td>
                             <td class="w-28 px-4 py-2 text-center text-lg">
                                 @if ($data->status == 'pending')
                                     <span class="text-yellow-500">
@@ -77,7 +77,7 @@
                             </td>
                             <td class="px-4 py-2">
                                 <div class="flex gap-2 justify-center items-center">
-                                    @can('edit-feedback')
+                                    @can('detail-feedback')
                                         <a href="{{ route('administrator.feedback.detail', ['id' => $data->id]) }}" 
                                             wire:click="setReview('{{ $data->id }}')"
                                             class="w-7 h-7 flex justify-center items-center rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400">

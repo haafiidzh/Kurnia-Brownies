@@ -9,7 +9,9 @@ class Faq extends Component
 {
     public function render()
     {
-        $datas = ModelsFaq::where('is_active', true)->get();
+        $datas = ModelsFaq::orderBy('sort_order', 'asc')
+        ->where('is_active', true)
+        ->get();
         return view('livewire.front.extras.faq',['datas' => $datas]);
     }
 }

@@ -16,8 +16,6 @@ class Edit extends Component
     public $name;
     public $slug;
     public $description;
-    public $image;
-    public $newImage;
 
     public function mount($id)
     {
@@ -27,7 +25,6 @@ class Edit extends Component
         $this->name = $category->name;
         $this->slug = $category->slug;
         $this->description = $category->description;
-        $this->image = $category->image;
     }
 
     public function updatedName($value)
@@ -42,37 +39,22 @@ class Edit extends Component
         $rules = [
             'name' => 'required',
             'slug' => 'required',
-            'description' => 'required',
-            'image' => 'required',
+            'description' => 'nullable',
         ];
 
         $this->validate($rules);
-
-        if ($this->newImage) {
-            $path = str_replace('/storage','',$this->image);
-
-            Storage::disk('public')->delete($path);
-
-            $image_name = $this->slug . '.' . $this->newImage->extension();
-            $this->newImage->storeAs('images/categories/product', $image_name, 'public');
-
-            $image = '/storage/images/categories/product/' . $image_name;
-        } else {
-            $image = $this->image;
-        }
 
         $data->update(
             [
                 'name' => $this->name,
                 'slug' => $this->slug,
                 'description' => $this->description,
-                'image' => $image
             ]
         );
 
         session()->flash('flash_message', [
-            'type' => 'updated',
-            'message' => 'Product Category berhasil diperbarui.',
+            'type' => 'created',
+            'message' => 'Berhasil memperbarui kategori produk.',
         ]);
         
         return redirect()->route('administrator.products.category');

@@ -12,9 +12,13 @@ class Table extends Component
 
     public $search;
 
+    public array $queryString = [
+        'search',
+    ];
+
     public function mount()
     {
-        $this->search = '';
+        $this->search;
     }
 
     public function updatedSearch()
@@ -29,8 +33,8 @@ class Table extends Component
         }
     
         session()->flash('flash_message', [
-            'type' => 'updated',
-            'message' => 'Urutan FAQ berhasil diperbarui.',
+            'type' => 'created',
+            'message' => 'Berhasil mengubah urutan FAQ.',
         ]);
     }
 
@@ -43,8 +47,8 @@ class Table extends Component
             $faq->save();
 
             session()->flash('flash_message', [
-                'type' => 'updated',
-                'message' => 'Status FAQ berhasil diubah.',
+                'type' => 'created',
+                'message' => 'Berhasil mengubah status FAQ.',
             ]);
 
             return redirect()->route('administrator.faq');
@@ -59,8 +63,8 @@ class Table extends Component
             $faq->delete();
 
             session()->flash('flash_message', [
-                'type' => 'deleted',
-                'message' => 'FAQ berhasil dihapus.',
+                'type' => 'created',
+                'message' => 'Berhasil menghapus FAQ.',
             ]);
             return redirect()->route('administrator.faq');
         } else {

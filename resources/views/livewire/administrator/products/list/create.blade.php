@@ -9,7 +9,9 @@
             <div class="mb-5 flex">
                 {{-- Deskripsi Nama Produk --}}
                 <div class="w-1/4 flex flex-row gap-2">
-                    <i class="fa-solid fa-shield p-2"></i>
+                    <div class="h-6 w-6 flex justify-center items-center">
+                        <i class="fa-solid fa-heading"></i>
+                    </div> 
                     <div class="w-48 flex flex-col gap-2">
 
                         <div class="flex flex-row">
@@ -17,9 +19,9 @@
                             <p class="text-lg"> &nbsp;| Nama</p>
                         </div>
 
-                        <p class="text-sm text-slate-500 tracking-wider">Nama Produk dalam sebuah sistem sesuai
-                            dengan
-                            kewenangannya</p>
+                        <p class="text-sm text-slate-500 tracking-wider">
+                            Nama produk Anda.
+                        </p>
                     </div>
                 </div>
                 {{-- End Deskripsi Nama Produk --}}
@@ -66,15 +68,15 @@
                         </div>
                         <div class="w-2/5 mb-2 flex gap-4">
                             <div class="flex-grow">
-                                <label for="recommended" class="block mb-2 font-semibold text-sm text-slate-700 ">
-                                    Rekomendasi
+                                <label for="best_seller" class="block mb-2 font-semibold text-sm text-slate-700 ">
+                                    Best Seller
                                 </label>
-                                <p class="text-xs leading-tight text-gray-600">Produk ini direkomendasikan?</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="text-xs text-gray-800 font-bold">Biasa Saja</span>
+                                <p class="text-xs leading-tight text-gray-600">Produk ini Best Seller?</p>
+                                <div class="flex items-center gap-2 mt-2">
+                                    <span class="text-xs text-gray-800 font-bold">Tidak</span>
                                     <div class="flex items-center">
-                                        <label class="mt-2 relative inline-flex items-center cursor-pointer">
-                                            <input type="checkbox" class="sr-only peer" wire:model="recommended">
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" wire:model="best_seller">
                                             <div
                                                 class="w-9 h-5 bg-gray-400 hover:bg-gray-500 peer-focus:outline-0 peer-focus:ring-transparent rounded-full peer transition-all ease-in-out duration-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-800 hover:peer-checked:bg-indigo-900">
                                             </div>
@@ -91,22 +93,65 @@
         </div>
         {{-- End Name --}}
 
+        {{-- Start Short Description --}}
+        <div class="w-full">
+            <div class="mb-5 flex">
+                {{-- Deskripsi Tentang Produk --}}
+                <div class="w-1/4 flex flex-row gap-2">
+                    <div class="h-6 w-6 flex justify-center items-center">
+                        <i class="fa-solid fa-comment"></i>
+                    </div>
+                    <div class="w-48 flex flex-col gap-2">
+
+                        <div class="flex flex-col">
+                            <h2 class="text-base font-semibold">Short Description</h2>
+                            <div class="border-t border-black w-[75%]"></div>
+                            <p class="text-base">Deskripsi Singkat</p>
+                        </div>
+
+                        <p class="text-sm text-slate-500 tracking-wider">
+                            Deskripsi singkat mengenai produk Anda.
+                        </p>
+                    </div>
+                </div>
+
+                {{-- Form Short Deskripsi Produk --}}
+                <div class="w-1/2 px-6 py-4 shadow-md rounded-3xl bg-white">
+                    <div>
+                        <label for="description" class="block ml-1 font-semibold text-sm text-slate-700 ">Deskripsi Singkat
+                            Produk</label>
+                        <textarea rows="3"
+                            class="w-full mt-2 px-3 py-3 border border-black text-sm rounded-xl placeholder:text-slate-400 placeholder:tracking-[0.075rem]"
+                            type="text" name="description" placeholder="Deskripsi Singkat" wire:model="short_description">
+                        </textarea>
+                    </div>
+                    @error('short_description')
+                        <div class="mx-1 mt-2 font-semibold text-sm text-red-700">{{ $message }}</div>
+                    @enderror
+                </div>
+                {{-- End Form Short Deskripsi Produk --}}
+            </div>
+        </div>
+        {{-- End Short Description --}}
+
         {{-- Start Description --}}
         <div class="w-full">
             <div class="mb-5 flex">
                 {{-- Deskripsi Tentang Produk --}}
                 <div class="w-1/4 flex flex-row gap-2">
-                    <i class="fa-solid fa-shield p-2"></i>
+                    <div class="h-6 w-6 flex justify-center items-center">
+                        <i class="fa-solid fa-message"></i>
+                    </div>
                     <div class="w-48 flex flex-col gap-2">
 
                         <div class="flex flex-row">
-                            <h2 class="text-md font-semibold">Description</h2>
-                            <p class="text-md"> &nbsp;| Deskripsi</p>
+                            <h2 class="text-base font-semibold">Description</h2>
+                            <p class="text-base"> &nbsp;| Deskripsi</p>
                         </div>
 
-                        <p class="text-sm text-slate-500 tracking-wider">Nama peran dalam sebuah sistem sesuai
-                            dengan
-                            kewenangannya</p>
+                        <p class="text-sm text-slate-500 tracking-wider">
+                            Deskripsi lengkap mengenai produk Anda.
+                        </p>
                     </div>
                 </div>
 
@@ -134,7 +179,9 @@
             <div class="mb-5 flex">
                 {{-- Deskripsi Image --}}
                 <div class="w-1/4 flex flex-row gap-2">
-                    <i class="fa-solid fa-shield p-2"></i>
+                    <div class="h-6 w-6 flex justify-center items-center">
+                        <i class="fa-solid fa-image"></i>
+                    </div>
                     <div class="w-48 flex flex-col gap-2">
 
                         <div class="flex flex-row">
@@ -142,18 +189,18 @@
                             <p class="text-lg"> &nbsp;| Gambar</p>
                         </div>
 
-                        <p class="text-sm text-slate-500 tracking-wider">Nama Produk dalam sebuah sistem sesuai
-                            dengan
-                            kewenangannya</p>
+                        <p class="text-sm text-slate-500 tracking-wider">
+                            Gambar terkait produk Anda.
+                        </p>
                     </div>
                 </div>
                 {{-- End Deskripsi Image --}}
 
                 {{-- Form Image --}}
-                <div class="w-1/2 px-6 py-4 shadow-md rounded-3xl bg-white flex flex-col">
-                    <div class="my-2 flex flex-col gap-3 items-center justify-center w-full">
+                <div class="w-1/2 px-6 py-4 shadow-md rounded-3xl bg-white flex flex-col flex-shrink-0">
+                    <div class="my-2 flex flex-col gap-3 items-center justify-center w-full h-full">
                         @if ($image)
-                                <label for="image" class="cursor-pointer flex gap-2 items-center w-full">
+                                <label for="image" class="cursor-pointer flex gap-2 items-center w-full h-full">
                                     <div
                                         class="text-white rounded-md bg-slate-700 px-4 py-1 text-sm tracking-widest hover:bg-green-500 transition-all uppercase">
                                         Ganti</div>
@@ -166,14 +213,14 @@
                                         wire:model="image">
                                 </label>
                         @endif
-                        <div class="border-2 border-gray-400 border-dashed rounded-2xl w-full relative">
+                        <div class="border-2 border-gray-400 border-dashed rounded-2xl w-full h-full relative">
                             @if ($image)
                                 <img class="rounded-2xl" src="{{ $image->temporaryUrl() }}" alt="">
                             @else
                                 <input class="sr-only" type="file" accept="image/*" id="image"
                                     wire:model="image">
                                 <label for="image"
-                                    class="flex flex-col items-center rounded-2xl bg-gray-200 hover:bg-gray-300 transition-all py-5 cursor-pointer">
+                                    class="flex flex-col items-center rounded-2xl h-full bg-gray-200 hover:bg-gray-300 transition-all py-5 cursor-pointer">
                                     {{-- Upload --}}
                                     <i wire:loading.remove wire:target="image"
                                         class="fa-solid fa-cloud-arrow-up py-2 text-gray-500 text-xl"></i>
@@ -195,6 +242,13 @@
                     @enderror
                 </div>
                 {{-- End Form Image --}}
+
+                <div class="w-1/4 ps-4 flex items-start">
+                    <div class="p-2 border border-black/30 rounded-lg ">
+                        <div class="text-xs"><i class="fa-solid fa-circle-info"></i> &nbsp;Penting</div>
+                        <span class="text-[0.7rem] text-gray-600">Upload gambar dengan format .png (disarankan menggunakan aspect ratio 1:1 atau 9:16/potrait)</span>
+                    </div>
+                </div>
             </div>
         </div>
         {{-- End Image --}}
@@ -204,7 +258,9 @@
             <div class="mb-5 flex">
                 {{-- Deskripsi Galeri --}}
                 <div class="w-1/4 flex flex-row gap-2">
-                    <i class="fa-solid fa-shield p-2"></i>
+                    <div class="h-6 w-6 flex justify-center items-center">
+                        <i class="fa-solid fa-images"></i>
+                    </div>
                     <div class="w-48 flex flex-col gap-2">
 
                         <div class="flex flex-row">
@@ -212,17 +268,17 @@
                             <p class="text-lg"> &nbsp;| Galeri</p>
                         </div>
 
-                        <p class="text-sm text-slate-500 tracking-wider">Nama Produk dalam sebuah sistem sesuai
-                            dengan
-                            kewenangannya</p>
+                        <p class="text-sm text-slate-500 tracking-wider">
+                            Galeri adalah tempat untuk menampilkan foto-foto yang menarik dari produk Anda.
+                        </p>
                     </div>
                 </div>
                 {{-- End Deskripsi Image --}}
 
                 {{-- Form Galeri --}}
-                <div class="w-1/2 px-6 py-4 shadow-md rounded-3xl bg-white flex flex-col">
+                <div class="w-1/2 px-6 py-4 shadow-md rounded-3xl bg-white flex flex-col flex-shrink-0">
                     <div
-                        class="{{ $gallery ? 'gap-4' : '' }} my-2 p-4 flex flex-col items-center justify-center w-full bg-gray-300 rounded-2xl border-2 border-dashed border-gray-400 ">
+                        class="{{ $gallery ? 'gap-4' : '' }} my-2 p-4 flex flex-col items-center justify-center h-full w-full bg-gray-300 rounded-2xl border-2 border-dashed border-gray-400 ">
                         <label for="gallery" class="cursor-pointer">
                             <p
                                 class="p-3 tracking-wider bg-slate-800 text-white uppercase text-sm rounded-md hover:bg-green-500 transition-all duration-300">
@@ -241,7 +297,14 @@
                         </div>
 
                     </div>
-                    {{-- End Form Galeri --}}
+                </div>
+                {{-- End Form Galeri --}}
+                
+                <div class="w-1/4 ps-4 flex items-start">
+                    <div class="p-2 border border-black/30 rounded-lg ">
+                        <div class="text-xs"><i class="fa-solid fa-circle-info"></i> &nbsp;Penting</div>
+                        <span class="text-[0.7rem] text-gray-600">Upload gambar dengan format .png (disarankan menggunakan aspect ratio 1:1 atau 16:9/landscape)</span>
+                    </div>
                 </div>
             </div>
         </div>

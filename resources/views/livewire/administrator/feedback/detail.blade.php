@@ -37,7 +37,7 @@
             <div class="pt-3 px-6">
                 <p class="leading-relaxed">{{ $data->message }}</p>
             </div>
-            <a href="javascript:void(0)" class="absolute -bottom-7 border-2 border-slate-700 text-sm right-4 px-3 py-2 rounded-lg bg-white drop-shadow-md hover:bg-gray-100 hover:border-transparent transition-colors duration-300 active:bg-gray-300">
+            <a href="{{ route('administrator.feedback.reply', ['id' => $data->id]) }}" class="absolute -bottom-7 border-2 border-slate-700 text-sm right-4 px-3 py-2 rounded-lg bg-white drop-shadow-md hover:bg-gray-100 hover:border-transparent transition-colors duration-300 active:bg-gray-300">
                 Balas Pesan&nbsp;<i class="fa-regular fa-paper-plane"></i>
             </a>
         </div>

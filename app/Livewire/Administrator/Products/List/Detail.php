@@ -12,7 +12,7 @@ class Detail extends Component
 
     public function mount($id)
     {
-        $this->data = Product::find($id);
+        $this->data = Product::with('detail')->find($id);
     }
 
     public function render()

@@ -42,6 +42,11 @@ class News extends Model
         'published_at',
     ];
 
+    public function incrementViews()
+    {
+        $this->increment('views');
+    }
+
     protected static function boot()
     {
         parent::boot();

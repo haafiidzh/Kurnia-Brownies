@@ -16,7 +16,7 @@ class Edit extends Component
 
     public $title;
     public $slug;
-    public $description;
+    public $is_active;
     public $image;
     public $newImage;
 
@@ -27,7 +27,7 @@ class Edit extends Component
         $this->slider = $slider;
         $this->title = $slider->title;
         $this->slug = $slider->slug;
-        $this->description = $slider->description;
+        $this->is_active = $slider->is_active;
         $this->image = $slider->image;
     }
 
@@ -43,7 +43,6 @@ class Edit extends Component
         $rules = [
             'title' => 'required',
             'slug' => 'required',
-            'description' => 'required',
             'image' => 'required',
         ];
 
@@ -66,14 +65,14 @@ class Edit extends Component
             [
                 'title' => $this->title,
                 'slug' => $this->slug,
-                'description' => $this->description,
+                'is_active' => $this->is_active,
                 'image' => $image
             ]
         );
 
         session()->flash('flash_message', [
             'type' => 'created',
-            'message' => 'Data berhasil diperbarui.',
+            'message' => 'Berhasil memperbarui informasi slider.',
         ]);
 
         return redirect()->route('administrator.sliders');

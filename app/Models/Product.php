@@ -37,8 +37,9 @@ class Product extends Model
         'name',
         'slug',
         'image',
+        'short_description',
         'description',
-        'recommended',
+        'best_seller',
         'category_id',
     ];
 

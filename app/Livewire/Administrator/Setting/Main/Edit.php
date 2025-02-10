@@ -3,32 +3,38 @@
 namespace App\Livewire\Administrator\Setting\Main;
 
 use App\Models\AppSetting;
+use App\Traits\Cacheable;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, Cacheable;
 
-    public $data;
     public $id;
+    public $data;
     public $label;
     public $value;
     public $newValue;
+    public $tip;
 
     public function mount($id)
     {
         // Init
-        $this->data = AppSetting::find($id);
-        $data = $this->data;
-        $this->id = $this->data;
-        $this->value = $data->value;
+        $this->id = AppSetting::find($id);
+        $this->data = $this->id;
+
+        // Mounting
+        $this->label = $this->data->label;
+        $this->value = $this->data->value;
+        $this->tip = $this->data->tip;
     }
 
     public function update()
     {
         $data = $this->id;
+        $key = $data->key;
 
         $rules = [
             'value' => 'required|string|max:255',
@@ -46,21 +52,27 @@ class Edit extends Component
                 Storage::disk('public')->delete($path);
             }
 
-            $imageName =  $data->key . '.' . $this->newValue->extension();
-            $this->newValue->storeAs('images/setting', $imageName, 'public');
+            if ($this->newValue) {
+                $imageName =  $data->key . '.' . $this->newValue->extension();
+                $this->newValue->storeAs('images/setting/main', $imageName, 'public');
 
-            $image = '/storage/images/setting/' . $imageName;
-            $data->update(
-                [
-                    'value' => $image
-                ]
-            );
+                $image = '/storage/images/setting/main/' . $imageName;
+                $data->update(
+                    [
+                        'value' => $image
+                    ]
+                );
+
+                $this->updateCache($key, $image);
+            }
+
         } elseif ($data->type === 'input' or 'textarea') {
             $data->update(
                 [
                     'value' => $this->value
                 ]
             );
+            $this->updateCache($key, $this->value);
         }
 
         session()->flash('flash_message', [

@@ -1,8 +1,8 @@
 <div>
-    <section class="w-full bg-secondary px-10 lg:px-[120px] py-10">
+    <section class="w-full bg-accent px-10 lg:px-[120px] py-10">
         <!-- Header -->
         <div class="text-center mb-8">
-            <h2 class="text-5xl lg:text-7xl font-bold font-nunito text-primary"><i class="fa-solid fa-award"></i></h2>
+            <h2 class="text-5xl lg:text-7xl font-bold font-nunito drop-shadow-md text-primary"><i class="fa-solid fa-award"></i></h2>
             <p class="text-lg text-gray-700 mt-3 font-poppins">Kami Menjamin Kualitas terbaik untuk setiap produk kami
             </p>
         </div>
@@ -16,7 +16,7 @@
                 <select id="category" wire:model.live="selectedCategory"
                 class="flex-grow w-full py-2 px-5 appearance-none font-poppins rounded-s-xl text-black bg-gray-200 focus:bg-white transition-colors duration-300">
                     <option class="bg-gray-100" value="">Semua</option>
-                    <option class="bg-gray-100" value="recommended">Rekomendasi</option>
+                    <option class="bg-gray-100" value="best_seller">Best Seller</option>
                     @foreach ($categories as $category)
                         <option class="bg-gray-100" value="{{ $category->slug }}">{{ $category->name }}</option>
                     @endforeach
@@ -49,14 +49,14 @@
             @forelse ($datas as $data)
                 <a href="{{ route('product.detail', $data->slug) }}">
                     <div class="relative rounded-3xl w-full h-[400px] group overflow-hidden drop-shadow-md">
-                        <img src="{{ $data->image }}" alt="Produk" class="w-full h-full object-cover absolute -z-10 group-hover:scale-125 transition-all duration-300"/>
-                        <div class="flex flex-col p-6 w-full h-full bg-gradient-to-b from-black/45 via-transparent to-black/80 from-10% via-40% to-100% justify-between">
+                        <img src="{{ url($data->image) }}" alt="{{ $data->name }}" class="w-full h-full object-contain absolute -z-10 group-hover:scale-125 transition-all duration-300"/>
+                        <div class="flex flex-col p-6 w-full h-full bg-gradient-to-b from-black/30 via-black/5 to-black/70 from-15% via-60% to-100% justify-between">
                             <div class="flex">
                                 <span class="text-sm font-nunito font-semibold text-accent backdrop-blur-md rounded-full px-5 py-2 tracking-wider">{{ $data->category->name }}</span>
                             </div>
                             <div class="font-nunito text-xl text-accent tracking-wider w-[80%]">{{ $data->name }}</div>
                         </div>
-                        @if ($data->recommended == true)
+                        @if ($data->best_seller == true)
                         <div class="absolute bottom-0 right-0 w-1/4">
                             <img src="{{ asset('assets/images/default/decoration/recommended.png') }}" alt="">
                         </div>
@@ -74,7 +74,6 @@
         </div>
         <div>
             {{ $datas->links('vendor.livewire.front.product') }}
-            {{-- {{ $datas->links('vendor.livewire.tailwind') }} --}}
         </div>
     </div>
 </div>

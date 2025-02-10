@@ -145,14 +145,14 @@
     </div>
 
     <div class="z-10 mx-auto text-center px-6">
-        <h2 class="text-4xl md:text-5xl font-bold font-nunito text-primary drop-shadow-md italic mb-3 md:mb-6">
-            Mau Beli Brownies?
+        <h2 class="text-3xl md:text-5xl font-bold font-nunito text-primary drop-shadow-md italic mb-5 md:mb-6">
+            {{ cache('cta.product-title') ?: 'Mau Beli Brownies?' }}
         </h2>
-        <p class="text-gray-700 text-md md:text-lg mb-8 font-poppins">
-            Grab our latest product now and enjoy exclusive benefits just for you. Limited time offer!
+        <p class="text-gray-700 text-md md:text-lg mb-8 font-poppins md:px-0 px-10">
+            {{ cache('cta.product-description') ?: 'Grab our latest product now and enjoy exclusive benefits just for you. Limited time offer!' }}
         </p>
         <div class="flex md:flex-row flex-col justify-center items-center md:gap-4 gap-8">
-            <a href="#shop-now" data-aos="fade-up" data-aos-duration="2000" data-aos-easing="ease-out"
+            <a href="https://wa.me/{{ cache('contact-whatsapp') }}" target="_blank" data-aos="fade-up" data-aos-duration="2000" data-aos-easing="ease-out"
                 data-aos-once="true">
                 <span
                     class="bg-primary hover:bg-primary-dark text-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 tracking-wider">

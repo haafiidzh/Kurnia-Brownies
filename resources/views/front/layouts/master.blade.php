@@ -1,24 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" class="js" >
 <head>
-
-    @php
-        $icon = App\Models\AppSetting::where('key','small_logo')->get()->first();
-        $app_name = App\Models\AppSetting::where('key','app_name')->get()->first();
-    @endphp
-    <!--- basic page needs
-    ================================================== -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title') - {{ $app_name->value ?: 'Wonderful Website' }}</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{-- <script>
-        document.documentElement.classList.remove('no-js');
-        document.documentElement.classList.add('js');
-    </script> --}}
+    @stack('meta')
 
-    {{-- {!!htmlScriptTagJsApi()!!} --}}
-    
+    <title>@yield('title') - {{ cache('app_name') ?: 'Wonderful Website' }}</title>
+
     @vite([
         'resources/css/app.css',
         'resources/css/vendor.css',
@@ -27,12 +17,10 @@
         // 'resources/js/main.js',
         'resources/js/app.js',
     ])
-
-    <!-- favicons
-    ================================================== -->
+    
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/ico" sizes="32x32" href="{{ url($icon->value ?: "assets/images/default/brand_logo_square.png") }}">
-    <link rel="icon" type="image/ico" sizes="16x16" href="{{ url($icon->value ?: "assets/images/default/brand_logo_square.png") }}">
+    <link rel="icon" type="image/ico" sizes="32x32" href="{{ url(cache('favicon') ?: "assets/images/default/brand_logo_square.png") }}">
+    <link rel="icon" type="image/ico" sizes="16x16" href="{{ url(cache('favicon') ?: "assets/images/default/brand_logo_square.png") }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -43,42 +31,21 @@
 
 <body id="top">
 
-    <!-- preloader
-    ================================================== -->
-    {{-- <div id="preloader">
-        <div id="loader" class="dots-fade">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div> --}}
-
-
-    <!-- page wrap
-    ================================================== -->
-    {{-- <div id="page" class="s-pagewrap {{ request()->routeIs('home') ? 'ss-home' : '' }}"> --}}
     <div id="page" class="">
 
-        <!-- # site header
-        ================================================== -->
         <livewire:front.layouts.navbar/>
-        <!-- end s-header -->
 
-        <!-- # site-content
-        ================================================== -->
         @yield('content')
-        <!-- end s-content -->
-
 
         @if (request()->routeIs('contact'))
-        <!-- # site-footer
-        ================================================== -->
         <livewire:front.layouts.footer-contact/>
-        <!-- end s-footer -->
         @else
         <livewire:front.layouts.footer/>
         @endif
 
+        <a href="https://wa.me/{{ cache('contact_whatsapp') ?: '' }}" target="_blank" class="fixed bottom-8 right-5 md:bottom-10 md:right-10 z-30 w-14 h-14 border-2 border-transparent bg-[#25D366] text-white hover:border-[#25D366] hover:bg-white hover:text-[#25D366] active:bg-gray-200 transition-colors rounded-full flex justify-center items-center drop-shadow-md text-2xl">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
     </div>
     
     @stack('scripts')

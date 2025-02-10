@@ -35,9 +35,9 @@ class Slider extends Model
     [
         'title',
         'slug',
-        'description',
         'image',
         'likes',
+        'is_active',
         'position'
     ];
 

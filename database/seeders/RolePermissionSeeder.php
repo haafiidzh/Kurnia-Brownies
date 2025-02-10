@@ -69,10 +69,9 @@ class RolePermissionSeeder extends Seeder
             'detail-slider',
 
             'view-feedback',
-            'create-feedback',
-            'edit-feedback',
             'delete-feedback',
             'detail-feedback',
+            'reply-feedback',
             
             'view-faq',
             'create-faq',
@@ -85,6 +84,12 @@ class RolePermissionSeeder extends Seeder
             'edit-app-setting',
             'delete-app-setting',
             'detail-app-setting',
+
+            'view-seo',
+            'create-seo',
+            'edit-seo',
+            'delete-seo',
+            'detail-seo',
         ];
 
         $adminPermission = [
@@ -120,10 +125,6 @@ class RolePermissionSeeder extends Seeder
             'delete-news',
             'detail-news',
 
-            'view-content',
-            'edit-content',
-            'detail-content',
-
             'view-slider',
             'create-slider',
             'edit-slider',
@@ -131,10 +132,9 @@ class RolePermissionSeeder extends Seeder
             'detail-slider',
 
             'view-feedback',
-            'create-feedback',
-            'edit-feedback',
             'delete-feedback',
             'detail-feedback',
+            'reply-feedback',
             
             'view-faq',
             'create-faq',
@@ -145,6 +145,14 @@ class RolePermissionSeeder extends Seeder
             'view-app-setting',
             'edit-app-setting',
             'detail-app-setting',
+
+            'view-content',
+            'edit-content',
+            'detail-content',
+
+            'view-seo',
+            'edit-seo',
+            'detail-seo',
         ];
 
         $userPermission = [

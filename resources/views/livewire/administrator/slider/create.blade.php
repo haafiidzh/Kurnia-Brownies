@@ -17,7 +17,7 @@
                             </div>
 
                             <p class="text-sm text-slate-500 tracking-wider">
-                                Judul slider unik yang menarik.
+                                Judul slider untuk mengidentifikasi.
                             </p>
                         </div>
                     </div>
@@ -47,44 +47,27 @@
                                     <div class="mx-1 mt-2 font-semibold text-sm text-red-700">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="w-full">
-                {{-- Description --}}
-                <div class="mb-5 flex">
-                    {{-- Deskripsi Description --}}
-                    <div class="w-1/4 flex flex-row gap-2">
-                        <div class="h-6 w-6 flex justify-center items-center">
-                            <i class="fa-solid fa-audio-description"></i>
-                        </div>
-                        <div class="w-48 flex flex-col gap-2">
-
-                            <div class="flex flex-row">
-                                <h2 class="text-md font-semibold">Description</h2>
-                                <p class="text-md"> &nbsp;| Deskripsi</p>
+                            <div class="flex gap-4">
+                                <div class="flex-grow">
+                                    <label for="is_active" class="block mb-2 font-semibold text-sm text-slate-700 ">
+                                        Status
+                                    </label>
+                                    <p class="text-xs leading-tight text-gray-600">Aktifkan Slider?</p>
+                                    <div class="flex items-center gap-2 mt-2">
+                                        <span class="text-xs text-gray-800 font-bold">Tidak</span>
+                                        <div class="flex items-center">
+                                            <label class="relative inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" class="sr-only peer" wire:model="is_active">
+                                                <div
+                                                    class="w-9 h-5 bg-gray-400 hover:bg-gray-500 peer-focus:outline-0 peer-focus:ring-transparent rounded-full peer transition-all ease-in-out duration-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-800 hover:peer-checked:bg-indigo-900">
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <span class="text-xs text-gray-800 font-bold">Ya</span>
+                                    </div>
+                                </div>
                             </div>
-
-                            <p class="text-sm text-slate-500 tracking-wider">
-                                Deskripsi slider untuk keterangan singkat.
-                            </p>
                         </div>
-                    </div>
-
-                    {{-- Form Description --}}
-                    <div class="w-1/2 px-6 py-4 shadow-md rounded-3xl bg-white">
-                        <label for="description" class="block ml-1 font-semibold text-sm text-slate-700 ">
-                            Deskripsi
-                        </label>
-                        <textarea
-                            class="w-full mt-2 px-3 py-3 border border-black text-sm rounded-xl placeholder:text-slate-400 placeholder:tracking-[0.075rem]"
-                            name="description" placeholder="Deskripsi Slider" wire:model="description">
-                        </textarea>
-                        @error('description')
-                            <div class="mx-1 mt-2 font-semibold text-sm text-red-700">{{ $message }}</div>
-                        @enderror
                     </div>
                 </div>
             </div>
@@ -157,6 +140,12 @@
                         @enderror
                     </div>
                     {{-- End Form Image --}}
+                    <div class="w-1/4 ps-4 pt-3 flex items-start">
+                        <div class="p-2 border border-black/30 rounded-lg ">
+                            <div class="text-xs"><i class="fa-solid fa-circle-info"></i> &nbsp;Penting</div>
+                            <span class="text-[0.7rem] text-gray-600">Gambar slider harus dengan format aspect ratio 1:1</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             {{-- End Image --}}

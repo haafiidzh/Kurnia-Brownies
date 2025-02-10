@@ -1,6 +1,6 @@
 <div class="py-10 px-10 lg:px-[120px] flex flex-col gap-4" x-data="{ active: '' }">
     @foreach ($datas as $index => $faq)
-        <div class="relative w-full flex flex-col rounded-xl drop-shadow-md overflow-hidden ">
+        <div class="relative w-full flex flex-col rounded-2xl drop-shadow-md overflow-hidden ">
             <!-- Accordion Header -->
             <a href="javascript:void(0)"
                 @click="active === '{{ $faq->id }}' ? active = '' : active = '{{ $faq->id }}'"

@@ -4,6 +4,7 @@ namespace App\Livewire\Front\Home;
 
 use App\Models\Slider as ModelsSlider;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class Slider extends Component
 {
@@ -11,12 +12,13 @@ class Slider extends Component
 
     public function mount()
     {
-        // Ambil slider yang sudah dilike dari session
         $this->likedSliders = session('liked_sliders', []);
     }
 
+    #[On('toggleLike')]
     public function toggleLike($id)
     {
+        // dd($id);
         $slider = ModelsSlider::findOrFail($id);
 
         if (in_array($id, $this->likedSliders)) {
@@ -27,15 +29,17 @@ class Slider extends Component
             $this->likedSliders[] = $id;
         }
 
-        // Simpan likedSliders ke session
         session(['liked_sliders' => $this->likedSliders]);
-        // return redirect()->route('home');
+        
+        // Dispatch event untuk update UI
         $this->dispatch('likeUpdated', $id, $slider->likes);
     }
 
     public function render()
     {
-        $datas = ModelsSlider::orderBy('position', 'asc')->get();
+        $datas = ModelsSlider::where('is_active', true)
+        ->orderBy('position', 'asc')
+        ->get();
         return view('livewire.front.home.slider', ['datas' => $datas]);
     }
 }

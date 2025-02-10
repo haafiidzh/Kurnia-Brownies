@@ -4,6 +4,10 @@
     Detail
 @endsection
 
+@push('meta')
+    <x-meta :title="cache('seo_judul_home')" :description="cache('seo_deskripsi_home')" :image="cache('seo_gambar_home')"/>
+@endpush
+
 @section('content')
 <section id="content" class="s-content s-content--blog">
 

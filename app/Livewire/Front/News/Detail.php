@@ -17,22 +17,21 @@ class Detail extends Component
         // Ambil data produk yang sedang dibuka
         $this->data = News::where('slug', $slug)->first(); 
 
-        $this->prevNews = News::where('id', '!=', $this->data->id)
-            ->inRandomOrder()
-            ->first();
-
-        // Produk berikutnya (Next)
-        $this->nextNews = News::where('id', '!=', $this->data->id)
-            ->orWhere('title','!=',$this->prevNews->title) 
-            ->inRandomOrder()
-            ->first();
-
-        $this->gallery = $this->data->detail;
+        $this->data->incrementViews();
     }
 
     public function render()
     {   
-        
-        return view('livewire.front.news.detail');
+        $otherNews = News::where('is_active',true)
+        ->where('id', '!=', $this->data->id)
+        ->orderBy('views', 'desc')
+        ->with('author')
+        ->take(3)
+        ->get();
+
+        return view('livewire.front.news.detail',
+        [
+            'otherNews' => $otherNews,
+        ]);
     }
 }

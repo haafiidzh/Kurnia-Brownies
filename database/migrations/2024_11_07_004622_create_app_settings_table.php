@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('label');
             $table->string('key')->unique();
             $table->text('value')->nullable();
+            $table->text('tip')->nullable();
             $table->string('type');
             $table->timestamps();
         });

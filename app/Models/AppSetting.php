@@ -16,6 +16,7 @@ class AppSetting extends Model
         'label',
         'key',
         'value',
+        'tip',
         'type',
     ];
 

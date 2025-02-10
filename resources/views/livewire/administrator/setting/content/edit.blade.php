@@ -13,12 +13,12 @@
                     <div class="w-48 flex flex-col gap-2">
 
                         <div class="flex flex-row">
-                            <h2 class="text-lg font-semibold">{{ ucfirst($data->group) }}</h2>
-                            <p class="text-lg"> &nbsp;| Peran</p>
+                            <h2 class="text-lg font-semibold">{{ ucwords(str_replace('_',' ',$data->group)) }}</h2>
                         </div>
 
-                        <p class="text-sm text-slate-500 tracking-wider">Nama peran dalam sebuah sistem sesuai dengan
-                            kewenangannya</p>
+                        <p class="text-sm text-slate-500 tracking-wider">
+                            Pengaturan terkait isi konten di halaman depan.
+                        </p>
                     </div>
                 </div>
 
@@ -83,6 +83,14 @@
 
                     </div>
                 </div>
+                @if ($this->tip)
+                <div class="w-1/4 ps-4 flex items-start">
+                    <div class="p-2 border border-black/30 rounded-lg ">
+                        <div class="text-xs"><i class="fa-solid fa-circle-info"></i> &nbsp;Tips</div>
+                        <span class="text-[0.7rem] text-gray-600">{{ $tip }}</span>
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
 

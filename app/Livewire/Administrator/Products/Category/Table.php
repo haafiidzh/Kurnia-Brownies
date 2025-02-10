@@ -12,9 +12,13 @@ class Table extends Component
 
     public $search;
 
+    public array $queryString = [
+        'search',
+    ];
+
     public function mount()
     {
-        $this->search = '';
+        $this->search;
     }
 
     public function updatedSearch()
@@ -29,12 +33,12 @@ class Table extends Component
             $category->delete();
             session()->flash('flash_message', [
                 'type' => 'deleted',
-                'message' => 'Category berhasil dihapus.',
+                'message' => 'Berhasil menghapus Kategori Produk.',
             ]);
             return redirect()->route('administrator.products.category');
         } else {
             session()->flash('flash_message', [
-                'type' => 'error',
+                'type' => 'deleted',
                 'message' => 'Category tidak ditemukan.',
             ]);
             return redirect()->route('administrator.products.category');

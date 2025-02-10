@@ -21,6 +21,7 @@ class Content extends Model
         'label',
         'key',
         'value',
+        'tip',
         'type',
     ];
 

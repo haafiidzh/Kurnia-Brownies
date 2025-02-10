@@ -7,20 +7,32 @@ use Livewire\Component;
 
 class Table extends Component
 {
-    public $id;
     public $label;
     public $value;
 
-    public $selectedGroup = 'website_general';
+    public $selectedGroup;
+
+    public $queryString = 
+    [
+        'selectedGroup'
+    ];
+
+    public function mount()
+    {
+        $this->selectedGroup = session('selected_main_group', 'website_general');
+    }
 
     public function selectGroup($group)
     {
         $this->selectedGroup = $group;
+        session(['selected_main_group' => $group]);
     }
 
     public function render()
     {   
-        $groups = AppSetting::select('group')->distinct()->get();
+        $groups = AppSetting::select('group')
+        ->distinct()
+        ->get();
 
         if ($this->selectedGroup) {
             $datas = AppSetting::where('group', $this->selectedGroup)->get();

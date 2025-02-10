@@ -15,9 +15,9 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->text('description');
             $table->string('image');
             $table->unsignedBigInteger('likes')->default(0);
+            $table->boolean('is_active')->default(false);
             $table->unsignedInteger('position');
             $table->timestamps();
         });

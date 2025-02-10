@@ -8,39 +8,38 @@ use Livewire\Component;
 class Navbar extends Component
 {
     public $datas;
-    public $logo;
 
     public function mount()
     {
-        $this->logo = AppSetting::where('key','logo')->get()->first();
+        //
     }
 
     public function menu()
     {
         return [
             [
-                'name' => 'Home',
+                'name' => 'Beranda',
                 'route' => route('home'),
                 'active' => request()->is('/'),
             ],
             [
-                'name' => 'News',
+                'name' => 'Berita',
                 'route' => route('news'),
                 'active' => request()->is('news','news/*'),
             ],
             [
-                'name' => 'Product',
+                'name' => 'Produk',
                 'route' => route('product'),
                 'active' => request()->is('product','product/*'),
                 'has-child' => true,
             ],
             [
-                'name' => 'About',
+                'name' => 'Tentang Kami',
                 'route' => route('about'),
                 'active' => request()->is('about','about/*'),
             ],
             [
-                'name' => 'Contact',
+                'name' => 'Hubungi Kami',
                 'route' => route('contact'),
                 'active' => request()->is('contact','contact/*'),
             ],

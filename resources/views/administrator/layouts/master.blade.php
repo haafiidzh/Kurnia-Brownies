@@ -5,15 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="robots" content="noindex">
+    <meta name="robots" content="nofollow">
 
-    {{-- Icon --}}
-    {{-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> --}}
-    @php
-        $icon = App\Models\AppSetting::where('key','small_logo')->get()->first();
-    @endphp
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/ico" sizes="32x32" href="{{ $icon->value }}">
-    <link rel="icon" type="image/ico" sizes="16x16" href="{{ $icon->value }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url(cache('favicon') ?: "assets/images/default/brand_logo_square.png") }}">
+    <link rel="icon" type="image/ico" sizes="32x32" href="{{ url(cache('favicon') ?: "assets/images/default/brand_logo_square.png") }}">
+    <link rel="icon" type="image/ico" sizes="16x16" href="{{ url(cache('favicon') ?: "assets/images/default/brand_logo_square.png") }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 
     {{-- Tailwind CSS --}}
@@ -25,7 +22,7 @@
     {{-- FontAwesome --}}
     <script src="https://kit.fontawesome.com/d89a21a1ce.js" crossorigin="anonymous"></script>
     
-    <title>@yield('title') | Kurnia Brownies</title>
+    <title>@yield('title') | {{ cache('app_name') ?: 'Wonderful Website' }}</title>
 
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>

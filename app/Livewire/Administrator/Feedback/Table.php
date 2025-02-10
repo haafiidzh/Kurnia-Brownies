@@ -20,8 +20,8 @@ class Table extends Component
 
     public function mount()
     {
-        $this->search = '';
-        $this->status = '';
+        $this->search;
+        $this->status;
     }
 
     public function updatedSearch()

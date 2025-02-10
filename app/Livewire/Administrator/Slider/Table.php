@@ -14,9 +14,13 @@ class Table extends Component
     public $id;
     public $search;
 
+    public array $queryString = [
+        'search',
+    ];
+
     public function mount()
     {
-        $this->search = '';
+        $this->search;
     }
 
     public function updatedSearch()
@@ -31,8 +35,8 @@ class Table extends Component
         }
     
         session()->flash('flash_message', [
-            'type' => 'updated',
-            'message' => 'Urutan slider berhasil diperbarui.',
+            'type' => 'created',
+            'message' => 'Berhasil memperbarui urutan slider.',
         ]);
     }
 
@@ -49,8 +53,8 @@ class Table extends Component
             $slider->delete();
 
             session()->flash('flash_message', [
-                'type' => 'deleted',
-                'message' => 'Slider berhasil dihapus.',
+                'type' => 'created',
+                'message' => 'Berhasil menghapus slider.',
             ]);
             return redirect()->route('administrator.sliders');
         } else {
@@ -62,14 +66,30 @@ class Table extends Component
         } 
     }
 
+    public function togglePublished($id)
+    {
+        $slider = Slider::find($id);
+
+        if ($slider) {
+            $slider->is_active = !$slider->is_active;
+            $slider->save();
+
+            session()->flash('flash_message', [
+                'type' => 'created',
+                'message' => 'Berhasil mengubah status slider.',
+            ]);
+
+            return redirect()->route('administrator.sliders');
+        }
+    }
+
     public function render()
     {
         $datas = Slider::when($this->search, function ($query) {
-            $query->where('title', 'like', '%' . $this->search . '%')
-            ->orWhere('description', 'like', '%' . $this->search . '%');
+            $query->where('title', 'like', '%' . $this->search . '%');
         })
         ->orderBy('position','asc')
-        ->paginate(15);
+        ->get();
         
         return view('livewire.administrator.slider.table', ['datas' => $datas]);
     }

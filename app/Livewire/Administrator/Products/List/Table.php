@@ -13,9 +13,13 @@ class Table extends Component
 
     public $search;
 
+    public array $queryString = [
+        'search',
+    ];
+
     public function mount()
     {
-        $this->search = '';
+        $this->search;
     }
 
     public function updatedSearch()
@@ -30,14 +34,14 @@ class Table extends Component
             $product->deleted_at = now();
             $product->save();
             session()->flash('flash_message', [
-                'type' => 'deleted',
-                'message' => 'Product berhasil diarsipkan.',
+                'type' => 'created',
+                'message' => 'Berhasil mengarsipkan produk.',
             ]);
             return redirect()->route('administrator.products');
         } else {
             return session()->flash('flash_message', [
-                'type' => 'error',
-                'message' => 'Product tidak ditemukan.',
+                'type' => 'deleted',
+                'message' => 'Produk tidak ditemukan.',
             ]);
         }
     }
@@ -66,8 +70,8 @@ class Table extends Component
             $product->forceDelete();
 
             session()->flash('flash_message', [
-                'type' => 'deleted',
-                'message' => 'Product berhasil dihapus.',
+                'type' => 'created',
+                'message' => 'Berhasil menghapus produk.',
             ]);
             return redirect()->route('administrator.products');
         } else {
@@ -84,12 +88,12 @@ class Table extends Component
         $product = Product::find($id);
 
         if ($product) {
-            $product->recommended = !$product->recommended;
+            $product->best_seller = !$product->best_seller;
             $product->save();
 
             session()->flash('flash_message', [
-                'type' => 'updated',
-                'message' => 'Status rekomendasi berhasil diubah.',
+                'type' => 'created',
+                'message' => 'Berhasil mengubah status produk.',
             ]);
 
             return redirect()->route('administrator.products');
@@ -101,7 +105,7 @@ class Table extends Component
         $products = Product::when($this->search, function ($query) {
             $query->where('name', 'like', '%' . $this->search . '%');
         })
-        ->orderBy('name','asc')
+        ->orderBy('created_at','desc')
         ->paginate(8);
 
         return view('livewire.administrator.products.list.table', ['products' => $products]);

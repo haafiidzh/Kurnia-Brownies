@@ -26,7 +26,7 @@
                     <th class="px-4 py-2 w-40">Nama Produk</th>
                     <th class="px-4 py-2 w-24 text-center">Kategori</th>
                     <th class="px-4 py-2 w-48 text-center">Gambar</th>
-                    <th class="px-4 py-2 w-20 text-center">Recommended</th>
+                    <th class="px-4 py-2 w-20 text-center">Best Seller</th>
                     <th class="px-4 py-2 text-center">Dibuat Pada</th>
                     <th class="px-4 py-2 w-14 text-center">Action</th>
                 </thead>
@@ -79,13 +79,13 @@
                                     </div>
                                 </td>
                                 <td class="px-4 py-2 text-left">
-                                    @if ($data->recommended == true)
-                                        <span onclick="confirmRecommended('{{ $data->id }}')"
+                                    @if ($data->best_seller == true)
+                                        <span onclick="confirmBestSeller('{{ $data->id }}')"
                                             class="text-green-600 cursor-pointer text-sm">
-                                            <i class="fa-solid fa-circle-check"></i> Recommended
+                                            <i class="fa-solid fa-circle-check"></i> Best Seller
                                         </span>
-                                    @elseif ($data->recommended == false)
-                                        <span onclick="confirmRecommended('{{ $data->id }}')"
+                                    @elseif ($data->best_seller == false)
+                                        <span onclick="confirmBestSeller('{{ $data->id }}')"
                                             class="text-gray-500 cursor-pointer text-sm">
                                             <i class="fa-solid fa-circle-info"></i> Common
                                         </span>
@@ -97,13 +97,13 @@
                                 <td class="px-4 py-2">
                                     <div class="flex gap-2 justify-center">
                                         @can('detail-product')
-                                            <a href="{{ route('administrator.products.detail', ['id' => $data->id]) }}"
+                                            <a href="{{ route('administrator.products.detail', ['id' => $data->id]) }}" title="Detail Produk"
                                                 class="w-7 h-7 flex justify-center items-center rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400">
                                                 <i class="fa-solid fa-eye text-xs "></i>
                                             </a>
                                         @endcan
                                         @can('edit-product')
-                                            <a href="{{ route('administrator.products.edit', ['id' => $data->id]) }}"
+                                            <a href="{{ route('administrator.products.edit', ['id' => $data->id]) }}" title="Edit Produk"
                                                 class="w-7 h-7 flex justify-center items-center rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400">
                                                 <i class="fa-solid fa-eye-dropper text-xs"></i>
                                             </a>
@@ -111,7 +111,7 @@
                                         @canany(['delete-product', 'archive-product'])
                                             <div x-data="{ open: false }">
                                                 <div @click="open = !open"
-                                                class="w-7 h-7 flex justify-center items-center rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400">
+                                                class="cursor-pointer w-7 h-7 flex justify-center items-center rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400">
                                                     <i class="fa-solid fa-trash text-xs"></i>
                                                 </div>
                                                 <div x-show="open" @click.away="open = false"
@@ -155,7 +155,7 @@
 @push('scripts')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function confirmRecommended(id) {
+        function confirmBestSeller(id) {
             Swal.fire({
                 text: "Anda yakin ingin mengubah status produk ini?",
                 icon: 'info',

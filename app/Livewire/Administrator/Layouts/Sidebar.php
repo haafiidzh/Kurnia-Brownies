@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Administrator\Layouts;
 
-use App\Models\AppSetting;
 use Livewire\Component;
 
 class Sidebar extends Component
@@ -11,7 +10,7 @@ class Sidebar extends Component
 
     public function mount()
     {
-        $this->logo = AppSetting::where('key', 'logo')->get()->first();
+        //
     }
 
     public function menu()
@@ -192,6 +191,16 @@ class Sidebar extends Component
                         'permission' =>
                         [
                             'view-content'
+                        ],
+                    ],
+                    [
+                        'name' => 'SEO',
+                        'route' => route('administrator.seo'),
+                        'icon' => 'fa-brands fa-searchengin',
+                        'active' => request()->is('administrator/setting/seo', 'administrator/setting/seo/*'),
+                        'permission' =>
+                        [
+                            'view-seo'
                         ],
                     ],
                 ],

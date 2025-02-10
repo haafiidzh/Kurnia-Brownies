@@ -3,32 +3,38 @@
 namespace App\Livewire\Administrator\Setting\Content;
 
 use App\Models\Content;
+use App\Traits\Cacheable;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, Cacheable;
     
     public $id;
+    public $data;
     public $label;
     public $value;
+    public $newValue;
+    public $tip;
 
     public function mount($id)
     {
         // Init
         $this->id = Content::find($id);
-        $data = $this->id;
+        $this->data = $this->id;
 
         // Mounting
-        $this->label = $data->label;
-        $this->value = $data->value;
+        $this->label = $this->data->label;
+        $this->value = $this->data->value;
+        $this->tip = $this->data->tip;
     }
 
     public function update()
     {
         $data = $this->id;
+        $key = $data->key;
 
         $rules = [
             'value' => 'required|string|max:255',
@@ -40,19 +46,26 @@ class Edit extends Component
         if ($data->type == 'image') {
             
             $files = $data->value;
+            
             if ($files) {
-                Storage::disk('public')->delete($files);
+                $path = str_replace('/storage','',$files);
+                Storage::disk('public')->delete($path);
             }
 
-            $imageName = $data->key . '.' . $this->value->extension();
-            $imagePath = $this->value->storeAs('images', $imageName, 'public');
+            if ($this->newValue) {
+                $imageName =  $data->key . '.' . $this->newValue->extension();
+                $this->newValue->storeAs('images/setting/content', $imageName, 'public');
+    
+                $image = '/storage/images/setting/content/' . $imageName;
+                $data->update(
+                    [
+                        'value' => $image
+                    ]
+                );
+    
+                $this->updateCache($key, $image);
+            }
 
-            $data->update(
-                [
-                    'label' => $this->label,
-                    'value' => $imagePath
-                ]
-            );
         } elseif ($data->type == 'input' or 'textarea') {
             $data->update(
                 [
@@ -60,6 +73,8 @@ class Edit extends Component
                     'value' => $this->value
                 ]
             );
+
+            $this->updateCache($key, $this->value);
         }
 
         session()->flash('flash_message', [
@@ -72,7 +87,6 @@ class Edit extends Component
 
     public function render()
     {
-        $data = $this->id;
-        return view('livewire.administrator.setting.content.edit', ['data' => $data]);
+        return view('livewire.administrator.setting.content.edit');
     }
 }
