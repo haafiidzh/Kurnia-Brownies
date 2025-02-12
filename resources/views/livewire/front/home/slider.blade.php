@@ -41,7 +41,7 @@
                                     @endif
                                 </button>
                             </div>
-                            <p class="font-poppins rounded-full bg-accent px-8" id="likes-count-{{ $data->id }}">{{ $data->likes }} likes</p>
+                            <p class="font-poppins rounded-full bg-accent px-8" id="likes-count-{{ $data->id }}">{{ numberShortner($data->likes) }} likes</p>
                         </div>
                     </div>
                 @endforeach
@@ -83,7 +83,7 @@
         // Dispatch event ke Livewire
         Livewire.dispatch('toggleLike', { id: id });
     }
-    
+
     document.addEventListener('livewire:initialized', () => {
         Livewire.on('likeUpdated', (data) => {
             const id = data[0];
@@ -106,7 +106,7 @@
             // Update jumlah likes dari database
             const likesCount = document.getElementById(`likes-count-${id}`);
             if (likesCount) {
-                likesCount.textContent = `${newLikes} likes`;
+                likesCount.textContent = `${numberShortner(newLikes)} likes`;
             }
         });
     });

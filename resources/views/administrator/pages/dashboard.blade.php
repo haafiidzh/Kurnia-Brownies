@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+    <livewire:administrator.dashboard.visitor-summary/>
+
     <livewire:administrator.dashboard.overview/>
     {{-- <div class="border-2 p-4 w-full border-black flex justify-center">
         <model-viewer src="{{ asset('assets/model/tes-3d-model.glb') }}" auto-rotate camera-controls></model-viewer>

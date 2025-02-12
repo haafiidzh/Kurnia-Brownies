@@ -186,10 +186,9 @@
                 <a href="{{ route('product.detail', $item->slug) }}">
                     <div class="relative rounded-3xl w-full h-[400px] group overflow-hidden drop-shadow-md">
                         <img src="{{ url($item->image) }}" alt="{{ $item->name }}" class="w-full h-full object-contain absolute -z-10 group-hover:scale-125 transition-all duration-300"/>
-                        {{-- <div class="flex flex-col p-6 w-full h-full bg-gradient-to-b from-black/45 via-transparent to-black/80 from-10% via-40% to-100% justify-between"> --}}
                             <div class="flex flex-col p-6 w-full h-full bg-gradient-to-b from-black/30 via-black/5 to-black/70 from-15% via-60% to-100% justify-between">
                             <div class="flex">
-                                <span class="text-sm font-nunito font-semibold text-accent backdrop-blur-md rounded-full px-5 py-2 tracking-wider">{{ $item->category->name }}</span>
+                                <span class="text-sm font-nunito font-semibold text-accent backdrop-blur-md bg-black/10 md:bg-transparent rounded-full px-5 py-2 tracking-wider">{{ $item->category->name }}</span>
                             </div>
                             <div class="font-nunito text-xl text-accent tracking-wider w-[80%]">{{ $item->name }}</div>
                         </div>

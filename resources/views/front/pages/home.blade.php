@@ -57,15 +57,30 @@
           }
       }
 
+      .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: scaleY(0);
+    opacity: 0;
+    transform-origin: top;
+}
+
+.faq-answer.active {
+    max-height: 500px; /* Sesuaikan dengan kontennya */
+    transform: scaleY(1);
+    opacity: 1;
+}
+
 
        .faq-target {
-    border-bottom: 1px solid #6B2E1F;
-    }
+        border-bottom: 1px solid #6B2E1F;
+        }
 
-    .faq-item:nth-of-type(5) .faq-target,
-    .faq-item:nth-of-type(6) .faq-target {
-        border-bottom: none !important;
-    }
+        .faq-item:nth-of-type(5) .faq-target,
+        .faq-item:nth-of-type(6) .faq-target {
+            border-bottom: none !important;
+        }
 
     @media (max-width: 768px){
         .faq-item:nth-of-type(5) .faq-target{
@@ -83,11 +98,6 @@
     <livewire:front.home.slider />
 
     <livewire:front.home.about />
-
-    {{-- @php
-    dd(config('app.env'));
-@endphp --}}
-
 
     <div class="px-10 lg:px-[120px] my-[8rem] md:my-20 flex justify-center bg-accent py-0 md:py-14 relative overflow-x-clip">
 
@@ -233,7 +243,7 @@
             @foreach ($faqs as $index => $faq)
             <div class="px-3 faq-item flex flex-col {{ $faqs->count() > 4 ? 'w-full md:w-1/2' : 'w-full' }}"
                 data-aos="fade-up" data-aos-duration="2000" data-aos-once="true" data-aos-easing="ease-out">
-                <div class="drop-shadow-md overflow-hidden faq-target">
+                <div class="drop-shadow-md overflow-hidden {{ $faqs->count() > 4 ? 'faq-target' : ($loop->last ? '' : 'border-b border-primary' ) }}">
                     <!-- Accordion Header -->
                     <a href="javascript:void(0)"
                         @click="active === '{{ $faq->id }}' ? active = '' : active = '{{ $faq->id }}'"
@@ -241,8 +251,8 @@
                         <div class=" flex gap-4 items-center">
                             <p>{{ $faq->question }}</p>
                         </div>
-                        <svg :class="active === '{{ $faq->id }}' ? 'rotate-90' : ''"
-                            class="h-5 w-5 transition-transform duration-300" width="800px" height="800px" viewBox="0 0 24 24"
+                        <svg :class="active === '{{ $faq->id }}' ? 'rotate-90 rounded-full bg-black/15' : ''"
+                            class="h-7 w-7 p-1 transition-all duration-300" width="800px" height="800px" viewBox="0 0 24 24"
                             fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8 5L15.57 11.6237C15.7976 11.8229 15.7976 12.1771 15.57 12.3763L8 19" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -258,7 +268,8 @@
                         x-transition:leave="ease-in duration-200"
                         x-transition:leave-start="opacity-100 scale-y-100"
                         x-transition:leave-end="opacity-0 scale-y-0"
-                        class=" px-7 pb-5 text-black origin-top font-poppins">
+                        :class="{'active': active === '{{ $faq->id }}'}"
+                        class="faq-answer px-7 pb-5 text-black origin-top font-poppins">
                        <p>{!! $faq->answer !!}</p>
                    </div>
                 </div>

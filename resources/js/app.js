@@ -17,3 +17,17 @@ document.addEventListener("livewire:load", () => {
         // initializeSwiper();
     });
 });
+
+function numberShortner(number) {
+    if (number >= 0 && number < 1000) {
+        return Math.floor(number);
+    } else if (number >= 1000 && number < 1000000) {
+        return Math.floor(number / 1000) + "K+";
+    } else if (number >= 1000000 && number < 1000000000) {
+        return Math.floor(number / 1000000) + "M+";
+    } else if (number >= 1000000000 && number < 1000000000000) {
+        return Math.floor(number / 1000000000) + "B+";
+    } else {
+        return Math.floor(number / 1000000000000) + "T+";
+    }
+}

@@ -1,10 +1,11 @@
 <div>
-    <section class="w-full bg-accent px-10 lg:px-[120px] py-10">
+    <section class="w-full bg-gradient-to-b from-accent to-transparent from-80% md:from-70% to-100% px-10 lg:px-[120px] py-10">
         <!-- Header -->
-        <div class="text-center mb-8">
-            <h2 class="text-5xl lg:text-7xl font-bold font-nunito drop-shadow-md text-primary"><i class="fa-solid fa-award"></i></h2>
-            <p class="text-lg text-gray-700 mt-3 font-poppins">Kami Menjamin Kualitas terbaik untuk setiap produk kami
-            </p>
+        <div class="mb-8 md:mb-4 flex flex-col md:flex-row items-center gap-3 md:gap-6 w-full md:w-3/4">
+            <div class="flex justify-center">
+                <img class="w-36 object-contain" src="{{ url(cache('product.filter-image') ?: 'assets/images/default/quality.png') }}" alt="">
+            </div>
+            <p class="text-lg md:text-2xl font-semibold text-gray-700 font-poppins text-center md:text-left">{{ cache('product.filter-description') ?: 'Kami Menjamin Kualitas terbaik untuk setiap produk kami' }}</p>
         </div>
 
         <!-- Search and Category -->
@@ -52,7 +53,7 @@
                         <img src="{{ url($data->image) }}" alt="{{ $data->name }}" class="w-full h-full object-contain absolute -z-10 group-hover:scale-125 transition-all duration-300"/>
                         <div class="flex flex-col p-6 w-full h-full bg-gradient-to-b from-black/30 via-black/5 to-black/70 from-15% via-60% to-100% justify-between">
                             <div class="flex">
-                                <span class="text-sm font-nunito font-semibold text-accent backdrop-blur-md rounded-full px-5 py-2 tracking-wider">{{ $data->category->name }}</span>
+                                <span class="text-sm font-nunito font-semibold text-accent backdrop-blur-md bg-black/10 md:bg-transparent rounded-full px-5 py-2 tracking-wider">{{ $data->category->name }}</span>
                             </div>
                             <div class="font-nunito text-xl text-accent tracking-wider w-[80%]">{{ $data->name }}</div>
                         </div>
@@ -64,10 +65,10 @@
                     </div>
                 </a>
             @empty
-            <div class="col-span-3 px-10 py-8 flex flex-col md:flex-row justify-center items-center border border-black/50 rounded-lg shadow-inner gap-5">
-                <img class="h-36 object-contain" src="{{ asset('assets/images/default/notfound.png') }}" alt="">
-                <p class="font-poppins text-center md:text-left text-lg text-gray-600">
-                    Uppps, produk yang Anda cari tidak kami temukan.    
+            <div class="col-span-3 px-10 py-8 flex flex-col justify-center items-center border border-black/50 rounded-lg shadow-inner gap-5">
+                <img class="h-36 object-contain" src="{{ url(cache('product.notfound-image') ?: 'assets/images/default/404.png') }}" alt="">
+                <p class="font-poppins text-center md:text-left text-lg text-gray-700">
+                    {{ cache('product.notfound-description') ?: 'Oops, produk yang Anda cari tidak kami temukan.' }}
                 </p>
             </div>
             @endforelse

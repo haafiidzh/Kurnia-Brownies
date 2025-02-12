@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Categories extends Model
+class Visitor extends Model
 {
     use HasFactory;
 
-    protected $table = 'categories';
+    protected $table = 'visitors';
 
     /**
      * The primary key type for the model.
@@ -32,13 +32,13 @@ class Categories extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'group',
-        'slug',
-        'description',
-        'image',
+        'ip_address',
+        'user_agent',
+        'referer',
     ];
 
+    // BUAT UUID
+    // Kalau mau custom format uuid berikan code ini
     protected static function boot()
     {
         parent::boot();
@@ -50,16 +50,5 @@ class Categories extends Model
             }
         });
     }
-
-    // Relation Product Table
-    public function product()
-    {
-        return $this->hasMany(Product::class, 'category_id');
-    }
-    
-    // Relation News Table
-    public function news()
-    {
-        return $this->hasMany(News::class, 'category');
-    }
+    // End
 }

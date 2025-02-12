@@ -363,8 +363,8 @@ class ContentSeeder extends Seeder
                 'group' => 'product',
                 'label' => 'Gambar Filter',
                 'key' => 'product.filter-image',
-                'value' => '',
-                'tip' => 'Disarankan menggunakan gambar dengan format png tanpa background agar hasil dapat maksimal.',
+                'value' => 'assets/images/default/quality.png',
+                'tip' => 'Disarankan menggunakan gambar dengan format png tanpa background dan aspect ratio 1:1 agar hasil dapat maksimal.',
                 'type' => 'image',
             ],
             [
@@ -372,6 +372,22 @@ class ContentSeeder extends Seeder
                 'label' => 'Deskripsi Filter',
                 'key' => 'product.filter-description',
                 'value' => 'Kami menjamin kualitas terbaik untuk setiap produk yang kami tawarkan.',
+                'tip' => '',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'product',
+                'label' => 'Gambar Produk Tidak Ditemukan',
+                'key' => 'product.notfound-image',
+                'value' => 'assets/images/default/404.png',
+                'tip' => 'Disarankan menggunakan gambar dengan format aspect ratio 16:9 atau landscape (selalu gunakan gambar dengan resolusi terbaik agar hasil sesuai yang diharapkan).',
+                'type' => 'image',
+            ],
+            [
+                'group' => 'product',
+                'label' => 'Deskripsi Produk Tidak Ditemukan',
+                'key' => 'product.notfound-description',
+                'value' => 'Oops, produk yang Anda cari tidak kami temukan.',
                 'tip' => '',
                 'type' => 'input',
             ],
@@ -563,7 +579,6 @@ class ContentSeeder extends Seeder
             // End Pricelist
 
             // Privacy Policy
-            // Start Privacy Policy
             [
                 'group' => 'privacy_policy',
                 'label' => 'Judul Halaman',
@@ -590,6 +605,32 @@ class ContentSeeder extends Seeder
             ],
             // End Privacy Policy
 
+            // Error Not Found
+            [
+                'group' => 'error',
+                'label' => 'Judul Halaman',
+                'key' => 'error.404-title',
+                'value' => 'Oops! Halaman Tidak Ditemukan',
+                'tip' => '',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'error',
+                'label' => 'Deskripsi Halaman',
+                'key' => 'error.404-description',
+                'value' => 'Maaf, halaman yang Anda cari tidak ditemukan. Silakan kembali ke halaman utama atau coba lagi.',
+                'tip' => '',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'error',
+                'label' => 'Gambar Utama',
+                'key' => 'error.404-image',
+                'value' => 'assets/images/default/404.png',
+                'tip' => 'Disarankan menggunakan gambar dengan format aspect ratio 16:9 atau landscape (selalu gunakan gambar dengan resolusi terbaik agar hasil sesuai yang diharapkan).',
+                'type' => 'image',
+            ],
+            // End Error Not Found
         ];
 
         foreach ($content as $data) {
