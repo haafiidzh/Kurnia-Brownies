@@ -6,13 +6,14 @@
     </style>
 @endpush
 
-<div class="relative">
+<section class="relative">
     <div class="py-10 md:py-16 my-0 md:mb-20 ">
         <div class="flex justify-center  ">
             <div class=" inline-block text-center">
-                <h1
+                <h2
                     class="text-center font-nunito italic text-3xl md:text-5xl text-primary font-bold drop-shadow-md pb-2 md:pb-4">
-                    {{ cache('homepage.best_seller-title') ?: 'Our Best Seller' }}</h1>
+                    {{ cache('homepage.best_seller-title') ?: 'Our Best Seller' }}
+                </h2>
                 <div class="border-b-2 mx-auto border-primary/65 w-[50%] text-center"></div>
             </div>
         </div>
@@ -26,8 +27,9 @@
                     @foreach ($datas as $data)
                         <div class="swiper-slide w-1/2 h-full flex items-center justify-center relative ">
                             <div class="absolute bottom-0 h-[200px] justify-center flex items-center ">
-                                <img class="h-40 w-full drop-shadow-md object-contain" src="{{ $data->image }}"
-                                    alt="">
+                                <img loading="lazy" class="h-40 w-full drop-shadow-md object-contain" 
+                                    src="{{ $data->image }}"
+                                    alt="{{ $data->name }}">
                             </div>
                         </div>
                     @endforeach
@@ -57,15 +59,14 @@
 
             <div class="w-full md:w-1/3 flex justify-center items-center flex-col py-10 gap-5 md:gap-8 z-20 responsive-aos-text"
                 data-aos="fade-left" data-aos-duration="1000" data-aos-once="true" data-aos-easing="ease-out">
-                <h1 id="category-name" class="font-nunito text-center text-primary drop-shadow-md font-bold text-3xl">
-                </h1>
+                <h3 id="category-name" class="font-nunito text-center text-primary drop-shadow-md font-bold text-3xl"></h3>
                 <p id="category-description"
-                    class="text-sm md:text-base font-poppins text-gray-800 tracking-wider text-center"></p>
+                    class="text-sm md:text-base font-poppins text-gray-800 tracking-wider text-center">
+                </p>
             </div>
         </div>
-
     </div>
-</div>
+</section>
 
 @push('scripts')
     <script>

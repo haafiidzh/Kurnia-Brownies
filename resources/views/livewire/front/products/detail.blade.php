@@ -1,8 +1,52 @@
 @push('meta')
-    <x-meta :title="$data->name" :description="$data->short_description" :image="$data->image" />
+    <x-meta :title="$data->name" :description="$data->short_description" :image="$data->image" :keywords="$data->keywords" />
+@endpush
+
+@push('schema')
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "{{ $data->name }}",
+        "image": "{{ url($data->image) }}",
+        "description": "{{ $data->short_description }}",
+        "brand": {
+            "@type": "Brand",
+            "name": "Kurnia Brownies"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "218"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org/", 
+        "@type": "BreadcrumbList", 
+        "itemListElement": [{
+            "@type": "ListItem", 
+            "position": 1, 
+            "name": "Beranda",
+            "item": "{{ route('home') }}"  
+        },{
+            "@type": "ListItem", 
+            "position": 2, 
+            "name": "Produk",
+            "item": "{{ route('product') }}"
+        },{
+            "@type": "ListItem", 
+            "position": 3, 
+            "name": "{{ $data->name }}",
+            "item": "{{ request()->url() }}"
+        }]
+        }
+    </script>
 @endpush
 
 @push('styles')
+
     <style>
         .swiper-slide-thumb-active {
         opacity: 0.7;
@@ -68,7 +112,7 @@
                             <div class="absolute h-full w-full bg-white">
                                 <div class="relative flex h-full justify-center items-center ">
                                     <img class="h-full object-cover md:object-contain object-center" src="{{ url($item->value) }}"
-                                        alt="">
+                                        alt="{{ $data->name }}">
                                     <a @click="detailChild = true; selectedImage = '{{ url($item->value) }}'" href="javascript:void(0)" title="Fullscreen"
                                         class="absolute bottom-5 h-12 w-12 text-primary  flex justify-center items-center hover:bg-accent bg-accent/70 transition-colors duration-300 text-2xl rounded-full  border border-primary">
                                         <i class="fa-solid fa-expand"></i>

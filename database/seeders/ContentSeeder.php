@@ -34,9 +34,33 @@ class ContentSeeder extends Seeder
                 'tip' => '',
                 'type' => 'input',
             ],
+            [
+                'group' => 'cta_product',
+                'label' => 'Button Beli Sekarang',
+                'key' => 'cta.product-button-buynow',
+                'value' => 'Beli Sekarang',
+                'tip' => '',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'cta_product',
+                'label' => 'Button Pricelist',
+                'key' => 'cta.product-button-pricelist',
+                'value' => 'Pricelist',
+                'tip' => '',
+                'type' => 'input',
+            ],
 
             /// Homepage
             // Start Homepage
+            [
+                'group' => 'homepage',
+                'label' => 'Judul Halaman',
+                'key' => 'homepage.page-title',
+                'value' => 'Kurnia Brownies',
+                'tip' => 'Teks ini tidak ditampilkan tapi hanya untuk optimasi SEO',
+                'type' => 'input',
+            ],
             [
                 'group' => 'homepage',
                 'label' => 'Judul Tentang Kami',
@@ -63,6 +87,14 @@ class ContentSeeder extends Seeder
             ],
             [
                 'group' => 'homepage',
+                'label' => 'Alt Text Gambar Latar Tentang Kami',
+                'key' => 'homepage.about-image-alt',
+                'value' => 'Brownies lezat dengan tekstur lembut dan cokelat yang kaya, spesial dari Kurnia Brownies.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'homepage',
                 'label' => 'Judul Kenapa Harus Kami?',
                 'key' => 'homepage.why_us-title',
                 'value' => 'Kenapa Harus Kurnia Brownies?',
@@ -73,9 +105,17 @@ class ContentSeeder extends Seeder
                 'group' => 'homepage',
                 'label' => 'Gambar Kenapa Harus Kami? Section 1',
                 'key' => 'homepage.why_us-image.1',
-                'value' => '',
-                'tip' => 'Disarankan menggunakan gambar dengan format png tanpa background agar hasil dapat maksimal.',
+                'value' => 'assets/images/default/circle.png',
+                'tip' => 'Disarankan menggunakan gambar dengan format png tanpa background dan wajib dengan format aspect ratio 1:1 agar hasil dapat maksimal.',
                 'type' => 'image',
+            ],
+            [
+                'group' => 'homepage',
+                'label' => 'Alt Text Gambar Kenapa Harus Kami? Section 1',
+                'key' => 'homepage.why_us-image-alt.1',
+                'value' => 'Bahan Berkualitas',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
             ],
             [
                 'group' => 'homepage',
@@ -97,9 +137,17 @@ class ContentSeeder extends Seeder
                 'group' => 'homepage',
                 'label' => 'Gambar Kenapa Harus Kami? Section 2',
                 'key' => 'homepage.why_us-image.2',
-                'value' => '',
-                'tip' => 'Disarankan menggunakan gambar dengan format png tanpa background agar hasil dapat maksimal.',
+                'value' => 'assets/images/default/circle.png',
+                'tip' => 'Disarankan menggunakan gambar dengan format png tanpa background dan wajib dengan format aspect ratio 1:1 agar hasil dapat maksimal.',
                 'type' => 'image',
+            ],
+            [
+                'group' => 'homepage',
+                'label' => 'Alt Text Gambar Kenapa Harus Kami? Section 2',
+                'key' => 'homepage.why_us-image-alt.2',
+                'value' => 'Proses Higienis',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
             ],
             [
                 'group' => 'homepage',
@@ -121,9 +169,17 @@ class ContentSeeder extends Seeder
                 'group' => 'homepage',
                 'label' => 'Gambar Kenapa Harus Kami? Section 3',
                 'key' => 'homepage.why_us-image.3',
-                'value' => '',
-                'tip' => 'Disarankan menggunakan gambar dengan format png tanpa background agar hasil dapat maksimal.',
+                'value' => 'assets/images/default/circle.png',
+                'tip' => 'Disarankan menggunakan gambar dengan format png tanpa background dan wajib dengan format aspect ratio 1:1 agar hasil dapat maksimal.',
                 'type' => 'image',
+            ],
+            [
+                'group' => 'homepage',
+                'label' => 'Alt Text Gambar Kenapa Harus Kami? Section 3',
+                'key' => 'homepage.why_us-image-alt.2',
+                'value' => 'Rasa Autentik',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
             ],
             [
                 'group' => 'homepage',
@@ -139,6 +195,46 @@ class ContentSeeder extends Seeder
                 'key' => 'homepage.why_us-description.3',
                 'value' => 'Resep khas kami menghadirkan brownies dengan cita rasa autentik yang tidak bisa Anda temukan di tempat lain.',
                 'tip' => '',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'homepage',
+                'label' => 'Judul FAQ',
+                'key' => 'homepage.faq-title',
+                'value' => 'Pertanyaan Umum',
+                'tip' => '',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'homepage',
+                'label' => 'Deskripsi FAQ',
+                'key' => 'homepage.faq-description',
+                'value' => 'Belum nemu jawaban?',
+                'tip' => '',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'homepage',
+                'label' => 'Judul Lokasi',
+                'key' => 'homepage.location-title',
+                'value' => 'Lokasi Kami',
+                'tip' => '',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'homepage',
+                'label' => 'Gambar Lokasi',
+                'key' => 'homepage.location-image',
+                'value' => 'assets/images/default/about/1.jpg',
+                'tip' => 'Wajib menggunakan gambar dengan format aspect ratio 16:9 atau landscape (selalu gunakan gambar dengan resolusi terbaik agar hasil sesuai yang diharapkan).',
+                'type' => 'image',
+            ],
+            [
+                'group' => 'homepage',
+                'label' => 'Alt Text Gambar Lokasi',
+                'key' => 'homepage.location-image-alt',
+                'value' => 'Gambar lokasi strategis dengan pemandangan sekitar yang indah dan nyaman.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
                 'type' => 'input',
             ],
             [
@@ -201,6 +297,14 @@ class ContentSeeder extends Seeder
                 'tip' => 'Wajib menggunakan gambar dengan format aspect ratio 16:9 atau landscape (selalu gunakan gambar dengan resolusi terbaik agar hasil sesuai yang diharapkan).',
                 'type' => 'image',
             ],
+            [
+                'group' => 'about',
+                'label' => 'Alt Text Gambar Latar Belakang Utama',
+                'key' => 'about.page-background-image-alt',
+                'value' => 'Latar belakang halaman tentang kami dengan tampilan profesional dan menarik.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
+            ],
 
             // Kurnia
             [
@@ -226,6 +330,14 @@ class ContentSeeder extends Seeder
                 'value' => 'assets/images/default/about/1.jpg',
                 'tip' => 'Wajib menggunakan gambar dengan format aspect ratio 16:9 atau 1:1 (selalu gunakan gambar dengan resolusi terbaik agar hasil sesuai yang diharapkan).',
                 'type' => 'image',
+            ],
+            [
+                'group' => 'about',
+                'label' => 'Alt Text Gambar Latar Belakang Bagian 1',
+                'key' => 'about.page-background-section-alt.1',
+                'value' => 'Sejarah Kurnia Brownies, bisnis FnB yang berkembang dari usaha rumahan sejak 1998 menjadi merek ikonik dengan Coffee & Eatery.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
             ],
 
             // Brownies
@@ -253,6 +365,14 @@ class ContentSeeder extends Seeder
                 'tip' => 'Wajib menggunakan gambar dengan format aspect ratio 16:9 atau 1:1 (selalu gunakan gambar dengan resolusi terbaik agar hasil sesuai yang diharapkan).',
                 'type' => 'image',
             ],
+            [
+                'group' => 'about',
+                'label' => 'Alt Text Gambar Latar Belakang Section 2',
+                'key' => 'about.page-background-section-alt.2',
+                'value' => 'Brownies Kurnia yang lezat dengan tekstur lembut dan cita rasa kaya cokelat dari bubuk kakao premium, dipanggang dengan sempurna.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
+            ],
 
             // Coffee
             [
@@ -278,6 +398,14 @@ class ContentSeeder extends Seeder
                 'value' => 'assets/images/default/about/3.jpg',
                 'tip' => 'Wajib menggunakan gambar dengan format aspect ratio 16:9 atau 1:1 (selalu gunakan gambar dengan resolusi terbaik agar hasil sesuai yang diharapkan).',
                 'type' => 'image',
+            ],
+            [
+                'group' => 'about',
+                'label' => 'Alt Text Gambar Latar Belakang Section 3',
+                'key' => 'about.page-background-section-alt.3',
+                'value' => 'Cangkir kopi Kurnia dengan aroma khas, diseduh dari biji berkualitas tinggi untuk pengalaman rasa yang autentik.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
             ],
 
             // Eatery
@@ -305,6 +433,14 @@ class ContentSeeder extends Seeder
                 'tip' => 'Wajib menggunakan gambar dengan format aspect ratio 16:9 atau 1:1 (selalu gunakan gambar dengan resolusi terbaik agar hasil sesuai yang diharapkan).',
                 'type' => 'image',
             ],
+            [
+                'group' => 'about',
+                'label' => 'Alt Text Gambar Latar Belakang Section 4',
+                'key' => 'about.page-background-section-alt.4',
+                'value' => 'Suasana nyaman di Kurnia Eatery dengan hidangan lezat yang dibuat dari bahan segar dan berkualitas tinggi.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
+            ],
 
             // Ambiance
             [
@@ -330,6 +466,14 @@ class ContentSeeder extends Seeder
                 'value' => 'assets/images/default/about/3.jpg',
                 'tip' => 'Wajib menggunakan gambar dengan format aspect ratio 16:9 atau 1:1 (selalu gunakan gambar dengan resolusi terbaik agar hasil sesuai yang diharapkan).',
                 'type' => 'image',
+            ],
+            [
+                'group' => 'about',
+                'label' => 'Alt Text Gambar Latar Belakang Section 5',
+                'key' => 'about.page-background-section-alt.5',
+                'value' => 'Interior bergaya Skandinavia di Kurnia Eatery dengan nuansa hangat dan nyaman untuk pengalaman bersantap yang menyenangkan.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
             ],
             // End About
 
@@ -361,11 +505,27 @@ class ContentSeeder extends Seeder
             ],
             [
                 'group' => 'product',
+                'label' => 'Alt Text Gambar Belakang Utama',
+                'key' => 'product.page-background-image-alt',
+                'value' => 'Latar belakang halaman produk dengan desain menarik untuk menampilkan berbagai pilihan brownies.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'product',
                 'label' => 'Gambar Filter',
                 'key' => 'product.filter-image',
                 'value' => 'assets/images/default/quality.png',
                 'tip' => 'Disarankan menggunakan gambar dengan format png tanpa background dan aspect ratio 1:1 agar hasil dapat maksimal.',
                 'type' => 'image',
+            ],
+            [
+                'group' => 'product',
+                'label' => 'Alt Text Gambar Filter',
+                'key' => 'product.filter-image-alt',
+                'value' => 'Ikon filter kualitas produk Kurnia Brownies.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
             ],
             [
                 'group' => 'product',
@@ -382,6 +542,14 @@ class ContentSeeder extends Seeder
                 'value' => 'assets/images/default/404.png',
                 'tip' => 'Disarankan menggunakan gambar dengan format aspect ratio 16:9 atau landscape (selalu gunakan gambar dengan resolusi terbaik agar hasil sesuai yang diharapkan).',
                 'type' => 'image',
+            ],
+            [
+                'group' => 'product',
+                'label' => 'Alt Text Gambar Produk Tidak Ditemukan',
+                'key' => 'product.notfound-image-alt',
+                'value' => 'Ilustrasi produk tidak ditemukan di Kurnia Brownies.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
             ],
             [
                 'group' => 'product',
@@ -429,6 +597,14 @@ class ContentSeeder extends Seeder
             ],
             [
                 'group' => 'news',
+                'label' => 'Alt Text Gambar Latar Belakang Utama',
+                'key' => 'news.page-background-image-alt',
+                'value' => 'Latar belakang halaman berita dengan desain informatif untuk menyajikan berita terbaru dari Kurnia Brownies.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'news',
                 'label' => 'Judul Section Berita Terpopuler',
                 'key' => 'news.popular-title',
                 'value' => 'Berita Terpopuler',
@@ -436,7 +612,6 @@ class ContentSeeder extends Seeder
                 'type' => 'input',
             ],
             // End News
-
 
             // Contact
             // Start Contact
@@ -466,6 +641,14 @@ class ContentSeeder extends Seeder
             ],
             [
                 'group' => 'contact',
+                'label' => 'Alt Text Gambar Latar Belakang Utama',
+                'key' => 'contact.page-background-image-alt',
+                'value' => 'Latar belakang halaman hubungi kami dengan desain profesional dan ramah pengguna.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'contact',
                 'label' => 'Judul Section',
                 'key' => 'contact.page-section-title',
                 'value' => 'Kurnia Brownies',
@@ -476,7 +659,15 @@ class ContentSeeder extends Seeder
                 'group' => 'contact',
                 'label' => 'Jam Buka',
                 'key' => 'contact.open-hours',
-                'value' => '08.00 - 24.00',
+                'value' => '08.00',
+                'tip' => '',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'contact',
+                'label' => 'Jam Tutup',
+                'key' => 'contact.close-hours',
+                'value' => '24.00',
                 'tip' => '',
                 'type' => 'input',
             ],
@@ -540,6 +731,14 @@ class ContentSeeder extends Seeder
                 'tip' => 'Wajib menggunakan gambar dengan format aspect ratio 16:9 atau landscape (selalu gunakan gambar dengan resolusi terbaik agar hasil sesuai yang diharapkan).',
                 'type' => 'image',
             ],
+            [
+                'group' => 'faq',
+                'label' => 'Alt Text Gambar Latar Belakang Utama',
+                'key' => 'faq.page-background-image-alt',
+                'value' => 'Latar belakang halaman FAQ dengan tampilan bersih dan informatif.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
+            ],
             // End FAQ
 
             // Pricelict
@@ -570,6 +769,14 @@ class ContentSeeder extends Seeder
             ],
             [
                 'group' => 'pricelist',
+                'label' => 'Alt Text Gambar Latar Belakang Utama',
+                'key' => 'pricelist.page-background-image-alt',
+                'value' => 'Latar belakang halaman daftar harga Kurnia Brownies dengan tampilan elegan dan informatif.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'pricelist',
                 'label' => 'Tautan Pricelist',
                 'key' => 'pricelist.link',
                 'value' => 'https://drive.google.com/file/d/12XOq7pUYquYeOGtK4pV1C6nxJUEbhCxv/preview',
@@ -579,30 +786,38 @@ class ContentSeeder extends Seeder
             // End Pricelist
 
             // Privacy Policy
-            [
-                'group' => 'privacy_policy',
-                'label' => 'Judul Halaman',
-                'key' => 'privacy_policy.page-title',
-                'value' => 'Kebijakan Privasi',
-                'tip' => '',
-                'type' => 'input',
-            ],
-            [
-                'group' => 'privacy_policy',
-                'label' => 'Deskripsi Halaman',
-                'key' => 'privacy_policy.page-description',
-                'value' => 'Kami berkomitmen untuk melindungi data pribadi Anda dan menjelaskan bagaimana informasi Anda digunakan.',
-                'tip' => '',
-                'type' => 'input',
-            ],
-            [
-                'group' => 'privacy_policy',
-                'label' => 'Gambar Latar Belakang Utama',
-                'key' => 'privacy_policy.page-background-image',
-                'value' => 'https://picsum.photos/id/42/1600/900',
-                'tip' => 'Wajib menggunakan gambar dengan format aspect ratio 16:9 atau landscape (selalu gunakan gambar dengan resolusi terbaik agar hasil sesuai yang diharapkan).',
-                'type' => 'image',
-            ],
+            // [
+            //     'group' => 'privacy_policy',
+            //     'label' => 'Judul Halaman',
+            //     'key' => 'privacy_policy.page-title',
+            //     'value' => 'Kebijakan Privasi',
+            //     'tip' => '',
+            //     'type' => 'input',
+            // ],
+            // [
+            //     'group' => 'privacy_policy',
+            //     'label' => 'Deskripsi Halaman',
+            //     'key' => 'privacy_policy.page-description',
+            //     'value' => 'Kami berkomitmen untuk melindungi data pribadi Anda dan menjelaskan bagaimana informasi Anda digunakan.',
+            //     'tip' => '',
+            //     'type' => 'input',
+            // ],
+            // [
+            //     'group' => 'privacy_policy',
+            //     'label' => 'Gambar Latar Belakang Utama',
+            //     'key' => 'privacy_policy.page-background-image',
+            //     'value' => 'https://picsum.photos/id/42/1600/900',
+            //     'tip' => 'Wajib menggunakan gambar dengan format aspect ratio 16:9 atau landscape (selalu gunakan gambar dengan resolusi terbaik agar hasil sesuai yang diharapkan).',
+            //     'type' => 'image',
+            // ],
+            // [
+            //     'group' => 'privacy_policy',
+            //     'label' => 'Isi Utama Halaman',
+            //     'key' => 'privacy_policy.content',
+            //     'value' => '<p>Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat menggunakan layanan kami.</p><p>Kami menghormati privasi Anda dan berkomitmen untuk menjaga keamanan data pribadi Anda. Informasi yang kami kumpulkan digunakan untuk meningkatkan layanan kami dan memberikan pengalaman yang lebih baik bagi pengguna.</p><p>Dengan menggunakan layanan kami, Anda menyetujui pengumpulan dan penggunaan informasi sebagaimana dijelaskan dalam kebijakan ini.</p>',
+            //     'tip' => '',
+            //     'type' => 'textarea',
+            // ],
             // End Privacy Policy
 
             // Error Not Found
@@ -629,6 +844,14 @@ class ContentSeeder extends Seeder
                 'value' => 'assets/images/default/404.png',
                 'tip' => 'Disarankan menggunakan gambar dengan format aspect ratio 16:9 atau landscape (selalu gunakan gambar dengan resolusi terbaik agar hasil sesuai yang diharapkan).',
                 'type' => 'image',
+            ],
+            [
+                'group' => 'error',
+                'label' => 'Alt Text Gambar Utama',
+                'key' => 'error.404-image-alt',
+                'value' => 'Ilustrasi halaman error 404 yang menampilkan pesan halaman tidak ditemukan.',
+                'tip' => 'Alt text digunakan untuk meningkatkan optimasi SEO.',
+                'type' => 'input',
             ],
             // End Error Not Found
         ];

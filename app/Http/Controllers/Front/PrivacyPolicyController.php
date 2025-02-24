@@ -3,23 +3,24 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Models\Faq;
-use App\Models\Product;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class PrivacyPolicyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $faqs = Faq::orderBy('sort_order','asc')->where('is_active', true)->limit(6)->get();
-        $data = Product::all();
-        return view('front.pages.home',[
-            'faqs' => $faqs,
-            'data' => $data,
-        ]);
+        return view('front.pages.privacy.index');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        // return view('administrator.pages.privacy.edit', compact('id'));
     }
 
     /**
@@ -27,7 +28,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        // return view('administrator.pages.privacy.create');
     }
 
     /**
@@ -42,14 +43,6 @@ class HomeController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
     {
         //
     }

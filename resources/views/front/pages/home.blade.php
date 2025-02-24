@@ -1,105 +1,92 @@
 @extends('front.layouts.master')
 
-@section('title')
-    Home
-@endsection
-
 @push('meta')
-    <x-meta :title="cache('seo_judul_home')" :description="cache('seo_deskripsi_home')" :image="cache('seo_gambar_home')"/>
+    <x-meta :title="cache('seo_judul_home')" :description="cache('seo_deskripsi_home')" :image="cache('seo_gambar_home')" :keywords="cache('seo_keyword_home')"/>
 @endpush
 
 @push('styles')
-  <style>
-      .marquee {
-          overflow: hidden;
-          white-space: nowrap;
-          position: relative;
-          width: 100%;
-      }
-
-      .track {
-          display: flex;
-          gap: 1rem;
-          animation: marquee-left 120s linear infinite;
-      }
-
-      .track2 {
-          display: flex;
-          gap: 1rem;
-          animation: marquee-right 120s linear infinite;
-      }
-
-      .track:hover {
-          animation-play-state: paused
-      }
-
-      .track2:hover {
-          animation-play-state: paused
-      }
-
-      @keyframes marquee-left {
-          from {
-              transform: translateX(0);
-          }
-
-          to {
-              transform: translateX(-100%);
-          }
-      }
-
-      @keyframes marquee-right {
-          from {
-              transform: translateX(-100%);
-          }
-
-          to {
-              transform: translateX(0);
-          }
-      }
-
-      .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out, transform 0.3s ease-out, opacity 0.3s ease-out;
-    transform: scaleY(0);
-    opacity: 0;
-    transform-origin: top;
-}
-
-.faq-answer.active {
-    max-height: 500px; /* Sesuaikan dengan kontennya */
-    transform: scaleY(1);
-    opacity: 1;
-}
-
-
-       .faq-target {
+    <style>
+        .marquee {
+        overflow: visible;
+        white-space: nowrap;
+        position: relative;
+        width: 100%;
+        }
+        .track {
+        display: flex;
+        gap: 1rem;
+        animation: marquee-left 120s linear infinite;
+        }
+        .track2 {
+        display: flex;
+        gap: 1rem;
+        animation: marquee-right 120s linear infinite;
+        }
+        .track:hover {
+        animation-play-state: paused
+        }
+        .track2:hover {
+        animation-play-state: paused
+        }
+        @keyframes marquee-left {
+        from {
+        transform: translateX(0);
+        }
+        to {
+        transform: translateX(-100%);
+        }
+        }
+        @keyframes marquee-right {
+        from {
+        transform: translateX(-100%);
+        }
+        to {
+        transform: translateX(0);
+        }
+        }
+        .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out, transform 0.3s ease-out, opacity 0.3s ease-out;
+        transform: scaleY(0);
+        opacity: 0;
+        transform-origin: top;
+        }
+        .faq-answer.active {
+        max-height: 500px; /* Sesuaikan dengan kontennya */
+        transform: scaleY(1);
+        opacity: 1;
+        }
+        .faq-target {
         border-bottom: 1px solid #6B2E1F;
         }
-
         .faq-item:nth-of-type(5) .faq-target,
         .faq-item:nth-of-type(6) .faq-target {
-            border-bottom: none !important;
+        border-bottom: none !important;
         }
-
-    @media (max-width: 768px){
-        .faq-item:nth-of-type(5) .faq-target{
+        @media (max-width: 768px){
+            .faq-item:nth-of-type(5) .faq-target{
             border-bottom: 1px solid #6B2E1F !important;
-        }
-        .faq-item:nth-of-type(6) .faq-target {
+            }
+            .faq-item:nth-of-type(6) .faq-target {
             border-bottom: none !important;
+            }
         }
-    }
-
-  </style>
+    </style>
 @endpush
 
 @section('content')
+    <h1 class="hidden">
+        {{ cache('homepage.page-title') }}
+    </h1>
+    <!-- Slider -->
     <livewire:front.home.slider />
 
+    <!-- About -->
     <livewire:front.home.about />
 
-    <div class="px-10 lg:px-[120px] my-[8rem] md:my-20 flex justify-center bg-accent py-0 md:py-14 relative overflow-x-clip">
+    <!-- Why Us -->
+    <section class="px-10 lg:px-[120px] my-[8rem] md:my-20 flex justify-center bg-accent py-0 md:py-14 relative overflow-x-clip">
 
         <svg class="absolute w-full h-auto top-0 -translate-y-40 md:-translate-y-64 md:scale-100 scale-[2] -z-10 "
             xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -166,9 +153,9 @@
         <div class=" flex flex-col justify-center items-center">
             <div class="flex justify-center mb-16">
                 <div class=" inline-block text-center">
-                    <h1 class="text-center font-nunito italic text-3xl md:text-5xl text-primary font-bold drop-shadow-md pb-2 md:pb-4">
+                    <h2 class="text-center font-nunito italic text-3xl md:text-5xl text-primary font-bold drop-shadow-md pb-2 md:pb-4">
                         {{ cache('homepage.why_us-title') ?: 'Kenapa Kurnia Brownies?' }}
-                    </h1>
+                    </h2>
                     <div class="border-b-2 mx-auto border-primary/65 w-[50%] text-center"></div>
                 </div>
             </div>
@@ -177,14 +164,15 @@
                 <div class="flex-grow flex flex-col items-center gap-6" data-aos="fade-up" data-aos-duration="1500"
                     data-aos-easing="ease-out" data-aos-once="true">
                     @if (cache('homepage.why_us-image.1'))
-                    <div class="w-10 h-10 md:w-20 md:h-20"></div>
-                        <img class="object-contain w-full h-full" src="{{ url(cache('homepage.why_us-image.1')) }}" alt="">
+                    <div class="w-14 h-14 md:h-[70px] md:w-[70px]">
+                        <img loading="lazy" class="object-contain w-full h-full" src="{{ url(cache('homepage.why_us-image.1')) }}" alt="{{ cache('homepage.why_us-image-alt.1') ?: cache('homepage.why_us-title.1') }}">
+                    </div>
                     @else
                     <i class="fa-solid fa-clock-rotate-left text-3xl md:text-6xl text-primary drop-shadow-md"></i>
                     @endif
                     
                     <div class="w-full md:w-3/4">
-                        <h3 class="font-nunito text-xl md:text-2xl font-semibold tracking-wider text-center mb-3">{{ cache('homepage.why_us-title.1') ?: 'Lorem' }}</h3>
+                        <h3 class="font-nunito text-xl font-semibold tracking-wider text-center mb-3">{{ cache('homepage.why_us-title.1') ?: 'Lorem' }}</h3>
                         <p class="font-poppins text-gray-800 text-center leading-relaxed">
                             {{ cache('homepage.why_us-description.1') ? :'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit inventore tempore blanditiis.' }}
                         </p>
@@ -193,8 +181,10 @@
                 <div class="flex-grow flex flex-col items-center gap-6" data-aos="fade-up" data-aos-duration="1500"
                     data-aos-easing="ease-out" data-aos-once="true" data-aos-delay="300">
                     @if (cache('homepage.why_us-image.2'))
-                    <div class="w-10 h-10 md:w-20 md:h-20"></div>
-                        <img class="object-contain w-full h-full" src="{{ url(cache('homepage.why_us-image.2')) }}" alt="">
+                    <div class="w-14 h-14 md:h-[70px] md:w-[70px]">
+
+                        <img loading="lazy" class="object-contain w-full h-full" src="{{ url(cache('homepage.why_us-image.2')) }}" alt="{{ cache('homepage.why_us-image-alt.2') ?: cache('homepage.why_us-title.2') }}">
+                    </div>
                     @else
                     <i class="fa-solid fa-cookie text-3xl md:text-6xl text-primary drop-shadow-md"></i>
                     @endif
@@ -209,8 +199,10 @@
                 <div class="flex-grow flex flex-col items-center gap-6" data-aos="fade-up" data-aos-duration="1500"
                     data-aos-easing="ease-out" data-aos-once="true" data-aos-delay="700">
                     @if (cache('homepage.why_us-image.3'))
-                    <div class="w-10 h-10 md:w-20 md:h-20"></div>
-                        <img class="object-contain w-full h-full" src="{{ url(cache('homepage.why_us-image.3')) }}" alt="">
+                    <div class="w-14 h-14 md:h-[70px] md:w-[70px]">
+
+                        <img loading="lazy" class="object-contain w-full h-full" src="{{ url(cache('homepage.why_us-image.3')) }}" alt="{{ cache('homepage.why_us-image-alt.3') ?: cache('homepage.why_us-title.3') }}">
+                    </div>
                     @else
                     <i class="fa-solid fa-shield-halved text-3xl md:text-6xl text-primary drop-shadow-md"></i>
                     @endif
@@ -224,40 +216,44 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <div class="flex mb-0 md:mb-20"></div>
-    
-    @php
-        $faqs = App\Models\Faq::orderBy('sort_order','asc')->where('is_active', true)->limit(6)->get();
-    @endphp
-    <div class="py-10 md:py-16 px-10 lg:px-[120px] ">
+
+    <!-- FAQ -->
+    <section class="py-10 md:py-16 px-10 lg:px-[120px] ">
         <div class="flex justify-center mb-10">
             <div class=" inline-block text-center">
-                <h1 class="text-center font-nunito italic text-3xl md:text-5xl text-primary font-bold drop-shadow-md pb-2 md:pb-4">{{ cache('homepage.faq-title') ?: 'Pertanyaan Umum' }}</h1>
+                <h2 class="text-center font-nunito italic text-3xl md:text-5xl text-primary font-bold drop-shadow-md pb-2 md:pb-4">{{ cache('homepage.faq-title') ?: 'Pertanyaan Umum' }}</h2>
                 <div class="border-b-2 mx-auto border-primary/65 w-[50%] text-center"></div>
             </div>
         </div>
         
-        <div class="flex flex-wrap" x-data="{ active: '' }">
+        <ul class="flex flex-wrap" x-data="{ active: '' }">
             @foreach ($faqs as $index => $faq)
-            <div class="px-3 faq-item flex flex-col {{ $faqs->count() > 4 ? 'w-full md:w-1/2' : 'w-full' }}"
-                data-aos="fade-up" data-aos-duration="2000" data-aos-once="true" data-aos-easing="ease-out">
-                <div class="drop-shadow-md overflow-hidden {{ $faqs->count() > 4 ? 'faq-target' : ($loop->last ? '' : 'border-b border-primary' ) }}">
-                    <!-- Accordion Header -->
-                    <a href="javascript:void(0)"
-                        @click="active === '{{ $faq->id }}' ? active = '' : active = '{{ $faq->id }}'"
-                        class="flex text-lg md:text-xl font-semibold font-nunito text-primary gap-3 justify-between items-center px-7 py-5">
-                        <div class=" flex gap-4 items-center">
-                            <p>{{ $faq->question }}</p>
-                        </div>
-                        <svg :class="active === '{{ $faq->id }}' ? 'rotate-90 rounded-full bg-black/15' : ''"
-                            class="h-7 w-7 p-1 transition-all duration-300" width="800px" height="800px" viewBox="0 0 24 24"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 5L15.57 11.6237C15.7976 11.8229 15.7976 12.1771 15.57 12.3763L8 19" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </a>
+            <li class="{{ $faqs->count() > 4 ? 'w-full md:w-1/2' : 'w-full' }} p-1 md:p-2">
+
+                <div class="relative flex flex-col overflow-hidden">
+                    <div :class="active === '{{ $faq->id }}' ? 'rounded-t-2xl' : 'rounded-2xl'" class="drop-shadow-md bg-primary">
+
+                        <!-- Accordion Header -->
+                        <a href="javascript:void(0)"
+                            @click="active === '{{ $faq->id }}' ? active = '' : active = '{{ $faq->id }}'"
+                            class="flex text-lg md:text-xl  font-semibold font-nunito text-gray-200 gap-3  justify-between items-center  px-6 py-7 sm:py-7">
+                            <div class=" flex gap-4 items-center">
+                                <span class="rounded-full bg-secondary text-primary h-5 w-5 flex-shrink-0 text-sm md:text-md flex justify-center items-center">
+                                    {{ $index + 1 }}
+                                </span>
+                                <h3>{{ $faq->question }}</h3>
+                            </div>
+                            <svg :class="active === '{{ $faq->id }}' ? 'rotate-90' : ''"
+                                class="h-5 w-5 transition-transform duration-300" width="800px" height="800px" viewBox="0 0 24 24"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 5L15.57 11.6237C15.7976 11.8229 15.7976 12.1771 15.57 12.3763L8 19" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
         
                     <!-- Accordion Body -->
                     <div x-show="active === '{{ $faq->id }}'" 
@@ -268,63 +264,106 @@
                         x-transition:leave="ease-in duration-200"
                         x-transition:leave-start="opacity-100 scale-y-100"
                         x-transition:leave-end="opacity-0 scale-y-0"
-                        :class="{'active': active === '{{ $faq->id }}'}"
-                        class="faq-answer px-7 pb-5 text-black origin-top font-poppins">
+                        :class="active === '{{ $faq->id }}' ? 'rounded-b-2xl' : ''"
+                        class="bg-accent px-10 py-5 text-black origin-top font-poppins">
                        <p>{!! $faq->answer !!}</p>
                    </div>
                 </div>
-            </div>
+            </li>
             @endforeach
-        </div>
-
-        {{-- <div class="grid grid-cols-1 md:grid-cols-2 gap-4" x-data="{ active: '' }">
-    @foreach ($faqs as $faq)
-    <div class="faq-item p-1 md:p-3 flex flex-col">
-        <div class="drop-shadow-md overflow-hidden">
-            <!-- Accordion Header -->
-            <a href="javascript:void(0)"
-                @click="active === '{{ $faq->id }}' ? active = '' : active = '{{ $faq->id }}'"
-                class="faq-target flex text-lg md:text-xl font-semibold text-primary gap-3 justify-between items-center px-7 py-5 border-b border-black">
-                <p>{{ $faq->question }}</p>
-                <svg :class="active === '{{ $faq->id }}' ? 'rotate-90' : ''"
-                    class="h-5 w-5 transition-transform duration-300">
-                    <path d="M8 5L15.57 11.6237C15.7976 11.8229 15.7976 12.1771 15.57 12.3763L8 19"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </a>
-
-            <!-- Accordion Body -->
-            <div x-show="active === '{{ $faq->id }}'"
-                x-transition:enter="ease-out duration-300"
-                x-transition:enter-start="opacity-0 scale-y-0"
-                x-transition:enter-end="opacity-100 scale-y-100"
-                x-transition:leave="ease-in duration-200"
-                x-transition:leave-start="opacity-100 scale-y-100"
-                x-transition:leave-end="opacity-0 scale-y-0"
-                class="px-7 pb-5 text-black origin-top font-poppins">
-                <p>{!! $faq->answer !!}</p>
-            </div>
-        </div>
-    </div>
-    @endforeach
-</div> --}}
-
+        </ul>
         
         <div class="flex items-center mt-5 gap-5 flex-col">
-            <p class="text-base md:text-lg font-poppins text-gray-700">Belum menemukan jawaban?</p>
+            <p class="text-base md:text-lg font-poppins text-gray-700">{{ cache('homepage.faq-description') ?: 'Belum menemukan jawaban?' }}</p>
             <a href="{{ route('faq') }}"
-                class="px-10 py-4 bg-primary border-2 border-primary hover:bg-accent hover:text-primary text-gray-200 font-poppins tracking-wider shadow-md rounded-full font-semibold transition-colors duration-300">
-                Halaman FAQ
+                class="px-10 py-3 bg-primary border-2 border-primary hover:bg-accent hover:text-primary text-gray-200 font-poppins tracking-wider shadow-md rounded-full font-semibold transition-colors duration-300">
+                FAQ
             </a>
         </div>
-    </div>
+    </section>
 
+    <!-- Location -->
+    <section class="relative h-[1200px] md:h-[800px] my-10">
+        <div class="absolute inset-0 z-0 md:-z-10 bg-gradient-to-t from-white to-transparent from-50% to-70% md:from-0% md:to-30%"></div>
+        <div class="absolute inset-0 z-0 md:-z-10 bg-gradient-to-b from-white to-transparent from-0% to-20%"></div>
+
+        <img loading="lazy" class="object-center object-cover md:object-contain h-[800px] absolute -z-30" 
+            src="{{ url(cache('homepage.location-image') ?: 'assets/images/default/about/1.jpg') }}" 
+            alt="{{ cache('homepage.location-image-alt') ?: cache('homepage.location-tile') }}">
+        <div class="absolute inset-0 z-0 bg-transparent md:bg-gradient-to-l from-white to-transparent from-[35%] to-65% flex justify-end">
+            <div class="h-full w-full md:w-1/3 flex flex-col justify-end md:justify-center items-center z-20">
+                <div class="inline-block text-center mb-8" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">
+                    <h2 class="text-center font-nunito italic text-3xl md:text-4xl text-primary font-bold drop-shadow-md pb-2 md:pb-4">
+                        {{ cache('homepage.location-tile') ?: 'Lokasi Kami' }}
+                    </h2>
+                    <div class="border-b-2 mx-auto border-primary/65 w-[50%] text-center"></div>
+                </div>
+                
+                <ul class="flex flex-col text-primary gap-3 px-10">
+                    <li class="flex gap-5 items-center" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">
+                        <div class="h-7 w-7 flex items-center self-start justify-center flex-shrink-0">
+                            <i class="fa-solid fa-clock text-xl"></i>
+                        </div>
+
+                        <p class="font-poppins text-gray-600 tracking-wide">
+                            {{ cache('contact.open-hours') ?: '08.00 - 24.00'}}
+                        </p>
+                    </li>
+                    <li class="flex gap-5 items-center" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">
+                        <div class="h-7 w-7 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-envelope text-xl"></i>
+                        </div>
+
+                        <a href="mailto:{{ cache('contact-email') ?: 'kurnia@gmail.com' }}" target="_blank">
+                            <p
+                                class="font-poppins text-gray-600 tracking-wide hover:text-gray-700 transition-colors">
+                                {{ cache('contact-email') ?: 'kurnia@gmail.com' }}
+                            </p>
+                        </a>
+                    </li>
+                    <li class="flex gap-5 items-center" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">
+                        <div class="h-7 w-7 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-brands fa-square-whatsapp text-2xl"></i>
+                        </div>
+
+                        <a href="https://wa.me/{{ cache('contact-whatsapp') ?: '083754832238' }}" target="_blank">
+                            <p
+                                class="font-poppins text-gray-600 tracking-wide hover:text-gray-700 transition-colors">
+                                {{ cache('contact-whatsapp') ?: '083754832238' }}
+                            </p>
+                        </a>
+                    </li>
+                    <li class="flex gap-5 items-center" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">
+                        <div class="h-7 w-7 flex items-center self-start justify-center flex-shrink-0">
+                            <i class="fa-solid fa-map-pin text-xl"></i>
+                        </div>
+
+                        <p class="font-poppins text-gray-600 tracking-wide">
+                            {{ cache('contact-address') ?: 'Jl. Adi Sucipto, Gatak, Blulukan, Kec. Colomadu, Kabupaten Karanganyar, Jawa Tengah 57174' }}
+                        </p>
+                    </li>
+                </ul>
+
+                <div class="w-full px-10"data-aos="fade-up" data-aos-duration="700" data-aos-once="true">
+                    <figure class="overflow-hidden border border-black/45 rounded-xl mt-6 w-full">
+                        {!! newIframeAttributes(cache('contact-embed_maps') ?: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.3247498846904!2d110.76000737500253!3d-7.5395170924738535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a15fdbcf0e459%3A0x1312f15edb264ce1!2sKurnia%20Brownies%20Bake%20and%20Brew!5e0!3m2!1sid!2sid!4v1734979070958!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>') !!}
+                    </figure>
+                </div>
+                
+                <a href="{{ route('contact') }}"
+                    class="mt-10 px-10 py-3 bg-primary border-2 border-primary hover:bg-accent hover:text-primary text-gray-200 font-poppins tracking-wider shadow-md rounded-full font-semibold transition-colors duration-300">
+                    Hubungi Kami
+                </a>
+            </div>
+            
+        </div>
+    </section>
+    
+    <!-- Best Seller -->
     <livewire:front.home.best-seller />
 
-    @php
-        $data = App\Models\Product::all();
-    @endphp
-    <div class=" px-10 lg:px-[120px]">
+    <!-- Product -->
+    <section class=" px-10 lg:px-[120px]">
         <div class="relative w-full rounded-xl drop-shadow-md border border-primary/15 flex flex-col items-end gap-8 overflow-hidden bg-accent">
             <div class="w-full md:w-1/2 z-20 px-7 md:px-20 pt-[250px] pb-10 md:py-20">
                 <div class="flex justify-center  ">
@@ -352,14 +391,14 @@
                 <div class="marquee">
                     <div class="track">
                         @foreach ($data as $item)
-                            <div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
-                                <img class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="">
+                            <div class="w-32 h-32 flex-shrink-0  rounded-lg">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                         <!-- Duplikasi elemen untuk efek infinite -->
                         @foreach ($data as $item)
-                            <div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
-                                <img class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="">
+                            <div class="w-32 h-32 flex-shrink-0  rounded-lg">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                       </div>
@@ -367,14 +406,14 @@
                 <div class="marquee">
                     <div class="track2">
                         @foreach ($data as $item)
-                            <div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
-                                <img class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="">
+                            <div class="w-32 h-32 flex-shrink-0  rounded-lg">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                         
                         @foreach ($data as $item)
-                            <div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
-                                <img class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="">
+                            <div class="w-32 h-32 flex-shrink-0  rounded-lg">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                       </div>
@@ -382,14 +421,14 @@
                 <div class="marquee">
                     <div class="track">
                         @foreach ($data as $item)
-                            <div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
-                                <img class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="">
+                            <div class="w-32 h-32 flex-shrink-0  rounded-lg">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                         <!-- Duplikasi elemen untuk efek infinite -->
                         @foreach ($data as $item)
-                            <div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
-                                <img class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="">
+                            <div class="w-32 h-32 flex-shrink-0  rounded-lg">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                       </div>
@@ -397,14 +436,14 @@
                 <div class="marquee">
                     <div class="track2">
                         @foreach ($data as $item)
-                            <div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
-                                <img class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="">
+                            <div class="w-32 h-32 flex-shrink-0  rounded-lg">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                         <!-- Duplikasi elemen untuk efek infinite -->
                         @foreach ($data as $item)
-                            <div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
-                                <img class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="">
+                            <div class="w-32 h-32 flex-shrink-0  rounded-lg">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                       </div>
@@ -412,11 +451,11 @@
 
             </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Latest News -->
     <livewire:front.home.latest-news/>
 
+    <!-- Cta Product -->
     <livewire:front.cta-product />
-
-    {{-- </section> --}}
 @endsection

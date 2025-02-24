@@ -1,5 +1,51 @@
 @push('meta')
-    <x-meta :title="$data->title" :description="$data->subject" :image="$data->image" />
+    <x-meta :title="$data->title" :description="$data->subject" :image="$data->image" :keywords="$data->keywords" />
+@endpush
+
+@push('schema')    
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org/", 
+        "@type": "BreadcrumbList", 
+        "itemListElement": [{
+            "@type": "ListItem", 
+            "position": 1, 
+            "name": "Beranda",
+            "item": "{{ route('home') }}"  
+        },{
+            "@type": "ListItem", 
+            "position": 2, 
+            "name": "Berita",
+            "item": "{{ route('news') }}"
+        },{
+            "@type": "ListItem", 
+            "position": 3, 
+            "name": "{{ $data->title }}",
+            "item": "{{ request()->url() }}"
+        }]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          "headline": "{{ $data->title }}",
+          "image": "{{ url($data->image) }}",  
+          "author": {
+            "@type": "Person",
+            "name": "{{ $data->author->name }}"
+          },  
+          "publisher": {
+            "@type": "Organization",
+            "name": "{{ cache('app_name') }}",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "{{ url(cache('logo')) }}"
+            }
+          },
+          "datePublished": "{{ $data->created_at }}"
+        }
+        </script>
 @endpush
 
 <div class="relative overflow-hidden">
@@ -30,7 +76,7 @@
     
             <div class="mt-6 flex flex-col-reverse md:flex-row justify-between gap-5 md:gap-0 md:items-center">
                 <div class="">
-                    <span class="shadow-inner bg-black/20 px-3 py-2 md:py-3 md:px-4 md:text-base text-sm rounded-lg font-poppins font-semibold text-gray-600"><i class="fa-solid fa-eye text-sm"></i>&nbsp;&nbsp;Dilihat {{ $data->views }} kali</span>
+                    <span class="shadow-inner bg-black/20 px-3 py-2 md:py-3 md:px-4 md:text-base text-sm rounded-lg font-poppins font-semibold text-gray-600"><i class="fa-solid fa-eye text-sm"></i>&nbsp;&nbsp;Dilihat {{ formatNumber($data->views) }} kali</span>
                 </div>
                 
                 <div class="flex">

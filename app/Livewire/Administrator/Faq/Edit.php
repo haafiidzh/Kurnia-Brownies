@@ -49,8 +49,8 @@ class Edit extends Component
         ]);
 
         session()->flash('flash_message', [
-            'type' => 'updated',
-            'message' => 'Product berhasil diperbarui.',
+            'type' => 'created',
+            'message' => 'FAQ berhasil diperbarui.',
         ]);
 
         return redirect()->route('administrator.faq');

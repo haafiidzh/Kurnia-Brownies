@@ -1,4 +1,4 @@
-<div>
+<div class="mb-6">
     <div class="mt-6 flex gap-6">
         <div class="flex-grow">
             <div class="bg-white rounded-lg">
@@ -31,7 +31,6 @@
                         </div>
                     </a>
                     
-        
                     <a href="{{ route('administrator.news') }}">
                         <div class="group cursor-pointer bg-gray-200 hover:bg-blue-300 hover:shadow-sm py-3 px-5 flex gap-4 rounded-lg items-center transition-colors duration-300">
                             <div class="w-14 h-14 group-hover:bg-white bg-blue-300 flex items-center justify-center rounded-md transition-colors duration-300">
@@ -167,12 +166,14 @@
                 <h2 class="px-6 pb-4 text-lg font-semibold text-slate-800 tracking-wider">Berita</h2>
                 <div class="px-4 h-[300px] overflow-auto custom-scrollbar gap-2 flex flex-col">
 
-                    @forelse ($news as $item)
-                    <div class="flex flex-col rounded-md bg-gray-200 py-2 px-4 gap-1">
-                        <div class="text-gray-700 text-lg truncate">{{ $item->title }}</div>
-                        <p class="text-gray-600 text-sm"><i class="fa-solid fa-eye"></i>&nbsp;&nbsp;{{ number_format($item->views, 0, ',', '.') }}</p>
-
-                   </div>     
+                    @forelse ($news_active as $item)
+                    <a href="{{ route('administrator.news.detail', ['id' => $item->id]) }}">
+                        <div class="flex flex-col rounded-md bg-gray-200 py-2 px-4 gap-1 hover:bg-gray-300 transition-colors">
+                            <div class="text-gray-700 text-lg truncate">{{ $item->title }}</div>
+                            <p class="text-gray-600 text-sm"><i class="fa-solid fa-eye"></i>&nbsp;&nbsp;{{ formatNumber($item->views) }}</p>
+                       </div>
+                    </a>
+                    
                     @empty
                     <div class="py-2 px-4 h-full border border-slate-500 rounded-md text-sm text-gray-700">
                         Berita Anda belum ada yang melihat.

@@ -5,7 +5,6 @@ use App\Http\Controllers\Administrator\ContentController;
 use App\Http\Controllers\Administrator\DashboardController;
 use App\Http\Controllers\Administrator\FaqController as AdministratorFaqController;
 use App\Http\Controllers\Administrator\FeedbackController;
-use App\Http\Controllers\Administrator\NewsCategoryController;
 use App\Http\Controllers\Administrator\NewsController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Front\AboutController;
@@ -23,6 +22,7 @@ use App\Http\Controllers\administrator\SliderController;
 use App\Http\Controllers\Front\FaqController;
 use App\Http\Controllers\Front\NewsController as FrontNewsController;
 use App\Http\Controllers\Front\PricelistController;
+use App\Http\Controllers\Front\PrivacyPolicyController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -141,15 +141,18 @@ Route::get('/pricelist', [PricelistController::class, 'index'])->name('pricelist
 // FAQ
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 
+// Privacy Policy
+Route::get('/kebijakan-privasi', [PrivacyPolicyController::class, 'index'])->name('privacy');
+
 // Feedback
 Route::get('/hubungi-kami#feedback')->name('feedback');
 
 // News
 Route::get('/berita', [FrontNewsController::class, 'index'])->name('news');
-Route::get('/berita/kategori/{slug}', [FrontNewsController::class, 'custom'])->name('news.category');
+// Route::get('/berita/kategori/{slug}', [FrontNewsController::class, 'custom'])->name('news.category');
 Route::get('/berita/{slug}', [FrontNewsController::class, 'show'])->name('news.detail');
 
 // Product
 Route::get('/produk', [ProductController::class, 'index'])->name('product');
-Route::get('/produk/kategori/{slug}', [ProductController::class, 'custom'])->name('product.category');
+// Route::get('/produk/kategori/{slug}', [ProductController::class, 'custom'])->name('product.category');
 Route::get('/produk/{slug}', [ProductController::class, 'show'])->name('product.detail');

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Front\Contact;
 
+use App\Mail\FeedbackAdminNotification;
 use App\Mail\FeedbackGuestNotification;
 use App\Models\Feedback as ModelsFeedback;
 use Illuminate\Support\Facades\Mail;
@@ -59,7 +60,8 @@ class Feedback extends Component
             'status' => 'pending',
         ]);
 
-        Mail::to($this->email)->send(new FeedbackGuestNotification($feedback));
+        Mail::to($this->email)->queue(new FeedbackGuestNotification($feedback));
+        Mail::to(cache('contact-email'))->queue(new FeedbackAdminNotification($feedback));
         
         $this->reset();
         $this->dispatch('reset-captcha');

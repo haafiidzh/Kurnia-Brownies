@@ -9,16 +9,19 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class FeedbackAdminNotification extends Mailable
+class FeedbackAdminNotification extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
+
+    public $feedback;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($feedback)
     {
-        //
+        $this->feedback = $feedback;
+        // dd($this->feedback);
     }
 
     /**
@@ -27,7 +30,7 @@ class FeedbackAdminNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Umpan Balik',
+            subject: 'Umpan Balik Baru Diterima',
         );
     }
 
@@ -37,7 +40,8 @@ class FeedbackAdminNotification extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.feedback-admin-notification',
+            with: ['feedback' => $this->feedback]
         );
     }
 

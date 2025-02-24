@@ -4,12 +4,10 @@ namespace App\Livewire\Administrator\Products\List;
 
 use App\Models\Categories;
 use App\Models\Product;
-use App\Models\ProductCategory;
 use App\Models\ProductDetail;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class Edit extends Component
 {
@@ -21,6 +19,7 @@ class Edit extends Component
     // Product
     public $name;
     public $slug;
+    public $keywords;
     public $category_id;
     public $image;
     public $newImage;
@@ -40,6 +39,7 @@ class Edit extends Component
         
         $this->name = $data->name;
         $this->slug = $data->slug;
+        $this->keywords = $data->keywords;
         $this->category_id = $data->category_id;
         $this->image = $data->image;
         $this->description = $data->description;
@@ -78,7 +78,9 @@ class Edit extends Component
         $rules = [
             'name' => 'required',
             'slug' => 'required|unique:products,slug,' . $data->id,
+            'keywords' => 'required',
             'category_id' => 'required',
+            'short_description' => 'required',
             'description' => 'required',
         ];
 
@@ -112,6 +114,7 @@ class Edit extends Component
         $data->update([
             'name' => $this->name,
             'slug' => $this->slug,
+            'keywords' => $this->keywords,
             'category_id' => $this->category_id,
             'image' => $image,
             'short_description' => $this->short_description,

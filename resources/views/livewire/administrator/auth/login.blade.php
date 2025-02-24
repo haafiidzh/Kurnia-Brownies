@@ -1,9 +1,9 @@
 <div>
     <div class="w-full h-screen flex items-center">
         <div class="w-80 px-10 py-7 mx-auto rounded-xl shadow-xl flex flex-col bg-slate-100">
-            <div class="mb-5 flex justify-center text-xl font-semibold">
+            <h1 class="mb-5 flex justify-center text-xl font-semibold">
                 Login Admin
-            </div>
+            </h1>
 
             <form wire:submit="login">
                 @csrf

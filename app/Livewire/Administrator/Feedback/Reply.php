@@ -31,7 +31,8 @@ class Reply extends Component
             'reply' => $this->reply,
         ];
 
-        Mail::to($this->to)->send(new ReplyFeedback($data));
+        // Mail::to($this->to)->send(new ReplyFeedback($data));
+        Mail::to($this->to)->queue(new ReplyFeedback($data));
 
         session()->flash('flash_message', [
             'type' => 'created',

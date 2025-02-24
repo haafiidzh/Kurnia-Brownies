@@ -3,11 +3,11 @@
 namespace App\Livewire\Administrator\News;
 
 use App\Models\News;
-use App\Models\NewsDetail;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Intervention\Image\Laravel\Facades\Image;
+use Intervention\Image\Drivers\Gd\Encoders\WebpEncoder;
 
 class Edit extends Component
 {
@@ -19,6 +19,7 @@ class Edit extends Component
     // News
     public $title;
     public $slug;
+    public $keywords;
     public $subject;
     public $image;
     public $newImage;
@@ -33,6 +34,7 @@ class Edit extends Component
 
         $this->title = $data->title;
         $this->slug = $data->slug;
+        $this->keywords = $data->keywords;
         $this->subject = $data->subject;
         $this->image = $data->image;
         $this->description = $data->description;
@@ -50,6 +52,7 @@ class Edit extends Component
         $rules = [
             'title' => 'required',
             'slug' => 'required|unique:news,slug,' . $data->id,
+            'keywords' => 'required',
             'subject' => 'required',
             'description' => 'required',
         ];
@@ -62,10 +65,14 @@ class Edit extends Component
 
             Storage::disk('public')->delete($path);
 
-            $image_name = $this->slug . '.' . $this->newImage->extension();
-            $this->newImage->storeAs('/images/news', $image_name, 'public');
+            $imageName =  $this->slug . '.webp';
 
-            $image = '/storage/images/news/' . $image_name;
+            $convertedImage = Image::read($this->newImage->getRealPath())
+            ->cover(1600, 900, 'center')
+            ->encode(new WebpEncoder(100));
+
+            Storage::disk('public')->put('images/news/' . $imageName, $convertedImage);
+            $image = '/storage/images/news/' . $imageName;
         } else {
             $image = $this->image;
         }
@@ -73,6 +80,7 @@ class Edit extends Component
         $data->update([
             'title' => $this->title,
             'slug' => $this->slug,
+            'keywords' => $this->keywords,
             'subject' => $this->subject,
             'image' => $image,
             'description' => $this->description,

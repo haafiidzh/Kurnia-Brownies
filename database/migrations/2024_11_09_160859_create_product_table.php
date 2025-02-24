@@ -13,6 +13,7 @@ return new class extends Migration
             $table->uuid('category_id')->nullable();
             $table->string('name'); 
             $table->string('slug')->unique(); 
+            $table->string('keywords'); 
             $table->string('image')->nullable(); 
             $table->text('short_description')->nullable(); 
             $table->text('description')->nullable(); 

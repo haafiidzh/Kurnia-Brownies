@@ -2,9 +2,9 @@
 
     <div class="w-full px-10 md:px-16 lg:px-[120px] py-16 flex flex-col gap-5">
         <div class="w-full flex flex-col md:flex-row gap-5 mb-4">
-            <div class="w-full md:w-1/3 flex flex-col gap-10 items-center">
+            <section class="w-full md:w-1/3 flex flex-col gap-10 items-center">
                 <img class="w-32" src="{{ url(cache('footer_logo') ?: 'assets/images/default/brand_logo_long.png') }}"
-                    alt="">
+                    alt="Logo {{ cache('app_name') }}">
                 <div class="flex flex-col gap-3 items-center relative w-full">
                     <svg class="absolute bottom-0 left-0 w-10 h-auto rotate-90 translate-y-3"
                         xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -34,18 +34,18 @@
                         {{ cache('footer_description') ?: 'Freshly baked brownies, just for you! Indulge in our warm and delightful treats.' }}
                     </p>
                 </div>
-            </div>
+            </section>
             <div class="border-t sm:border-r border-secondary md:mr-5"></div>
-            <div class="flex gap-8 flex-col w-full md:w-3/4 text-sm">
+            <section class="flex gap-8 flex-col w-full md:w-3/4 text-sm">
                 <div class="flex flex-col w-full">
-                    <h3 class="text-xl font-nunito font-semibold text-secondary mb-3 md:mb-2">Lokasi Kami</h3>
+                    <h2 class="text-xl font-nunito font-semibold text-secondary mb-3 md:mb-2">Lokasi Kami</h2>
                     <p class="text-gray-200 font-poppins">
                         {{ cache('contact-address') ?: 'Jl. Adi Sucipto, Gatak, Blulukan, Kec. Colomadu, Kabupaten Karanganyar, Jawa Tengah 57174' }}
                     </p>
                 </div>
-                <div class="flex space-y-5 space-x-0 md:space-x-5 md:space-y-0 md:flex-nowrap flex-wrap items-start">
+                <div class="flex space-y-5 space-x-0 md:space-x-5 md:space-y-0 md:flex-nowrap flex-wrap flex-row items-start">
                     <div class="w-1/2 md:w-1/4 self-end md:self-auto flex-shrink-0">
-                        <h3 class="text-xl font-nunito font-semibold text-secondary mb-5">Menu</h3>
+                        <h2 class="text-xl font-nunito font-semibold text-secondary mb-5">Menu</h2>
                         <a href="{{ route('home') }}"
                             class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins">Beranda</a>
                         <a href="{{ route('product') }}"
@@ -55,12 +55,12 @@
                             Kami</a>
                     </div>
 
-                    <div class="w-1/2 md:w-1/4 text-end md:text-left flex-shrink-0">
-                        <h3 class="text-xl font-nunito font-semibold text-secondary mb-5">Lainnya</h3>
-                        <a href="javascript:void(0)"
+                    <div class="w-1/2 md:w-1/4 pb-5 md:pb-0 text-end self-start md:self-auto md:text-left flex-shrink-0">
+                        <h2 class="text-xl font-nunito font-semibold text-secondary mb-5">Lainnya</h2>
+                        {{-- <a href="{{ route('privacy') }}"
                             class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins">
                             Kebijakan Privasi
-                        </a>
+                        </a> --}}
                         <a href="{{ route('faq') }}"
                             class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins">FAQ</a>
                         <a href="{{ route('feedback') }}"
@@ -69,81 +69,92 @@
                         </a>
                     </div>
                     <div class="w-1/2 md:w-1/4 flex-shrink-0">
-                        <h3 class="text-xl font-nunito font-semibold text-secondary mb-5">Ikuti Kami</h3>
+                        <h2 class="text-xl font-nunito font-semibold text-secondary mb-5">Ikuti Kami</h2>
                         
                         @if (cache('social-instagram_name'))
                             <a href="{{ cache('social-instagram_link') ?: 'javascript:void(0)' }}"
                                 class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins mb-[1px]">
-                                <span class="w-4 h-4 mr-[2px]">
-                                    <i class="fa-brands fa-instagram"></i>
-                                </span>
-                                <span class="break-words">{{ cache('social-instagram_name') }}</span>
+                                <div class="flex flex-row break-words">
+                                    <span class="w-4 h-4 mr-[2px] flex-shrink-0">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </span>
+                                    {{ cache('social-instagram_name') }}
+                                </div>
                             </a>
                         @endif
                         @if (cache('social-tiktok_name'))
                             <a href="{{ cache('social-tiktok_link') ?: 'javascript:void(0)' }}"
                                 class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins mb-[1px]">
-                                <span class="w-4 h-4 mr-[2px]">
-                                    <i class="fa-brands fa-tiktok"></i>
-                                </span>
-                                <span class="break-words">{{ cache('social-tiktok_name') }}</span>
+                                <div class="flex flex-row break-words">
+                                    <span class="w-4 h-4 mr-[2px] flex-shrink-0">
+                                        <i class="fa-brands fa-tiktok"></i>
+                                    </span>
+                                    {{ cache('social-tiktok_name') }}
+                                </div>
                             </a>
                         @endif
                         @if (cache('social-facebook_name'))
                             <a href="{{ cache('social-facebook_link') ?: 'javascript:void(0)' }}"
                                 class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins mb-[1px]">
-                                <span class="w-4 h-4 mr-[2px]">
-                                    <i class="fa-brands fa-facebook"></i>
-                                </span>
-                                <span class="break-words">{{ cache('social-facebook_name') }}</span>
+                                <div class="flex flex-row break-words">
+                                    <span class="w-4 h-4 mr-[2px] flex-shrink-0">
+                                        <i class="fa-brands fa-facebook"></i>
+                                    </span>
+                                    {{ cache('social-facebook_name') }}
+                                </div>
                             </a>
                         @endif
                         @if (cache('social-youtube_name'))
                             <a href="{{ cache('social-youtube_link') ?: 'javascript:void(0)' }}"
                                 class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins mb-[1px]">
-                                <span class="w-4 h-4 mr-[2px]">
-                                    <i class="fa-brands fa-youtube"></i>
-                                </span>
-                                <span class="break-words">{{ cache('social-youtube_name') }}</span>
+                                <div class="flex flex-row break-words">
+                                    <span class="w-4 h-4 mr-[2px] flex-shrink-0">
+                                        <i class="fa-brands fa-youtube"></i>
+                                    </span>
+                                    {{ cache('social-youtube_name') }}
+                                </div>
                             </a>
                         @endif
                         @if (cache('social-twitter_name'))
                             <a href="{{ cache('social-twitter_link') ?: 'javascript:void(0)' }}"
                                 class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins mb-[1px]">
-                                <span class="w-4 h-4 mr-[2px]">
-                                    <i class="fa-brands fa-twitter"></i>
-                                </span>
-                                <span class="break-words">{{ cache('social-twitter_name') }}</span>
+                                <div class="flex flex-row break-words">
+                                    <span class="w-4 h-4 mr-[2px] flex-shrink-0">
+                                        <i class="fa-brands fa-twitter"></i>
+                                    </span>
+                                    {{ cache('social-twitter_name') }}
+                                </div>
                             </a>
                         @endif
                     </div>
                     <div class="w-1/2 md:w-1/4 text-end md:text-left flex-shrink-0">
-                        <h3 class="text-xl font-nunito font-semibold text-secondary mb-5">Hubungi Kami</h3>
+                        <h2 class="text-xl font-nunito font-semibold text-secondary mb-5">Hubungi Kami</h2>
                         <a href="https://wa.me/{{ cache('contact-whatsapp') ?: 'javascript:void(0)' }}" target="_blank"
                             class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins">
-                            <svg class="w-4 h-4 inline mr-[2px]" fill="currentColor" width="800px" height="800px"
-                                viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                <title>whatsapp</title>
-                                <path
-                                    d="M26.576 5.363c-2.69-2.69-6.406-4.354-10.511-4.354-8.209 0-14.865 6.655-14.865 14.865 0 2.732 0.737 5.291 2.022 7.491l-0.038-0.070-2.109 7.702 7.879-2.067c2.051 1.139 4.498 1.809 7.102 1.809h0.006c8.209-0.003 14.862-6.659 14.862-14.868 0-4.103-1.662-7.817-4.349-10.507l0 0zM16.062 28.228h-0.005c-0 0-0.001 0-0.001 0-2.319 0-4.489-0.64-6.342-1.753l0.056 0.031-0.451-0.267-4.675 1.227 1.247-4.559-0.294-0.467c-1.185-1.862-1.889-4.131-1.889-6.565 0-6.822 5.531-12.353 12.353-12.353s12.353 5.531 12.353 12.353c0 6.822-5.53 12.353-12.353 12.353h-0zM22.838 18.977c-0.371-0.186-2.197-1.083-2.537-1.208-0.341-0.124-0.589-0.185-0.837 0.187-0.246 0.371-0.958 1.207-1.175 1.455-0.216 0.249-0.434 0.279-0.805 0.094-1.15-0.466-2.138-1.087-2.997-1.852l0.010 0.009c-0.799-0.74-1.484-1.587-2.037-2.521l-0.028-0.052c-0.216-0.371-0.023-0.572 0.162-0.757 0.167-0.166 0.372-0.434 0.557-0.65 0.146-0.179 0.271-0.384 0.366-0.604l0.006-0.017c0.043-0.087 0.068-0.188 0.068-0.296 0-0.131-0.037-0.253-0.101-0.357l0.002 0.003c-0.094-0.186-0.836-2.014-1.145-2.758-0.302-0.724-0.609-0.625-0.836-0.637-0.216-0.010-0.464-0.012-0.712-0.012-0.395 0.010-0.746 0.188-0.988 0.463l-0.001 0.002c-0.802 0.761-1.3 1.834-1.3 3.023 0 0.026 0 0.053 0.001 0.079l-0-0.004c0.131 1.467 0.681 2.784 1.527 3.857l-0.012-0.015c1.604 2.379 3.742 4.282 6.251 5.564l0.094 0.043c0.548 0.248 1.25 0.513 1.968 0.74l0.149 0.041c0.442 0.14 0.951 0.221 1.479 0.221 0.303 0 0.601-0.027 0.889-0.078l-0.031 0.004c1.069-0.223 1.956-0.868 2.497-1.749l0.009-0.017c0.165-0.366 0.261-0.793 0.261-1.242 0-0.185-0.016-0.366-0.047-0.542l0.003 0.019c-0.092-0.155-0.34-0.247-0.712-0.434z">
-                                </path>
-                            </svg>
-                            Whatsapp</a>
+                            <div class="flex flex-row-reverse md:flex-row">
+                                <span class="w-4 h-4 ml-[2px] md:mr-[2px]">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </span>
+                                Whatsapp
+                            </div>
+                            
+                        </a>
                         <a href="mailto:{{ cache('contact-email') ?: 'javascript:void(0)' }}"
                             class="text-gray-200 transition-colors duration-300 hover:text-secondary block font-poppins">
-                            <svg class="w-4 h-4 inline mr-[2px]" fill="currentColor" width="800px" height="800px"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M20 4C21.6569 4 23 5.34315 23 7V17C23 18.6569 21.6569 20 20 20H4C2.34315 20 1 18.6569 1 17V7C1 5.34315 2.34315 4 4 4H20ZM19.2529 6H4.74718L11.3804 11.2367C11.7437 11.5236 12.2563 11.5236 12.6197 11.2367L19.2529 6ZM3 7.1688V17C3 17.5523 3.44772 18 4 18H20C20.5523 18 21 17.5523 21 17V7.16882L13.8589 12.8065C12.769 13.667 11.231 13.667 10.1411 12.8065L3 7.1688Z" />
-                            </svg>
-                            Email</a>
+                            <div class="flex flex-row-reverse md:flex-row">
+                                <span class="w-4 h-4 ml-[2px] md:mr-[2px]">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </span>
+                                Email
+                            </div>
+                        </a>
                     </div>
                 </div>
 
-            </div>
+            </section>
         </div>
 
-        <div class="relative w-full z-0 shadow-lg bg-secondary rounded-md py-5 px-10 overflow-hidden">
+        <section class="relative w-full z-0 shadow-lg bg-secondary rounded-md py-5 px-10 overflow-hidden">
             <svg class="-z-10 absolute overflow-hidden w-auto h-72 -translate-x-48 sm:-translate-x-32 md:-translate-x-16 lg:translate-x-0 -translate-y-19  left-0 top-0"
                 xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 800 800">
@@ -538,7 +549,7 @@
                     </circle>
                 </g>
             </svg>
-            <p class=" text-sm font-poppins text-center">{!! cache('copyright') ?: '&copy; Kurnia Brownies 2025. All Rights Reserved.' !!}</p>
-        </div>
+            <h2 class=" text-sm font-poppins text-center">{!! cache('copyright') ?: '&copy; Kurnia Brownies 2025. All Rights Reserved.' !!}</h2>
+        </section>
     </div>
 </footer>

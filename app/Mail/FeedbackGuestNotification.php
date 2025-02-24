@@ -2,14 +2,14 @@
 
 namespace App\Mail;
 
-use App\Models\AppSetting;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class FeedbackGuestNotification extends Mailable
+class FeedbackGuestNotification extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -38,13 +38,10 @@ class FeedbackGuestNotification extends Mailable
      */
     public function content(): Content
     {
-        $logo = AppSetting::where('key', 'logo')->first();
-
         return new Content(
             view: 'emails.feedback-guest-notification',
             with: [
                 'feedback' => $this->feedback,
-                'logo' => $logo->value
             ],
         );
     }

@@ -57,9 +57,37 @@
                             <div class="mx-1 mt-2 font-semibold text-sm text-red-700">{{ $message }}</div>
                         @enderror
                     </div>
-                    
+                    <div class="mb-1">
+                        <label for="keywords" class="block ml-1 font-semibold text-sm text-slate-700 ">Kata Kunci</label>
+                        <input
+                            class="w-full mt-2 px-3 py-3 border border-black text-sm rounded-xl text-slate-600 placeholder:text-slate-400 placeholder:tracking-[0.075rem]"
+                            type="text" name="keywords" placeholder="Kata Kunci Berita (Keywords)"
+                            wire:model="keywords" >
+                        @error('keywords')
+                            <div class="mx-1 mt-2 font-semibold text-sm text-red-700">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
                 {{-- End Form Nama Produk --}}
+
+                <div class="w-1/4 ps-4 flex items-start overflow-hidden">
+                    <div class="p-2 h-[390px] overflow-auto custom-scrollbar border border-black/30 rounded-lg">
+                        <div class="text-xs"><i class="fa-solid fa-circle-info"></i> &nbsp;Penting</div>
+                        <span class="text-[0.7rem] text-gray-600">
+                            <span class="font-semibold">Judul</span> buatlah semenarik mungkin dan pastikan judul mengandung kata kunci atau sebaliknya.
+                            <br>
+                            cth: 
+                            <br> Judul : Lezat & Lumer! 10 Menu Brownies Kurnia Paling Favorit
+                            <br> Kata Kunci : brownies kurnia, brownies, brownies lezat, brownies lumer
+                            <br>
+                            <span class="font-semibold">Kata Kunci</span> diperlukan untuk optimasi SEO berita Anda. Gunakan kata kunci yang paling berkaitan dengan berita Anda. Format penulisan harus huruf kecil semua (lowercase) dan dipisahkan dengan koma (,) dan spasi.
+                            <br>
+                            cth: resep brownies, cara membuat, resep diy, brownies
+                        </span>
+                        <div class="">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         {{-- End Name --}}
@@ -93,7 +121,7 @@
                         <textarea rows="7" id="summernote"
                             class="w-full mt-2 px-3 py-3 border border-black text-sm rounded-xl placeholder:text-slate-400 placeholder:tracking-[0.075rem]"
                             type="text" name="description" placeholder="Deskripsi Produk" wire:model="description">
-                                </textarea>
+                        </textarea>
                     </div>
                     @error('description')
                         <div class="mx-1 mt-2 font-semibold text-sm text-red-700">{{ $message }}</div>

@@ -2,7 +2,7 @@
     <div class="bg-white rounded-lg">
         <div class="px-8 pt-4 flex justify-between items-center">
             <h2 class=" text-xl font-semibold text-slate-800 tracking-wider">Statistik Pengunjung Website</h2>
-            <div class="text-sm flex items-center gap-4">
+            <div class="text-sm flex items-center gap-2">
                 <span>Pilih Tahun</span>
                 <div @click="dropdown = !dropdown" :class="dropdown ? 'bg-gray-100' : ''"
                     class="relative cursor-pointer border flex items-center gap-3 border-slate-700 rounded py-1 ps-4 pe-2 group hover:bg-gray-100 transition-colors">
@@ -10,7 +10,7 @@
                     <i :class="dropdown ? 'rotate-180' : ''" wire:loading.remove wire:target="setYear"
                         class="fa-solid fa-chevron-down transition-transform"></i>
                     <i wire:loading wire:target="setYear" class="fa-solid fa-circle-notch animate-spin"></i>
-                    <div wire:ignore x-show="dropdown" x-cloak
+                    <div wire:ignore x-show="dropdown" x-cloak @click.away="dropdown = false"
                         class="absolute left-0 top-8 w-[80%] rounded drop-shadow-md z-10 overflow-hidden">
                         @foreach ($years as $item)
                             <div wire:click="setYear({{ $item->year }})"
@@ -26,16 +26,30 @@
         <div class=" p-6 grid grid-cols-1 md:grid-cols-4 gap-4">
             <div class="grid gap-4 col-span-1">
                 <div class="bg-gray-200 rounded-lg px-4 py-2">
-                    <p class="text-sm">Harian</p>
-                    <p class="text-2xl font-bold">{{ $daily }}</p>
+                    <div class="flex flex-col justify-around h-full">
+                        <p class="text-sm">Harian</p>
+                        <p class="text-2xl font-bold">{{ formatNumber($daily) }}</p>
+                        <span class="text-sm {{ $dailyChange >= 0 ? 'text-green-600' : 'text-red-600' }} drop-shadow-sm tracking-wide">
+                            {{ $dailyChange >= 0 ? '+' : '' }}{{ $dailyChange }}% 
+                            {{ $dailyChange >= 0 ? 'meningkat' : 'menurun' }} dari hari kemarin
+                        </span>
+                    </div>
                 </div>
                 <div class="bg-gray-200 rounded-lg px-4 py-2">
-                    <p class="text-sm">Bulanan</p>
-                    <p class="text-2xl font-bold">{{ $monthly }}</p>
+                    <div class="flex flex-col justify-around h-full">
+                        <p class="text-sm">Bulanan</p>
+                        <p class="text-2xl font-bold">{{ formatNumber($monthly) }}</p>
+                        <span class="text-sm {{ $monthlyChange >= 0 ? 'text-green-600' : 'text-red-600' }} drop-shadow-sm tracking-wide">
+                            {{ $monthlyChange >= 0 ? '+' : '' }}{{ $monthlyChange }}% 
+                            {{ $monthlyChange >= 0 ? 'meningkat' : 'menurun' }} dari bulan kemarin
+                        </span>
+                    </div>
                 </div>
                 <div class="bg-gray-200 rounded-lg px-4 py-2">
-                    <p class="text-sm">Tahunan</p>
-                    <p class="text-2xl font-bold">{{ $yearly }}</p>
+                    <div class="flex flex-col justify-around h-full">
+                        <p class="text-sm">Tahunan</p>
+                        <p class="text-2xl font-bold">{{ formatNumber($yearly) }}</p>
+                    </div>
                 </div>
             </div>
             <div class="grid col-span-3">

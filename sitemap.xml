@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Beranda -->
+    <url>
+        <loc>https://www.kurniabrownies.com/</loc>
+        <lastmod>{{ now()->toDateString() }}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Produk -->
+    <url>
+        <loc>https://www.kurniabrownies.com/produk</loc>
+        <lastmod>{{ now()->toDateString() }}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Pricelist -->
+    <url>
+        <loc>https://www.kurniabrownies.com/pricelist</loc>
+        <lastmod>{{ now()->toDateString() }}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Berita -->
+    <url>
+        <loc>https://www.kurniabrownies.com/berita</loc>
+        <lastmod>{{ now()->toDateString() }}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Tentang Kami -->
+    <url>
+        <loc>https://www.kurniabrownies.com/tentang-kami</loc>
+        <lastmod>{{ now()->toDateString() }}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Hubungi Kami -->
+    <url>
+        <loc>https://www.kurniabrownies.com/hubungi-kami</loc>
+        <lastmod>{{ now()->toDateString() }}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- FAQ -->
+    <url>
+        <loc>https://www.kurniabrownies.com/faq</loc>
+        <lastmod>{{ now()->toDateString() }}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+</urlset>

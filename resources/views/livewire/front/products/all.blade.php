@@ -3,9 +3,10 @@
         <!-- Header -->
         <div class="mb-8 md:mb-4 flex flex-col md:flex-row items-center gap-3 md:gap-6 w-full md:w-3/4">
             <div class="flex justify-center">
-                <img class="w-36 object-contain" src="{{ url(cache('product.filter-image') ?: 'assets/images/default/quality.png') }}" alt="">
+                <img class="w-36 object-contain" src="{{ url(cache('product.filter-image') ?: 'assets/images/default/quality.png') }}" 
+                alt="{{ cache('product.filter-image-alt') ?: cache('product.filter-description') }}">
             </div>
-            <p class="text-lg md:text-2xl font-semibold text-gray-700 font-poppins text-center md:text-left">{{ cache('product.filter-description') ?: 'Kami Menjamin Kualitas terbaik untuk setiap produk kami' }}</p>
+            <h2 class="text-lg md:text-2xl font-semibold text-gray-700 font-poppins text-center md:text-left">{{ cache('product.filter-description') ?: 'Kami Menjamin Kualitas terbaik untuk setiap produk kami' }}</h2>
         </div>
 
         <!-- Search and Category -->
@@ -23,7 +24,6 @@
                     @endforeach
                 </select>
                 <div class="bg-gray-100 rounded-e-xl px-5 py-2 text-black pointer-events-none">
-                    
                     <i wire:loading.remove wire:target="selectedCategory" class="group-focus-within:rotate-180 fa-solid fa-chevron-down transition-transform duration-300"></i>
                     <i wire:loading wire:target="selectedCategory" class="fa-solid fa-spinner animate-spin"></i>
                 </div>
@@ -44,8 +44,7 @@
             </div>
         </div>
     </section>
-    <div class="flex flex-col w-full px-10 lg:px-[120px] py-10">
-
+    <article class="flex flex-col w-full px-10 lg:px-[120px] py-10">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             @forelse ($datas as $data)
                 <a href="{{ route('product.detail', $data->slug) }}">
@@ -59,14 +58,15 @@
                         </div>
                         @if ($data->best_seller == true)
                         <div class="absolute bottom-0 right-0 w-1/4">
-                            <img src="{{ asset('assets/images/default/decoration/recommended.png') }}" alt="">
+                            <img src="{{ asset('assets/images/default/decoration/recommended.png') }}" alt="Ikon untuk produk best seller">
                         </div>
                         @endif
                     </div>
                 </a>
             @empty
             <div class="col-span-3 px-10 py-8 flex flex-col justify-center items-center border border-black/50 rounded-lg shadow-inner gap-5">
-                <img class="h-36 object-contain" src="{{ url(cache('product.notfound-image') ?: 'assets/images/default/404.png') }}" alt="">
+                <img class="h-36 object-contain" src="{{ url(cache('product.notfound-image') ?: 'assets/images/default/404.png') }}" 
+                alt="{{ cache('product.notfound-image-alt') ?: cache('product.notfound-description') }}">
                 <p class="font-poppins text-center md:text-left text-lg text-gray-700">
                     {{ cache('product.notfound-description') ?: 'Oops, produk yang Anda cari tidak kami temukan.' }}
                 </p>
@@ -76,5 +76,5 @@
         <div>
             {{ $datas->links('vendor.livewire.front.product') }}
         </div>
-    </div>
+    </article>
 </div>

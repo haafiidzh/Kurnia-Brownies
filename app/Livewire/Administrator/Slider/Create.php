@@ -3,8 +3,11 @@
 namespace App\Livewire\Administrator\Slider;
 
 use App\Models\Slider;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Intervention\Image\Laravel\Facades\Image;
+use Intervention\Image\Drivers\Gd\Encoders\WebpEncoder;
 
 class Create extends Component
 {
@@ -41,11 +44,15 @@ class Create extends Component
 
         $this->validate($rules);
 
-        // Image File Upload
-        $image_name = $this->slug . '.' . $this->image->extension();
-        $this->image->storeAs('images/slider', $image_name, 'public');
+        $imageName =  $this->slug . '.webp';
 
-        $image = '/storage/images/slider/' . $image_name;
+        $convertedImage = Image::read($this->image->getRealPath())
+        ->cover(1500, 1500, 'center')
+        ->encode(new WebpEncoder(100));
+
+        Storage::disk('public')->put('images/slider/' . $imageName, $convertedImage);
+
+        $image = '/storage/images/slider/' . $imageName;
 
         $this->position = (Slider::max('position') ?? 0) + 1;
 

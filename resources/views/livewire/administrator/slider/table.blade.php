@@ -76,7 +76,7 @@
                                 </div>
                             </td>
 
-                            <td class="px-4 py-2 text-center">{{ $data->likes }}
+                            <td class="px-4 py-2 text-center">{{ formatNumber($data->likes) }}
                             </td>
 
                             <td class="px-4 py-2 text-center">
@@ -139,11 +139,6 @@
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v1.x.x/dist/livewire-sortable.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            console.log("Livewire Sortable Loaded:", !!window.LivewireSortable);
-        });
-    </script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>

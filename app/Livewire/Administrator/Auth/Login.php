@@ -8,6 +8,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 // diperlukan jika passwordnya dihash                                                             
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\RateLimiter;
 // diperlukan jika gagal validasi
 use Illuminate\Validation\ValidationException;
 
@@ -27,6 +28,14 @@ class Login extends Component
             'password' => 'required|min:6',
         ]);
 
+        $key = 'login-attempts:' . $this->email;
+
+        if (RateLimiter::tooManyAttempts($key, 5)) {
+            $this->loginError = 'Too many login attempts. Please try again in ' . RateLimiter::availableIn($key) . ' seconds.';
+            session()->flash('error', $this->loginError);
+            return;
+        }
+
         $cekKebenaran = [
             // ini dicocokkan dengan database
             'email' => $this->email,
@@ -35,9 +44,11 @@ class Login extends Component
 
         // lalu coba login dengan inputan di form
         if (Auth::attempt($cekKebenaran)) {
+            RateLimiter::clear($key);
             return redirect()->route('administrator.dashboard');
             session()->flash('message', 'Login successful!');
         } else {
+            RateLimiter::hit($key, 60);
             $this->loginError = 'Invalid email or password.';
             session()->flash('error', 'Invalid email or password.');
         }

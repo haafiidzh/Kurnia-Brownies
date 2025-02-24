@@ -11,30 +11,34 @@ class VisitorController extends Controller
 {
     public function track(Request $request)
     {
-        // Cek apakah URL mengandung prefix /administrator atau /administrator/*
-        
-
         $ip = $request->ip();
         $userAgent = $request->userAgent();
         $referer = $request->headers->get('referer');
+        $url = $request->fullUrl(); 
 
-        // Cek apakah IP sudah tercatat hari ini
+        $currentDateTime = now();
+
+        if ($request->is('administrator/*') || ($url && str_contains($url, 'administrator'))|| ($referer && str_contains($referer, 'administrator'))) {
+            return;
+        }
+    
+        // Cek apakah IP sudah tercatat di menit yang sama
         $existingVisitor = Visitor::where('ip_address', $ip)
-            ->whereDate('created_at', now()->toDateString())
+            ->whereYear('created_at', $currentDateTime->year)
+            ->whereMonth('created_at', $currentDateTime->month)
+            ->whereDay('created_at', $currentDateTime->day)
+            ->whereRaw('HOUR(created_at) = ?', [$currentDateTime->hour])
+            ->whereRaw('MINUTE(created_at) = ?', [$currentDateTime->minute])
             ->first();
-
+        
         if (!$existingVisitor) {
-            if ($request->is('administrator') || $request->is('administrator/*')) {
-                return;
-                // dd($request);
-            } else {
             Visitor::create([
                 'id' => Str::uuid(),
                 'ip_address' => $ip,
                 'user_agent' => $userAgent,
                 'referer' => $referer ?? 'Direct Access',
+                'url' => $url,
             ]);
-            }
         }
     }
 

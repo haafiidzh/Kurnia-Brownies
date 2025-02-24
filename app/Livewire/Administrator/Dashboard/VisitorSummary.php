@@ -61,6 +61,15 @@ class VisitorSummary extends Component
             ->get(['month', 'total_visitor']);
 
         $this->setMonth();
+        
+        $categories = [];
+        $visitorArray = [];
+
+        foreach ($this->data as $data) {
+            $categories[] = $this->month[$data->month];
+            $visitorArray[] = $data->total_visitor;
+        }
+        $this->dispatch('updateChart', json_encode($categories), json_encode($visitorArray));
     }
 
     public function setYear($year)
@@ -84,9 +93,30 @@ class VisitorSummary extends Component
     public function render()
     {
         $thisYear = Carbon::now()->year;
-        
-        $daily = Visitor::whereDate('created_at', Carbon::now())->count();
+
+        // Daily variable
+        $today = Carbon::today();
+        $yesterday = Carbon::yesterday();
+
+        // Monthly variable
+        $thisMonth = Carbon::now()->month;
+        $lastMonth = $thisMonth - 1;
+    
+        // Daily Count
+        $daily = Visitor::whereDate('created_at', $today)->count();
+        $yesterdayCount = Visitor::whereDate('created_at', $yesterday)->count();
+        $dailyChange = $yesterdayCount > 0
+        ? (($daily - $yesterdayCount) / $yesterdayCount) * 100
+        : ($daily > 0 ? 100 : 0);
+
+        // Monthly Count
         $monthly = Visitor::whereMonth('created_at', Carbon::now()->month)->count();
+        $lastMonthCount = VisitorSummaries::where('month', $lastMonth)->where('year', $thisYear)->value('total_visitor') ?? 0;
+        $monthlyChange = $lastMonthCount > 0
+        ? (($monthly - $lastMonthCount) / $lastMonthCount) * 100
+        : ($monthly > 0 ? 100 : 0);
+
+        // Yearly Count
         $visitoryearly = Visitor::whereYear('created_at', $thisYear)->count();
         $visitorsummarythisyear = (int) VisitorSummaries::where('year', $thisYear)->sum('total_visitor');
         $yearly = $visitoryearly + $visitorsummarythisyear;
@@ -105,6 +135,8 @@ class VisitorSummary extends Component
             'yearly' => $yearly,
             'categories' => json_encode($categories),
             'visitorArray' => json_encode($visitorArray),
+            'dailyChange' => number_format($dailyChange, 2, ',', '.'),
+            'monthlyChange' => number_format($monthlyChange, 2, ',', '.'),
         ]);
     }
 }

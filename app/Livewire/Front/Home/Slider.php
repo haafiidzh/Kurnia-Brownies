@@ -18,7 +18,6 @@ class Slider extends Component
     #[On('toggleLike')]
     public function toggleLike($id)
     {
-        // dd($id);
         $slider = ModelsSlider::findOrFail($id);
 
         if (in_array($id, $this->likedSliders)) {

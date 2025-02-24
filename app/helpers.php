@@ -913,3 +913,70 @@ if (!function_exists('updateIframeAttributes')) {
         }
     }
 }
+
+if (!function_exists('newIframeAttributes')) {
+    /**
+     * Remove width and set height to 500 in iframe
+     *
+     * @param  ?string $value
+     * @return ?string
+     */
+    function newIframeAttributes($value)
+    {
+        try {
+            // Hapus atribut width
+            $value = preg_replace('/\s*width="\d+"/i', '', $value);
+
+            // Ubah atau tambahkan atribut height="500"
+            if (preg_match('/\s*height="\d+"/i', $value)) {
+                // Jika sudah ada height, ubah jadi 500
+                $value = preg_replace('/\s*height="\d+"/i', ' height="250"', $value);
+                $value = preg_replace(
+                    '/<iframe(.*?)>/i', // Pola untuk elemen iframe
+                    '<iframe$1 class="w-full">',
+                    $value
+                );
+            } else {
+                // Jika tidak ada height, tambahkan height="500" di dalam tag iframe
+                $value = preg_replace('/<iframe(.*?)>/i', '<iframe$1 height="250">', $value);
+            }
+
+            return $value;
+        } catch (Exception $exception) {
+            return null;
+        }
+    }
+}
+
+if (!function_exists('formatNumber')) {
+    function formatNumber($number)
+    {
+        return number_format($number, 0, ',', '.');
+    }
+}
+
+if (!function_exists('getCoordinate')) {
+    function getCoordinate($coordinate, $index = 0)
+    {
+        $coordinates = explode(', ', $coordinate);
+        return $coordinates[$index] ?? null;
+    }
+}
+
+if (!function_exists('toDate')) {
+    /**
+     * Mengubah format datetime menjadi date saja.
+     *
+     * @param string|null $datetime
+     * @param string $format
+     * @return string|null
+     */
+    function toDate(?string $datetime, string $format = 'Y-m-d'): ?string
+    {
+        try {
+            return \Carbon\Carbon::parse($datetime)->format($format);
+        } catch (\Exception $exception) {
+            return null;
+        }
+    }
+}

@@ -47,12 +47,12 @@ class Edit extends Component
 
             $files = $data->value;
             
-            if ($files) {
-                $path = str_replace('/storage','',$files);
-                Storage::disk('public')->delete($path);
-            }
-
             if ($this->newValue) {
+                if ($files) {
+                    $path = str_replace('/storage','',$files);
+                    Storage::disk('public')->delete($path);
+                }
+                
                 $imageName =  $data->key . '.' . $this->newValue->extension();
                 $this->newValue->storeAs('images/setting/main', $imageName, 'public');
 

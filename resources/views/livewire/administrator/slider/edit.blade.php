@@ -70,6 +70,13 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="w-1/4 ps-4 pt-3 flex items-start">
+                        <div class="p-2 border border-black/30 rounded-lg ">
+                            <div class="text-xs"><i class="fa-solid fa-circle-info"></i> &nbsp;Penting</div>
+                            <span class="text-[0.7rem] text-gray-600">Perhatikan judul slider karena juga digunakan dalam alt text untuk meningkatkan SEO gambar nya di halaman depan.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 

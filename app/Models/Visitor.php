@@ -35,6 +35,7 @@ class Visitor extends Model
         'ip_address',
         'user_agent',
         'referer',
+        'url',
     ];
 
     // BUAT UUID

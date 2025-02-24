@@ -21,7 +21,7 @@ class Table extends Component
     public function mount()
     {
         $this->search;
-        $this->status;
+        $this->status = '';
     }
 
     public function updatedSearch()

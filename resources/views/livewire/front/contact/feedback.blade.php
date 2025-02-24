@@ -1,4 +1,4 @@
-<div id="feedback">
+<section id="feedback">
     <div class="px-10 lg:px-[120px] pb-20">
         <div class="w-full px-7 md:px-20 md:py-10 py-7 bg-gradient-to-tr bg-accent rounded-2xl drop-shadow-md relative overflow-hidden">
             
@@ -15,9 +15,9 @@
             </div>
             {{-- Decoration End --}}
 
-            <h3 class="mb-2 font-nunito font-bold italic text-primary text-3xl md:text-5xl drop-shadow-md">
+            <h2 class="mb-2 font-nunito font-bold italic text-primary text-3xl md:text-5xl drop-shadow-md">
                 {{ cache('contact.feedback-title') ?: 'Reach To Us' }}
-            </h3>
+            </h2>
             <div class="flex">
                 <div class="border-b-2 border-primary/65 w-[50%] md:w-[20%] text-center"></div>
             </div>
@@ -137,7 +137,7 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 
 @push('scripts')
     <script type="text/javascript">

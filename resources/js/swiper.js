@@ -12,7 +12,7 @@ var swiper1 = new Swiper(".slider", {
             // slidesPerView: 1,
             effect: "fade",
         },
-        768: {
+        450: {
             slidesPerView: 2,
         },
     },
@@ -27,33 +27,6 @@ var swiper1 = new Swiper(".slider", {
         nextEl: ".button-next",
         prevEl: ".button-prev",
     },
-    // on: {
-    //     slideChange: function () {
-    //         // Ambil index slide aktif
-    //         const activeIndex = this.realIndex;
-
-    //         // Update  nama dan deskripsi kategori
-    //         var like = sliders[activeIndex];
-
-    //         let likeIcon = document.getElementById("like-icon");
-
-    //             // Cek apakah ID slide aktif ada di likedSliders
-    //             if (likedSliders.includes(like.id)) {
-    //                 likeIcon.classList.remove("fa-regular", "text-primary");
-    //                 likeIcon.classList.add("fa-solid", "text-red-500");
-    //             } else {
-    //                 likeIcon.classList.remove("fa-solid", "text-red-500");
-    //                 likeIcon.classList.add("fa-regular", "text-primary");
-    //             }
-
-    //         let likeButton = document.getElementById("like-button");
-    //         likeButton.setAttribute("wire:click", `toggleLike('${like.id}')`);
-
-    //         document.getElementById("count-likes").textContent = like.likes;
-
-            
-    //     },
-    // },
 });
 
 var swiperCategories = new Swiper(".categories", {
@@ -159,53 +132,3 @@ var swiperGallery = new Swiper(".gallery", {
         swiper: swiperGalleryChild,
     },
 });
-
-// // Swiper for Categories Home
-// var swiper2 = new Swiper(".home-categories-swiper", {
-//     effect: "coverflow",
-//     grabCursor: true,
-//     centeredSlides: true,
-//     slidesPerView: "auto",
-//     loop: true,
-//     coverflowEffect: {
-//         rotate: 0,
-//         stretch: 150,
-//         depth: 100,
-//         modifier: 1,
-//         slideShadows: true,
-//     },
-//     autoplay: {
-//         true: 3000,
-//     },
-//     on: {
-//         slideChange: function () {
-//             // Ambil index slide aktif
-//             const activeIndex = this.realIndex;
-
-//             // Update nama dan deskripsi kategori
-//             const category = categories[activeIndex];
-//             document.getElementById("category-name").textContent =
-//                 category.name;
-//             document.getElementById("category-description").textContent =
-//                 category.description;
-//         },
-//     },
-// });
-
-// var swiper3 = new Swiper(".product-categories-swiper", {
-//     effect: "coverflow",
-//     grabCursor: true,
-//     centeredSlides: true,
-//     slidesPerView: "auto",
-//     loop: true,
-//     coverflowEffect: {
-//         rotate: 0,
-//         stretch: 0,
-//         depth: 100,
-//         modifier: 1,
-//         slideShadows: true,
-//     },
-//     autoplay: {
-//         true: 3000,
-//     },
-// });

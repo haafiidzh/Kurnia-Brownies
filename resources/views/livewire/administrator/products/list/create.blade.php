@@ -42,9 +42,19 @@
                         <label for="slug" class="block ml-1 font-semibold text-sm text-slate-700 ">Slug</label>
                         <input
                             class="w-full mt-2 px-3 py-3 border border-black text-sm rounded-xl text-slate-600 placeholder:text-slate-400 placeholder:tracking-[0.075rem]"
-                            type="text" slug="slug" placeholder="Slug akan digenerate secara otomatis"
+                            type="text" name="slug" placeholder="Slug akan digenerate secara otomatis"
                             wire:model="slug" disabled>
                         @error('slug')
+                            <div class="mx-1 mt-2 font-semibold text-sm text-red-700">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-5">
+                        <label for="slug" class="block ml-1 font-semibold text-sm text-slate-700 ">Kata Kunci</label>
+                        <input
+                            class="w-full mt-2 px-3 py-3 border border-black text-sm rounded-xl placeholder:text-slate-400 placeholder:tracking-[0.075rem]"
+                            type="text" name="keywords" placeholder="Kata Kunci Produk (Keywords)"
+                            wire:model="keywords">
+                        @error('keywords')
                             <div class="mx-1 mt-2 font-semibold text-sm text-red-700">{{ $message }}</div>
                         @enderror
                     </div>
@@ -89,6 +99,17 @@
                     </div>
                 </div>
                 {{-- End Form Nama Produk --}}
+                
+                <div class="w-1/4 ps-4 flex items-start">
+                    <div class="p-2 border border-black/30 rounded-lg ">
+                        <div class="text-xs"><i class="fa-solid fa-circle-info"></i> &nbsp;Penting</div>
+                        <span class="text-[0.7rem] text-gray-600 break-words">
+                            Kata kunci diperlukan untuk optimasi SEO produk Anda. Gunakan kata kunci yang paling berkaitan dengan produk Anda. Format penulisan harus huruf kecil semua (lowercase) dan dipisahkan dengan koma (,) dan spasi.
+                            <br>
+                            cth: brownies, brownies coklat, brownies kukus
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
         {{-- End Name --}}
@@ -120,8 +141,8 @@
                     <div>
                         <label for="description" class="block ml-1 font-semibold text-sm text-slate-700 ">Deskripsi Singkat
                             Produk</label>
-                        <textarea rows="3"
-                            class="w-full mt-2 px-3 py-3 border border-black text-sm rounded-xl placeholder:text-slate-400 placeholder:tracking-[0.075rem]"
+                        <textarea rows="6" style="resize: none;"
+                            class="w-full mt-2 custom-scrollbar px-3 py-3 border border-black text-sm rounded-xl placeholder:text-slate-400 placeholder:tracking-[0.075rem]"
                             type="text" name="description" placeholder="Deskripsi Singkat" wire:model="short_description">
                         </textarea>
                     </div>
@@ -130,6 +151,15 @@
                     @enderror
                 </div>
                 {{-- End Form Short Deskripsi Produk --}}
+
+                <div class="w-1/4 ps-4 flex items-start">
+                    <div class="p-2 border border-black/30 rounded-lg ">
+                        <div class="text-xs"><i class="fa-solid fa-circle-info"></i> &nbsp;Penting</div>
+                        <span class="text-[0.7rem] text-gray-600 break-words">
+                            Deskripsi singkat digunakan untuk deskripsi yang ditampilkan ketika produk adalah best seller dan digunakan untuk deskripsi pada SEO produk. Jadi gunakan semenarik mungkin, lalu buat maksimal 160 karakter.
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
         {{-- End Short Description --}}

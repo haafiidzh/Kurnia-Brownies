@@ -199,7 +199,11 @@ return [
         // Spatie
         Spatie\Permission\PermissionServiceProvider::class,
 
+        // G-Recaptcha
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+
+        // Intervention Image (Convert all extension file to webp)
+        Intervention\Image\Laravel\ServiceProvider::class
     ],
 
     /*
@@ -216,6 +220,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
+        'Image' => Intervention\Image\Laravel\Facades\Image::class
     ])->toArray(),
 
 ];

@@ -42,7 +42,7 @@
 <body style="background-color: #f4f4f4; margin: 0; padding: 20px;">
 
     <div class="container">
-        <img src="{{ $logo }}" alt="">
+        <img src="{{ url(cache('logo')) }}" alt="">
         <h2 style="color: #6B2E1F; border-bottom: 2px solid #6B2E1F; padding-bottom: 10px;">
             Terima Kasih, {{ $feedback['first_name'] }}!
         </h2>
@@ -66,12 +66,12 @@
 
         <p style="font-size: 16px; color: #555; margin-top: 20px;">
             Jika Anda memiliki pertanyaan lebih lanjut, jangan ragu untuk menghubungi kami melalui email:  
-            <a href="mailto:contact@company.com">contact@company.com</a>
+            <a href="mailto:{{ cache('contact-email') }}">{{ cache('contact-email') }}</a>
         </p>
 
         <p style="font-size: 14px; color: #888; margin-top: 30px;">
             Salam hangat, <br>  
-            <strong>Tim Kurnia</strong>
+            <strong>{{ cache('app_name') }}</strong>
         </p>
 
     </div>

@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+    <meta name="robots" content="noindex">
+    <meta name="robots" content="nofollow">
+
     <link rel="icon" href="{{ asset('assets/img/logo-kecil.ico') }}" type="image/x-icon">
     <link rel="apple-touch-icon" href="{{ asset('assets/img/logo-kecil.ico') }}">
 
@@ -23,7 +25,6 @@
 
     <main class="bg-slate-300 min-h-screen">
         @yield('content')
-        {{-- <livewire:administrator.auth.login> --}}
     </main>
     
     @livewireScripts

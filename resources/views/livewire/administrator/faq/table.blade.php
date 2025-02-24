@@ -8,7 +8,7 @@
                 <div class="p-1 flex justify-end ">
                     <div class="flex gap-2 items-center">
                         <i class="fas fa-search text-sm"></i>
-                        <input placeholder="Cari Berita..." id="search" type="text" class="text-sm p-1 rounded"
+                        <input placeholder="Cari FAQ..." id="search" type="text" class="text-sm p-1 rounded"
                             wire:model.live="search">
                     </div>
                 </div>

@@ -8,10 +8,10 @@
         </div>
         <div x-data="{ open: false }">
             <div class="flex items-center">
-                <div class="flex items-center px-4">
+                {{-- <div class="flex items-center px-4 border-r-2 h-full">
                     <a href="#"><i class="text-2xl fa-regular fa-bell"></i></a>
-                </div>
-                <div class="my-3 flex border-l-2 px-4 gap-4">
+                </div> --}}
+                <div class="my-3 flex px-4 gap-4">
                     <div class="relative py-2 flex flex-col">
                         <div class="text-md text-center border-b-[1px] font-semibold text-slate-800 border-gray-700">
                             <span>Hi, {{ Auth::user()->name }}</span>

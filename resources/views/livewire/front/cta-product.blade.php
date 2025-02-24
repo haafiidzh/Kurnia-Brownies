@@ -152,19 +152,19 @@
             {{ cache('cta.product-description') ?: 'Grab our latest product now and enjoy exclusive benefits just for you. Limited time offer!' }}
         </p>
         <div class="flex md:flex-row flex-col justify-center items-center md:gap-4 gap-8">
-            <a href="https://wa.me/{{ cache('contact-whatsapp') }}" target="_blank" data-aos="fade-up" data-aos-duration="2000" data-aos-easing="ease-out"
+            <a href="https://wa.me/{{ cache('contact-whatsapp') }}" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-out"
                 data-aos-once="true">
                 <span
                     class="bg-primary hover:bg-primary-dark text-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 tracking-wider">
-                    Beli Sekarang
+                    {{ cache('cta.product-button-buynow') ?: 'Beli Sekarang' }}
                 </span>
             </a>
             @if (!request()->routeIs('pricelist'))
-                <a href="{{ route('pricelist') }}" data-aos="fade-up" data-aos-duration="2000"
+                <a href="{{ route('pricelist') }}" data-aos="fade-up" data-aos-duration="1500"
                     data-aos-easing="ease-out" data-aos-once="true" data-aos-delay="500">
                     <span
                         class="bg-accent border-2 border-primary text-primary hover:bg-primary hover:text-gray-100 font-bold py-3 px-8 rounded-full shadow-md transition-all duration-300 tracking-wider">
-                        Pricelist
+                        {{ cache('cta.product-button-pricelist') ?: 'Pricelist' }}
                     </span>
                 </a>
             @endif

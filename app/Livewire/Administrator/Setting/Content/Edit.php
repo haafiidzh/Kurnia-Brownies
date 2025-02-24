@@ -7,6 +7,8 @@ use App\Traits\Cacheable;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Intervention\Image\Laravel\Facades\Image;
+use Intervention\Image\Drivers\Gd\Encoders\WebpEncoder;
 
 class Edit extends Component
 {
@@ -46,15 +48,20 @@ class Edit extends Component
         if ($data->type == 'image') {
             
             $files = $data->value;
-            
-            if ($files) {
-                $path = str_replace('/storage','',$files);
-                Storage::disk('public')->delete($path);
-            }
 
             if ($this->newValue) {
-                $imageName =  $data->key . '.' . $this->newValue->extension();
-                $this->newValue->storeAs('images/setting/content', $imageName, 'public');
+                if ($files) {
+                    $path = str_replace('/storage','',$files);
+                    Storage::disk('public')->delete($path);
+                }
+                
+                $imageName =  $data->key . '.webp';
+
+                $convertedImage = Image::read($this->newValue->getRealPath())
+                    ->encode(new WebpEncoder(90));
+                
+                Storage::disk('public')->put('images/setting/content/' . $imageName, $convertedImage);
+
     
                 $image = '/storage/images/setting/content/' . $imageName;
                 $data->update(

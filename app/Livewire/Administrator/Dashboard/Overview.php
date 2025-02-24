@@ -34,7 +34,8 @@ class Overview extends Component
         $sliders = Slider::where('is_active',true)->orderBy('likes', 'desc')->get();
         $faqs = Faq::count();
         $product = Product::count();
-        $news = News::where('is_active', true)->where('views', '>', 0)->orderBy('views','desc')->get();
+        $news = News::all();
+        $news_active = News::where('is_active', true)->where('views', '>', 0)->orderBy('views','desc')->get();
         $product_category = Categories::where('group', 'product')->withCount('product')->orderBy('product_count', 'desc')->get();
 
         return view('livewire.administrator.dashboard.overview', [
@@ -44,6 +45,7 @@ class Overview extends Component
             'product_custom' => $product_custom,
             'product' => $product,
             'news' => $news,
+            'news_active' => $news_active,
             'product_category' => $product_category,
         ]);
     }

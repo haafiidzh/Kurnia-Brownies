@@ -16,6 +16,7 @@ class Create extends Component
     // Product
     public $name;
     public $slug;
+    public $keywords;
     public $category_id;
     public $image;
     public $short_description;
@@ -49,6 +50,7 @@ class Create extends Component
         $rules = [
             'name' => 'required',
             'slug' => 'required|unique:products,slug',
+            'keywords' => 'required',
             'category_id' => 'required',
             'image' => 'required|image|max:10024',
             'short_description' => 'required',
@@ -66,6 +68,7 @@ class Create extends Component
         $product = Product::create([
             'name' => $this->name,
             'slug' => $this->slug,
+            'keywords' => $this->keywords,
             'category_id' => $this->category_id,
             'image' => $image,
             'short_description' => $this->short_description,

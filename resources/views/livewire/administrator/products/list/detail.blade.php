@@ -1,13 +1,13 @@
 <div class="flex gap-5 mb-5">
 
     <div class="w-2/3 gap-5 flex flex-col">
-        <div class="py-3 shadow-md rounded-xl bg-white">
-            <h3 class="px-6 font-semibold text-xl pb-3">Gambar Produk</h3>
+        <div class="py-3 rounded-xl bg-white">
+            <h2 class="px-6 font-semibold text-xl pb-3">Gambar Produk</h2>
             <div class="border-b border-slate-700"></div>
             <div class="pt-3 px-6 mb-1">
                 <div x-data="{ preview: false, scrollPosition: 0 }">
                     <div class="relative group rounded-lg overflow-hidden">
-                        <img class="object-cover transition-all group-hover:blur-[2px] duration-300 w-full h-[250px]"
+                        <img class="rounded-md border border-slate-300 object-cover transition-all group-hover:blur-[2px] duration-300 w-full h-[250px]"
                             src="{{ url($data->image) }}">
     
                         <div class="absolute bottom-5 right-5 flex justify-center items-center group-hover:visible invisible">
@@ -27,7 +27,7 @@
                             x-transition:leave="transition translate-y-0 ease-in duration-200" x-transition:leave-start="opacity-100"
                             x-transition:leave-end="opacity-0"
                             class="fixed w-full h-screen left-0 top-0 z-50 flex justify-center items-center bg-black/10">
-                            <div class="flex flex-col bg-white shadow-md rounded-md">
+                            <div class="flex flex-col bg-white rounded-md">
                                 <div class="p-4 border-b border-gray-300 flex items-center justify-between ">
                                     <span class="font-bold text-slate-800 text-lg">Preview Image</span>
                                     <span @click="preview = false; window.scrollTo(0, scrollPosition)"
@@ -45,23 +45,23 @@
                 </div>
             </div>
         </div>
-        <div class="py-3 shadow-md rounded-xl bg-white">
-            <h3 class="px-6 font-semibold text-xl pb-3">Deskripsi Singkat</h3>
+        <div class="py-3 rounded-xl bg-white">
+            <h2 class="px-6 font-semibold text-xl pb-3">Deskripsi Singkat</h2>
             <div class="border-b border-slate-700"></div>
-            <h1 class=" py-3 px-6">{{ $data->short_description }}</h1>
+            <h3 class=" py-3 px-6 break-words">{{ $data->short_description }}</h3>
         </div>
-        <div class="py-3 shadow-md rounded-xl bg-white">
-            <h3 class="px-6 font-semibold text-xl pb-3">Deskripsi</h3>
+        <div class="py-3 rounded-xl bg-white">
+            <h2 class="px-6 font-semibold text-xl pb-3">Deskripsi</h2>
             <div class="border-b border-slate-700"></div>
-            <h1 class=" py-3 px-6">{!! $data->description !!}</h1>
+            <h3 class=" py-3 px-6 break-words">{!! $data->description !!}</h3>
         </div>
     </div>
 
     <div class="w-1/3 gap-5 flex flex-col">
-        <div class="py-3 shadow-md rounded-xl bg-white">
-            <h3 class="px-6 font-semibold text-xl pb-3">Informasi</h3>
+        <div class="py-3 rounded-xl bg-white">
+            <h2 class="px-6 font-semibold text-xl pb-3">Informasi</h2>
             <div class="border-b border-slate-700"></div>
-            <h1 class="text-lg py-3 px-6 font-semibold">{{ $data->name }}</h1>
+            <h3 class="text-lg py-3 px-6 font-semibold">{{ $data->name }}</h3>
 
             <div class="px-6 pb-2">
                 <div class="flex flex-col gap-1 text-sm p-2 border border-slate-700 rounded">
@@ -75,14 +75,23 @@
             </div>
         </div>
 
-        <div class="py-3 shadow-md rounded-xl bg-white">
-            <h3 class="px-6 font-semibold text-xl pb-3">Galeri Produk</h3>
+        <div class="py-3 rounded-xl bg-white">
+            <h2 class="px-6 font-semibold text-xl pb-3">Kata Kunci</h2>
             <div class="border-b border-slate-700"></div>
-            <div class="flex flex-col mt-3 px-6 {{ $data->detail->count() > 1 ? 'h-[295px] overflow-y-scroll' : '' }}">
+            <h4 class="pt-3 px-6 mb-1 break-words">{{ $data->keywords }}</h4>
+        </div>
+
+        <div class="py-3 rounded-xl bg-white">
+            <div class="px-6 pb-3 flex justify-between items-center">
+                <h2 class=" font-semibold text-xl ">Galeri Produk</h2>
+                <span class="text-slate-600 text-sm">{{ $data->detail->count() === 0 ? '' :  $data->detail->count() . ' item' }}</span>
+            </div>
+            <div class="border-b border-slate-700"></div>
+            <div class="custom-scrollbar flex flex-col mt-3 px-6 {{ $data->detail->count() > 1 ? 'h-[210px] overflow-y-scroll' : '' }}">
                 @forelse ($data->detail as $item)
                     <div x-data="{ detail: false, scrollPosition: 0 }">
                         <div class="relative group {{ $loop->last ? '' : 'mb-3' }} rounded-lg overflow-hidden border border-slate-700">
-                            <img class="object-cover transition-all group-hover:blur-[2px] duration-300 w-full h-[200px]"
+                            <img class=" object-cover transition-all group-hover:blur-[2px] duration-300 w-full h-[200px]"
                                 src="{{ url($item->value) }}">
         
                             <div class="absolute bottom-5 right-5 flex justify-center items-center group-hover:visible invisible">
@@ -100,7 +109,7 @@
                             x-transition:leave="transition translate-y-0 ease-in duration-200"
                             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
                             class="fixed w-full h-screen left-0 top-0 z-50 flex justify-center items-center bg-black bg-opacity-20">
-                            <div class="flex flex-col bg-white shadow-md rounded-md">
+                            <div class="flex flex-col bg-white rounded-md">
                                 <div class="p-4 border-b border-gray-300 flex items-center justify-between ">
                                     <span class="font-bold text-slate-800 text-lg">Preview Image</span>
                                     <span @click="detail = false; window.scrollTo(0, scrollPosition)"

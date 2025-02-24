@@ -9,7 +9,6 @@ export default defineConfig({
                 'resources/css/styles.css',
                 'resources/css/vendor.css',
                 'resources/js/app.js',
-                'resources/js/main.js',
                 'resources/js/plugins.js',
             ],
             refresh: true,
