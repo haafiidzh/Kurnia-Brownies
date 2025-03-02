@@ -914,31 +914,78 @@ if (!function_exists('updateIframeAttributes')) {
     }
 }
 
+// if (!function_exists('newIframeAttributes')) {
+//     /**
+//      * Remove width and set height to 500 in iframe
+//      *
+//      * @param  ?string $value
+//      * @return ?string
+//      */
+//     function newIframeAttributes($value)
+//     {
+//         try {
+//             // Hapus atribut width
+//             $value = preg_replace('/\s*width="\d+"/i', '', $value);
+
+//             // Ubah atau tambahkan atribut height="500"
+//             if (preg_match('/\s*height="\d+"/i', $value)) {
+//                 // Jika sudah ada height, ubah jadi 500
+//                 $value = preg_replace('/\s*height="\d+"/i', ' height="250"', $value);
+//                 $value = preg_replace(
+//                     '/<iframe(.*?)>/i', // Pola untuk elemen iframe
+//                     '<iframe$1 class="w-full">',
+//                     $value
+//                 );
+//             } else {
+//                 // Jika tidak ada height, tambahkan height="500" di dalam tag iframe
+//                 $value = preg_replace('/<iframe(.*?)>/i', '<iframe$1 height="250">', $value);
+//             }
+
+//             return $value;
+//         } catch (Exception $exception) {
+//             return null;
+//         }
+//     }
+// }
 if (!function_exists('newIframeAttributes')) {
     /**
-     * Remove width and set height to 500 in iframe
+     * Menambahkan atribut title, menghapus width, dan set height iframe
      *
      * @param  ?string $value
+     * @param  string|null $defaultTitle Judul default jika title tidak ditemukan
      * @return ?string
      */
-    function newIframeAttributes($value)
+    function newIframeAttributes($value, $defaultTitle = null)
     {
         try {
+            // Ambil nama aplikasi dari cache atau fallback ke 'Kurnia Brownies'
+            $appName = cache('app_name', 'Kurnia Brownies');
+
+            // Set default title dengan dinamis
+            $defaultTitle = $defaultTitle ?: "Lokasi Google Maps {$appName}";
+
             // Hapus atribut width
             $value = preg_replace('/\s*width="\d+"/i', '', $value);
 
-            // Ubah atau tambahkan atribut height="500"
+            // Ubah atau tambahkan atribut height="250"
             if (preg_match('/\s*height="\d+"/i', $value)) {
-                // Jika sudah ada height, ubah jadi 500
                 $value = preg_replace('/\s*height="\d+"/i', ' height="250"', $value);
+            } else {
+                $value = preg_replace('/<iframe(.*?)>/i', '<iframe$1 height="250">', $value);
+            }
+
+            // Tambahkan atribut class="w-full" untuk responsif
+            if (!preg_match('/\s*class="[^"]*w-full[^"]*"/i', $value)) {
+                $value = preg_replace('/<iframe(.*?)>/i', '<iframe$1 class="w-full">', $value);
+            }
+
+            // Tambahkan atribut title jika belum ada
+            if (!preg_match('/\s*title="[^"]+"/i', $value)) {
                 $value = preg_replace(
-                    '/<iframe(.*?)>/i', // Pola untuk elemen iframe
-                    '<iframe$1 class="w-full">',
+                    '/<iframe(.*?)>/i',
+                    '<iframe$1 title="' . htmlspecialchars($defaultTitle, ENT_QUOTES, 'UTF-8') . '">',
                     $value
                 );
-            } else {
-                // Jika tidak ada height, tambahkan height="500" di dalam tag iframe
-                $value = preg_replace('/<iframe(.*?)>/i', '<iframe$1 height="250">', $value);
             }
 
             return $value;
@@ -947,6 +994,7 @@ if (!function_exists('newIframeAttributes')) {
         }
     }
 }
+
 
 if (!function_exists('formatNumber')) {
     function formatNumber($number)

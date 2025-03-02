@@ -237,9 +237,9 @@
                     <div :class="active === '{{ $faq->id }}' ? 'rounded-t-2xl' : 'rounded-2xl'" class="drop-shadow-md bg-primary">
 
                         <!-- Accordion Header -->
-                        <a href="javascript:void(0)"
+                        <div
                             @click="active === '{{ $faq->id }}' ? active = '' : active = '{{ $faq->id }}'"
-                            class="flex text-lg md:text-xl  font-semibold font-nunito text-gray-200 gap-3  justify-between items-center  px-6 py-7 sm:py-7">
+                            class="flex text-lg md:text-xl  font-semibold font-nunito text-gray-200 gap-3 cursor-pointer justify-between items-center  px-6 py-7 sm:py-7">
                             <div class=" flex gap-4 items-center">
                                 <span class="rounded-full bg-secondary text-primary h-5 w-5 flex-shrink-0 text-sm md:text-md flex justify-center items-center">
                                     {{ $index + 1 }}
@@ -252,7 +252,7 @@
                                 <path d="M8 5L15.57 11.6237C15.7976 11.8229 15.7976 12.1771 15.57 12.3763L8 19" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-                        </a>
+                        </div>
                     </div>
         
                     <!-- Accordion Body -->
@@ -306,7 +306,7 @@
                         </div>
 
                         <p class="font-poppins text-gray-600 tracking-wide">
-                            {{ cache('contact.open-hours') ?: '08.00 - 24.00'}}
+                            {{ cache('contact.open-hours') . ' - ' . cache('contact.close-hours') ?: '08.00 - 24.00'}}
                         </p>
                     </li>
                     <li class="flex gap-5 items-center" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">

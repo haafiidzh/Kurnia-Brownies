@@ -73,6 +73,7 @@ class Table extends Component
         ->when($this->status, function ($query) {
             $query->where('status', $this->status);
         })
+        ->orderBy('created_at', 'desc')
         ->paginate(8);
 
         $pending = Feedback::where('status', 'pending')->get();

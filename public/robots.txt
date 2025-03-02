@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://www.kurniabrownies.com/sitemap.xml
+Sitemap: https://www.kurniabrownies.online/sitemap.xml

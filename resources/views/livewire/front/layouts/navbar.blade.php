@@ -17,7 +17,7 @@
                 </a>
             </div>
             <nav>
-                <button
+                <button aria-label="Open Navbar"
                     class="md:hidden relative flex justify-center items-center text-gray-300 hover:text-white focus:outline-none transition-colors duration-300"
                     @click="open = !open">
                     <!-- Hamburger Icon -->

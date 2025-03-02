@@ -39,7 +39,7 @@
                                         </span>
                                     </div>
                                 </a>
-                                <a href="#">
+                                {{-- <a href="#">
                                 <div
                                     class="px-4 py-3 flex gap-2 rounded items-center hover:bg-gray-200 transition-all active:bg-gray-400">
                                     <i class="fa-solid fa-gear"></i>
@@ -47,7 +47,7 @@
                                         Setting
                                     </span>
                                 </div>
-                            </a>
+                            </a> --}}
                                 <div onclick="confirmLogout()"
                                     class="px-4 py-3 flex gap-2 rounded cursor-pointer items-center hover:bg-gray-200 transition-all active:bg-gray-400">
                                     <i class="fa-solid fa-right-from-bracket"></i>

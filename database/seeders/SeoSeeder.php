@@ -254,6 +254,40 @@ class SeoSeeder extends Seeder
                 'type' => 'input',
             ],
 
+            // Not Found
+            [
+                'group' => 'not_found',
+                'label' => 'Judul',
+                'key' => 'seo_judul_not_found',
+                'value' => 'Halaman Tidak Ditemukan',
+                'tip' => ' Judul halaman untuk halaman Not Found',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'not_found',
+                'label' => 'Deskripsi',
+                'key' => 'seo_deskripsi_not_found',
+                'value' => 'Halaman yang Anda cari tidak ditemukan.',
+                'tip' => 'Deskripsi singkat yang muncul di hasil pencarian',
+                'type' => 'textarea',
+            ],
+            [
+                'group' => 'not_found',
+                'label' => 'Gambar',
+                'key' => 'seo_gambar_not_found',
+                'value' => 'assets/images/default/404.png',
+                'tip' => 'Gambar thumbnail yang digunakan saat dibagikan di media sosial',
+                'type' => 'image',
+            ],
+            [
+                'group' => 'not_found',
+                'label' => 'Keyword',
+                'key' => 'seo_keyword_not_found',
+                'value' => 'not found, 404, error',
+                'tip' => 'Kata kunci untuk optimasi pencarian (tulis menggunakan pemisah koma "," dan tanpa huruf kapital contoh : brownies, brownies coklat, brownies solo).',
+                'type' => 'input',
+            ],
+
             // PrivacyPolicy
             // [
             //     'group' => 'kebijakan privasi',

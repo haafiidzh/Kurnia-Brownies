@@ -49,29 +49,28 @@ class Edit extends Component
 
             $files = $data->value;
 
+            
             if ($this->newValue) {
                 if ($files) {
                     $path = str_replace('/storage','',$files);
                     Storage::disk('public')->delete($path);
                 }
                 
-                // $imageName =  $data->key . '.' . $this->newValue->extension();
-                // $this->newValue->storeAs('images/setting/seo', $imageName, 'public');
-
                 $imageName =  $data->key . '.webp';
 
                 $convertedImage = Image::read($this->newValue->getRealPath())
                     ->encode(new WebpEncoder(90));
                 
-                Storage::disk('public')->put('images/setting/content/' . $imageName, $convertedImage);
+                Storage::disk('public')->put('images/setting/seo/' . $imageName, $convertedImage);
 
+    
                 $image = '/storage/images/setting/seo/' . $imageName;
                 $data->update(
                     [
                         'value' => $image
                     ]
                 );
-
+    
                 $this->updateCache($key, $image);
             }
 

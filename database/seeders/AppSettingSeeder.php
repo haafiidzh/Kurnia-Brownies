@@ -75,15 +75,22 @@ class AppSettingSeeder extends Seeder
                 'type' => 'input',
             ],
 
-            // Schema
-            // [
-            //     'group' => 'schema',
-            //     'label' => 'Rentang Harga Produk',
-            //     'key' => 'price_range',
-            //     'value' => 'IDR 20000 - IDR 50000',
-            //     'tip' => 'Rentang harga produk untuk membantu meningkatkan SEO. Buat seperti contoh format. cth: IDR 20000 - IDR 50000',
-            //     'type' => 'input',
-            // ],
+            [
+                'group' => 'schema',
+                'label' => 'Rating',
+                'key' => 'rating',
+                'value' => '4.8',
+                'tip' => 'Rating bisnis Anda di Google Maps.',
+                'type' => 'input',
+            ],
+            [
+                'group' => 'schema',
+                'label' => 'Total Ulasan',
+                'key' => 'review_count',
+                'value' => '1876',
+                'tip' => 'Jumalah orang yang memberikan ulasan ke bisnis Anda di Google Maps.',
+                'type' => 'input',
+            ],
             [
                 'group' => 'schema',
                 'label' => 'Rentang Harga Produk - Terendah',
@@ -146,7 +153,7 @@ class AppSettingSeeder extends Seeder
                 'group' => 'contact',
                 'label' => 'Email',
                 'key' => 'contact-email',
-                'value' => 'hafid.kusuma45@gmail.com',
+                'value' => 'kurnia@gmail.com',
                 'tip' => '',
                 'type' => 'input',
             ],

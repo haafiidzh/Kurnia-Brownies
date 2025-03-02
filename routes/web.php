@@ -25,8 +25,20 @@ use App\Http\Controllers\Front\PricelistController;
 use App\Http\Controllers\Front\PrivacyPolicyController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Response;
+use Carbon\Carbon;
+
+Route::get('/clear-cache', function() {
+    Artisan::call('optimize:clear');
+    return 'Cache Cleared!';
+});
+Route::get('/migrate-seed', function() {
+    Artisan::call('migrate:fresh --seed');
+    Artisan::call('route:cache');
+    Artisan::call('config:cache');
+    return 'Migrate Success!';
+});
 
 Route::get('/email/verify-email', [AuthController::class, 'notice'])->middleware(['auth','not.verified'])->name('verification.notice');
 // halaman verif email hanya bisa diakses oleh user yg belum terverifikasi

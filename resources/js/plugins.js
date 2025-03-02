@@ -8,3 +8,5 @@ window.Swiper       = Swiper;
 window.Masonry      = Masonry;
 window.imagesLoaded = imagesLoaded;
 window.MoveTo       = MoveTo;
+
+AOS.init()

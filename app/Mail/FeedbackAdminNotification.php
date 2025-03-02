@@ -21,7 +21,6 @@ class FeedbackAdminNotification extends Mailable implements ShouldQueue
     public function __construct($feedback)
     {
         $this->feedback = $feedback;
-        // dd($this->feedback);
     }
 
     /**
@@ -45,13 +44,4 @@ class FeedbackAdminNotification extends Mailable implements ShouldQueue
         );
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [];
-    }
 }

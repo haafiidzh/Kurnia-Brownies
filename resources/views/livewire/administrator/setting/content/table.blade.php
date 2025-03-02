@@ -68,7 +68,7 @@
                                     </td>
                                     <td class="w-full px-4 py-4 text-center flex justify-center">
                                         <a href="{{ route('administrator.content.edit', ['id' => $data->id]) }}"
-                                            class="py-[0.15rem] px-[0.40rem] rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400"
+                                            class="w-7 h-7 flex justify-center items-center rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400"
                                             title="Edit {{ $data->label }}">
                                             <i class="fa-solid fa-eye-dropper text-xs"></i>
                                         </a>

@@ -5,6 +5,8 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class ReplyFeedback extends Mailable implements ShouldQueue
@@ -21,38 +23,27 @@ class ReplyFeedback extends Mailable implements ShouldQueue
         $this->data = $data;
     }
 
-    // /**
-    //  * Get the message envelope.
-    //  */
-    // public function envelope(): Envelope
-    // {
-    //     return new Envelope(
-    //         subject: 'Reply Feedback',
-    //     );
-    // }
-
-    // /**
-    //  * Get the message content definition.
-    //  */
-    // public function content(): Content
-    // {
-    //     return new Content(
-    //         view: 'emails.reply-feedback',
-    //         with: [
-    //             'data' => $this->data,
-    //         ]
-    //     );
-    // }
+    /**
+     * Get the message envelope.
+     */
+    public function envelope(): Envelope
+    {
+        return new Envelope(
+            subject: 'Reply Feedback',
+        );
+    }
 
     /**
-     * Set the "from" email address for the message.
+     * Get the message content definition.
      */
-    public function build()
+    public function content(): Content
     {
-        return $this->from($this->data['from'], cache('app_name'))
-                    ->subject('Balasan Feedback')
-                    ->view('emails.reply-feedback')
-                    ->with(['data' => $this->data]);
+        return new Content(
+            view: 'emails.reply-feedback',
+            with: [
+                'data' => $this->data,
+            ]
+        );
     }
 
     /**

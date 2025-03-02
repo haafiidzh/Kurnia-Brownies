@@ -23,6 +23,10 @@ class Reply extends Component
 
     public function sendReply()
     {
+        $feedback = $this->data;
+        $feedback->update([
+            'status' => 'resolved',
+        ]);
 
         $data = [
             'from' => cache('contact-email'),
@@ -31,7 +35,6 @@ class Reply extends Component
             'reply' => $this->reply,
         ];
 
-        // Mail::to($this->to)->send(new ReplyFeedback($data));
         Mail::to($this->to)->queue(new ReplyFeedback($data));
 
         session()->flash('flash_message', [

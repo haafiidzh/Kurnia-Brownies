@@ -26,13 +26,13 @@
                 <div class="swiper-slide relative">
                     <div class="absolute flex w-full h-full justify-center items-center">
                         <figure class="relative w-full h-full overflow-hidden">
-                            <img loading="lazy" class="w-full h-full object-center object-cover" src="{{ url($data->image) }}" alt="{{ $data->title }}">
+                            <img loading="eager" class="w-full h-full object-center object-cover" src="{{ url($data->image) }}" alt="{{ $data->title }}">
                         </figure>
                     </div>
 
                     <div class="absolute bottom-10 w-full flex flex-col mb-2 md:mb-0 gap-2 items-center z-30">
                         <div class="bg-transparent hover:bg-accent drop-shadow-md rounded-full h-10 w-10 md:h-14 md:w-14 flex items-center justify-center transition-all duration-300 overflow-visible">
-                            <button onclick="handleLike('{{ $data->id }}')" id="like-button-{{ $data->id }}">
+                            <button aria-label="Like" onclick="handleLike('{{ $data->id }}')" id="like-button-{{ $data->id }}">
                                 @if (in_array($data->id, $likedSliders))
                                     <i class="fa-solid fa-heart text-2xl md:text-4xl text-red-500"></i>
                                 @else

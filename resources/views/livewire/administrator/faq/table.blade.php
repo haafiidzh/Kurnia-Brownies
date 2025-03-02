@@ -57,12 +57,13 @@
                                 <div class="flex gap-2 justify-center">
                                     @can('edit-faq')
                                         <a href="{{ route('administrator.faq.edit', ['id' => $data->id]) }}"
-                                            class="py-[0.15rem] px-[0.40rem] rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400"><i
+                                            class="w-7 h-7 flex justify-center items-center rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400">
+                                            <i
                                                 class="fa-solid fa-eye-dropper text-xs"></i></a>
                                     @endcan
                                     @can('delete-faq')
                                         <div onclick="confirmDelete('{{ $data->id }}')"
-                                            class="py-1 cursor-pointer px-[0.40rem] rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400">
+                                            class="w-7 h-7 flex justify-center items-center rounded-full border-2 border-slate-700 text-slate-700 hover:text-black hover:shadow-xl hover:bg-slate-300 hover:border-transparent transition-all active:bg-slate-400 cursor-pointer">
                                             <i class="fa-solid fa-trash text-xs"></i>
                                         </div>
                                     @endcan

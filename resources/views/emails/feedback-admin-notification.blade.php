@@ -43,7 +43,7 @@
         Silakan buka Dashboard untuk meninjau detail umpan balik tersebut dan memberikan tanggapan jika diperlukan.
     </p>
     
-    <a href="{{ route('dashboard') }}" class="button">Buka Dashboard</a>
+    <a href="{{ route('administrator.dashboard') }}" class="button">Buka Dashboard</a>
 
     <p>Terima kasih!</p>
 </body>

@@ -1,8 +1,8 @@
 @extends('front.layouts.master')
 
-@section('title')
-    Halaman Tidak Ditemukan
-@endsection
+@push('meta')
+    <x-meta :title="cache('seo_judul_not_found')" :description="cache('seo_deskripsi_not_found')" :image="cache('seo_gambar_not_found')" :keywords="cache('seo_keyword_not_found')"/>
+@endpush
 
 @section('content')
 <div>
