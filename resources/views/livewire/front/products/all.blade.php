@@ -3,7 +3,7 @@
         <!-- Header -->
         <div class="mb-8 md:mb-4 flex flex-col md:flex-row items-center gap-3 md:gap-6 w-full md:w-3/4">
             <div class="flex justify-center">
-                <img class="w-36 object-contain" src="{{ url(cache('product.filter-image') ?: 'assets/images/default/quality.png') }}" 
+                <img class="w-36 object-contain" src="{{ url(cache('product.filter-image') ?: 'assets/images/default/quality.png') }}?v={{ time() }}" 
                 alt="{{ cache('product.filter-image-alt') ?: cache('product.filter-description') }}">
             </div>
             <h2 class="text-lg md:text-2xl font-semibold text-gray-700 font-poppins text-center md:text-left">{{ cache('product.filter-description') ?: 'Kami Menjamin Kualitas terbaik untuk setiap produk kami' }}</h2>
@@ -49,7 +49,7 @@
             @forelse ($datas as $data)
                 <a href="{{ route('product.detail', $data->slug) }}">
                     <div class="relative rounded-3xl w-full h-[400px] group overflow-hidden drop-shadow-md">
-                        <img src="{{ url($data->image) }}" alt="{{ $data->name }}" class="w-full h-full object-contain absolute -z-10 group-hover:scale-125 transition-all duration-300"/>
+                        <img src="{{ url($data->image) }}?v={{ time() }}" alt="{{ $data->name }}" class="w-full h-full object-contain absolute -z-10 group-hover:scale-125 transition-all duration-300"/>
                         <div class="flex flex-col p-6 w-full h-full bg-gradient-to-b from-black/30 via-black/5 to-black/70 from-15% via-60% to-100% justify-between">
                             <div class="flex">
                                 <span class="text-sm font-nunito font-semibold text-accent backdrop-blur-md bg-black/10 md:bg-transparent rounded-full px-5 py-2 tracking-wider">{{ $data->category->name }}</span>
@@ -65,7 +65,7 @@
                 </a>
             @empty
             <div class="col-span-3 px-10 py-8 flex flex-col justify-center items-center border border-black/50 rounded-lg shadow-inner gap-5">
-                <img class="h-36 object-contain" src="{{ url(cache('product.notfound-image') ?: 'assets/images/default/404.png') }}" 
+                <img class="h-36 object-contain" src="{{ url(cache('product.notfound-image') ?: 'assets/images/default/404.png') }}?v={{ time() }}" 
                 alt="{{ cache('product.notfound-image-alt') ?: cache('product.notfound-description') }}">
                 <p class="font-poppins text-center md:text-left text-lg text-gray-700">
                     {{ cache('product.notfound-description') ?: 'Oops, produk yang Anda cari tidak kami temukan.' }}

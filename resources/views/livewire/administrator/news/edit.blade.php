@@ -175,7 +175,7 @@
                             @if ($newImage)
                                 <img class="rounded-2xl" src="{{ $newImage->temporaryUrl() }}" alt="">
                             @else
-                                <img class="rounded-2xl" src="{{ url($image) }}" alt="">
+                                <img class="rounded-2xl" src="{{ url($image) }}?v={{ time() }}" alt="">
                             @endif
                         </div>
                     </div>

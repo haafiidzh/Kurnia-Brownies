@@ -47,7 +47,7 @@
                                         </div>
                                         <img title="{{ $data->title }}"
                                             class="group-hover:blur-[2px] rounded aspect-[2/1] object-cover transition-all duration-300"
-                                            src="{{ url($data->image) }}">
+                                            src="{{ url($data->image) }}?v={{ time() }}">
 
                                         {{-- Preview Image --}}
                                         <div x-show="preview" x-cloak
@@ -67,7 +67,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="p-5">
-                                                    <img class="rounded-md" src="{{ url($data->image) }}"
+                                                    <img class="rounded-md" src="{{ url($data->image) }}?v={{ time() }}"
                                                         style="max-height: 480px;" alt="{{ $data->name }}">
                                                 </div>
                                             </div>

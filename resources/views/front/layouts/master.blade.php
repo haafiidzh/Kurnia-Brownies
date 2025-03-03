@@ -154,7 +154,7 @@
     @else
     <livewire:front.layouts.footer/>
     @endif
-    <a alt="WhatsApp Icon" aria-label="Hubungi Kami di WhatsApp" href="https://wa.me/{{ cache('contact_whatsapp') ?: '' }}" target="_blank" class="fixed bottom-8 right-5 md:bottom-10 md:right-10 z-30 w-20 h-20 border-2 border-transparent bg-[#25D366] text-white hover:border-[#25D366] hover:bg-white hover:text-[#25D366] active:bg-gray-200 transition-colors rounded-full flex justify-center items-center drop-shadow-md text-4xl">
+    <a alt="WhatsApp Icon" aria-label="Hubungi Kami di WhatsApp" href="https://wa.me/{{ cache('contact-whatsapp') ?: '' }}?text={{ urlencode(cache('contact-whatsapp-text') ?: 'Halo, Saya mau pesan brownies.') }}" target="_blank" class="fixed bottom-8 right-5 md:bottom-10 md:right-10 z-30 w-20 h-20 border-2 border-transparent bg-[#25D366] text-white hover:border-[#25D366] hover:bg-white hover:text-[#25D366] active:bg-gray-200 transition-colors rounded-full flex justify-center items-center drop-shadow-md text-4xl">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
     @stack('scripts')

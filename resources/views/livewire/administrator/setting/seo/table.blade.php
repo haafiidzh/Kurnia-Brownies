@@ -48,7 +48,7 @@
                                             @case('image')
                                                 @if ($data->value)
                                                 <div class="w-full flex justify-center">
-                                                    <img class="bg-black/10 rounded-md border border-black/15 max-w-[300px]" src="{{ url($data->value) }}" title="{{ $data->label }}">
+                                                    <img class="bg-black/10 rounded-md border border-black/15 max-w-[300px]" src="{{ url($data->value) }}?v={{ time() }}" title="{{ $data->label }}">
                                                 </div>
                                                 @else
                                                     -

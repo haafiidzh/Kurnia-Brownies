@@ -26,7 +26,7 @@
             <div x-data="{ preview: false, scrollPosition: 0 }">
                 <div class="relative group rounded-lg overflow-hidden">
                     <img class="object-cover transition-all group-hover:blur-[2px] duration-300 w-[200px] h-[160px]"
-                        src="{{ url($data->image) }}">
+                        src="{{ url($data->image) }}?v={{ time() }}">
 
                     <div class="absolute inset-0 flex justify-center items-center group-hover:visible invisible">
                         <a href="javascript:void(0)"
@@ -52,7 +52,7 @@
                                     </span>
                                 </div>
                                 <div class="p-5">
-                                    <img class="rounded-md max-h-[480px]" src="{{ url($data->image) }}"
+                                    <img class="rounded-md max-h-[480px]" src="{{ url($data->image) }}?v={{ time() }}"
                                         alt="">
                                 </div>
                             </div>

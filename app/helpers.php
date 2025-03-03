@@ -914,39 +914,6 @@ if (!function_exists('updateIframeAttributes')) {
     }
 }
 
-// if (!function_exists('newIframeAttributes')) {
-//     /**
-//      * Remove width and set height to 500 in iframe
-//      *
-//      * @param  ?string $value
-//      * @return ?string
-//      */
-//     function newIframeAttributes($value)
-//     {
-//         try {
-//             // Hapus atribut width
-//             $value = preg_replace('/\s*width="\d+"/i', '', $value);
-
-//             // Ubah atau tambahkan atribut height="500"
-//             if (preg_match('/\s*height="\d+"/i', $value)) {
-//                 // Jika sudah ada height, ubah jadi 500
-//                 $value = preg_replace('/\s*height="\d+"/i', ' height="250"', $value);
-//                 $value = preg_replace(
-//                     '/<iframe(.*?)>/i', // Pola untuk elemen iframe
-//                     '<iframe$1 class="w-full">',
-//                     $value
-//                 );
-//             } else {
-//                 // Jika tidak ada height, tambahkan height="500" di dalam tag iframe
-//                 $value = preg_replace('/<iframe(.*?)>/i', '<iframe$1 height="250">', $value);
-//             }
-
-//             return $value;
-//         } catch (Exception $exception) {
-//             return null;
-//         }
-//     }
-// }
 if (!function_exists('newIframeAttributes')) {
     /**
      * Menambahkan atribut title, menghapus width, dan set height iframe
@@ -1026,5 +993,36 @@ if (!function_exists('toDate')) {
         } catch (\Exception $exception) {
             return null;
         }
+    }
+}
+
+if (!function_exists('formatPhoneId')) {
+    /**
+     * Mengubah format nomor telepon ke format internasional dengan kode negara Indonesia (+62).
+     *
+     * @param string|null $phone
+     * @return string|null
+     */
+    function formatPhoneId(?string $phone): ?string
+    {
+        if (!$phone) {
+            return null;
+        }
+
+        // Hapus semua karakter non-digit
+        $phone = preg_replace('/\D/', '', $phone);
+
+        // Jika nomor diawali dengan '0', ubah menjadi '+62'
+        if (substr($phone, 0, 1) === '0') {
+            return '+62' . substr($phone, 1);
+        }
+
+        // Jika nomor sudah diawali '62' tanpa '+', tambahkan '+'
+        if (substr($phone, 0, 2) === '62') {
+            return '+' . $phone;
+        }
+
+        // Jika format tidak sesuai, tambahkan '+62' di awal
+        return '+62' . $phone;
     }
 }

@@ -317,7 +317,7 @@
                         <input class="hidden" id="gallery" type="file" wire:model="gallery" multiple>
                         <div class="flex flex-wrap justify-center gap-4">
                             @foreach ($gallery as $item)
-                                <div class="w-48 flex flex-col gap-2 relative">
+                                <div class="w-48 flex flex-col gap-2 relative" >
                                     <img class="rounded-md" src="{{ $item->temporaryUrl() }}">
                                     <div title="Hapus" wire:click="deleteItem({{ $loop->index }})" class="absolute top-2 right-2 h-6 w-6 bg-red-500 hover:bg-red-600 transition-all duration-300 flex justify-center items-center rounded-full text-gray-200 text-xs shadow-sm active:text-gray-400 cursor-pointer">
                                         <i class="fa-solid fa-x"></i>

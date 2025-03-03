@@ -12,7 +12,7 @@
                 <a class="relative overflow-hidden group " href="{{ route('news.detail', $data->slug) }}">
                     <div class="z-20 absolute inset-0 bg-white/20 hidden group-hover:block "></div>
                     <img loading="lazy" class="aspect-video object-cover group-hover:scale-125 transition-all duration-300"
-                        src="{{ url($data->image) }}" alt="{{ $data->title }}">
+                        src="{{ url($data->image) }}?v={{ time() }}" alt="{{ $data->title }}">
                 </a>
                 <div>
                     <p class="font-poppins text-sm"> Dibuat oleh <span class="font-poppins font-semibold text-sm">{{ $data->author->name }}</span> </p>

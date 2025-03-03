@@ -63,6 +63,6 @@
     </div>
 
     <div class="w-[70%] md:w-[566px] absolute h-full flex items-center justify-end right-0 z-0 drop-shadow-2xl" data-aos="fade-left" data-aos-easing="ease-out" data-aos-duration="2000" data-aos-once="false">
-        <img src="{{ url(cache('homepage.about-image') ?: 'assets/images/default/bronies.png') }}" alt="{{ cache('homepage.about-image-alt') ?: cache('homepage.about-title') }}">
+        <img src="{{ url(cache('homepage.about-image') ?: 'assets/images/default/bronies.png') }}?v={{ time() }}" alt="{{ cache('homepage.about-image-alt') ?: cache('homepage.about-title') }}">
     </div>
 </section>

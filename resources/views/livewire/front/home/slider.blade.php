@@ -26,7 +26,7 @@
                 <div class="swiper-slide relative">
                     <div class="absolute flex w-full h-full justify-center items-center">
                         <figure class="relative w-full h-full overflow-hidden">
-                            <img loading="eager" class="w-full h-full object-center object-cover" src="{{ url($data->image) }}" alt="{{ $data->title }}">
+                            <img loading="eager" class="w-full h-full object-center object-cover" src="{{ url($data->image) }}?v={{ time() }}" alt="{{ $data->title }}">
                         </figure>
                     </div>
 

@@ -37,7 +37,7 @@
                                 <td class="w-24 px-4 py-2 text-left">
                                     {{ $product->category->name ?? 'Belum ada kategori' }}</td>
                                 <td class="px-4 py-2 text-left">
-                                    <img class="rounded" src="{{ url($product->image) }}" alt="{{ $product->image }}"
+                                    <img class="rounded" src="{{ url($product->image) }}?v={{ time() }}" alt="{{ $product->image }}"
                                         style="width: 120px; object-fit: contain">
                                 </td>
 

@@ -28,7 +28,7 @@
                         <div class="swiper-slide w-1/2 h-full flex items-center justify-center relative ">
                             <div class="absolute bottom-0 h-[200px] justify-center flex items-center ">
                                 <img loading="lazy" class="h-40 w-full drop-shadow-md object-contain" 
-                                    src="{{ $data->image }}"
+                                    src="{{ url($data->image) }}?v={{ time() }}"
                                     alt="{{ $data->name }}">
                             </div>
                         </div>

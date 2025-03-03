@@ -8,6 +8,8 @@ use App\Models\ProductDetail;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Intervention\Image\Laravel\Facades\Image;
+use Intervention\Image\Drivers\Gd\Encoders\WebpEncoder;
 
 class Edit extends Component
 {
@@ -60,7 +62,9 @@ class Edit extends Component
 
     public function restoreOldItem($id)
     {
-        //
+        $this->deletedGallery = array_filter($this->deletedGallery, function ($deletedId) use ($id) {
+            return $deletedId !== $id;
+        });
     }
 
     public function deleteNewItem($index)
@@ -103,10 +107,13 @@ class Edit extends Component
 
             Storage::disk('public')->delete($path);
 
-            $image_name = $this->slug . '.' . $this->newImage->extension();
-            $this->newImage->storeAs('/images/product', $image_name, 'public');
-        
-            $image = '/storage/images/product/' . $image_name;
+            $imageName =  $this->slug . '.webp';
+
+            $convertedImage = Image::read($this->newImage->getRealPath())
+            ->encode(new WebpEncoder(100));
+
+            Storage::disk('public')->put('images/product/' . $imageName, $convertedImage);
+            $image = '/storage/images/product/' . $imageName;
         } else {
             $image = $this->image; 
         }
@@ -123,10 +130,13 @@ class Edit extends Component
         ]);
 
         foreach ($this->newGallery as $item) {
-            $gallery_name = $this->slug . '.' . rand(1,999999) . '.' . $item->extension();
-            $item->storeAs('images/product/gallery', $gallery_name, 'public');
+            $gallery_name = $this->slug . '.' . rand(1,999999) . '.webp';
+            $convertedImage = Image::read($item->getRealPath())
+            ->encode(new WebpEncoder(100));
 
+            Storage::disk('public')->put('images/product/gallery/' . $gallery_name, $convertedImage);
             $gallery = '/storage/images/product/gallery/' . $gallery_name;
+
             ProductDetail::updateOrCreate([
                 'product_id' => $data->id,
                 'value' => $gallery

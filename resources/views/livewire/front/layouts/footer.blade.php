@@ -3,7 +3,7 @@
     <div class="w-full px-10 md:px-16 lg:px-[120px] py-16 flex flex-col gap-5">
         <div class="w-full flex flex-col md:flex-row gap-5 mb-4">
             <section class="w-full md:w-1/3 flex flex-col gap-10 items-center">
-                <img class="w-32" src="{{ url(cache('footer_logo') ?: 'assets/images/default/brand_logo_long.png') }}"
+                <img class="w-32" src="{{ url(cache('footer_logo') ?: 'assets/images/default/brand_logo_long.png') }}?v={{ time() }}"
                     alt="Logo {{ cache('app_name') }}">
                 <div class="flex flex-col gap-3 items-center relative w-full">
                     <svg class="absolute bottom-0 left-0 w-10 h-auto rotate-90 translate-y-3"

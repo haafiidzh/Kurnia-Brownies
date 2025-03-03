@@ -13,7 +13,7 @@
             <div class="flex items-center">
                 <a href="{{ route('home') }}" rel="home">
                     <img class="h-[50px] m-0"
-                        src="{{ url(cache('logo') ?: 'assets/images/default/brand_logo_long.png') }}" alt="Logo {{ cache('app_name') }}">
+                        src="{{ url(cache('logo') ?: 'assets/images/default/brand_logo_long.png') }}?v={{ time() }}" alt="Logo {{ cache('app_name') }}">
                 </a>
             </div>
             <nav>

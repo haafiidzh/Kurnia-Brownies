@@ -35,10 +35,10 @@
                                 <i class="fa-brands fa-square-whatsapp text-2xl"></i>
                             </div>
     
-                            <a href="https://wa.me/{{ cache('contact-whatsapp') ?: '083754832238' }}" target="_blank">
+                            <a href="https://wa.me/{{ cache('contact-whatsapp') ?: '' }}?text={{ urlencode(cache('contact-whatsapp-text') ?: 'Halo, Saya mau pesan brownies.') }}" target="_blank">
                                 <p
                                     class="font-poppins text-gray-600 tracking-wide hover:text-gray-700 transition-colors">
-                                    {{ cache('contact-whatsapp') ?: '083754832238' }}
+                                    {{ cache('contact-whatsapp') ?: '' }}
                                 </p>
                             </a>
                         </li>
@@ -118,15 +118,15 @@
         </div>
         <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-6 place-items-center mt-16">
             <a href="{{ cache('merchant-shopeefood_link') ?: 'javascript:void(0)' }}" class="w-3/4 md:w-full flex flex-col justify-center items-center gap-1 md:gap-6 border-r-0 border-b md:border-r md:border-b-0 border-primary pb-10 md:pb-0" data-aos="fade-left" data-aos-easing="ease-out" data-aos-once="true" data-aos-duration="2000" >
-                <img class="object-contain h-20 md:h-36" src="{{ url('assets/images/default/logo/shopee-food-removebg.png') }}" alt="">
+                <img class="object-contain h-20 md:h-36" src="{{ url('assets/images/default/logo/shopee-food-removebg.png') }}?v={{ time() }}" alt="Logo Shopee Food">
                 <p class="font-poppins text-gray-800 text-lg font-semibold">Shopee Food</p>
             </a>
             <a href="{{ cache('merchant-grabfood_link') ?: 'javascript:void(0)' }}" class="w-3/4 md:w-full flex flex-col justify-center items-center gap-1 md:gap-6 border-r-0 border-b md:border-r md:border-b-0 border-primary pb-10 md:pb-0" data-aos="fade-left" data-aos-easing="ease-out" data-aos-once="true" data-aos-duration="2000" data-aos-delay="500">
-                <img class="object-contain h-20 md:h-36" src="{{ url('assets/images/default/logo/grab-food-removebg.png') }}" alt="">
+                <img class="object-contain h-20 md:h-36" src="{{ url('assets/images/default/logo/grab-food-removebg.png') }}?v={{ time() }}" alt="Logo Grab Food">
                 <p class="font-poppins text-gray-800 text-lg font-semibold">Grab Food</p>
             </a>
             <a href="{{ cache('merchant-gofood_link') ?: 'javascript:void(0)' }}" class="w-3/4 md:w-full flex flex-col justify-center items-center gap-1 md:gap-6" data-aos="fade-left" data-aos-easing="ease-out" data-aos-once="true" data-aos-duration="2000" data-aos-delay="1000">
-                <img class="object-contain h-20 md:h-36" src="{{ url('assets/images/default/logo/go-food-removebg.png') }}" alt="">
+                <img class="object-contain h-20 md:h-36" src="{{ url('assets/images/default/logo/go-food-removebg.png') }}?v={{ time() }}" alt="Logo GoFood">
                 <p class="font-poppins text-gray-800 text-lg font-semibold">Go Food</p>
             </a>
         </div>

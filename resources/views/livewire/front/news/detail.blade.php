@@ -66,7 +66,7 @@
                 <p class="font-poppins text-base md:text-lg text-primary-dark">{{ $data->subject ?: ''  }}</p>
             </div>
             
-            <img class="h-auto w-full object-center md:max-h-[600px] object-contain" src="{{ url($data->image) }}" alt="{{ $data->title }}">
+            <img class="h-auto w-full object-center md:max-h-[600px] object-contain" src="{{ url($data->image) }}?v={{ time() }}" alt="{{ $data->title }}">
             
             <div class="mt-6 flex flex-col w-full gap-5">
                 <div class="font-poppins text-gray-800 text-base md:text-lg leading-relaxed">
@@ -132,7 +132,7 @@
                         <a class="relative overflow-hidden group rounded-md" href="{{ route('news.detail', $item->slug) }}">
                             <div class="z-20 absolute inset-0 bg-white/20 hidden group-hover:block "></div>
                             <img class="aspect-video object-cover group-hover:scale-125 transition-all duration-300"
-                            src="{{ url($item->image) }}" alt="">
+                            src="{{ url($item->image) }}?v={{ time() }}" alt="{{ $data->title }}">
                         </a>
                         <div>
                             <p class="font-poppins text-sm">Dibuat oleh <span class="font-poppins font-bold text-sm">{{ $item->author->name }}</span> </p>

@@ -62,7 +62,7 @@
         <div class="flex gap-10 mb-10 flex-col md:flex-row">
             <div class="w-full md:w-1/3 flex flex-col items-center gap-5">
                 <div class="h-[400px] overflow-hidden relative drop-shadow-xl">
-                    <img class="object-contain rounded-lg object-center h-full w-auto " src="{{ url($data->image) }}"
+                    <img class="object-contain rounded-lg object-center h-full w-auto " src="{{ url($data->image) }}?v={{ time() }}"
                         alt="{{ $data->name }}">
 
                     <a @click="detail = true" href="javascript:void(0)" title="Fullscreen"
@@ -111,7 +111,7 @@
                         <div class="swiper-slide relative">
                             <div class="absolute h-full w-full bg-white">
                                 <div class="relative flex h-full justify-center items-center ">
-                                    <img class="h-full object-cover md:object-contain object-center" src="{{ url($item->value) }}"
+                                    <img class="h-full object-cover md:object-contain object-center" src="{{ url($item->value) }}?v={{ time() }}"
                                         alt="{{ $data->name }}">
                                     <a @click="detailChild = true; selectedImage = '{{ url($item->value) }}'" href="javascript:void(0)" title="Fullscreen"
                                         class="absolute bottom-5 h-12 w-12 text-primary  flex justify-center items-center hover:bg-accent bg-accent/70 transition-colors duration-300 text-2xl rounded-full  border border-primary">
@@ -149,7 +149,7 @@
                 <div class="swiper-wrapper">
                     @foreach ($gallery as $key => $item)
                      <div class="swiper-slide cursor-pointer h-36">
-                        <img class="h-full w-full object-cover" src="{{ url($item->value) }}" />
+                        <img class="h-full w-full object-cover" src="{{ url($item->value) }}?v={{ time() }}" />
                       </div>   
                     @endforeach
                 </div>
@@ -229,7 +229,7 @@
                 @foreach ($relatedProducts as $item)
                 <a href="{{ route('product.detail', $item->slug) }}">
                     <div class="relative rounded-3xl w-full h-[400px] group overflow-hidden drop-shadow-md">
-                        <img src="{{ url($item->image) }}" alt="{{ $item->name }}" class="w-full h-full object-contain absolute -z-10 group-hover:scale-125 transition-all duration-300"/>
+                        <img src="{{ url($item->image) }}?v={{ time() }}" alt="{{ $item->name }}" class="w-full h-full object-contain absolute -z-10 group-hover:scale-125 transition-all duration-300"/>
                             <div class="flex flex-col p-6 w-full h-full bg-gradient-to-b from-black/30 via-black/5 to-black/70 from-15% via-60% to-100% justify-between">
                             <div class="flex">
                                 <span class="text-sm font-nunito font-semibold text-accent backdrop-blur-md bg-black/10 md:bg-transparent rounded-full px-5 py-2 tracking-wider">{{ $item->category->name }}</span>
@@ -253,7 +253,7 @@
             x-transition:leave-end="opacity-0"
             class="fixed inset-0 bg-black bg-opacity-80 z-50 transition-opacity duration-300">
             <div class="p-5 md:p-16 w-full h-full flex items-center justify-center relative">
-                <img class="object-contain rounded-lg object-center h-full w-auto" src="{{ url($data->image) }}" />
+                <img class="object-contain rounded-lg object-center h-full w-auto" src="{{ url($data->image) }}?v={{ time() }}" />
                 <a @click="detail = false" href="javascript:void(0)" title="Exit Fullscreen"
                     class="absolute right-5 top-8 md:right-8 h-10 w-10 text-primary drop-shadow-md flex justify-center items-center bg-accent hover:bg-accent/70 transition-colors duration-300 text-xl rounded-full  border border-primary">
                     <i class="fa-solid fa-x"></i>

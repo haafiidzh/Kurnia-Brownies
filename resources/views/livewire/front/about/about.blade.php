@@ -21,7 +21,7 @@
                 </p>
             </div>
             <div class="h-full md:w-1/2 -z-10 rounded-xl md:rounded-none overflow-hidden"> 
-                <img class="object-cover h-full w-full" src="{{ url(cache('about.page-background-section.1') ?: 'assets/images/default/about/1.jpg') }}" 
+                <img class="object-cover h-full w-full" src="{{ url(cache('about.page-background-section.1') ?: 'assets/images/default/about/1.jpg') }}?v={{ time() }}" 
                     alt="{{ cache('about.page-background-section-alt.1') ?: cache('about.section-title.1') }}" 
                     data-aos="fade" data-aos-duration="500" data-aos-easing="ease-in" data-aos-delay="600" data-aos-once="true">
             </div>
@@ -49,7 +49,7 @@
                 </p>
             </div>
             <div class="h-full md:w-1/2 -z-10 rounded-xl md:rounded-none overflow-hidden"> 
-                <img class="object-cover h-full w-full" src="{{ url(cache('about.page-background-section.2') ?: 'assets/images/default/about/2.jpg') }}" 
+                <img class="object-cover h-full w-full" src="{{ url(cache('about.page-background-section.2') ?: 'assets/images/default/about/2.jpg') }}?v={{ time() }}" 
                     alt="{{ cache('about.page-background-section-alt.2') ?: cache('about.section-title.2') }}" 
                     data-aos="fade" data-aos-duration="500" data-aos-easing="ease-in" data-aos-delay="600" data-aos-once="true">
             </div>
@@ -77,7 +77,7 @@
                 </p>
             </div>
             <div class="h-full md:w-1/2 -z-10 rounded-xl md:rounded-none overflow-hidden"> 
-                <img class="object-cover h-full w-full" src="{{ url(cache('about.page-background-section.3') ?: 'assets/images/default/about/5.jpg') }}" 
+                <img class="object-cover h-full w-full" src="{{ url(cache('about.page-background-section.3') ?: 'assets/images/default/about/5.jpg') }}?v={{ time() }}" 
                     alt="{{ cache('about.page-background-section-alt.3') ?: cache('about.section-title.3') }}" 
                     data-aos="fade" data-aos-duration="500" data-aos-easing="ease-in" data-aos-delay="600" data-aos-once="true">
             </div>
@@ -106,7 +106,7 @@
                 </p>
             </div>
             <div class="h-full md:w-1/2 -z-10 rounded-xl md:rounded-none overflow-hidden"> 
-                <img class="object-cover h-full w-full" src="{{ url(cache('about.page-background-section.4') ?: 'assets/images/default/about/4.jpeg') }}" 
+                <img class="object-cover h-full w-full" src="{{ url(cache('about.page-background-section.4') ?: 'assets/images/default/about/4.jpeg') }}?v={{ time() }}" 
                     alt="{{ cache('about.page-background-section-alt.4') ?: cache('about.section-title.4') }}" 
                     data-aos="fade" data-aos-duration="500" data-aos-easing="ease-in" data-aos-delay="600" data-aos-once="true">
             </div>
@@ -133,7 +133,7 @@
                 </p>
             </div>
             <div class="h-full md:w-1/2 -z-10 rounded-xl md:rounded-none overflow-hidden"> 
-                <img class="object-cover h-full w-full" src="{{ url(cache('about.page-background-section.5') ?: 'assets/images/default/about/3.jpg') }}" 
+                <img class="object-cover h-full w-full" src="{{ url(cache('about.page-background-section.5') ?: 'assets/images/default/about/3.jpg') }}?v={{ time() }}" 
                     alt="{{ cache('about.page-background-section-alt.5') ?: cache('about.section-title.5') }}" 
                     data-aos="fade" data-aos-duration="500" data-aos-easing="ease-in" data-aos-delay="600" data-aos-once="true">
             </div>

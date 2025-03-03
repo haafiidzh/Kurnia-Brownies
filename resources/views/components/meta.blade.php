@@ -27,10 +27,10 @@
     <meta property="og:url" content="{{ $page_url }}" />
     <meta property="og:title" content="{{ $page_title }}" />
     <meta property="og:description" content="{{ $page_description }}" />
-    <meta property="og:image" content="{{ url($page_image) }}" />
+    <meta property="og:image" content="{{ url($page_image) }}?v={{ time() }}" />
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="{{ $page_url }}" />
     <meta property="twitter:title" content="{{ $page_title }}" />
     <meta property="twitter:description" content="{{ $page_description }}" />
-    <meta property="twitter:image" content="{{ url($page_image) }}" />
+    <meta property="twitter:image" content="{{ url($page_image) }}?v={{ time() }}" />

@@ -49,7 +49,7 @@
                                         @if ($newValue)
                                             <img class="rounded-2xl" src="{{ $newValue->temporaryUrl() }}" alt="">
                                         @else
-                                            <img class="rounded-2xl" src="{{ url($value) }}" alt="">
+                                            <img class="rounded-2xl" src="{{ url($value) }}?v={{ time() }}" alt="">
                                         @endif
                                     </div>
                                 </div>

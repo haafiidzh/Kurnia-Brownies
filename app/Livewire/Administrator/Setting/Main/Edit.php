@@ -31,10 +31,24 @@ class Edit extends Component
         $this->tip = $this->data->tip;
     }
 
+    private function updateFavicon($fileName)
+    {
+        $sourcePath = public_path("storage/images/setting/main/{$fileName}");
+        $destinationPath = public_path("favicon.ico");
+
+        if (file_exists($sourcePath)) {
+            if (file_exists($destinationPath)) {
+                unlink($destinationPath);
+            }
+            copy($sourcePath, $destinationPath);
+        }
+    }
+
     public function update()
     {
         $data = $this->id;
         $key = $data->key;
+        // dd($key);
 
         $rules = [
             'value' => 'required|string|max:255',
@@ -67,12 +81,25 @@ class Edit extends Component
             }
 
         } elseif ($data->type === 'input' or 'textarea') {
-            $data->update(
-                [
-                    'value' => $this->value
-                ]
-            );
-            $this->updateCache($key, $this->value);
+            if ($key === 'contact-whatsapp' ) {
+                
+                $phoneNumber = formatPhoneId($this->value);
+                
+                $data->update(
+                    [
+                        'value' => $phoneNumber
+                    ]
+                );
+                $this->updateCache($key, $phoneNumber);
+
+            } else {
+                $data->update(
+                    [
+                        'value' => $this->value
+                    ]
+                );
+                $this->updateCache($key, $this->value);
+            }
         }
 
         session()->flash('flash_message', [

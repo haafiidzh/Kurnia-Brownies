@@ -4,8 +4,8 @@
 
             <a href="{{ route('home') }}" target="_blank" class="-mx-2 p-2 flex justify-center"
                 :class="!isOpen ? 'w-16 transition-all duration-300' : 'w-48 transition-all duration-300'">
-                <img :src="!isOpen ? '{{ url(cache('small_logo') ?: "assets/images/default/brand_logo_square.png") }}' :
-                    '{{ url(cache('logo') ?: "assets/images/default/brand_logo_long.png") }}'"
+                <img :src="!isOpen ? '{{ url(cache('small_logo') ?: "assets/images/default/brand_logo_square.png") }}?v={{ time() }}' :
+                    '{{ url(cache('logo') ?: "assets/images/default/brand_logo_long.png") }}?v={{ time() }}'"
                     class="h-10 drop-shadow-md object-contain" alt="">
             </a>
 

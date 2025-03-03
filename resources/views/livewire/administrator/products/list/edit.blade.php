@@ -250,7 +250,7 @@
                             @if ($newImage)
                                 <img class="rounded-2xl" src="{{ $newImage->temporaryUrl() }}" alt="">
                             @else
-                                <img class="rounded-2xl" src="{{ url($image) }}" alt="">
+                                <img class="rounded-2xl" src="{{ url($image) }}?v={{ time() }}" alt="">
                             @endif
                         </div>
                     </div>
@@ -303,7 +303,7 @@
                                 @endphp
                                 <div class="w-48 flex flex-col gap-2 relative" wire:loading.class="cursor-wait">
                                     <img class="rounded-md {{ $isDeleted ? 'opacity-50' : '' }}"
-                                        src="{{ url($item->value) }}">
+                                        src="{{ url($item->value) }}?v={{ time() }}">
 
                                     @if ($isDeleted)
                                         <div title="Batal Hapus" wire:click="restoreOldItem('{{ $item->id }}')"

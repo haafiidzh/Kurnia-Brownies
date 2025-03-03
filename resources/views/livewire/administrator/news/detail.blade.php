@@ -35,7 +35,7 @@
             </div>
             <div class="w-full border-slate-400 border-b"></div>
             <div class="pt-3 px-6">
-                <img class="mb-3 w-full aspect-video rounded-md border border-slate-300" src="{{ url($data->image) }}" alt="">
+                <img class="mb-3 w-full aspect-video rounded-md border border-slate-300" src="{{ url($data->image) }}?v={{ time() }}" alt="">
                 <p class="leading-relaxed">{!! $data->description !!}</p>
             </div>
         </div>

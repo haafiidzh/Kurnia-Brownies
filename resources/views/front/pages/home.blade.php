@@ -165,7 +165,7 @@
                     data-aos-easing="ease-out" data-aos-once="true">
                     @if (cache('homepage.why_us-image.1'))
                     <div class="w-14 h-14 md:h-[70px] md:w-[70px]">
-                        <img loading="lazy" class="object-contain w-full h-full" src="{{ url(cache('homepage.why_us-image.1')) }}" alt="{{ cache('homepage.why_us-image-alt.1') ?: cache('homepage.why_us-title.1') }}">
+                        <img loading="lazy" class="object-contain w-full h-full" src="{{ url(cache('homepage.why_us-image.1')) }}?v={{ time() }}" alt="{{ cache('homepage.why_us-image-alt.1') ?: cache('homepage.why_us-title.1') }}">
                     </div>
                     @else
                     <i class="fa-solid fa-clock-rotate-left text-3xl md:text-6xl text-primary drop-shadow-md"></i>
@@ -183,7 +183,7 @@
                     @if (cache('homepage.why_us-image.2'))
                     <div class="w-14 h-14 md:h-[70px] md:w-[70px]">
 
-                        <img loading="lazy" class="object-contain w-full h-full" src="{{ url(cache('homepage.why_us-image.2')) }}" alt="{{ cache('homepage.why_us-image-alt.2') ?: cache('homepage.why_us-title.2') }}">
+                        <img loading="lazy" class="object-contain w-full h-full" src="{{ url(cache('homepage.why_us-image.2')) }}?v={{ time() }}" alt="{{ cache('homepage.why_us-image-alt.2') ?: cache('homepage.why_us-title.2') }}">
                     </div>
                     @else
                     <i class="fa-solid fa-cookie text-3xl md:text-6xl text-primary drop-shadow-md"></i>
@@ -201,10 +201,7 @@
                     @if (cache('homepage.why_us-image.3'))
                     <div class="w-14 h-14 md:h-[70px] md:w-[70px]">
 
-                        <img loading="lazy" class="object-contain w-full h-full" src="{{ url(cache('homepage.why_us-image.3')) }}" alt="{{ cache('homepage.why_us-image-alt.3') ?: cache('homepage.why_us-title.3') }}">
-                    </div>
-                    @else
-                    <i class="fa-solid fa-shield-halved text-3xl md:text-6xl text-primary drop-shadow-md"></i>
+                        <img loading="lazy" class="object-contain w-full h-full" src="{{ url(cache('homepage.why_us-image.3')) }}?v={{ time() }}i>
                     @endif
                     
                     <div class="w-full md:w-3/4">
@@ -288,7 +285,7 @@
         <div class="absolute inset-0 z-0 md:-z-10 bg-gradient-to-b from-white to-transparent from-0% to-20%"></div>
 
         <img loading="lazy" class="object-center object-cover md:object-contain h-[800px] absolute -z-30" 
-            src="{{ url(cache('homepage.location-image') ?: 'assets/images/default/about/1.jpg') }}" 
+            src="{{ url(cache('homepage.location-image') ?: 'assets/images/default/about/1.jpg') }}?v={{ time() }}" 
             alt="{{ cache('homepage.location-image-alt') ?: cache('homepage.location-tile') }}">
         <div class="absolute inset-0 z-0 bg-transparent md:bg-gradient-to-l from-white to-transparent from-[35%] to-65% flex justify-end">
             <div class="h-full w-full md:w-1/3 flex flex-col justify-end md:justify-center items-center z-20">
@@ -326,7 +323,7 @@
                             <i class="fa-brands fa-square-whatsapp text-2xl"></i>
                         </div>
 
-                        <a href="https://wa.me/{{ cache('contact-whatsapp') ?: '083754832238' }}" target="_blank">
+                        <a href="https://wa.me/{{ cache('contact-whatsapp') ?: '' }}?text={{ urlencode(cache('contact-whatsapp-text') ?: 'Halo, Saya mau pesan brownies.') }}" target="_blank">
                             <p
                                 class="font-poppins text-gray-600 tracking-wide hover:text-gray-700 transition-colors">
                                 {{ cache('contact-whatsapp') ?: '083754832238' }}
@@ -392,13 +389,13 @@
                     <div class="track">
                         @foreach ($data as $item)
                             <div class="w-32 h-32 flex-shrink-0  rounded-lg">
-                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ url($item->image) }}?v={{ time() }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                         <!-- Duplikasi elemen untuk efek infinite -->
                         @foreach ($data as $item)
                             <div class="w-32 h-32 flex-shrink-0  rounded-lg">
-                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ url($item->image) }}?v={{ time() }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                       </div>
@@ -407,13 +404,13 @@
                     <div class="track2">
                         @foreach ($data as $item)
                             <div class="w-32 h-32 flex-shrink-0  rounded-lg">
-                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ url($item->image) }}?v={{ time() }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                         
                         @foreach ($data as $item)
                             <div class="w-32 h-32 flex-shrink-0  rounded-lg">
-                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ url($item->image) }}?v={{ time() }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                       </div>
@@ -422,13 +419,13 @@
                     <div class="track">
                         @foreach ($data as $item)
                             <div class="w-32 h-32 flex-shrink-0  rounded-lg">
-                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ url($item->image) }}?v={{ time() }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                         <!-- Duplikasi elemen untuk efek infinite -->
                         @foreach ($data as $item)
                             <div class="w-32 h-32 flex-shrink-0  rounded-lg">
-                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ url($item->image) }}?v={{ time() }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                       </div>
@@ -437,13 +434,13 @@
                     <div class="track2">
                         @foreach ($data as $item)
                             <div class="w-32 h-32 flex-shrink-0  rounded-lg">
-                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ url($item->image) }}?v={{ time() }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                         <!-- Duplikasi elemen untuk efek infinite -->
                         @foreach ($data as $item)
                             <div class="w-32 h-32 flex-shrink-0  rounded-lg">
-                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ $item->image }}" alt="{{ $item->image }}">
+                                <img loading="lazy" class="object-contain h-full hover:scale-125 transition-all duration-150" src="{{ url($item->image) }}?v={{ time() }}" alt="{{ $item->image }}">
                             </div>
                         @endforeach
                       </div>

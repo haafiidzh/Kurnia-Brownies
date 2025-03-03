@@ -28,7 +28,7 @@
 
     <section class="w-full relative h-[300px] md:h-[400px] overflow-hidden">
         <img loading="lazy" class="-z-10 absolute object-cover w-full h-full object-center"
-        src="{{ url(cache('contact.page-background-image') ?: 'assets/images/default/greetings.jpg') }}"
+        src="{{ url(cache('contact.page-background-image') ?: 'assets/images/default/greetings.jpg') }}?v={{ time() }}"
         alt="{{ cache('contact.page-background-image-alt') ?: cache('contact.page-title') }}">
         <div class="relative w-full h-full flex flex-col justify-end backdrop-blur-sm p-10 lg:px-[120px] lg:py-20 gap-2 md:gap-4">
             <div class="absolute inset-0 bg-black/65"></div>
